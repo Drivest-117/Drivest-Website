@@ -1,0 +1,253 @@
+{
+  "seo": {
+    "title": "Drivest, learner and new driver navigation",
+    "description": "Practice test-centre routes. Get calm navigation after you pass. Brief prompts for key road features. Advisory guidance only."
+  },
+  "ui": {
+    "brand": "Drivest",
+    "nav": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "comingSoon": "Coming soon"
+    },
+    "sections": {
+      "coreFeatures": "Core features",
+      "onArrival": "On arrival"
+    }
+  },
+  "global": {
+    "ctas": {
+      "downloadAndroid": "Download for Android",
+      "downloadIOS": "Download for iOS",
+      "joinWaitlist": "Join the waitlist"
+    },
+    "ctaLinks": {
+      "android": "https://drivest.uk/coming-soon",
+      "ios": "https://drivest.uk/coming-soon",
+      "waitlist": "mailto:admin@drivest.uk?subject=Drivest%20waitlist"
+    }
+  },
+  "hero": {
+    "headline": "Drivest helps you learn to drive, then keeps you safe as a new driver.",
+    "subhead": "Practice real test-centre routes. Get calm navigation after you pass. Receive simple prompts for road features while you drive.",
+    "primaryCtas": [
+      "Get the app on Google Play",
+      "Get the app on the App Store"
+    ],
+    "secondaryCtas": [
+      "See pricing",
+      "How Drivest works"
+    ],
+    "trustLine": "Advisory guidance only. Follow road signs and the Highway Code.",
+    "coverageLine": "Around 340 test centres. Around 3000 practice routes across the UK."
+  },
+  "press": {
+    "oneLiner": "Drivest is a UK-first navigation app built for learners and new drivers. Covering around 340 test centres and around 3000 structured practice routes across the UK.",
+    "usp": [
+      "Practice routes by centre",
+      "Off-route alerts with confidence scoring",
+      "Low-stress routing for new drivers"
+    ]
+  },
+  "threeTabs": {
+    "title": "Three tabs. One journey.",
+    "tabs": [
+      {
+        "title": "Theory",
+        "line1": "Free theory practice.",
+        "line2": "Build your foundation before you drive."
+      },
+      {
+        "title": "Practice",
+        "line1": "Practice routes that start and end at your chosen test centre.",
+        "line2": "Off-route alerts if you drift away from the route."
+      },
+      {
+        "title": "Navigation",
+        "line1": "Navigation designed for new drivers.",
+        "line2": "Choose lower-stress routes when alternatives exist."
+      }
+    ]
+  },
+  "why": {
+    "title": "Driving changes in stages. Drivest follows your stage.",
+    "bullets": [
+      "After theory pass: you need structure.",
+      "Before test day: you need repetition.",
+      "After you pass: you need calm guidance."
+    ]
+  },
+  "coreUsps": [
+    {
+      "title": "UK-wide coverage",
+      "text": "Coverage includes around 340 driving test centres and around 3000 structured practice routes across the UK."
+    },
+    {
+      "title": "Practice routes by centre",
+      "text": "Pick a test centre. Choose a practice route. Start and finish at the same centre."
+    },
+    {
+      "title": "Off-route detection",
+      "text": "If you move more than 50 metres away for 5 seconds, Drivest marks you off-route. It clears when you return."
+    },
+    {
+      "title": "Road feature prompts",
+      "text": "Prompts for common features like roundabouts, traffic signals, zebra crossings, and school zones, based on map data and confidence rules."
+    },
+    {
+      "title": "Low-stress routing",
+      "text": "When multiple routes exist, Drivest can prefer the lowest-stress option for lower confidence drivers."
+    },
+    {
+      "title": "Confidence score",
+      "text": "Your confidence score adapts from your drives. It helps Drivest tune prompts and route choice."
+    },
+    {
+      "title": "Offline support",
+      "text": "Download route and hazard packs. Keep core practice running when signal is weak."
+    }
+  ],
+  "howItWorks": {
+    "title": "How it works",
+    "steps": [
+      {
+        "title": "Choose your mode",
+        "text": "Learner, New Driver, or Standard. You can switch anytime."
+      },
+      {
+        "title": "Pick a centre or destination",
+        "text": "Practice starts from a test centre. Navigation starts from your current location."
+      },
+      {
+        "title": "Drive with calm prompts",
+        "text": "You see a prompt banner. You can enable voice, alerts only, or mute."
+      },
+      {
+        "title": "Review your drive",
+        "text": "See stress and difficulty. Track progress over time."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Simple pricing. Clear access.",
+    "plans": [
+      {
+        "name": "Theory",
+        "price": "£0",
+        "bullets": [
+          "Theory practice access",
+          "Basic app onboarding and safety notices"
+        ],
+        "cta": "Start free"
+      },
+      {
+        "name": "Practice",
+        "price": "£10 / month",
+        "bullets": [
+          "1 selected test centre",
+          "Practice routes and off-route alerts",
+          "Training plan suggestions",
+          "Offline packs for your selected centre"
+        ],
+        "cta": "Choose a test centre"
+      },
+      {
+        "name": "Practice + Navigation",
+        "price": "£30",
+        "subLine": "Includes 1 month of selected-centre practice plus 1 year of new-driver navigation.",
+        "bullets": [
+          "Selected-centre practice",
+          "Low-stress navigation mode",
+          "Confidence-based route choice",
+          "Offline packs"
+        ],
+        "cta": "Get Practice + Navigation"
+      }
+    ],
+    "disclaimer": "Subscriptions renew unless cancelled in your store settings. Refunds are handled by your app store."
+  },
+  "safety": {
+    "title": "Safety first",
+    "bullets": [
+      "Drivest provides advisory prompts. It does not replace road signs.",
+      "Do not interact with the app while driving.",
+      "Follow the Highway Code and local rules."
+    ],
+    "arrivalAdvisory": [
+      "Parking restrictions likely in this area.",
+      "Check local signage before leaving vehicle."
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is Drivest affiliated with DVSA?",
+      "a": "No. Drivest is an independent app."
+    },
+    {
+      "q": "Does Drivest guarantee a pass?",
+      "a": "No. Drivest supports practice and awareness. Your driving decisions remain your responsibility."
+    },
+    {
+      "q": "What makes Drivest different from Google Maps or Waze?",
+      "a": "Drivest focuses on learner and new driver needs. It adds practice routes, off-route alerts, stress scoring, confidence tuning, and a prompt system designed for early-stage drivers."
+    },
+    {
+      "q": "What data powers prompts?",
+      "a": "Map data and route packs. Prompt visibility depends on confidence rules."
+    },
+    {
+      "q": "Can I mute prompts?",
+      "a": "Yes. You can choose Voice All, Alerts only, or Mute."
+    },
+    {
+      "q": "Does Drivest work offline?",
+      "a": "You can download route and hazard packs for areas you practise."
+    },
+    {
+      "q": "Will Drivest distract me?",
+      "a": "Prompts are brief. You control voice settings. Keep your attention on the road."
+    },
+    {
+      "q": "Do you store my precise location?",
+      "a": "The app uses location for navigation. Analytics is optional and off by default."
+    },
+    {
+      "q": "Can I switch modes after I pass?",
+      "a": "Yes. Drivest supports Learner, New Driver, and Standard modes."
+    },
+    {
+      "q": "Which countries are supported?",
+      "a": "UK first. EU expansion is planned next, then North America. Timing depends on localisation and validation."
+    }
+  ],
+  "comingSoon": {
+    "title": "Coming soon",
+    "sections": [
+      {
+        "title": "AI voice coach",
+        "text": "A guided voice layer that sequences prompts like a driving instructor. Designed to stay short and non-intrusive."
+      },
+      {
+        "title": "Smarter risk tuning",
+        "text": "More context-aware prompts with stricter confidence rules and improved stress scoring."
+      },
+      {
+        "title": "More regions",
+        "text": "UK first. EU planned next, then North America. Each region requires local road rule tuning and pack validation."
+      },
+      {
+        "title": "In-car support",
+        "text": "Android Auto and Apple CarPlay support is a post-launch goal."
+      }
+    ]
+  },
+  "footer": {
+    "links": [
+      { "label": "Terms", "url": "https://drivest.uk/terms" },
+      { "label": "Privacy", "url": "https://drivest.uk/privacy" },
+      { "label": "FAQ", "url": "https://drivest.uk/faq" }
+    ],
+    "contact": "Contact: admin@drivest.uk"
+  }
+}

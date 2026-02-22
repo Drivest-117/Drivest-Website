@@ -1,15 +1,527 @@
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
+const CONTENT_URL = "/site/content/marketing.en-GB.json";
 
-document.querySelectorAll('.feature, .panel, .trust-grid > div').forEach((el) => {
-  el.classList.add('reveal');
-  observer.observe(el);
-});
+const PATHS = {
+  home: "/index.html",
+  features: "/features.html",
+  pricing: "/pricing.html",
+  faq: "/faq.html",
+  terms: "/terms.html",
+  privacy: "/privacypolicy.html"
+};
+
+const PHOTO_URLS = {
+  hero: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1400&q=80",
+  learn: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80",
+  route: "https://images.unsplash.com/photo-1471479917193-f00955256257?auto=format&fit=crop&w=1200&q=80",
+  confidence: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=1200&q=80",
+  theory: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+  practice: "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=1200&q=80",
+  navigation: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80",
+  map: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
+  roadsigns: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+  school: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80"
+};
+
+const page = document.body.dataset.page;
+const app = document.getElementById("app");
+
+if (!page || !app) {
+  const yearNode = document.getElementById("year");
+  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+} else {
+  init().catch(() => {
+    app.innerHTML = '<main class="container"><section class="section"><p>Unable to load content.</p></section></main>';
+  });
+}
+
+async function init() {
+  const response = await fetch(CONTENT_URL, { cache: "no-store" });
+  const m = await response.json();
+
+  document.title = pageTitle(page, m);
+  setDescription(m.seo.description);
+
+  app.innerHTML = `
+    ${renderShellStart(m)}
+    ${renderPage(page, m)}
+    ${renderShellEnd(m)}
+  `;
+
+  const yearNode = document.getElementById("year");
+  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+  setupAnimations();
+  setActiveNav();
+}
+
+function pageTitle(currentPage, m) {
+  if (currentPage === "home") return m.seo.title;
+  const map = {
+    features: m.ui.nav.features,
+    pricing: m.ui.nav.pricing,
+    faq: m.ui.nav.faq,
+    terms: footerLabel(m, "terms") || "Terms",
+    privacy: footerLabel(m, "privacy") || "Privacy"
+  };
+  return `${m.ui.brand} | ${map[currentPage] || m.seo.title}`;
+}
+
+function setDescription(value) {
+  let node = document.querySelector('meta[name="description"]');
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute("name", "description");
+    document.head.appendChild(node);
+  }
+  node.setAttribute("content", value);
+}
+
+function renderShellStart(m) {
+  const termsText = footerLabel(m, "terms");
+  const privacyText = footerLabel(m, "privacy");
+  return `
+    <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="${PATHS.home}">
+          <img src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
+        </a>
+        <nav class="nav-links">
+          <a data-nav="features" href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
+          <a data-nav="pricing" href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
+          <a data-nav="faq" href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
+          ${termsText ? `<a data-nav="terms" href="${PATHS.terms}">${escapeHtml(termsText)}</a>` : ""}
+          ${privacyText ? `<a data-nav="privacy" href="${PATHS.privacy}">${escapeHtml(privacyText)}</a>` : ""}
+        </nav>
+      </div>
+    </header>
+    <main class="container main-content">
+  `;
+}
+
+function renderShellEnd(m) {
+  const supportEmail = String(m.footer.contact || "").replace(/^Contact:\s*/i, "");
+  return `
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <div class="footer-brand-col">
+          <img class="footer-logo" src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
+          <p class="footer-summary">${escapeHtml(m.hero.coverageLine || m.hero.subhead)}</p>
+          <p class="footer-muted">${escapeHtml(m.hero.trustLine)}</p>
+          <p class="footer-contact"><a href="mailto:${escapeAttr(supportEmail)}">${escapeHtml(m.footer.contact)}</a></p>
+          <small>© <span id="year"></span> ${escapeHtml(m.ui.brand)}</small>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
+            <a href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
+            <a href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
+            ${m.footer.links
+              .map(
+                (l) => {
+                  const href = resolveFooterHref(l);
+                  const external = href.startsWith("http") || href.startsWith("mailto:");
+                  const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
+                  return `<a href="${escapeAttr(href)}"${attrs}>${escapeHtml(l.label)}</a>`;
+                }
+              )
+              .join("")}
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Built for drivers</h4>
+          <ul class="footer-list">
+            ${m.threeTabs.tabs.map((t) => `<li>${escapeHtml(t.title)}: ${escapeHtml(t.line1)}</li>`).join("")}
+          </ul>
+        </div>
+      </div>
+    </footer>
+  `;
+}
+
+function renderPage(currentPage, m) {
+  switch (currentPage) {
+    case "features":
+      return renderFeatures(m);
+    case "pricing":
+      return renderPricing(m);
+    case "faq":
+      return renderFaq(m);
+    case "home":
+    default:
+      return renderHome(m);
+  }
+}
+
+function renderHome(m) {
+  return `
+    <section class="hero section reveal">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>${escapeHtml(m.hero.headline)}</h1>
+          <p>${escapeHtml(m.hero.subhead)}</p>
+          <div class="btn-row">
+            ${button(m.hero.primaryCtas[0], m.global.ctaLinks.android, "primary")}
+            ${button(m.hero.primaryCtas[1], m.global.ctaLinks.ios, "secondary")}
+            ${button(m.global.ctas.joinWaitlist, m.global.ctaLinks.waitlist, "secondary")}
+          </div>
+          <div class="btn-row">
+            ${button(m.hero.secondaryCtas[0], PATHS.pricing, "secondary")}
+            ${button(m.hero.secondaryCtas[1], "#how-it-works", "secondary")}
+          </div>
+          <p class="trust">${escapeHtml(m.hero.trustLine)}</p>
+          ${m.hero.coverageLine ? `<p class="trust">${escapeHtml(m.hero.coverageLine)}</p>` : ""}
+          <div class="pill-row">${renderPills(m.press.usp)}</div>
+        </div>
+        <div class="hero-visual reveal-item">
+          <div class="hero-visual-photo">
+            <img src="${PHOTO_URLS.hero}" alt="Driving route view" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <div class="panel reveal-item">
+        <p class="panel-title">${escapeHtml(m.press.oneLiner)}</p>
+        ${bulletList(m.press.usp)}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.threeTabs.title)}</h2>
+      <div class="grid three-up">
+        ${m.threeTabs.tabs
+          .map(
+            (t) => `
+          <article class="card reveal-item">
+            <div class="card-photo">
+              <img src="${tabPhotoByTitle(t.title)}" alt="${escapeAttr(t.title)} photo" loading="lazy" />
+            </div>
+            <h3 class="tab-title">${renderTabIcon(t.title)}${escapeHtml(t.title)}</h3>
+            <p>${escapeHtml(t.line1)}</p>
+            <p>${escapeHtml(t.line2)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>Built for real roads</h2>
+      <div class="photo-band">
+        <article class="photo-card reveal-item">
+          <img src="${PHOTO_URLS.learn}" alt="Learner driver on road" loading="lazy" />
+          <div class="photo-label">Learn with structure</div>
+        </article>
+        <article class="photo-card reveal-item">
+          <img src="${PHOTO_URLS.route}" alt="Road route and navigation" loading="lazy" />
+          <div class="photo-label">Practice with real routes</div>
+        </article>
+        <article class="photo-card reveal-item">
+          <img src="${PHOTO_URLS.confidence}" alt="Confident new driver" loading="lazy" />
+          <div class="photo-label">Drive with confidence</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.why.title)}</h2>
+      ${bulletList(m.why.bullets)}
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.ui.sections.coreFeatures)}</h2>
+      ${renderFeatureCards(m.coreUsps)}
+    </section>
+
+    <section id="how-it-works" class="section reveal">
+      <h2>${escapeHtml(m.howItWorks.title)}</h2>
+      <div class="grid two-up">
+        ${m.howItWorks.steps
+          .map(
+            (s) => `
+          <article class="card reveal-item">
+            <div class="card-photo">
+              <img src="${stepPhotoByTitle(s.title)}" alt="${escapeAttr(s.title)} visual" loading="lazy" />
+            </div>
+            <h3>${escapeHtml(s.title)}</h3>
+            <p>${escapeHtml(s.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.safety.title)}</h2>
+      <div class="mini-photo-row">
+        <div class="mini-photo"><img src="${PHOTO_URLS.roadsigns}" alt="Road signs" loading="lazy" /></div>
+        <div class="mini-photo"><img src="${PHOTO_URLS.school}" alt="School zone awareness" loading="lazy" /></div>
+      </div>
+      ${bulletList(m.safety.bullets)}
+      <div class="panel reveal-item">
+        <p class="panel-title">${escapeHtml(m.ui.sections.onArrival)}</p>
+        <p>${escapeHtml(m.safety.arrivalAdvisory[0])}</p>
+        <p>${escapeHtml(m.safety.arrivalAdvisory[1])}</p>
+      </div>
+    </section>
+  `;
+}
+
+function renderFeatures(m) {
+  return `
+    <section class="section reveal feature-hero">
+      <div class="feature-hero-grid">
+        <div>
+          <h1>${escapeHtml(m.ui.nav.features)}</h1>
+          <p>${escapeHtml(m.hero.subhead)}</p>
+        </div>
+        <div class="feature-photo">
+          <img src="${PHOTO_URLS.route}" alt="Navigation route experience" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      ${renderFeatureCards(m.coreUsps)}
+    </section>
+
+    <section class="section reveal">
+      <h2>Maps and navigation experience</h2>
+      <div class="photo-grid-4">
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.map}" alt="Map view" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.navigation}" alt="Navigation view" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.route}" alt="Route practice view" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.confidence}" alt="Driving confidence" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.howItWorks.title)}</h2>
+      <div class="grid two-up">
+        ${m.howItWorks.steps
+          .map(
+            (s) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(s.title)}</h3>
+            <p>${escapeHtml(s.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.safety.title)}</h2>
+      ${bulletList(m.safety.bullets)}
+    </section>
+  `;
+}
+
+function renderPricing(m) {
+  return `
+    <section class="section reveal feature-hero">
+      <div class="feature-hero-grid">
+        <div>
+          <h1>${escapeHtml(m.pricing.title)}</h1>
+          <p>${escapeHtml(m.pricing.disclaimer)}</p>
+        </div>
+        <div class="feature-photo">
+          <img src="${PHOTO_URLS.learn}" alt="Driver training and pricing" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid three-up">
+        ${m.pricing.plans
+          .map(
+            (p) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(p.name)}</h3>
+            <p class="price">${escapeHtml(p.price)}</p>
+            ${p.subLine ? `<p>${escapeHtml(p.subLine)}</p>` : ""}
+            ${bulletList(p.bullets)}
+            <div class="btn-row">
+              ${button(p.cta, m.global.ctaLinks.waitlist, "primary")}
+              ${button(m.global.ctas.joinWaitlist, m.global.ctaLinks.waitlist, "secondary")}
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+      <p class="note">${escapeHtml(m.pricing.disclaimer)}</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>What you get in the app</h2>
+      <div class="photo-grid-4">
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.theory}" alt="Theory practice" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.practice}" alt="Practical training route" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.navigation}" alt="Navigation guidance" loading="lazy" /></div>
+        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.map}" alt="Map-based guidance" loading="lazy" /></div>
+      </div>
+    </section>
+  `;
+}
+
+function renderFaq(m) {
+  return `
+    <section class="section reveal">
+      <h1>${escapeHtml(m.ui.nav.faq)}</h1>
+      <div class="faq-list">
+        ${m.faq
+          .map(
+            (it) => `
+          <details class="faq-item reveal-item">
+            <summary>${escapeHtml(it.q)}</summary>
+            <p>${escapeHtml(it.a)}</p>
+          </details>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderFeatureCards(items) {
+  return `
+    <div class="grid three-up">
+      ${items
+        .map(
+          (it) => `
+        <article class="card reveal-item">
+          <h3 class="tab-title">${renderFeatureIcon(it.title)}${escapeHtml(it.title)}</h3>
+          <p>${escapeHtml(it.text)}</p>
+        </article>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function tabPhotoByTitle(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("theory")) return PHOTO_URLS.theory;
+  if (t.includes("practice")) return PHOTO_URLS.practice;
+  return PHOTO_URLS.navigation;
+}
+
+function stepPhotoByTitle(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("mode")) return PHOTO_URLS.confidence;
+  if (t.includes("centre") || t.includes("destination")) return PHOTO_URLS.map;
+  if (t.includes("prompt")) return PHOTO_URLS.navigation;
+  return PHOTO_URLS.route;
+}
+
+function renderPills(items) {
+  return items.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
+}
+
+function renderTabIcon(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("theory")) return iconBadge("book");
+  if (t.includes("practice")) return iconBadge("route");
+  return iconBadge("nav");
+}
+
+function renderFeatureIcon(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("coverage")) return iconBadge("pin");
+  if (t.includes("route")) return iconBadge("route");
+  if (t.includes("off-route")) return iconBadge("alert");
+  if (t.includes("prompt")) return iconBadge("nav");
+  if (t.includes("stress")) return iconBadge("leaf");
+  if (t.includes("confidence")) return iconBadge("shield");
+  if (t.includes("offline")) return iconBadge("download");
+  return iconBadge("spark");
+}
+
+function iconBadge(type) {
+  const icons = {
+    book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h11a2 2 0 0 1 2 2v12H8a2 2 0 0 0-2 2V4z"/><path d="M6 20a2 2 0 0 1 2-2h11"/></svg>',
+    route: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18c5 0 2-8 8-8"/></svg>',
+    nav: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 18-7-4-7 4 7-18z"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+    alert: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2L12 3z"/><path d="M12 9v5"/><circle cx="12" cy="17" r="1"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"/></svg>',
+    leaf: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-8 0-14 4-14 10a6 6 0 0 0 6 6c6 0 8-6 8-16z"/><path d="M10 14c2-2 4-3 7-4"/></svg>',
+    download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10"/><path d="M8 10l4 4 4-4"/><path d="M5 20h14"/></svg>',
+    spark: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5L12 3z"/></svg>'
+  };
+  return `<span class="icon-chip">${icons[type] || icons.spark}</span>`;
+}
+
+function setupAnimations() {
+  const nodes = document.querySelectorAll(".reveal, .reveal-item");
+  if (!nodes.length) return;
+
+  nodes.forEach((node) => node.classList.add("pre-reveal"));
+  if (!("IntersectionObserver" in window)) {
+    nodes.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  nodes.forEach((node) => observer.observe(node));
+}
+
+function setActiveNav() {
+  const current = page;
+  if (!current || current === "home") return;
+  const link = document.querySelector(`.nav-links a[data-nav="${current}"]`);
+  if (link) link.classList.add("active");
+}
+
+function footerLabel(m, key) {
+  const hit = (m.footer.links || []).find((l) => String(l.label).toLowerCase() === key);
+  return hit ? hit.label : "";
+}
+
+function resolveFooterHref(link) {
+  const raw = String(link.url || "");
+  const url = raw.toLowerCase();
+  if (url.includes("drivest.uk/terms")) return PATHS.terms;
+  if (url.includes("drivest.uk/privacy")) return PATHS.privacy;
+  if (url.includes("drivest.uk/faq")) return PATHS.faq;
+  return raw;
+}
+
+function button(label, href, variant) {
+  const external = href.startsWith("http") || href.startsWith("mailto:");
+  const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
+  return `<a class="btn btn-${variant}" href="${escapeAttr(href)}"${attrs}>${escapeHtml(label)}</a>`;
+}
+
+function bulletList(items) {
+  return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
