@@ -179,46 +179,61 @@
       "Check local signage before leaving vehicle."
     ]
   },
+  "faqHeader": {
+    "title": "FAQ",
+    "app": "Drivest Mobile Application",
+    "version": "Version 2.2",
+    "updated": "Last updated: 23 March 2026",
+    "seoTitle": "FAQ | Drivest"
+  },
   "faq": [
     {
-      "q": "Is Drivest affiliated with DVSA?",
-      "a": "No. Drivest is an independent app."
+      "q": "What is Drivest",
+      "a": "Driving test preparation platform"
     },
     {
-      "q": "Does Drivest guarantee a pass?",
-      "a": "No. Drivest supports practice and awareness. Your driving decisions remain your responsibility."
+      "q": "Is it official",
+      "a": "No"
     },
     {
-      "q": "What makes Drivest different from Google Maps or Waze?",
-      "a": "Drivest focuses on learner and new driver needs. It adds practice routes, off-route alerts, stress scoring, confidence tuning, and a prompt system designed for early-stage drivers."
+      "q": "Are routes real",
+      "a": "No"
     },
     {
-      "q": "What data powers prompts?",
-      "a": "Map data and route packs. Prompt visibility depends on confidence rules."
+      "q": "Does it guarantee pass",
+      "a": "No"
     },
     {
-      "q": "Can I mute prompts?",
-      "a": "Yes. You can choose Voice All, Alerts only, or Mute."
+      "q": "Does it replace instructor",
+      "a": "No"
     },
     {
-      "q": "Does Drivest work offline?",
-      "a": "You can download route and hazard packs for areas you practise."
+      "q": "Is data sold",
+      "a": "No"
     },
     {
-      "q": "Will Drivest distract me?",
-      "a": "Prompts are brief. You control voice settings. Keep your attention on the road."
+      "q": "What happens if I cancel",
+      "a": "Depends on time window"
     },
     {
-      "q": "Do you store my precise location?",
-      "a": "The app uses location for navigation. Analytics is optional and off by default."
+      "q": "Does Drivest take commission on cancellation",
+      "a": "No"
     },
     {
-      "q": "Can I switch modes after I pass?",
-      "a": "Yes. Drivest supports Learner, New Driver, and Standard modes."
+      "q": "Commission on completed lessons",
+      "a": "8 percent"
     },
     {
-      "q": "Which countries are supported?",
-      "a": "UK first. EU expansion is planned next, then North America. Timing depends on localisation and validation."
+      "q": "Does Drivest verify instructors",
+      "a": "Limited checks only"
+    },
+    {
+      "q": "How to request data deletion",
+      "a": "Email admin@drivest.uk"
+    },
+    {
+      "q": "Where is Drivest based",
+      "a": "Colchester, UK"
     }
   ],
   "comingSoon": {
@@ -244,8 +259,8 @@
   },
   "footer": {
     "links": [
-      { "label": "Terms", "url": "https://drivest.uk/terms" },
-      { "label": "Privacy", "url": "https://drivest.uk/privacy" },
+      { "label": "Terms and Conditions", "url": "https://drivest.uk/terms" },
+      { "label": "Privacy Policy", "url": "https://drivest.uk/privacy" },
       { "label": "FAQ", "url": "https://drivest.uk/faq" }
     ],
     "contact": "Contact: admin@drivest.uk"

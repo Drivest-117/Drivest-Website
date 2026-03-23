@@ -4,9 +4,9 @@ const PATHS = {
   home: "/index.html",
   features: "/features.html",
   pricing: "/pricing.html",
-  faq: "/faq.html",
-  terms: "/terms.html",
-  privacy: "/privacypolicy.html"
+  faq: "/faq",
+  terms: "/terms",
+  privacy: "/privacy"
 };
 
 const PHOTO_URLS = {
@@ -55,6 +55,7 @@ async function init() {
 
 function pageTitle(currentPage, m) {
   if (currentPage === "home") return m.seo.title;
+  if (currentPage === "faq" && m.faqHeader?.seoTitle) return m.faqHeader.seoTitle;
   const map = {
     features: m.ui.nav.features,
     pricing: m.ui.nav.pricing,
@@ -370,17 +371,22 @@ function renderPricing(m) {
 }
 
 function renderFaq(m) {
+  const faqTitle = m.faqHeader?.title || m.ui.nav.faq;
+  const faqMeta = m.faqHeader
+    ? `<p class="doc-meta">${escapeHtml(m.faqHeader.app)}<br />${escapeHtml(m.faqHeader.version)}<br />${escapeHtml(m.faqHeader.updated)}</p>`
+    : "";
   return `
     <section class="section reveal">
-      <h1>${escapeHtml(m.ui.nav.faq)}</h1>
+      <h1>${escapeHtml(faqTitle)}</h1>
+      ${faqMeta}
       <div class="faq-list">
         ${m.faq
           .map(
             (it) => `
-          <details class="faq-item reveal-item">
-            <summary>${escapeHtml(it.q)}</summary>
+          <article class="faq-item reveal-item">
+            <h3>${escapeHtml(it.q)}</h3>
             <p>${escapeHtml(it.a)}</p>
-          </details>
+          </article>
         `
           )
           .join("")}
@@ -490,7 +496,7 @@ function setActiveNav() {
 }
 
 function footerLabel(m, key) {
-  const hit = (m.footer.links || []).find((l) => String(l.label).toLowerCase() === key);
+  const hit = footerLink(m, key);
   return hit ? hit.label : "";
 }
 
@@ -501,6 +507,11 @@ function resolveFooterHref(link) {
   if (url.includes("drivest.uk/privacy")) return PATHS.privacy;
   if (url.includes("drivest.uk/faq")) return PATHS.faq;
   return raw;
+}
+
+function footerLink(m, key) {
+  const links = m.footer.links || [];
+  return links.find((l) => String(l.url || "").toLowerCase().includes(`drivest.uk/${key}`)) || null;
 }
 
 function button(label, href, variant) {
