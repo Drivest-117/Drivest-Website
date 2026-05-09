@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Drivest, learner and new driver navigation",
-    "description": "Practice test-centre routes. Get calm navigation after you pass. Brief prompts for key road features. Advisory guidance only."
+    "title": "Drivest | Learner, instructor, and new-driver support",
+    "description": "Study theory in 32 languages, cross-check questions in English, practise reconstructed routes, book independent instructors, and drive with calmer navigation after you pass."
   },
   "ui": {
     "brand": "Drivest",
@@ -12,7 +12,7 @@
       "comingSoon": "Coming soon"
     },
     "sections": {
-      "coreFeatures": "Core features",
+      "coreFeatures": "Platform highlights",
       "onArrival": "On arrival"
     }
   },
@@ -23,245 +23,533 @@
       "joinWaitlist": "Join the waitlist"
     },
     "ctaLinks": {
-      "android": "https://drivest.uk/coming-soon",
-      "ios": "https://drivest.uk/coming-soon",
+      "android": "mailto:admin@drivest.uk?subject=Drivest%20learner%20interest",
+      "ios": "mailto:admin@drivest.uk?subject=Drivest%20instructor%20interest",
       "waitlist": "mailto:admin@drivest.uk?subject=Drivest%20waitlist"
     }
   },
   "hero": {
-    "headline": "Drivest helps you learn to drive, then keeps you safe as a new driver.",
-    "subhead": "Practice real test-centre routes. Get calm navigation after you pass. Receive simple prompts for road features while you drive.",
+    "headline": "Drivest supports the full learner journey and the instructors behind it.",
+    "subhead": "Study theory in 32 languages and peek into English to cross-check the same question, practise reconstructed routes by test centre, book independent instructors, and move into calmer navigation after you pass.",
     "primaryCtas": [
-      "Get the app on Google Play",
-      "Get the app on the App Store"
+      "Start as learner",
+      "Join as instructor"
     ],
     "secondaryCtas": [
       "See pricing",
       "How Drivest works"
     ],
-    "trustLine": "Advisory guidance only. Follow road signs and the Highway Code.",
+    "trustLine": "Advisory only. Keep full control of the vehicle and follow live road signs, markings, and traffic laws.",
     "coverageLine": "Around 340 test centres. Around 3000 practice routes across the UK."
   },
   "press": {
-    "oneLiner": "Drivest is a UK-first navigation app built for learners and new drivers. Covering around 340 test centres and around 3000 structured practice routes across the UK.",
+    "oneLiner": "Drivest is a UK learner-to-new-driver platform with multilingual theory learning, reconstructed practice routes, instructor bookings, secure lesson payments, analytics, parking support, and calmer post-pass navigation.",
     "usp": [
-      "Practice routes by centre",
-      "Off-route alerts with confidence scoring",
-      "Low-stress routing for new drivers"
+      "Theory in 32 languages",
+      "Mode-aware home screen",
+      "Instructor marketplace and bookings",
+      "Selected-centre practice routes",
+      "Low-stress navigation and parking"
     ]
   },
   "threeTabs": {
-    "title": "Three tabs. One journey.",
+    "title": "Three core journeys. A broader platform.",
     "tabs": [
       {
         "title": "Theory",
-        "line1": "Free theory practice.",
-        "line2": "Build your foundation before you drive."
+        "line1": "Theory, Highway Code, Traffic Signs, and Fines and Penalties learning.",
+        "line2": "Study in 32 languages and peek into English to cross-check the same question."
       },
       {
         "title": "Practice",
-        "line1": "Practice routes that start and end at your chosen test centre.",
-        "line2": "Off-route alerts if you drift away from the route."
+        "line1": "Reconstructed practice routes that start from your selected test centre.",
+        "line2": "Off-route alerts, offline packs, and repetition designed for practical learners."
       },
       {
         "title": "Navigation",
-        "line1": "Navigation designed for new drivers.",
-        "line2": "Choose lower-stress routes when alternatives exist."
+        "line1": "Low-stress navigation, road feature prompts, and parking support.",
+        "line2": "Built for learners moving forward and for calmer new-driver journeys after passing."
+      }
+    ]
+  },
+  "homeModules": {
+    "title": "What users see on the app home screen",
+    "intro": "The current home screen is organised around the learner stage, current driving mode, confidence, and direct access to the modules people use most.",
+    "summary": {
+      "title": "Mode-aware home card",
+      "text": "The home card surfaces the current stage, active mode, confidence score, and a continue-where-you-left-off action so users can resume quickly."
+    },
+    "groups": [
+      {
+        "title": "Main modules",
+        "items": [
+          {
+            "title": "Theory",
+            "text": "Theory revision remains a first-row home screen module."
+          },
+          {
+            "title": "Practice",
+            "text": "Selected-centre practice routes stay visible as a main module."
+          },
+          {
+            "title": "Navigation",
+            "text": "Navigation is available directly from the home screen for calmer journeys."
+          },
+          {
+            "title": "Find Instructor",
+            "text": "Instructor discovery is a visible primary module, not a buried marketplace extra."
+          }
+        ]
+      },
+      {
+        "title": "Explore modules",
+        "items": [
+          {
+            "title": "Traffic Signs",
+            "text": "Sign recognition and meaning revision is available from the explore area."
+          },
+          {
+            "title": "Highway Code",
+            "text": "Highway Code study is shown as its own home screen module."
+          },
+          {
+            "title": "Hazard Perception",
+            "text": "The home screen already reserves space for Hazard Perception as a visible upcoming module.",
+            "badge": "Coming soon"
+          },
+          {
+            "title": "Fines and Penalties",
+            "text": "Penalty-focused learning is part of the visible explore module set."
+          }
+        ]
+      }
+    ]
+  },
+  "audienceTracks": {
+    "title": "Built for learners and instructors",
+    "intro": "Drivest now serves both sides of the lesson journey, not just route practice and post-pass navigation.",
+    "items": [
+      {
+        "title": "For learners",
+        "text": "Move from theory revision to practice, instructor booking, secure lesson payments, and calmer navigation after your test.",
+        "bullets": [
+          "Choose your stage and preferred language during onboarding",
+          "Study theory content and cross-check in English when needed",
+          "Book independent instructors and track lesson status in one app",
+          "Review analytics, confidence, and next-step recommendations"
+        ]
+      },
+      {
+        "title": "For instructors",
+        "text": "Run a lighter-weight operating hub while staying an independent instructor business.",
+        "bullets": [
+          "Create a public profile and publish availability",
+          "Accept lesson requests and monitor booking or payment status",
+          "Link learners and review progress from Instructor Hub",
+          "Work with bookings, reviews, and dispute records in one place"
+        ]
       }
     ]
   },
   "why": {
-    "title": "Driving changes in stages. Drivest follows your stage.",
+    "title": "Driving support changes by stage.",
     "bullets": [
-      "After theory pass: you need structure.",
-      "Before test day: you need repetition.",
-      "After you pass: you need calm guidance."
+      "Before lessons: learners need theory, signs, Highway Code, and fines revision they can actually understand.",
+      "Before test day: practical learners need repetition around a selected centre, clearer coaching context, and instructor access.",
+      "After passing: new drivers need calmer route choice, parking support, and confidence-building guidance."
     ]
   },
   "coreUsps": [
     {
-      "title": "UK-wide coverage",
-      "text": "Coverage includes around 340 driving test centres and around 3000 structured practice routes across the UK."
+      "title": "Theory in 32 languages",
+      "text": "Learners can study theory in a preferred language and peek into English to cross-check the same question before moving on."
+    },
+    {
+      "title": "Learn beyond theory",
+      "text": "Drivest now covers Theory, Highway Code, Traffic Signs, and Fines and Penalties study flows instead of a single revision surface."
     },
     {
       "title": "Practice routes by centre",
-      "text": "Pick a test centre. Choose a practice route. Start and finish at the same centre."
+      "text": "Choose a selected test centre, repeat reconstructed practice routes, receive off-route alerts, and keep offline support where available."
     },
     {
-      "title": "Off-route detection",
-      "text": "If you move more than 50 metres away for 5 seconds, Drivest marks you off-route. It clears when you return."
+      "title": "New-driver navigation",
+      "text": "Use low-stress route choice, road feature prompts, voice modes, and calmer destination guidance once you move beyond lessons."
     },
     {
-      "title": "Road feature prompts",
-      "text": "Prompts for common features like roundabouts, traffic signals, zebra crossings, and school zones, based on map data and confidence rules."
+      "title": "Mode-aware home screen",
+      "text": "The app home screen surfaces learner stage, current mode, confidence score, and resume flow before users pick a module."
     },
     {
-      "title": "Low-stress routing",
-      "text": "When multiple routes exist, Drivest can prefer the lowest-stress option for lower confidence drivers."
+      "title": "Instructor marketplace",
+      "text": "Discover independent instructor profiles, compare reviews and availability, and request lesson slots through the app."
     },
     {
-      "title": "Confidence score",
-      "text": "Your confidence score adapts from your drives. It helps Drivest tune prompts and route choice."
+      "title": "Bookings and secure lesson payments",
+      "text": "Track booking states, cancellations, refunds, and secure in-app lesson payment status without leaving the platform."
     },
     {
-      "title": "Offline support",
-      "text": "Download route and hazard packs. Keep core practice running when signal is weak."
+      "title": "Analytics and readiness tracking",
+      "text": "See theory progress, signs accuracy, route completion, confidence trends, and recommended next steps from real usage."
+    },
+    {
+      "title": "Instructor Hub and linked learners",
+      "text": "Instructors can link existing learners, manage availability, review learner progress, and keep operating records together."
+    },
+    {
+      "title": "Parking companion",
+      "text": "Search parking near a destination, review source confidence, and prefer free-first options before you arrive."
+    },
+    {
+      "title": "Notifications and trust controls",
+      "text": "Receive booking and activity updates, restore or manage subscriptions, and review module-specific legal guidance when needed."
+    },
+    {
+      "title": "UK-wide coverage",
+      "text": "Coverage includes around 340 driving test centres and around 3000 structured practice routes across the UK."
+    }
+  ],
+  "languageSupport": {
+    "title": "32 languages, with English available to cross-check",
+    "text": "Theory questions and supporting learning content can be studied in a preferred language. When a learner wants extra certainty, they can peek into English and compare the same question before answering.",
+    "pills": [
+      "Arabic",
+      "Welsh",
+      "French",
+      "Gujarati",
+      "Kurdish",
+      "Punjabi",
+      "Urdu",
+      "Vietnamese",
+      "Simplified Chinese"
+    ]
+  },
+  "featureGroups": [
+    {
+      "title": "Learn",
+      "intro": "The learning side of Drivest now goes beyond a single theory tab.",
+      "items": [
+        {
+          "title": "Theory in 32 languages",
+          "text": "Study theory questions in a preferred language and cross-check the English version of the same question when needed."
+        },
+        {
+          "title": "Highway Code study",
+          "text": "Review Highway Code guidance inside the app as revision support for learner journeys."
+        },
+        {
+          "title": "Traffic Signs revision",
+          "text": "Use Traffic Signs and Know Your Signs content to reinforce sign meaning and road-reading confidence."
+        },
+        {
+          "title": "Fines and Penalties learning",
+          "text": "Work through educational content that explains penalties, mistakes, and the rules behind them."
+        },
+        {
+          "title": "Hazard Perception",
+          "text": "Hazard Perception is already visible on the home screen as a coming-soon learning module."
+        }
+      ]
+    },
+    {
+      "title": "Practise",
+      "intro": "Practical learning stays centred on selected test centres and repeatable route training.",
+      "items": [
+        {
+          "title": "Selected-centre routes",
+          "text": "Pick a selected centre and practise reconstructed routes that help structure repetition and local familiarity."
+        },
+        {
+          "title": "Off-route detection",
+          "text": "Drivest can detect when a learner leaves the route and clear the state once the route is rejoined."
+        },
+        {
+          "title": "Offline support",
+          "text": "Download route and hazard packs to keep core practice working when connectivity is weak."
+        },
+        {
+          "title": "Road feature prompts",
+          "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+        }
+      ]
+    },
+    {
+      "title": "Navigate and park",
+      "intro": "Navigation is designed to stay calmer for newer drivers and more practical near the destination.",
+      "items": [
+        {
+          "title": "Low-stress route choice",
+          "text": "Where alternatives exist, Drivest can prefer calmer navigation options for lower-confidence drivers."
+        },
+        {
+          "title": "Voice modes",
+          "text": "Switch between voice guidance, alerts-only behaviour, or quieter driving support depending on context."
+        },
+        {
+          "title": "Parking companion",
+          "text": "Search parking near the destination, review source signals, and choose options before arrival."
+        },
+        {
+          "title": "Arrival cues",
+          "text": "Use destination-led parking and arrival reminders while still checking local signage before leaving the vehicle."
+        }
+      ]
+    },
+    {
+      "title": "Book and teach",
+      "intro": "Marketplace features make instructors and lessons a visible part of the public product story.",
+      "items": [
+        {
+          "title": "Find instructors",
+          "text": "Browse instructor profiles, ratings, and availability instead of relying on off-platform coordination alone."
+        },
+        {
+          "title": "Instructor Hub",
+          "text": "Independent instructors can manage linked learners, booking operations, availability, and readiness views."
+        },
+        {
+          "title": "Bookings and cancellations",
+          "text": "Lesson requests, accepted bookings, reschedules, cancellations, and refund outcomes can be tracked in app."
+        },
+        {
+          "title": "Secure lesson payments",
+          "text": "Eligible lesson bookings use secure payment processing with payment-state visibility and backend reconciliation."
+        }
+      ]
+    },
+    {
+      "title": "Track progress",
+      "intro": "Progress, trust, and operational visibility are now part of the product surface.",
+      "items": [
+        {
+          "title": "Learner analytics",
+          "text": "See progress across theory, Highway Code, signs, route completion, and recommendations for what to work on next."
+        },
+        {
+          "title": "Linked learner insights",
+          "text": "Instructors can review learner confidence, readiness, and coaching context from linked profiles."
+        },
+        {
+          "title": "Notifications",
+          "text": "Receive updates about lessons, booking activity, and account events instead of relying on manual follow-up."
+        },
+        {
+          "title": "Trust controls",
+          "text": "Legal acknowledgements, privacy choices, and module-specific safety guidance are available where they matter."
+        }
+      ]
     }
   ],
   "howItWorks": {
-    "title": "How it works",
+    "title": "Getting started",
     "steps": [
       {
-        "title": "Choose your mode",
-        "text": "Learner, New Driver, or Standard. You can switch anytime."
+        "title": "Choose learner or instructor",
+        "text": "Drivest onboarding now reflects whether you are learning to drive or running an independent instructor profile."
       },
       {
-        "title": "Pick a centre or destination",
-        "text": "Practice starts from a test centre. Navigation starts from your current location."
+        "title": "Pick your stage and language",
+        "text": "Learners choose their stage, language, and safety preferences before using theory, practice, or navigation features."
       },
       {
-        "title": "Drive with calm prompts",
-        "text": "You see a prompt banner. You can enable voice, alerts only, or mute."
+        "title": "Study, practise, or book lessons",
+        "text": "Use learning modules, selected-centre practice routes, instructor discovery, and secure lesson booking from the same platform."
       },
       {
-        "title": "Review your drive",
-        "text": "See stress and difficulty. Track progress over time."
+        "title": "Review progress and next steps",
+        "text": "Analytics, readiness signals, booking updates, and confidence history help learners and instructors plan what comes next."
       }
     ]
   },
   "pricing": {
-    "title": "Simple pricing. Clear access.",
+    "title": "Pricing aligned to the app",
     "plans": [
       {
-        "name": "Theory",
-        "price": "£0",
+        "name": "Free Learning",
+        "price": "\u00a30",
         "bullets": [
-          "Theory practice access",
-          "Basic app onboarding and safety notices"
+          "Core theory learning and onboarding",
+          "Language selection with English cross-check support",
+          "Safety notices and legal acknowledgement",
+          "Upgrade later for selected-centre practice or yearly navigation"
         ],
-        "cta": "Start free"
+        "cta": "Join learner waitlist",
+        "href": "mailto:admin@drivest.uk?subject=Drivest%20free%20learning"
       },
       {
-        "name": "Practice",
-        "price": "£10 / month",
+        "name": "Selected-Centre Practice",
+        "price": "\u00a312.99 / month",
         "bullets": [
           "1 selected test centre",
-          "Practice routes and off-route alerts",
-          "Training plan suggestions",
-          "Offline packs for your selected centre"
+          "Reconstructed practice routes and off-route alerts",
+          "Offline packs for the chosen centre",
+          "Monthly recurring access while the subscription is active"
         ],
-        "cta": "Choose a test centre"
+        "cta": "Ask about practice access",
+        "href": "mailto:admin@drivest.uk?subject=Drivest%20practice%20access"
       },
       {
-        "name": "Practice + Navigation",
-        "price": "£30",
-        "subLine": "Includes 1 month of selected-centre practice plus 1 year of new-driver navigation.",
+        "name": "Navigation",
+        "price": "\u00a319.99 / year",
+        "subLine": "12 months of calmer navigation support for newer drivers.",
         "bullets": [
-          "Selected-centre practice",
-          "Low-stress navigation mode",
-          "Confidence-based route choice",
-          "Offline packs"
+          "Low-stress route choice and voice modes",
+          "Road feature prompts and parking support",
+          "Confidence-led navigation guidance",
+          "Yearly access aligned to the in-app navigation plan"
         ],
-        "cta": "Get Practice + Navigation"
+        "cta": "Ask about navigation access",
+        "href": "mailto:admin@drivest.uk?subject=Drivest%20navigation%20access"
+      },
+      {
+        "name": "Annual Bundle",
+        "price": "\u00a329.99 / year",
+        "subLine": "12 months of navigation plus 1 month of selected-centre practice routes.",
+        "bullets": [
+          "Navigation access for 12 months",
+          "Practice routes for 1 selected centre for 1 month",
+          "Each entitlement expires on its own timeline",
+          "Bundle wording aligned to the current in-app product"
+        ],
+        "cta": "Ask about annual access",
+        "href": "mailto:admin@drivest.uk?subject=Drivest%20annual%20bundle"
       }
     ],
-    "disclaimer": "Subscriptions renew unless cancelled in your store settings. Refunds are handled by your app store."
+    "disclaimer": "Subscriptions renew unless cancelled in the relevant app store or payment channel. Subscription refunds follow the rules of the relevant store or payment provider.",
+    "marketplace": {
+      "title": "Instructor marketplace terms",
+      "text": "Marketplace lessons are delivered by independent instructors. Drivest records an 8% platform fee on completed lessons and no commission on cancelled lessons.",
+      "bullets": [
+        "48 hours or more before a lesson: full refund",
+        "24 to 48 hours before a lesson: up to 25% may be retained by the instructor",
+        "12 to 24 hours before a lesson: up to 50% may be retained by the instructor",
+        "Less than 12 hours before a lesson or no-show: no refund",
+        "If the instructor cancels, the learner receives a full refund"
+      ]
+    }
   },
   "safety": {
-    "title": "Safety first",
+    "title": "Safety and trust",
     "bullets": [
-      "Drivest provides advisory prompts. It does not replace road signs.",
+      "Drivest guidance is advisory only and may be incomplete or delayed.",
+      "Practice routes are reconstructed for learning and are not official DVSA routes.",
+      "Keep full control of the vehicle and always follow live road signs, road markings, and traffic laws.",
       "Do not interact with the app while driving.",
-      "Follow the Highway Code and local rules."
+      "Independent instructors remain responsible for their own lessons, licences, insurance, and legal compliance."
     ],
     "arrivalAdvisory": [
-      "Parking restrictions likely in this area.",
-      "Check local signage before leaving vehicle."
+      "Parking outputs are advisory only and may not reflect live restrictions.",
+      "Check local signage and restrictions before leaving the vehicle."
     ]
   },
   "faqHeader": {
     "title": "FAQ",
-    "app": "Drivest Mobile Application",
-    "version": "Version 2.2",
-    "updated": "Last updated: 23 March 2026",
+    "app": "Drivest Limited",
+    "version": "Version 3.0",
+    "updated": "Last updated: 24 March 2026",
     "seoTitle": "FAQ | Drivest"
   },
   "faq": [
     {
-      "q": "What is Drivest",
-      "a": "Driving test preparation platform"
+      "q": "What does Drivest provide?",
+      "a": "Drivest provides learning tools, reconstructed practice routes, advisory navigation support, parking guidance, progress tracking, subscriptions, and, where enabled, instructor marketplace and booking features."
     },
     {
-      "q": "Is it official",
-      "a": "No"
+      "q": "Is Drivest affiliated with DVSA?",
+      "a": "No. Drivest is an independent product and has no affiliation with the Driver and Vehicle Standards Agency or any government authority."
     },
     {
-      "q": "Are routes real",
-      "a": "No"
+      "q": "Are Drivest routes official driving test routes?",
+      "a": "No. Routes are reconstructed or generated for learning and practice only and must never be described as official test routes."
     },
     {
-      "q": "Does it guarantee pass",
-      "a": "No"
+      "q": "Can I study in another language and still check the English question?",
+      "a": "Yes. Drivest supports theory learning across 32 languages. Learners can study in a preferred language and peek into English to cross-check the same question when they want to compare wording."
     },
     {
-      "q": "Does it replace instructor",
-      "a": "No"
+      "q": "Can I rely on Drivest as the final authority while driving?",
+      "a": "No. Users must always follow live road signs, real-world conditions, traffic laws, and any instruction from an instructor, examiner, police officer, or other authority."
     },
     {
-      "q": "Is data sold",
-      "a": "No"
+      "q": "Does Drivest guarantee parking legality or availability?",
+      "a": "No. Parking outputs are advisory only. Users must check local signage and local restrictions before leaving a vehicle."
     },
     {
-      "q": "What happens if I cancel",
-      "a": "Depends on time window"
+      "q": "What subscription plans does Drivest offer?",
+      "a": "Drivest offers an annual navigation plan, an annual navigation plan bundled with one month of practice route access for one selected test centre, and a monthly practice routes plan. Free learning and onboarding access remain available before upgrading."
     },
     {
-      "q": "Does Drivest take commission on cancellation",
-      "a": "No"
+      "q": "Do practice routes last for the full bundled annual subscription period?",
+      "a": "Not always. Under the bundled annual navigation and limited practice route plan, navigation continues for the annual period but route access for the chosen centre expires after one month unless extended through a separate purchase."
     },
     {
-      "q": "Commission on completed lessons",
-      "a": "8 percent"
+      "q": "How do lesson bookings work?",
+      "a": "Where marketplace features are live, Drivest allows learners to discover instructors, select availability, book a lesson, and complete payment through the platform. The lesson itself remains a contract between the learner and the instructor."
     },
     {
-      "q": "Does Drivest verify instructors",
-      "a": "Limited checks only"
+      "q": "What is the lesson cancellation policy?",
+      "a": "If a learner cancels 48 hours or more before the lesson, a full refund applies. Between 24 and 48 hours, up to 25% may be retained by the instructor. Between 12 and 24 hours, up to 50% may be retained. Less than 12 hours before the lesson, no refund applies. If the instructor cancels, the learner receives a full refund."
     },
     {
-      "q": "How to request data deletion",
-      "a": "Email admin@drivest.uk"
+      "q": "Does Drivest verify instructors?",
+      "a": "Drivest may carry out limited checks for platform integrity, but it does not certify or guarantee instructor qualifications or status unless this is expressly stated."
     },
     {
-      "q": "Where is Drivest based",
-      "a": "Colchester, UK"
+      "q": "What data does Drivest collect?",
+      "a": "Depending on the features used, Drivest may process account details, device and technical data, learning progress, route activity, booking records, payment metadata, consent records, review content, dispute evidence, and audit logs."
+    },
+    {
+      "q": "Does Drivest track my location all the time?",
+      "a": "No. Location is used where route, hazard, or parking features require it and where device permission is granted. Drivest does not store continuous background location history on its servers unless that is clearly disclosed in a future version."
+    },
+    {
+      "q": "Does Drivest sell my data?",
+      "a": "No. Drivest does not sell personal data for advertising or marketing purposes."
+    },
+    {
+      "q": "How do disputes work?",
+      "a": "A learner or instructor may submit a dispute through the platform where available. Drivest may review the available record, including logs, timestamps, payment data, and evidence, and may make a platform decision such as no action, refund, restriction, or suspension."
+    },
+    {
+      "q": "How do I request access to or deletion of my data?",
+      "a": "Email admin@drivest.uk with the request details. Identity verification may be required before action is taken."
     }
   ],
   "comingSoon": {
     "title": "Coming soon",
     "sections": [
       {
-        "title": "AI voice coach",
-        "text": "A guided voice layer that sequences prompts like a driving instructor. Designed to stay short and non-intrusive."
+        "title": "Hazard Perception",
+        "text": "Hazard Perception is already signposted on the home screen and remains a visible upcoming module."
       },
       {
-        "title": "Smarter risk tuning",
-        "text": "More context-aware prompts with stricter confidence rules and improved stress scoring."
+        "title": "Referral tools",
+        "text": "Referral journeys for learners and instructors are being prepared with clear eligibility and anti-fraud controls."
       },
       {
-        "title": "More regions",
-        "text": "UK first. EU planned next, then North America. Each region requires local road rule tuning and pack validation."
+        "title": "Deeper instructor operations",
+        "text": "Instructor workflow improvements will keep expanding around availability, linked learners, and readiness insights."
       },
       {
-        "title": "In-car support",
-        "text": "Android Auto and Apple CarPlay support is a post-launch goal."
+        "title": "In-car integrations",
+        "text": "Android Auto and Apple CarPlay remain post-launch goals once the core mobile experience is stable."
       }
     ]
   },
   "footer": {
     "links": [
-      { "label": "Terms and Conditions", "url": "https://drivest.uk/terms" },
-      { "label": "Privacy Policy", "url": "https://drivest.uk/privacy" },
-      { "label": "FAQ", "url": "https://drivest.uk/faq" }
+      {
+        "label": "Terms and Conditions",
+        "url": "https://drivest.uk/terms"
+      },
+      {
+        "label": "Privacy Policy",
+        "url": "https://drivest.uk/privacy"
+      },
+      {
+        "label": "FAQ",
+        "url": "https://drivest.uk/faq"
+      }
     ],
     "contact": "Contact: admin@drivest.uk"
   }

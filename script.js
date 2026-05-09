@@ -111,7 +111,7 @@ function renderShellEnd(m) {
           <p class="footer-summary">${escapeHtml(m.hero.coverageLine || m.hero.subhead)}</p>
           <p class="footer-muted">${escapeHtml(m.hero.trustLine)}</p>
           <p class="footer-contact"><a href="mailto:${escapeAttr(supportEmail)}">${escapeHtml(m.footer.contact)}</a></p>
-          <small>© <span id="year"></span> ${escapeHtml(m.ui.brand)}</small>
+          <small>&copy; <span id="year"></span> ${escapeHtml(m.ui.brand)}</small>
         </div>
         <div class="footer-col">
           <h4>Explore</h4>
@@ -120,14 +120,12 @@ function renderShellEnd(m) {
             <a href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
             <a href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
             ${m.footer.links
-              .map(
-                (l) => {
-                  const href = resolveFooterHref(l);
-                  const external = href.startsWith("http") || href.startsWith("mailto:");
-                  const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
-                  return `<a href="${escapeAttr(href)}"${attrs}>${escapeHtml(l.label)}</a>`;
-                }
-              )
+              .map((l) => {
+                const href = resolveFooterHref(l);
+                const external = href.startsWith("http") || href.startsWith("mailto:");
+                const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
+                return `<a href="${escapeAttr(href)}"${attrs}>${escapeHtml(l.label)}</a>`;
+              })
               .join("")}
           </div>
         </div>
@@ -209,7 +207,7 @@ function renderHome(m) {
     </section>
 
     <section class="section reveal">
-      <h2>Built for real roads</h2>
+      <h2>Built for real journeys</h2>
       <div class="photo-band">
         <article class="photo-card reveal-item">
           <img src="${PHOTO_URLS.learn}" alt="Learner driver on road" loading="lazy" />
@@ -217,14 +215,18 @@ function renderHome(m) {
         </article>
         <article class="photo-card reveal-item">
           <img src="${PHOTO_URLS.route}" alt="Road route and navigation" loading="lazy" />
-          <div class="photo-label">Practice with real routes</div>
+          <div class="photo-label">Practice with reconstructed routes</div>
         </article>
         <article class="photo-card reveal-item">
           <img src="${PHOTO_URLS.confidence}" alt="Confident new driver" loading="lazy" />
-          <div class="photo-label">Drive with confidence</div>
+          <div class="photo-label">Drive with calmer guidance</div>
         </article>
       </div>
     </section>
+
+    ${renderHomeModulesSection(m.homeModules)}
+
+    ${renderAudienceSection(m.audienceTracks)}
 
     <section class="section reveal">
       <h2>${escapeHtml(m.why.title)}</h2>
@@ -235,6 +237,8 @@ function renderHome(m) {
       <h2>${escapeHtml(m.ui.sections.coreFeatures)}</h2>
       ${renderFeatureCards(m.coreUsps)}
     </section>
+
+    ${renderInfoSection(m.languageSupport)}
 
     <section id="how-it-works" class="section reveal">
       <h2>${escapeHtml(m.howItWorks.title)}</h2>
@@ -289,15 +293,13 @@ function renderFeatures(m) {
       ${renderFeatureCards(m.coreUsps)}
     </section>
 
-    <section class="section reveal">
-      <h2>Maps and navigation experience</h2>
-      <div class="photo-grid-4">
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.map}" alt="Map view" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.navigation}" alt="Navigation view" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.route}" alt="Route practice view" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.confidence}" alt="Driving confidence" loading="lazy" /></div>
-      </div>
-    </section>
+    ${renderHomeModulesSection(m.homeModules)}
+
+    ${renderAudienceSection(m.audienceTracks)}
+
+    ${renderFeatureGroups(m.featureGroups)}
+
+    ${renderInfoSection(m.languageSupport)}
 
     <section class="section reveal">
       <h2>${escapeHtml(m.howItWorks.title)}</h2>
@@ -314,6 +316,8 @@ function renderFeatures(m) {
           .join("")}
       </div>
     </section>
+
+    ${renderInfoSection(m.pricing.marketplace)}
 
     <section class="section reveal">
       <h2>${escapeHtml(m.safety.title)}</h2>
@@ -347,8 +351,8 @@ function renderPricing(m) {
             ${p.subLine ? `<p>${escapeHtml(p.subLine)}</p>` : ""}
             ${bulletList(p.bullets)}
             <div class="btn-row">
-              ${button(p.cta, m.global.ctaLinks.waitlist, "primary")}
-              ${button(m.global.ctas.joinWaitlist, m.global.ctaLinks.waitlist, "secondary")}
+              ${button(p.cta, p.href || m.global.ctaLinks.waitlist, "primary")}
+              ${p.secondaryCta ? button(p.secondaryCta, p.secondaryHref || m.global.ctaLinks.waitlist, "secondary") : ""}
             </div>
           </article>
         `
@@ -357,6 +361,8 @@ function renderPricing(m) {
       </div>
       <p class="note">${escapeHtml(m.pricing.disclaimer)}</p>
     </section>
+
+    ${renderInfoSection(m.pricing.marketplace)}
 
     <section class="section reveal">
       <h2>What you get in the app</h2>
@@ -412,6 +418,100 @@ function renderFeatureCards(items) {
   `;
 }
 
+function renderHomeModulesSection(config) {
+  if (!config?.groups?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      ${config.summary ? `
+        <div class="panel reveal-item">
+          <p class="panel-title">${escapeHtml(config.summary.title)}</p>
+          <p>${escapeHtml(config.summary.text)}</p>
+        </div>
+      ` : ""}
+      <div class="grid two-up">
+        ${config.groups
+          .map(
+            (group) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(group.title)}</h3>
+            <div class="grid two-up compact-grid">
+              ${(group.items || [])
+                .map(
+                  (item) => `
+                <div class="module-tile">
+                  <div class="module-tile-head">
+                    <span class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</span>
+                    ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
+                  </div>
+                  <p>${escapeHtml(item.text)}</p>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderAudienceSection(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="grid two-up">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.text)}</p>
+            ${bulletList(item.bullets)}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderFeatureGroups(groups) {
+  if (!groups?.length) return "";
+  return groups
+    .map(
+      (group) => `
+    <section class="section reveal">
+      <h2>${escapeHtml(group.title)}</h2>
+      ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
+      ${renderFeatureCards(group.items || [])}
+    </section>
+  `
+    )
+    .join("");
+}
+
+function renderInfoSection(info) {
+  if (!info?.title) return "";
+  return `
+    <section class="section reveal">
+      <div class="panel reveal-item">
+        <h2>${escapeHtml(info.title)}</h2>
+        ${info.text ? `<p>${escapeHtml(info.text)}</p>` : ""}
+        ${bulletList(info.bullets)}
+        ${info.pills?.length ? `<div class="pill-row">${renderPills(info.pills)}</div>` : ""}
+      </div>
+    </section>
+  `;
+}
+
 function tabPhotoByTitle(title) {
   const t = String(title).toLowerCase();
   if (t.includes("theory")) return PHOTO_URLS.theory;
@@ -421,6 +521,10 @@ function tabPhotoByTitle(title) {
 
 function stepPhotoByTitle(title) {
   const t = String(title).toLowerCase();
+  if (t.includes("learner") || t.includes("instructor")) return PHOTO_URLS.learn;
+  if (t.includes("language") || t.includes("stage")) return PHOTO_URLS.theory;
+  if (t.includes("book")) return PHOTO_URLS.practice;
+  if (t.includes("progress") || t.includes("review")) return PHOTO_URLS.confidence;
   if (t.includes("mode")) return PHOTO_URLS.confidence;
   if (t.includes("centre") || t.includes("destination")) return PHOTO_URLS.map;
   if (t.includes("prompt")) return PHOTO_URLS.navigation;
@@ -428,7 +532,7 @@ function stepPhotoByTitle(title) {
 }
 
 function renderPills(items) {
-  return items.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
+  return (items || []).map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
 }
 
 function renderTabIcon(title) {
@@ -440,6 +544,16 @@ function renderTabIcon(title) {
 
 function renderFeatureIcon(title) {
   const t = String(title).toLowerCase();
+  if (t.includes("language")) return iconBadge("globe");
+  if (t.includes("instructor") || t.includes("marketplace") || t.includes("learner")) return iconBadge("people");
+  if (t.includes("analytics") || t.includes("progress")) return iconBadge("chart");
+  if (t.includes("payment") || t.includes("booking") || t.includes("subscription")) return iconBadge("card");
+  if (t.includes("parking")) return iconBadge("car");
+  if (t.includes("notification")) return iconBadge("bell");
+  if (t.includes("highway") || t.includes("sign") || t.includes("theory")) return iconBadge("book");
+  if (t.includes("navigation")) return iconBadge("nav");
+  if (t.includes("practice")) return iconBadge("route");
+  if (t.includes("hazard") || t.includes("fine")) return iconBadge("alert");
   if (t.includes("coverage")) return iconBadge("pin");
   if (t.includes("route")) return iconBadge("route");
   if (t.includes("off-route")) return iconBadge("alert");
@@ -455,6 +569,12 @@ function iconBadge(type) {
     book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h11a2 2 0 0 1 2 2v12H8a2 2 0 0 0-2 2V4z"/><path d="M6 20a2 2 0 0 1 2-2h11"/></svg>',
     route: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18c5 0 2-8 8-8"/></svg>',
     nav: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 18-7-4-7 4 7-18z"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></svg>',
+    people: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"/><circle cx="10" cy="8" r="3"/><path d="M20 19v-1a4 4 0 0 0-3-3.87"/><path d="M16 5.13a3 3 0 0 1 0 5.74"/></svg>',
+    chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-5"/><path d="M12 16V8"/><path d="M17 16v-8"/></svg>',
+    card: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>',
+    bell: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12"/><path d="M8 17V11a4 4 0 1 1 8 0v6"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+    car: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16l1.5-5h11L19 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>',
     pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
     alert: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2L12 3z"/><path d="M12 9v5"/><circle cx="12" cy="17" r="1"/></svg>',
     shield: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"/></svg>',
@@ -474,6 +594,7 @@ function setupAnimations() {
     nodes.forEach((node) => node.classList.add("is-visible"));
     return;
   }
+
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
@@ -485,6 +606,7 @@ function setupAnimations() {
     },
     { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
   );
+
   nodes.forEach((node) => observer.observe(node));
 }
 
@@ -515,12 +637,14 @@ function footerLink(m, key) {
 }
 
 function button(label, href, variant) {
+  if (!label || !href) return "";
   const external = href.startsWith("http") || href.startsWith("mailto:");
   const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
   return `<a class="btn btn-${variant}" href="${escapeAttr(href)}"${attrs}>${escapeHtml(label)}</a>`;
 }
 
 function bulletList(items) {
+  if (!items?.length) return "";
   return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 }
 
