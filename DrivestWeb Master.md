@@ -244,6 +244,7 @@ Pricing page also includes:
 
 - subscription disclaimer
 - instructor marketplace fee and cancellation window summary
+- a `What you get in the app` gallery for Theory, Practice, Navigation, Parking, Find Instructor, and Book Lessons
 
 ### FAQ
 

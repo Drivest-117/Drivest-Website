@@ -440,6 +440,36 @@
         "href": "mailto:admin@drivest.uk?subject=Drivest%20annual%20bundle"
       }
     ],
+    "appGallery": {
+      "title": "What you get in the app",
+      "intro": "Drivest brings learning, practice, navigation, parking support, and instructor workflows into one product surface.",
+      "items": [
+        {
+          "title": "Theory",
+          "text": "Study theory content in a preferred language and cross-check the same question in English when needed."
+        },
+        {
+          "title": "Practice",
+          "text": "Repeat reconstructed routes around a selected test centre and build familiarity through structured repetition."
+        },
+        {
+          "title": "Navigation",
+          "text": "Use calmer route guidance, road feature prompts, and lower-stress destination support."
+        },
+        {
+          "title": "Parking",
+          "text": "Check parking options near the destination before arrival while still confirming the live signs on street."
+        },
+        {
+          "title": "Find Instructor",
+          "text": "Browse instructor profiles, availability, and reviews without relying on off-platform coordination."
+        },
+        {
+          "title": "Book Lessons",
+          "text": "Request lessons, confirm bookings, and keep lesson activity visible in the same platform."
+        }
+      ]
+    },
     "disclaimer": "Subscriptions renew unless cancelled in the relevant app store or payment channel. Subscription refunds follow the rules of the relevant store or payment provider.",
     "marketplace": {
       "title": "Instructor marketplace terms",

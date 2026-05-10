@@ -407,15 +407,7 @@ function renderPricing(m) {
 
     ${renderInfoSection(m.pricing.marketplace)}
 
-    <section class="section reveal">
-      <h2>What you get in the app</h2>
-      <div class="photo-grid-4">
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.theory}" alt="Theory practice" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.practice}" alt="Practical training route" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.navigation}" alt="Navigation guidance" loading="lazy" /></div>
-        <div class="mini-photo reveal-item"><img src="${PHOTO_URLS.map}" alt="Map-based guidance" loading="lazy" /></div>
-      </div>
-    </section>
+    ${renderPricingAppGallery(m.pricing.appGallery)}
   `;
 }
 
@@ -569,6 +561,33 @@ function renderFeatureGroups(groups) {
     .join("");
 }
 
+function renderPricingAppGallery(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="app-module-grid">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="app-module-card reveal-item">
+            <div class="app-module-media">
+              <img src="${pricingModulePhotoByTitle(item.title)}" alt="${escapeAttr(item.title)}" loading="lazy" />
+            </div>
+            <div class="app-module-body">
+              <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderInfoSection(info) {
   if (!info?.title) return "";
   return `
@@ -600,6 +619,17 @@ function stepPhotoByTitle(title) {
   if (t.includes("centre") || t.includes("destination")) return PHOTO_URLS.map;
   if (t.includes("prompt")) return PHOTO_URLS.navigation;
   return PHOTO_URLS.route;
+}
+
+function pricingModulePhotoByTitle(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("theory")) return PHOTO_URLS.theory;
+  if (t.includes("practice")) return PHOTO_URLS.route;
+  if (t.includes("navigation")) return PHOTO_URLS.navigation;
+  if (t.includes("parking")) return PHOTO_URLS.roadsigns;
+  if (t.includes("instructor")) return PHOTO_URLS.learn;
+  if (t.includes("book")) return PHOTO_URLS.confidence;
+  return PHOTO_URLS.hero;
 }
 
 function renderPills(items) {
