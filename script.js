@@ -20,7 +20,9 @@ const PHOTO_URLS = {
   navigation: "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80",
   map: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
   roadsigns: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
-  school: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80"
+  school: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+  appHomeArabic: "/assets/app-home-arabic.jpeg",
+  appTheoryChinese: "/assets/app-theory-chinese.jpeg"
 };
 
 const page = document.body.dataset.page;
@@ -247,7 +249,7 @@ function renderHome(m) {
       ${renderFeatureCards(m.coreUsps)}
     </section>
 
-    ${renderInfoSection(m.languageSupport)}
+    ${renderLanguageSupportSection(m.languageSupport)}
 
     <section id="how-it-works" class="section reveal">
       <h2>${escapeHtml(m.howItWorks.title)}</h2>
@@ -308,7 +310,7 @@ function renderFeatures(m) {
 
     ${renderFeatureGroups(m.featureGroups)}
 
-    ${renderInfoSection(m.languageSupport)}
+    ${renderLanguageSupportSection(m.languageSupport)}
 
     <section class="section reveal">
       <h2>${escapeHtml(m.howItWorks.title)}</h2>
@@ -351,7 +353,7 @@ function renderStart(m) {
 
     ${renderStartPathsSection(m.startPaths)}
 
-    ${renderInfoSection(m.languageSupport)}
+    ${renderLanguageSupportSection(m.languageSupport)}
 
     <section class="section reveal">
       <h2>${escapeHtml(m.howItWorks.title)}</h2>
@@ -603,7 +605,6 @@ function renderPricingAppGallery(config) {
 }
 
 function renderHeroShowcase(m) {
-  const mainModules = (m.homeModules?.groups?.[0]?.items || []).slice(0, 4);
   return `
     <div class="hero-showcase">
       <div class="hero-stat-strip">
@@ -612,29 +613,24 @@ function renderHeroShowcase(m) {
         ${renderShowcaseStat("3000", "practice routes")}
       </div>
       <div class="hero-showcase-grid">
-        <article class="hero-device">
-          <div class="hero-device-head">
-            <span class="hero-device-kicker">Future learner to new driver</span>
-            <span class="hero-device-mode">Mode-aware home</span>
+        <div class="hero-phone-cluster">
+          ${renderPhoneShot(
+            PHOTO_URLS.appHomeArabic,
+            "Drivest app home screen in Arabic showing theory, practice, navigation, find instructor, and explore modules.",
+            "Arabic home screen",
+            "phone-shot-hero phone-shot-home",
+            "eager"
+          )}
+          <div class="hero-phone-float">
+            ${renderPhoneShot(
+              PHOTO_URLS.appTheoryChinese,
+              "Drivest theory question screen in Simplified Chinese with an English UK cross-check option.",
+              "Simplified Chinese theory view",
+              "phone-shot-hero phone-shot-theory",
+              "eager"
+            )}
           </div>
-          <div class="hero-device-panel">
-            <p class="hero-device-brand">DRIVEST</p>
-            <p class="hero-device-summary">Study theory, practise routes, book lessons, and move into calmer navigation when your stage allows.</p>
-          </div>
-          <div class="hero-device-grid">
-            ${mainModules
-              .map(
-                (item) => `
-              <div class="hero-device-tile">
-                ${renderFeatureIcon(item.title)}
-                <span>${escapeHtml(item.title)}</span>
-              </div>
-            `
-              )
-              .join("")}
-          </div>
-          <p class="hero-device-note">${escapeHtml(m.homeModules?.summary?.text || m.hero.trustLine)}</p>
-        </article>
+        </div>
         <div class="hero-story-stack">
           <article class="hero-story-card">
             <span class="hero-story-tag">Before lessons</span>
@@ -662,6 +658,17 @@ function renderShowcaseStat(value, label) {
       <strong>${escapeHtml(value)}</strong>
       <span>${escapeHtml(label)}</span>
     </div>
+  `;
+}
+
+function renderPhoneShot(src, alt, caption, extraClass = "", loading = "lazy") {
+  return `
+    <figure class="phone-shot ${escapeAttr(extraClass)}">
+      <div class="phone-shot-frame">
+        <img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" loading="${escapeAttr(loading)}" />
+      </div>
+      ${caption ? `<figcaption class="phone-shot-caption">${escapeHtml(caption)}</figcaption>` : ""}
+    </figure>
   `;
 }
 
@@ -818,6 +825,41 @@ function renderInfoSection(info) {
         ${info.text ? `<p>${escapeHtml(info.text)}</p>` : ""}
         ${bulletList(info.bullets)}
         ${info.pills?.length ? `<div class="pill-row">${renderPills(info.pills)}</div>` : ""}
+      </div>
+    </section>
+  `;
+}
+
+function renderLanguageSupportSection(info) {
+  if (!info?.title) return "";
+  return `
+    <section class="section reveal">
+      <div class="language-proof panel reveal-item">
+        <div class="language-proof-copy">
+          <h2>${escapeHtml(info.title)}</h2>
+          ${info.text ? `<p>${escapeHtml(info.text)}</p>` : ""}
+          ${bulletList(info.bullets)}
+          ${info.pills?.length ? `<div class="pill-row">${renderPills(info.pills)}</div>` : ""}
+        </div>
+        <div class="language-proof-visual">
+          ${renderPhoneShot(
+            PHOTO_URLS.appTheoryChinese,
+            "Theory question screen in Simplified Chinese with English UK option visible.",
+            "Theory question with English cross-check",
+            "phone-shot-proof"
+          )}
+          <div class="language-proof-side">
+            ${renderPhoneShot(
+              PHOTO_URLS.appHomeArabic,
+              "Arabic Drivest home screen showing the translated module surface.",
+              "Home screen translated into Arabic",
+              "phone-shot-proof phone-shot-proof-sm"
+            )}
+            <div class="language-proof-note">
+              Users can study in a preferred language, then open English (UK) on the same question to compare wording before answering.
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `;

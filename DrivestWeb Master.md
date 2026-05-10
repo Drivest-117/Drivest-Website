@@ -273,10 +273,11 @@ The website is no longer only copy-updated. It now also uses more product-shaped
 
 Current visual direction includes:
 
-- app-style homepage hero cards that reflect stage-based learner preparation
+- real app screenshots in the homepage hero, using the shared Arabic home screen and Chinese theory screen
 - stage cards instead of generic photos for Theory, Practice, and Navigation
 - route-based learner and instructor entry cards on the homepage
-- app-themed module scenes on the pricing page
+- multilingual proof cards that show translated UI and the English cross-check behavior
+- app-themed module scenes on the pricing page where screenshots have not yet been provided
 
 This means the website now leans more heavily on Drivest-specific UI storytelling and less on generic lifestyle or car stock imagery.
 

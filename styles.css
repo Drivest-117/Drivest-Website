@@ -321,19 +321,12 @@ body.nav-open {
   gap: 14px;
 }
 
-.hero-device {
-  display: grid;
-  gap: 12px;
-  border-radius: 22px;
-  padding: 18px;
-  background:
-    radial-gradient(circle at top right, rgba(255, 100, 26, 0.28), transparent 34%),
-    linear-gradient(160deg, var(--navy-soft), var(--navy-strong));
-  color: #f8fafc;
-  box-shadow: 0 22px 38px rgba(17, 26, 44, 0.26);
+.hero-phone-cluster {
+  position: relative;
+  min-height: 700px;
+  padding: 8px 96px 28px 0;
 }
 
-.hero-device-head,
 .app-module-scene-head,
 .journey-scene-head,
 .path-card-top {
@@ -343,8 +336,6 @@ body.nav-open {
   gap: 10px;
 }
 
-.hero-device-kicker,
-.hero-device-mode,
 .hero-story-tag,
 .journey-stage,
 .journey-metric,
@@ -361,7 +352,6 @@ body.nav-open {
   text-transform: uppercase;
 }
 
-.hero-device-kicker,
 .journey-stage,
 .path-tag,
 .app-module-scene-badge {
@@ -376,65 +366,96 @@ body.nav-open {
   color: var(--ink-soft);
 }
 
-.hero-device-panel {
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 16px;
-}
-
-.hero-device-brand {
-  margin: 0 0 8px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-}
-
-.hero-device-summary {
-  margin: 0;
-  color: rgba(248, 250, 252, 0.84);
-  font-size: 14px;
-}
-
-.hero-device-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.hero-device-tile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 60px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 12px;
-}
-
-.hero-device-tile span:last-child {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.hero-device .icon-chip,
 .app-module-scene .icon-chip {
   border-color: rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.1);
 }
 
-.hero-device .icon-chip svg,
 .app-module-scene .icon-chip svg {
   stroke: #fff;
 }
 
-.hero-device-note {
+.phone-shot {
   margin: 0;
-  color: rgba(248, 250, 252, 0.76);
+}
+
+.phone-shot-frame {
+  border-radius: 36px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 100, 26, 0.16), transparent 26%),
+    linear-gradient(180deg, #11182a, #0b1120);
+  border: 1px solid rgba(17, 26, 44, 0.18);
+  box-shadow: 0 22px 42px rgba(17, 26, 44, 0.26);
+}
+
+.phone-shot-frame img {
+  width: 100%;
+  display: block;
+  border-radius: 28px;
+}
+
+.phone-shot-caption {
+  margin-top: 10px;
+  color: var(--ink-soft);
   font-size: 13px;
+  font-weight: 700;
+}
+
+.phone-shot-hero {
+  max-width: 320px;
+}
+
+.phone-shot-theory {
+  max-width: 214px;
+}
+
+.hero-phone-float {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+}
+
+.language-proof {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.language-proof-copy > *:last-child {
+  margin-bottom: 0;
+}
+
+.language-proof-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.78fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.language-proof-side {
+  display: grid;
+  gap: 12px;
+}
+
+.phone-shot-proof {
+  max-width: 280px;
+}
+
+.phone-shot-proof-sm {
+  margin-left: auto;
+  max-width: 210px;
+}
+
+.language-proof-note {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 100, 26, 0.18);
+  background: rgba(255, 100, 26, 0.08);
+  padding: 14px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .hero-story-stack {
@@ -1216,6 +1237,26 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .hero-phone-cluster {
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+  }
+
+  .hero-phone-float {
+    position: static;
+  }
+
+  .language-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .language-proof-visual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .photo-band {
     grid-template-columns: 1fr;
   }
@@ -1238,11 +1279,6 @@ small {
 
   .brand img {
     width: 150px;
-  }
-
-  .hero-stat-strip,
-  .hero-device-grid {
-    grid-template-columns: 1fr 1fr;
   }
 
   .main-content {
@@ -1288,8 +1324,21 @@ small {
     grid-template-columns: 1fr;
   }
 
-  .hero-device-grid {
+  .hero-phone-cluster,
+  .language-proof-visual {
     grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .phone-shot-hero,
+  .phone-shot-proof,
+  .phone-shot-proof-sm,
+  .phone-shot-theory {
+    max-width: none;
+  }
+
+  .hero-phone-float {
+    position: static;
   }
 
   .journey-scene-head,
