@@ -205,11 +205,7 @@ function renderHome(m) {
           ${m.hero.coverageLine ? `<p class="trust">${escapeHtml(m.hero.coverageLine)}</p>` : ""}
           <div class="pill-row">${renderPills(m.press.usp)}</div>
         </div>
-        <div class="hero-visual reveal-item">
-          <div class="hero-visual-photo">
-            <img src="${PHOTO_URLS.hero}" alt="Driving route view" loading="lazy" />
-          </div>
-        </div>
+        <div class="hero-visual reveal-item">${renderHeroShowcase(m)}</div>
       </div>
       <div class="panel reveal-item">
         <p class="panel-title">${escapeHtml(m.press.oneLiner)}</p>
@@ -224,9 +220,7 @@ function renderHome(m) {
           .map(
             (t) => `
           <article class="card reveal-item">
-            <div class="card-photo">
-              <img src="${tabPhotoByTitle(t.title)}" alt="${escapeAttr(t.title)} photo" loading="lazy" />
-            </div>
+            ${renderJourneyScene(t)}
             <h3 class="tab-title">${renderTabIcon(t.title)}${escapeHtml(t.title)}</h3>
             <p>${escapeHtml(t.line1)}</p>
             <p>${escapeHtml(t.line2)}</p>
@@ -237,23 +231,7 @@ function renderHome(m) {
       </div>
     </section>
 
-    <section class="section reveal">
-      <h2>Built for real journeys</h2>
-      <div class="photo-band">
-        <article class="photo-card reveal-item">
-          <img src="${PHOTO_URLS.learn}" alt="Learner driver on road" loading="lazy" />
-          <div class="photo-label">Learn with structure</div>
-        </article>
-        <article class="photo-card reveal-item">
-          <img src="${PHOTO_URLS.route}" alt="Road route and navigation" loading="lazy" />
-          <div class="photo-label">Practice with reconstructed routes</div>
-        </article>
-        <article class="photo-card reveal-item">
-          <img src="${PHOTO_URLS.confidence}" alt="Confident new driver" loading="lazy" />
-          <div class="photo-label">Drive with calmer guidance</div>
-        </article>
-      </div>
-    </section>
+    ${renderHomeStartSplit(m.startPaths)}
 
     ${renderHomeModulesSection(m.homeModules)}
 
@@ -610,9 +588,7 @@ function renderPricingAppGallery(config) {
           .map(
             (item) => `
           <article class="app-module-card reveal-item">
-            <div class="app-module-media">
-              <img src="${pricingModulePhotoByTitle(item.title)}" alt="${escapeAttr(item.title)}" loading="lazy" />
-            </div>
+            ${renderModuleScene(item)}
             <div class="app-module-body">
               <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
               <p>${escapeHtml(item.text)}</p>
@@ -624,6 +600,213 @@ function renderPricingAppGallery(config) {
       </div>
     </section>
   `;
+}
+
+function renderHeroShowcase(m) {
+  const mainModules = (m.homeModules?.groups?.[0]?.items || []).slice(0, 4);
+  return `
+    <div class="hero-showcase">
+      <div class="hero-stat-strip">
+        ${renderShowcaseStat("32", "languages")}
+        ${renderShowcaseStat("340", "test centres")}
+        ${renderShowcaseStat("3000", "practice routes")}
+      </div>
+      <div class="hero-showcase-grid">
+        <article class="hero-device">
+          <div class="hero-device-head">
+            <span class="hero-device-kicker">Future learner to new driver</span>
+            <span class="hero-device-mode">Mode-aware home</span>
+          </div>
+          <div class="hero-device-panel">
+            <p class="hero-device-brand">DRIVEST</p>
+            <p class="hero-device-summary">Study theory, practise routes, book lessons, and move into calmer navigation when your stage allows.</p>
+          </div>
+          <div class="hero-device-grid">
+            ${mainModules
+              .map(
+                (item) => `
+              <div class="hero-device-tile">
+                ${renderFeatureIcon(item.title)}
+                <span>${escapeHtml(item.title)}</span>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          <p class="hero-device-note">${escapeHtml(m.homeModules?.summary?.text || m.hero.trustLine)}</p>
+        </article>
+        <div class="hero-story-stack">
+          <article class="hero-story-card">
+            <span class="hero-story-tag">Before lessons</span>
+            <h3>Start earlier with theory preparation</h3>
+            <p>Future learners can begin theory, Highway Code, traffic signs, and fines preparation before practical lessons begin.</p>
+          </article>
+          <article class="hero-story-card hero-story-card-accent">
+            <span class="hero-story-tag">When learning moves on road</span>
+            <h3>Turn preparation into lessons, routes, and bookings</h3>
+            <p>Practice routes, instructor discovery, lesson booking, parking support, and calmer navigation become the next layer of support.</p>
+          </article>
+          <div class="hero-legal-note">
+            <span class="hero-legal-dot" aria-hidden="true"></span>
+            <p>${escapeHtml(m.hero.trustLine)}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderShowcaseStat(value, label) {
+  return `
+    <div class="hero-stat-card">
+      <strong>${escapeHtml(value)}</strong>
+      <span>${escapeHtml(label)}</span>
+    </div>
+  `;
+}
+
+function renderJourneyScene(tab) {
+  const meta = journeySceneMeta(tab.title);
+  return `
+    <div class="journey-scene ${escapeAttr(meta.className)}">
+      <div class="journey-scene-head">
+        <span class="journey-stage">${escapeHtml(meta.stage)}</span>
+        <span class="journey-metric">${escapeHtml(meta.metric)}</span>
+      </div>
+      <div class="journey-chip-row">
+        ${meta.chips.map((chip) => `<span class="journey-chip">${escapeHtml(chip)}</span>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function journeySceneMeta(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("theory")) {
+    return {
+      className: "journey-scene-theory",
+      stage: "Before lessons",
+      metric: "32 languages",
+      chips: ["Theory", "Highway Code", "English cross-check"]
+    };
+  }
+  if (t.includes("practice")) {
+    return {
+      className: "journey-scene-practice",
+      stage: "During lessons",
+      metric: "Selected centre",
+      chips: ["Route repeat", "Off-route alerts", "Offline packs"]
+    };
+  }
+  return {
+    className: "journey-scene-navigation",
+    stage: "Beyond the test",
+    metric: "Calmer routes",
+    chips: ["Parking support", "Road prompts", "Voice modes"]
+  };
+}
+
+function renderHomeStartSplit(config) {
+  if (!config?.paths?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>Choose your route into Drivest</h2>
+      <p class="section-intro">${escapeHtml(config.summary?.text || config.intro || "")}</p>
+      <div class="grid two-up">
+        ${config.paths
+          .map(
+            (path) => `
+          <article class="card reveal-item path-card">
+            <div class="path-card-top">
+              <span class="path-tag">${escapeHtml(path.id === "instructor" ? "Instructor path" : "Learner path")}</span>
+              <span class="path-topline">${escapeHtml(path.id === "instructor" ? "Profile, bookings, linked learners" : "Preparation, practice, navigation")}</span>
+            </div>
+            <h3 class="tab-title">${renderFeatureIcon(path.title)}${escapeHtml(path.title)}</h3>
+            <p>${escapeHtml(path.text)}</p>
+            <div class="path-step-list">
+              ${(path.bullets || [])
+                .slice(0, 3)
+                .map(
+                  (bullet, index) => `
+                <div class="path-step">
+                  <span class="path-step-num">${index + 1}</span>
+                  <p>${escapeHtml(bullet)}</p>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+            <div class="btn-row">
+              ${button(path.id === "instructor" ? "See instructor start" : "See learner start", startHref(path.id), "primary")}
+              ${path.cta ? button(path.cta, path.href || PATHS.home, "secondary") : ""}
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderModuleScene(item) {
+  const meta = moduleSceneMeta(item.title);
+  return `
+    <div class="app-module-scene ${escapeAttr(meta.className)}">
+      <div class="app-module-scene-head">
+        <span class="app-module-scene-badge">${escapeHtml(meta.badge)}</span>
+        ${renderFeatureIcon(item.title)}
+      </div>
+      <p class="app-module-scene-title">${escapeHtml(item.title)}</p>
+      <div class="app-module-scene-pills">
+        ${meta.pills.map((pill) => `<span class="app-module-scene-pill">${escapeHtml(pill)}</span>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function moduleSceneMeta(title) {
+  const t = String(title).toLowerCase();
+  if (t.includes("theory")) {
+    return {
+      className: "module-scene-theory",
+      badge: "32 languages",
+      pills: ["Question view", "English cross-check", "Theory prep"]
+    };
+  }
+  if (t.includes("practice")) {
+    return {
+      className: "module-scene-practice",
+      badge: "Selected-centre routes",
+      pills: ["Route repeat", "Off-route alert", "Offline support"]
+    };
+  }
+  if (t.includes("navigation")) {
+    return {
+      className: "module-scene-navigation",
+      badge: "Calmer guidance",
+      pills: ["Road prompts", "Voice modes", "Confidence-led"]
+    };
+  }
+  if (t.includes("parking")) {
+    return {
+      className: "module-scene-parking",
+      badge: "Before arrival",
+      pills: ["Parking options", "Source confidence", "Check live signs"]
+    };
+  }
+  if (t.includes("instructor")) {
+    return {
+      className: "module-scene-instructor",
+      badge: "Independent instructors",
+      pills: ["Profiles", "Availability", "Reviews"]
+    };
+  }
+  return {
+    className: "module-scene-bookings",
+    badge: "Lesson flow",
+    pills: ["Requests", "Payment state", "Cancellations"]
+  };
 }
 
 function renderInfoSection(info) {
@@ -640,13 +823,6 @@ function renderInfoSection(info) {
   `;
 }
 
-function tabPhotoByTitle(title) {
-  const t = String(title).toLowerCase();
-  if (t.includes("theory")) return PHOTO_URLS.theory;
-  if (t.includes("practice")) return PHOTO_URLS.practice;
-  return PHOTO_URLS.navigation;
-}
-
 function stepPhotoByTitle(title) {
   const t = String(title).toLowerCase();
   if (t.includes("learner") || t.includes("instructor")) return PHOTO_URLS.learn;
@@ -657,17 +833,6 @@ function stepPhotoByTitle(title) {
   if (t.includes("centre") || t.includes("destination")) return PHOTO_URLS.map;
   if (t.includes("prompt")) return PHOTO_URLS.navigation;
   return PHOTO_URLS.route;
-}
-
-function pricingModulePhotoByTitle(title) {
-  const t = String(title).toLowerCase();
-  if (t.includes("theory")) return PHOTO_URLS.theory;
-  if (t.includes("practice")) return PHOTO_URLS.route;
-  if (t.includes("navigation")) return PHOTO_URLS.navigation;
-  if (t.includes("parking")) return PHOTO_URLS.roadsigns;
-  if (t.includes("instructor")) return PHOTO_URLS.learn;
-  if (t.includes("book")) return PHOTO_URLS.confidence;
-  return PHOTO_URLS.hero;
 }
 
 function renderPills(items) {

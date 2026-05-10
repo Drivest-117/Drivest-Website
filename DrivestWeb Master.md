@@ -219,8 +219,10 @@ Primary purpose:
 Current homepage includes:
 
 - hero section
+- app-style hero product preview instead of a generic photo-led hero
 - learner and instructor primary CTAs
-- three core journeys section
+- three stage journey cards for Theory, Practice, and Navigation
+- a route-into-Drivest split for learner and instructor starts
 - home screen module section
 - audience split section
 - language support section
@@ -263,6 +265,20 @@ Pricing page also includes:
 - subscription disclaimer
 - instructor marketplace fee and cancellation window summary
 - a `What you get in the app` gallery for Theory, Practice, Navigation, Parking, Find Instructor, and Book Lessons
+- app-themed module preview cards instead of generic stock photography
+
+## Current Visual Direction
+
+The website is no longer only copy-updated. It now also uses more product-shaped presentation in key conversion areas.
+
+Current visual direction includes:
+
+- app-style homepage hero cards that reflect stage-based learner preparation
+- stage cards instead of generic photos for Theory, Practice, and Navigation
+- route-based learner and instructor entry cards on the homepage
+- app-themed module scenes on the pricing page
+
+This means the website now leans more heavily on Drivest-specific UI storytelling and less on generic lifestyle or car stock imagery.
 
 ### FAQ
 
