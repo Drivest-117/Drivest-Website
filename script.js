@@ -4,6 +4,7 @@ const PATHS = {
   home: "/index.html",
   features: "/features.html",
   pricing: "/pricing.html",
+  start: "/start",
   faq: "/faq",
   terms: "/terms",
   privacy: "/privacy"
@@ -59,6 +60,7 @@ function pageTitle(currentPage, m) {
   const map = {
     features: m.ui.nav.features,
     pricing: m.ui.nav.pricing,
+    start: m.ui.nav.gettingStarted,
     faq: m.ui.nav.faq,
     terms: footerLabel(m, "terms") || "Terms",
     privacy: footerLabel(m, "privacy") || "Privacy"
@@ -90,6 +92,7 @@ function renderShellStart(m) {
         <nav class="nav-links">
           <a data-nav="features" href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
           <a data-nav="pricing" href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
+          <a data-nav="start" href="${PATHS.start}">${escapeHtml(m.ui.nav.gettingStarted)}</a>
           <a data-nav="faq" href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
           ${termsText ? `<a data-nav="terms" href="${PATHS.terms}">${escapeHtml(termsText)}</a>` : ""}
           ${privacyText ? `<a data-nav="privacy" href="${PATHS.privacy}">${escapeHtml(privacyText)}</a>` : ""}
@@ -118,6 +121,7 @@ function renderShellEnd(m) {
           <div class="footer-links">
             <a href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
             <a href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
+            <a href="${PATHS.start}">${escapeHtml(m.ui.nav.gettingStarted)}</a>
             <a href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
             ${m.footer.links
               .map((l) => {
@@ -146,6 +150,8 @@ function renderPage(currentPage, m) {
       return renderFeatures(m);
     case "pricing":
       return renderPricing(m);
+    case "start":
+      return renderStart(m);
     case "faq":
       return renderFaq(m);
     case "home":
@@ -162,9 +168,8 @@ function renderHome(m) {
           <h1>${escapeHtml(m.hero.headline)}</h1>
           <p>${escapeHtml(m.hero.subhead)}</p>
           <div class="btn-row">
-            ${button(m.hero.primaryCtas[0], m.global.ctaLinks.android, "primary")}
-            ${button(m.hero.primaryCtas[1], m.global.ctaLinks.ios, "secondary")}
-            ${button(m.global.ctas.joinWaitlist, m.global.ctaLinks.waitlist, "secondary")}
+            ${button(m.hero.primaryCtas[0], startHref("learner"), "primary")}
+            ${button(m.hero.primaryCtas[1], startHref("instructor"), "secondary")}
           </div>
           <div class="btn-row">
             ${button(m.hero.secondaryCtas[0], PATHS.pricing, "secondary")}
@@ -326,6 +331,44 @@ function renderFeatures(m) {
   `;
 }
 
+function renderStart(m) {
+  return `
+    <section class="section reveal feature-hero">
+      <div class="feature-hero-grid">
+        <div>
+          <h1>${escapeHtml(m.startPaths.title)}</h1>
+          <p>${escapeHtml(m.startPaths.intro)}</p>
+        </div>
+        <div class="feature-photo">
+          <img src="${PHOTO_URLS.learn}" alt="Learner and instructor onboarding" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    ${renderStartPathsSection(m.startPaths)}
+
+    ${renderInfoSection(m.languageSupport)}
+
+    <section class="section reveal">
+      <h2>${escapeHtml(m.howItWorks.title)}</h2>
+      <div class="grid two-up">
+        ${m.howItWorks.steps
+          .map(
+            (s) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(s.title)}</h3>
+            <p>${escapeHtml(s.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    ${renderAudienceSection(m.audienceTracks)}
+  `;
+}
+
 function renderPricing(m) {
   return `
     <section class="section reveal feature-hero">
@@ -351,8 +394,8 @@ function renderPricing(m) {
             ${p.subLine ? `<p>${escapeHtml(p.subLine)}</p>` : ""}
             ${bulletList(p.bullets)}
             <div class="btn-row">
-              ${button(p.cta, p.href || m.global.ctaLinks.waitlist, "primary")}
-              ${p.secondaryCta ? button(p.secondaryCta, p.secondaryHref || m.global.ctaLinks.waitlist, "secondary") : ""}
+              ${button(p.cta, p.href || startHref("learner"), "primary")}
+              ${p.secondaryCta ? button(p.secondaryCta, p.secondaryHref || PATHS.features, "secondary") : ""}
             </div>
           </article>
         `
@@ -474,6 +517,34 @@ function renderAudienceSection(config) {
             <h3>${escapeHtml(item.title)}</h3>
             <p>${escapeHtml(item.text)}</p>
             ${bulletList(item.bullets)}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderStartPathsSection(config) {
+  if (!config?.paths?.length) return "";
+  return `
+    <section class="section reveal">
+      ${config.summary ? `
+        <div class="panel reveal-item">
+          <p class="panel-title">${escapeHtml(config.summary.title)}</p>
+          <p>${escapeHtml(config.summary.text)}</p>
+        </div>
+      ` : ""}
+      <div class="grid two-up">
+        ${config.paths
+          .map(
+            (path) => `
+          <article id="${escapeAttr(path.id)}" class="card reveal-item anchor-target">
+            <h3 class="tab-title">${renderFeatureIcon(path.title)}${escapeHtml(path.title)}</h3>
+            <p>${escapeHtml(path.text)}</p>
+            ${bulletList(path.bullets)}
+            ${path.cta ? `<div class="btn-row">${button(path.cta, path.href || PATHS.home, "secondary")}</div>` : ""}
           </article>
         `
           )
@@ -615,6 +686,10 @@ function setActiveNav() {
   if (!current || current === "home") return;
   const link = document.querySelector(`.nav-links a[data-nav="${current}"]`);
   if (link) link.classList.add("active");
+}
+
+function startHref(role) {
+  return `${PATHS.start}#${role}`;
 }
 
 function footerLabel(m, key) {

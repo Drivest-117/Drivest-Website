@@ -8,24 +8,13 @@
     "nav": {
       "features": "Features",
       "pricing": "Pricing",
+      "gettingStarted": "Getting Started",
       "faq": "FAQ",
       "comingSoon": "Coming soon"
     },
     "sections": {
       "coreFeatures": "Platform highlights",
       "onArrival": "On arrival"
-    }
-  },
-  "global": {
-    "ctas": {
-      "downloadAndroid": "Download for Android",
-      "downloadIOS": "Download for iOS",
-      "joinWaitlist": "Join the waitlist"
-    },
-    "ctaLinks": {
-      "android": "mailto:admin@drivest.uk?subject=Drivest%20learner%20interest",
-      "ios": "mailto:admin@drivest.uk?subject=Drivest%20instructor%20interest",
-      "waitlist": "mailto:admin@drivest.uk?subject=Drivest%20waitlist"
     }
   },
   "hero": {
@@ -148,6 +137,42 @@
           "Link learners and review progress from Instructor Hub",
           "Work with bookings, reviews, and dispute records in one place"
         ]
+      }
+    ]
+  },
+  "startPaths": {
+    "title": "How to start in Drivest",
+    "intro": "Learners and instructors do not enter the platform in the same way. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.",
+    "summary": {
+      "title": "Role-based onboarding",
+      "text": "The first choice decides what the person sees next. Learners move into theory and practice support, while instructors move into profile setup, marketplace readiness, and Instructor Hub operations."
+    },
+    "paths": [
+      {
+        "id": "learner",
+        "title": "Start as learner",
+        "text": "Use the learner flow when you want theory, practical preparation, instructor booking, and calmer navigation to appear in the right sequence.",
+        "bullets": [
+          "Create a learner account, choose your current stage, and confirm the safety and legal acknowledgements used before data collection starts.",
+          "Pick one of 32 supported languages, then peek into English whenever you want to cross-check the same theory question.",
+          "Set your analytics, notification, and location preferences before opening Theory, Traffic Signs, Highway Code, or Fines and Penalties.",
+          "Move into Practice, Find Instructor, and Navigation as your confidence score, booking history, and progress tracking build up."
+        ],
+        "cta": "See pricing",
+        "href": "/pricing.html"
+      },
+      {
+        "id": "instructor",
+        "title": "Join as instructor",
+        "text": "Use the instructor flow when you need profile approval, marketplace visibility, linked learners, bookings, and operating records from the start.",
+        "bullets": [
+          "Create your instructor account and complete the professional legal flow and instructor agreement required before listing.",
+          "Set up your public profile, coverage area, availability, and lesson preferences so learners can discover and request slots.",
+          "Open Instructor Hub to link learners, track bookings and payment status, and keep coaching context together in one place.",
+          "Use reviews, dispute records, notifications, and learner insights to manage your independent instructor business through Drivest."
+        ],
+        "cta": "See platform features",
+        "href": "/features.html"
       }
     ]
   },
@@ -373,8 +398,8 @@
           "Safety notices and legal acknowledgement",
           "Upgrade later for selected-centre practice or yearly navigation"
         ],
-        "cta": "Join learner waitlist",
-        "href": "mailto:admin@drivest.uk?subject=Drivest%20free%20learning"
+        "cta": "Start free learning",
+        "href": "/start#learner"
       },
       {
         "name": "Selected-Centre Practice",
