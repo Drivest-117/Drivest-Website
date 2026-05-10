@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Drivest | Learner, instructor, and new-driver support",
-    "description": "Study theory in 32 languages, cross-check questions in English, practise reconstructed routes, book independent instructors, and drive with calmer navigation after you pass."
+    "title": "Drivest | Future learner and learner driver preparation",
+    "description": "For learner and future learner driver preparation. Study theory in 32 languages, cross-check in English, practise reconstructed routes, book lessons, and use calmer navigation. Real-world driving, lessons, bookings, and navigation must follow UK legal requirements."
   },
   "ui": {
     "brand": "Drivest",
@@ -12,47 +12,53 @@
       "faq": "FAQ",
       "comingSoon": "Coming soon"
     },
+    "actions": {
+      "prepare": "Start preparing",
+      "menu": "Menu",
+      "closeMenu": "Close menu"
+    },
     "sections": {
       "coreFeatures": "Platform highlights",
       "onArrival": "On arrival"
     }
   },
   "hero": {
-    "headline": "Drivest supports the full learner journey and the instructors behind it.",
-    "subhead": "Study theory in 32 languages and peek into English to cross-check the same question, practise reconstructed routes by test centre, book independent instructors, and move into calmer navigation after you pass.",
+    "positioningLine": "For learner and future learner driver preparation.",
+    "headline": "Build theory, lesson, and route confidence before, during, and after learning to drive.",
+    "subhead": "Start theory, Highway Code, traffic signs, and fines preparation early, then move into reconstructed practice routes, instructor discovery, bookings, parking support, and calmer navigation when your stage allows.",
     "primaryCtas": [
-      "Start as learner",
+      "Start preparing",
       "Join as instructor"
     ],
     "secondaryCtas": [
       "See pricing",
       "How Drivest works"
     ],
-    "trustLine": "Advisory only. Keep full control of the vehicle and follow live road signs, markings, and traffic laws.",
+    "trustLine": "Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.",
     "coverageLine": "Around 340 test centres. Around 3000 practice routes across the UK."
   },
   "press": {
-    "oneLiner": "Drivest is a UK learner-to-new-driver platform with multilingual theory learning, reconstructed practice routes, instructor bookings, secure lesson payments, analytics, parking support, and calmer post-pass navigation.",
+    "oneLiner": "Drivest is built for future learner drivers, learners, instructors, and newer drivers who need theory preparation, practice structure, lesson operations, parking support, and calmer navigation in one UK-focused platform.",
     "usp": [
+      "Future learner preparation",
       "Theory in 32 languages",
-      "Mode-aware home screen",
       "Instructor marketplace and bookings",
       "Selected-centre practice routes",
       "Low-stress navigation and parking"
     ]
   },
   "threeTabs": {
-    "title": "Three core journeys. A broader platform.",
+    "title": "Preparation before lessons, during learning, and after passing.",
     "tabs": [
       {
         "title": "Theory",
-        "line1": "Theory, Highway Code, Traffic Signs, and Fines and Penalties learning.",
+        "line1": "Theory, Highway Code, Traffic Signs, and Fines and Penalties learning for future learners and current learners.",
         "line2": "Study in 32 languages and peek into English to cross-check the same question."
       },
       {
         "title": "Practice",
         "line1": "Reconstructed practice routes that start from your selected test centre.",
-        "line2": "Off-route alerts, offline packs, and repetition designed for practical learners."
+        "line2": "Off-route alerts, offline packs, and repetition designed for the stage when practical lessons begin."
       },
       {
         "title": "Navigation",
@@ -115,13 +121,14 @@
     ]
   },
   "audienceTracks": {
-    "title": "Built for learners and instructors",
-    "intro": "Drivest now serves both sides of the lesson journey, not just route practice and post-pass navigation.",
+    "title": "Built for future learners, learners, and instructors",
+    "intro": "Drivest now supports early theory preparation, the live learner journey, and the instructors behind lessons and bookings.",
     "items": [
       {
-        "title": "For learners",
-        "text": "Move from theory revision to practice, instructor booking, secure lesson payments, and calmer navigation after your test.",
+        "title": "For future learners and learners",
+        "text": "Start preparing before practical lessons begin, then move into practice, instructor booking, secure lesson payments, and calmer navigation after your test.",
         "bullets": [
+          "Begin theory, signs, Highway Code, and fines preparation early before practical lessons start",
           "Choose your stage and preferred language during onboarding",
           "Study theory content and cross-check in English when needed",
           "Book independent instructors and track lesson status in one app",
@@ -142,18 +149,19 @@
   },
   "startPaths": {
     "title": "How to start in Drivest",
-    "intro": "Learners and instructors do not enter the platform in the same way. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.",
+    "intro": "Future learners and learners use the same preparation path, while instructors follow a separate operating flow. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.",
     "summary": {
       "title": "Role-based onboarding",
-      "text": "The first choice decides what the person sees next. Learners move into theory and practice support, while instructors move into profile setup, marketplace readiness, and Instructor Hub operations."
+      "text": "The first choice decides what the person sees next. Future learners and learners move into theory and practice support, while instructors move into profile setup, marketplace readiness, and Instructor Hub operations."
     },
     "paths": [
       {
         "id": "learner",
-        "title": "Start as learner",
-        "text": "Use the learner flow when you want theory, practical preparation, instructor booking, and calmer navigation to appear in the right sequence.",
+        "title": "Start learner preparation",
+        "text": "Use the learner preparation flow whether you are starting theory early or already moving into practical preparation, instructor booking, and calmer navigation.",
         "bullets": [
-          "Create a learner account, choose your current stage, and confirm the safety and legal acknowledgements used before data collection starts.",
+          "Future learner drivers can begin theory, signs, Highway Code, and fines preparation early before practical lessons start.",
+          "When ready, create or continue a learner profile, choose your current stage, and confirm the safety and legal acknowledgements used before data collection starts.",
           "Pick one of 32 supported languages, then peek into English whenever you want to cross-check the same theory question.",
           "Set your analytics, notification, and location preferences before opening Theory, Traffic Signs, Highway Code, or Fines and Penalties.",
           "Move into Practice, Find Instructor, and Navigation as your confidence score, booking history, and progress tracking build up."
@@ -179,12 +187,16 @@
   "why": {
     "title": "Driving support changes by stage.",
     "bullets": [
-      "Before lessons: learners need theory, signs, Highway Code, and fines revision they can actually understand.",
+      "Before lessons: future learner drivers can start theory, signs, Highway Code, and fines revision early in a format they can actually understand.",
       "Before test day: practical learners need repetition around a selected centre, clearer coaching context, and instructor access.",
       "After passing: new drivers need calmer route choice, parking support, and confidence-building guidance."
     ]
   },
   "coreUsps": [
+    {
+      "title": "Future learner preparation",
+      "text": "Drivest is not only for people already taking lessons. It supports early theory, signs, Highway Code, and fines preparation before practical driving begins."
+    },
     {
       "title": "Theory in 32 languages",
       "text": "Learners can study theory in a preferred language and peek into English to cross-check the same question before moving on."
@@ -236,7 +248,7 @@
   ],
   "languageSupport": {
     "title": "32 languages, with English available to cross-check",
-    "text": "Theory questions and supporting learning content can be studied in a preferred language. When a learner wants extra certainty, they can peek into English and compare the same question before answering.",
+    "text": "Theory questions and supporting learning content can be studied in a preferred language. Future learners and current learners can peek into English and compare the same question before answering when they want extra certainty.",
     "pills": [
       "Arabic",
       "Welsh",
@@ -252,7 +264,7 @@
   "featureGroups": [
     {
       "title": "Learn",
-      "intro": "The learning side of Drivest now goes beyond a single theory tab.",
+      "intro": "The learning side of Drivest supports early preparation before practical lessons and continues beyond a single theory tab.",
       "items": [
         {
           "title": "Theory in 32 languages",
@@ -369,12 +381,12 @@
     "title": "Getting started",
     "steps": [
       {
-        "title": "Choose learner or instructor",
-        "text": "Drivest onboarding now reflects whether you are learning to drive or running an independent instructor profile."
+        "title": "Choose learner preparation or instructor",
+        "text": "Drivest onboarding reflects whether you are starting learner preparation, actively learning to drive, or running an independent instructor profile."
       },
       {
         "title": "Pick your stage and language",
-        "text": "Learners choose their stage, language, and safety preferences before using theory, practice, or navigation features."
+        "text": "Future learners and current learners choose their stage, language, and safety preferences before using theory, practice, or navigation features."
       },
       {
         "title": "Study, practise, or book lessons",
@@ -393,7 +405,7 @@
         "name": "Free Learning",
         "price": "\u00a30",
         "bullets": [
-          "Core theory learning and onboarding",
+          "Core theory learning and onboarding for future learners and current learners",
           "Language selection with English cross-check support",
           "Safety notices and legal acknowledgement",
           "Upgrade later for selected-centre practice or yearly navigation"
@@ -442,7 +454,7 @@
     ],
     "appGallery": {
       "title": "What you get in the app",
-      "intro": "Drivest brings learning, practice, navigation, parking support, and instructor workflows into one product surface.",
+      "intro": "Drivest brings early theory preparation, practice, navigation, parking support, and instructor workflows into one product surface.",
       "items": [
         {
           "title": "Theory",
@@ -486,6 +498,7 @@
   "safety": {
     "title": "Safety and trust",
     "bullets": [
+      "Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.",
       "Drivest guidance is advisory only and may be incomplete or delayed.",
       "Practice routes are reconstructed for learning and are not official DVSA routes.",
       "Keep full control of the vehicle and always follow live road signs, road markings, and traffic laws.",
@@ -507,7 +520,11 @@
   "faq": [
     {
       "q": "What does Drivest provide?",
-      "a": "Drivest provides learning tools, reconstructed practice routes, advisory navigation support, parking guidance, progress tracking, subscriptions, and, where enabled, instructor marketplace and booking features."
+      "a": "Drivest provides future learner and learner preparation tools, reconstructed practice routes, advisory navigation support, parking guidance, progress tracking, subscriptions, and, where enabled, instructor marketplace and booking features."
+    },
+    {
+      "q": "Is Drivest only for people already taking lessons?",
+      "a": "No. Drivest is also positioned for future learner driver preparation. Users can begin theory, Highway Code, traffic signs, and fines preparation early before practical lessons begin."
     },
     {
       "q": "Is Drivest affiliated with DVSA?",

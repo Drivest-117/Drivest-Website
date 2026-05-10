@@ -34,6 +34,9 @@ As of 10 May 2026, this repository contains website updates that include:
 - updated Terms, Privacy, and FAQ website content
 - a new `Getting Started` website flow for learners and instructors
 - removal of the homepage `Join the waitlist` CTA
+- mobile navigation and a persistent website preparation CTA
+- future learner driver positioning across homepage, start flow, pricing, and FAQ
+- stronger static metadata for marketing page titles, descriptions, and sharing
 
 Important status note:
 
@@ -120,12 +123,18 @@ Current main website navigation is designed around:
 
 Footer navigation also links to the core marketing and legal routes.
 
+Marketing pages now also expose:
+
+- a mobile menu for smaller screens
+- a persistent `Start preparing` CTA for learner and future learner driver preparation
+
 ## Current Website Positioning
 
-The website currently positions Drivest as a broader learner-to-new-driver and instructor-support platform, not only a route-practice app.
+The website currently positions Drivest as a broader future-learner-to-new-driver and instructor-support platform, not only a route-practice app.
 
 Current platform story on the website includes:
 
+- future learner driver preparation before practical lessons begin
 - theory learning support
 - practical route preparation
 - calmer new-driver navigation
@@ -140,6 +149,15 @@ Current platform story on the website includes:
 ### 1. Theory in 32 languages
 
 The website now explicitly states that users can study theory content in 32 languages and peek into English to cross-check the same question.
+
+### 1a. Future learner positioning
+
+The website now explicitly positions Drivest for future learner drivers as well as active learners.
+
+Current headline positioning includes:
+
+- `For learner and future learner driver preparation.`
+- `Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.`
 
 This message appears across:
 

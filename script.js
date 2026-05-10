@@ -36,7 +36,7 @@ if (!page || !app) {
 }
 
 async function init() {
-  const response = await fetch(CONTENT_URL, { cache: "no-store" });
+  const response = await fetch(CONTENT_URL);
   const m = await response.json();
 
   document.title = pageTitle(page, m);
@@ -52,6 +52,7 @@ async function init() {
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
   setupAnimations();
   setActiveNav();
+  setupMobileNav();
 }
 
 function pageTitle(currentPage, m) {
@@ -79,24 +80,47 @@ function setDescription(value) {
 }
 
 function renderShellStart(m) {
-  const termsText = footerLabel(m, "terms");
-  const privacyText = footerLabel(m, "privacy");
   return `
     <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
     <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="${PATHS.home}">
+        <a class="brand" href="${PATHS.home}" aria-label="${escapeAttr(m.ui.brand)} home">
           <img src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
         </a>
-        <nav class="nav-links">
-          <a data-nav="features" href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
-          <a data-nav="pricing" href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
-          <a data-nav="start" href="${PATHS.start}">${escapeHtml(m.ui.nav.gettingStarted)}</a>
-          <a data-nav="faq" href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
-          ${termsText ? `<a data-nav="terms" href="${PATHS.terms}">${escapeHtml(termsText)}</a>` : ""}
-          ${privacyText ? `<a data-nav="privacy" href="${PATHS.privacy}">${escapeHtml(privacyText)}</a>` : ""}
+        <nav class="nav-links site-nav" aria-label="Primary navigation">
+          ${renderPrimaryNavLinks(m)}
         </nav>
+        <div class="nav-actions">
+          ${button(m.ui.actions.prepare, startHref("learner"), "primary", "header-cta")}
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="${escapeAttr(m.ui.actions.menu)}"
+            data-open-label="${escapeAttr(m.ui.actions.menu)}"
+            data-close-label="${escapeAttr(m.ui.actions.closeMenu)}"
+          >
+            <span class="sr-only nav-toggle-label">${escapeHtml(m.ui.actions.menu)}</span>
+            <span class="nav-toggle-box" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="mobile-menu" hidden>
+        <div class="container mobile-menu-inner">
+          <nav class="mobile-nav site-nav" aria-label="Mobile navigation">
+            ${renderPrimaryNavLinks(m)}
+          </nav>
+          <div class="mobile-menu-cta-row">
+            ${button(m.ui.actions.prepare, startHref("learner"), "primary", "mobile-menu-cta")}
+            ${button(m.hero.primaryCtas[1], startHref("instructor"), "secondary", "mobile-menu-secondary")}
+          </div>
+        </div>
       </div>
     </header>
     <main class="container main-content">
@@ -107,6 +131,7 @@ function renderShellEnd(m) {
   const supportEmail = String(m.footer.contact || "").replace(/^Contact:\s*/i, "");
   return `
     </main>
+    ${renderMobileCtaBar(m)}
     <footer class="site-footer">
       <div class="container footer-wrap">
         <div class="footer-brand-col">
@@ -165,6 +190,7 @@ function renderHome(m) {
     <section class="hero section reveal">
       <div class="hero-grid">
         <div class="hero-copy">
+          ${m.hero.positioningLine ? `<p class="eyebrow">${escapeHtml(m.hero.positioningLine)}</p>` : ""}
           <h1>${escapeHtml(m.hero.headline)}</h1>
           <p>${escapeHtml(m.hero.subhead)}</p>
           <div class="btn-row">
@@ -561,6 +587,18 @@ function renderFeatureGroups(groups) {
     .join("");
 }
 
+function renderMobileCtaBar(m) {
+  if (!["home", "features", "pricing", "faq"].includes(page)) return "";
+  return `
+    <div class="mobile-cta-bar">
+      <div class="container mobile-cta-wrap">
+        <p class="mobile-cta-copy">${escapeHtml(m.hero.positioningLine || m.ui.actions.prepare)}</p>
+        ${button(m.ui.actions.prepare, startHref("learner"), "primary", "mobile-cta-link")}
+      </div>
+    </div>
+  `;
+}
+
 function renderPricingAppGallery(config) {
   if (!config?.items?.length) return "";
   return `
@@ -636,6 +674,23 @@ function renderPills(items) {
   return (items || []).map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
 }
 
+function renderPrimaryNavLinks(m) {
+  const links = [
+    { key: "features", href: PATHS.features, label: m.ui.nav.features },
+    { key: "pricing", href: PATHS.pricing, label: m.ui.nav.pricing },
+    { key: "start", href: PATHS.start, label: m.ui.nav.gettingStarted },
+    { key: "faq", href: PATHS.faq, label: m.ui.nav.faq }
+  ];
+  const termsText = footerLabel(m, "terms");
+  const privacyText = footerLabel(m, "privacy");
+  if (termsText) links.push({ key: "terms", href: PATHS.terms, label: termsText });
+  if (privacyText) links.push({ key: "privacy", href: PATHS.privacy, label: privacyText });
+
+  return links
+    .map((link) => `<a class="nav-link" data-nav="${escapeAttr(link.key)}" href="${escapeAttr(link.href)}">${escapeHtml(link.label)}</a>`)
+    .join("");
+}
+
 function renderTabIcon(title) {
   const t = String(title).toLowerCase();
   if (t.includes("theory")) return iconBadge("book");
@@ -691,6 +746,10 @@ function setupAnimations() {
   if (!nodes.length) return;
 
   nodes.forEach((node) => node.classList.add("pre-reveal"));
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    nodes.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
   if (!("IntersectionObserver" in window)) {
     nodes.forEach((node) => node.classList.add("is-visible"));
     return;
@@ -714,8 +773,51 @@ function setupAnimations() {
 function setActiveNav() {
   const current = page;
   if (!current || current === "home") return;
-  const link = document.querySelector(`.nav-links a[data-nav="${current}"]`);
-  if (link) link.classList.add("active");
+  document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => link.classList.add("active"));
+}
+
+function setupMobileNav() {
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (!toggle || !menu) return;
+
+  const label = toggle.querySelector(".nav-toggle-label");
+  const openLabel = toggle.dataset.openLabel || "Menu";
+  const closeLabel = toggle.dataset.closeLabel || "Close menu";
+
+  const setOpen = (isOpen) => {
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
+    if (label) label.textContent = isOpen ? closeLabel : openLabel;
+    menu.hidden = !isOpen;
+    document.body.classList.toggle("nav-open", isOpen);
+  };
+
+  setOpen(false);
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setOpen(!isOpen);
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
+  const desktopMedia = window.matchMedia("(min-width: 761px)");
+  const handleDesktopSwitch = (event) => {
+    if (event.matches) setOpen(false);
+  };
+
+  if (typeof desktopMedia.addEventListener === "function") {
+    desktopMedia.addEventListener("change", handleDesktopSwitch);
+  } else if (typeof desktopMedia.addListener === "function") {
+    desktopMedia.addListener(handleDesktopSwitch);
+  }
 }
 
 function startHref(role) {
@@ -741,11 +843,12 @@ function footerLink(m, key) {
   return links.find((l) => String(l.url || "").toLowerCase().includes(`drivest.uk/${key}`)) || null;
 }
 
-function button(label, href, variant) {
+function button(label, href, variant, extraClass = "") {
   if (!label || !href) return "";
   const external = href.startsWith("http") || href.startsWith("mailto:");
   const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
-  return `<a class="btn btn-${variant}" href="${escapeAttr(href)}"${attrs}>${escapeHtml(label)}</a>`;
+  const classes = `btn btn-${variant}${extraClass ? ` ${extraClass}` : ""}`;
+  return `<a class="${classes}" href="${escapeAttr(href)}"${attrs}>${escapeHtml(label)}</a>`;
 }
 
 function bulletList(items) {
