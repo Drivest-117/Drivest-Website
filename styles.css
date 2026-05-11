@@ -829,6 +829,13 @@ p {
   grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
   gap: 18px;
   align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.product-proof-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .product-proof-phone {
@@ -838,6 +845,7 @@ p {
 .product-proof-copy {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .product-proof-copy h3,
@@ -1394,6 +1402,10 @@ small {
   }
 
   .language-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .product-proof-grid {
     grid-template-columns: 1fr;
   }
 

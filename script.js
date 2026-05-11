@@ -595,7 +595,7 @@ function renderProductProofSection(config) {
     <section class="section reveal">
       <h2>${escapeHtml(config.title)}</h2>
       ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
-      <div class="grid two-up">
+      <div class="grid product-proof-grid">
         ${config.items
           .map(
             (item) => `
