@@ -1,11 +1,14 @@
 const CONTENT_URL = "/site/content/marketing.en-GB.json";
 
 const PATHS = {
-  home: "/index.html",
-  features: "/features.html",
-  pricing: "/pricing.html",
+  home: "/",
+  features: "/features",
+  pricing: "/pricing",
   start: "/start",
   faq: "/faq",
+  theory: "/theory-test-preparation",
+  centres: "/driving-test-centres",
+  instructors: "/driving-instructors",
   terms: "/terms",
   privacy: "/privacy"
 };
@@ -29,11 +32,15 @@ const page = document.body.dataset.page;
 const app = document.getElementById("app");
 
 if (!page || !app) {
-  const yearNode = document.getElementById("year");
-  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+  finalizePageChrome();
+} else if (app.children.length || app.textContent.trim()) {
+  finalizePageChrome();
 } else {
   init().catch(() => {
-    app.innerHTML = '<main class="container"><section class="section"><p>Unable to load content.</p></section></main>';
+    if (!app.children.length && !app.textContent.trim()) {
+      app.innerHTML = '<main class="container"><section class="section"><p>Unable to load content.</p></section></main>';
+    }
+    finalizePageChrome();
   });
 }
 
@@ -42,7 +49,7 @@ async function init() {
   const m = await response.json();
 
   document.title = pageTitle(page, m);
-  setDescription(m.seo.description);
+  setDescription(pageDescription(page, m));
 
   app.innerHTML = `
     ${renderShellStart(m)}
@@ -50,6 +57,10 @@ async function init() {
     ${renderShellEnd(m)}
   `;
 
+  finalizePageChrome();
+}
+
+function finalizePageChrome() {
   const yearNode = document.getElementById("year");
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
   setupAnimations();
@@ -59,7 +70,7 @@ async function init() {
 
 function pageTitle(currentPage, m) {
   if (currentPage === "home") return m.seo.title;
-  if (currentPage === "faq" && m.faqHeader?.seoTitle) return m.faqHeader.seoTitle;
+  if (m.pageSeo?.[currentPage]?.title) return `${m.pageSeo[currentPage].title} | ${m.ui.brand}`;
   const map = {
     features: m.ui.nav.features,
     pricing: m.ui.nav.pricing,
@@ -68,7 +79,25 @@ function pageTitle(currentPage, m) {
     terms: footerLabel(m, "terms") || "Terms",
     privacy: footerLabel(m, "privacy") || "Privacy"
   };
-  return `${m.ui.brand} | ${map[currentPage] || m.seo.title}`;
+  return `${map[currentPage] || m.seo.title} | ${m.ui.brand}`;
+}
+
+function pageDescription(currentPage, m) {
+  if (currentPage === "home") return m.seo.description;
+  if (m.pageSeo?.[currentPage]?.description) return m.pageSeo[currentPage].description;
+
+  const descriptions = {
+    features:
+      "Explore Drivest features for learner and future learner drivers, instructors, and newer drivers: theory in 32 languages, practice routes, lesson bookings, parking support, and calmer navigation.",
+    pricing:
+      "Compare Drivest pricing for free learning, selected-centre practice routes, navigation access, and the annual bundle for learner and future learner drivers.",
+    start:
+      "See how future learners, learner drivers, and instructors can get started with Drivest using the right onboarding path, language setup, and next steps.",
+    faq:
+      "Read common Drivest questions about theory preparation, reconstructed practice routes, instructor bookings, parking guidance, subscriptions, privacy, and legal positioning."
+  };
+
+  return descriptions[currentPage] || m.seo.description;
 }
 
 function setDescription(value) {
@@ -131,6 +160,15 @@ function renderShellStart(m) {
 
 function renderShellEnd(m) {
   const supportEmail = String(m.footer.contact || "").replace(/^Contact:\s*/i, "");
+  const footerExtras = (m.footer.links || [])
+    .map((l) => {
+      const href = resolveFooterHref(l);
+      return { href, label: l.label };
+    })
+    .filter((link, index, all) => {
+      if ([PATHS.features, PATHS.pricing, PATHS.start, PATHS.faq].includes(link.href)) return false;
+      return all.findIndex((candidate) => candidate.href === link.href) === index;
+    });
   return `
     </main>
     ${renderMobileCtaBar(m)}
@@ -150,12 +188,11 @@ function renderShellEnd(m) {
             <a href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
             <a href="${PATHS.start}">${escapeHtml(m.ui.nav.gettingStarted)}</a>
             <a href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
-            ${m.footer.links
-              .map((l) => {
-                const href = resolveFooterHref(l);
-                const external = href.startsWith("http") || href.startsWith("mailto:");
+            ${footerExtras
+              .map((link) => {
+                const external = link.href.startsWith("http") || link.href.startsWith("mailto:");
                 const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
-                return `<a href="${escapeAttr(href)}"${attrs}>${escapeHtml(l.label)}</a>`;
+                return `<a href="${escapeAttr(link.href)}"${attrs}>${escapeHtml(link.label)}</a>`;
               })
               .join("")}
           </div>
@@ -181,6 +218,10 @@ function renderPage(currentPage, m) {
       return renderStart(m);
     case "faq":
       return renderFaq(m);
+    case "theory":
+    case "centres":
+    case "instructors":
+      return renderHubPage(currentPage, m);
     case "home":
     default:
       return renderHome(m);
@@ -239,6 +280,8 @@ function renderHome(m) {
 
     ${renderAudienceSection(m.audienceTracks)}
 
+    ${renderLinkCardsSection(m.searchIntentLinks)}
+
     <section class="section reveal">
       <h2>${escapeHtml(m.why.title)}</h2>
       ${bulletList(m.why.bullets)}
@@ -287,11 +330,12 @@ function renderHome(m) {
 }
 
 function renderFeatures(m) {
+  const featuresTitle = m.pageSeo?.features?.title || m.ui.nav.features;
   return `
     <section class="section reveal feature-hero">
       <div class="feature-hero-grid">
         <div>
-          <h1>${escapeHtml(m.ui.nav.features)}</h1>
+          <h1>${escapeHtml(featuresTitle)}</h1>
           <p>${escapeHtml(m.hero.subhead)}</p>
         </div>
         <div class="feature-photo">
@@ -309,6 +353,8 @@ function renderFeatures(m) {
     ${renderAudienceSection(m.audienceTracks)}
 
     ${renderFeatureGroups(m.featureGroups)}
+
+    ${renderLinkCardsSection(m.searchIntentLinks)}
 
     ${renderLanguageSupportSection(m.languageSupport)}
 
@@ -376,11 +422,12 @@ function renderStart(m) {
 }
 
 function renderPricing(m) {
+  const pricingTitle = m.pageSeo?.pricing?.title || m.pricing.title;
   return `
     <section class="section reveal feature-hero">
       <div class="feature-hero-grid">
         <div>
-          <h1>${escapeHtml(m.pricing.title)}</h1>
+          <h1>${escapeHtml(pricingTitle)}</h1>
           <p>${escapeHtml(m.pricing.disclaimer)}</p>
         </div>
         <div class="feature-photo">
@@ -418,7 +465,7 @@ function renderPricing(m) {
 }
 
 function renderFaq(m) {
-  const faqTitle = m.faqHeader?.title || m.ui.nav.faq;
+  const faqTitle = m.pageSeo?.faq?.title || m.faqHeader?.title || m.ui.nav.faq;
   const faqMeta = m.faqHeader
     ? `<p class="doc-meta">${escapeHtml(m.faqHeader.app)}<br />${escapeHtml(m.faqHeader.version)}<br />${escapeHtml(m.faqHeader.updated)}</p>`
     : "";
@@ -431,7 +478,7 @@ function renderFaq(m) {
           .map(
             (it) => `
           <article class="faq-item reveal-item">
-            <h3>${escapeHtml(it.q)}</h3>
+            <h2>${escapeHtml(it.q)}</h2>
             <p>${escapeHtml(it.a)}</p>
           </article>
         `
@@ -439,6 +486,43 @@ function renderFaq(m) {
           .join("")}
       </div>
     </section>
+  `;
+}
+
+function renderHubPage(pageKey, m) {
+  const hub = m.hubPages?.[pageKey];
+  if (!hub) return renderHome(m);
+  const photo = hubPagePhoto(pageKey);
+
+  return `
+    <section class="section reveal feature-hero">
+      <div class="feature-hero-grid">
+        <div>
+          <h1>${escapeHtml(hub.title)}</h1>
+          <p>${escapeHtml(hub.intro)}</p>
+        </div>
+        <div class="feature-photo">
+          <img src="${escapeAttr(photo.src)}" alt="${escapeAttr(photo.alt)}" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    ${hub.summary ? `
+      <section class="section reveal">
+        <div class="panel reveal-item">
+          <p class="panel-title">${escapeHtml(hub.summary.title)}</p>
+          <p>${escapeHtml(hub.summary.text)}</p>
+        </div>
+      </section>
+    ` : ""}
+
+    ${(hub.sections || []).map((section) => renderCardGridSection(section)).join("")}
+
+    ${hub.showLanguageSupport ? renderLanguageSupportSection(m.languageSupport) : ""}
+
+    ${(hub.infoSections || []).map((section) => renderInfoSection(section)).join("")}
+
+    ${renderLinkCardsSection(hub.related)}
   `;
 }
 
@@ -456,6 +540,17 @@ function renderFeatureCards(items) {
         )
         .join("")}
     </div>
+  `;
+}
+
+function renderCardGridSection(section) {
+  if (!section?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(section.title)}</h2>
+      ${section.intro ? `<p class="section-intro">${escapeHtml(section.intro)}</p>` : ""}
+      ${renderFeatureCards(section.items)}
+    </section>
   `;
 }
 
@@ -568,7 +663,7 @@ function renderFeatureGroups(groups) {
 }
 
 function renderMobileCtaBar(m) {
-  if (!["home", "features", "pricing", "faq"].includes(page)) return "";
+  if (!["home", "features", "pricing", "faq", "theory", "centres", "instructors"].includes(page)) return "";
   return `
     <div class="mobile-cta-bar">
       <div class="container mobile-cta-wrap">
@@ -576,6 +671,30 @@ function renderMobileCtaBar(m) {
         ${button(m.ui.actions.prepare, startHref("learner"), "primary", "mobile-cta-link")}
       </div>
     </div>
+  `;
+}
+
+function renderLinkCardsSection(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="grid two-up">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="card reveal-item">
+            <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.text)}</p>
+            ${bulletList(item.bullets)}
+            ${item.cta ? `<div class="btn-row">${button(item.cta, item.href || PATHS.home, "secondary")}</div>` : ""}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -877,6 +996,31 @@ function stepPhotoByTitle(title) {
   return PHOTO_URLS.route;
 }
 
+function hubPagePhoto(pageKey) {
+  switch (pageKey) {
+    case "theory":
+      return {
+        src: PHOTO_URLS.theory,
+        alt: "Driving theory revision and study planning"
+      };
+    case "centres":
+      return {
+        src: PHOTO_URLS.map,
+        alt: "Driving test centre route planning"
+      };
+    case "instructors":
+      return {
+        src: PHOTO_URLS.learn,
+        alt: "Learner meeting driving instructor"
+      };
+    default:
+      return {
+        src: PHOTO_URLS.route,
+        alt: "Drivest app feature overview"
+      };
+  }
+}
+
 function renderPills(items) {
   return (items || []).map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
 }
@@ -894,7 +1038,10 @@ function renderPrimaryNavLinks(m) {
   if (privacyText) links.push({ key: "privacy", href: PATHS.privacy, label: privacyText });
 
   return links
-    .map((link) => `<a class="nav-link" data-nav="${escapeAttr(link.key)}" href="${escapeAttr(link.href)}">${escapeHtml(link.label)}</a>`)
+    .map((link) => {
+      const active = link.key === page;
+      return `<a class="nav-link${active ? " active" : ""}" data-nav="${escapeAttr(link.key)}" href="${escapeAttr(link.href)}"${active ? ' aria-current="page"' : ""}>${escapeHtml(link.label)}</a>`;
+    })
     .join("");
 }
 
@@ -1039,6 +1186,9 @@ function footerLabel(m, key) {
 function resolveFooterHref(link) {
   const raw = String(link.url || "");
   const url = raw.toLowerCase();
+  if (url.includes("drivest.uk/theory-test-preparation")) return PATHS.theory;
+  if (url.includes("drivest.uk/driving-test-centres")) return PATHS.centres;
+  if (url.includes("drivest.uk/driving-instructors")) return PATHS.instructors;
   if (url.includes("drivest.uk/terms")) return PATHS.terms;
   if (url.includes("drivest.uk/privacy")) return PATHS.privacy;
   if (url.includes("drivest.uk/faq")) return PATHS.faq;

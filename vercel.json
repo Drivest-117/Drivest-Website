@@ -1,0 +1,94 @@
+{
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/features.html",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/features/index.html",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/index.html",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/start/index.html",
+      "destination": "/start",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/start",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/index.html",
+      "destination": "/start",
+      "permanent": true
+    },
+    {
+      "source": "/faq.html",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/faq/index.html",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/theory-test-preparation/index.html",
+      "destination": "/theory-test-preparation",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/index.html",
+      "destination": "/driving-test-centres",
+      "permanent": true
+    },
+    {
+      "source": "/driving-instructors/index.html",
+      "destination": "/driving-instructors",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/terms/index.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/privacypolicy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/index.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/coming-soon.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

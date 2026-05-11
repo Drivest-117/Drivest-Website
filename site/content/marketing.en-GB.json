@@ -1,7 +1,37 @@
 {
   "seo": {
-    "title": "Drivest | Future learner and learner driver preparation",
-    "description": "For learner and future learner driver preparation. Study theory in 32 languages, cross-check in English, practise reconstructed routes, book lessons, and use calmer navigation. Real-world driving, lessons, bookings, and navigation must follow UK legal requirements."
+    "title": "Drivest | Theory test prep, driving test centre practice routes, and instructor bookings",
+    "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation."
+  },
+  "pageSeo": {
+    "features": {
+      "title": "Driving learner app features",
+      "description": "Explore Drivest features for theory test preparation, driving test centre practice routes, instructor discovery, lesson bookings, parking support, and calmer navigation."
+    },
+    "pricing": {
+      "title": "Driving learner app pricing",
+      "description": "Compare Drivest pricing for free theory preparation, selected-centre practice routes, navigation support, and the annual learner bundle."
+    },
+    "start": {
+      "title": "How Drivest works",
+      "description": "See how Drivest works for future learners, learner drivers, and instructors with role-based onboarding, language setup, practice routes, and booking flows."
+    },
+    "faq": {
+      "title": "Driving learner FAQ",
+      "description": "Read common Drivest questions about theory preparation, driving test centre practice routes, instructor bookings, parking guidance, subscriptions, privacy, and legal positioning."
+    },
+    "theory": {
+      "title": "Theory test preparation in 32 languages",
+      "description": "Prepare for the UK driving theory test with theory questions, Highway Code, traffic signs, and fines revision in 32 languages with English cross-check support."
+    },
+    "centres": {
+      "title": "Driving test centres and practice routes",
+      "description": "Explore Drivest practice around UK driving test centres with reconstructed routes, off-route alerts, offline packs, road feature prompts, and clear legal positioning."
+    },
+    "instructors": {
+      "title": "Find driving instructors and book lessons",
+      "description": "Discover independent driving instructors, compare availability, request lessons, and keep booking and payment visibility inside Drivest."
+    }
   },
   "ui": {
     "brand": "Drivest",
@@ -147,8 +177,58 @@
       }
     ]
   },
+  "searchIntentLinks": {
+    "title": "Search the learner journey by intent",
+    "intro": "The strongest competing sites win by matching exact learner searches. Drivest now turns the same high-intent topics into crawlable, connected pages built around the real product.",
+    "items": [
+      {
+        "title": "Theory test preparation",
+        "text": "Study theory questions, Highway Code, traffic signs, and fines before lessons or alongside them, with 32-language support and English cross-checks.",
+        "bullets": [
+          "Start before practical lessons begin",
+          "Revise theory, signs, and Highway Code in one flow",
+          "Cross-check the same question in English"
+        ],
+        "href": "/theory-test-preparation",
+        "cta": "Explore theory prep"
+      },
+      {
+        "title": "Driving test centres and practice routes",
+        "text": "Choose a selected test centre and repeat reconstructed practice routes with off-route alerts, offline packs, and road feature prompts.",
+        "bullets": [
+          "Around 340 test centres and around 3000 practice routes",
+          "Reconstructed routes for learning, not official DVSA routes",
+          "Built for repetition around a chosen centre"
+        ],
+        "href": "/driving-test-centres",
+        "cta": "Explore test centre practice"
+      },
+      {
+        "title": "Find driving instructors",
+        "text": "Browse independent instructor profiles, compare availability, request lessons, and keep bookings and payment state visible in one place.",
+        "bullets": [
+          "Instructor discovery without leaving the app journey",
+          "Lesson requests, payments, and cancellations tracked in app",
+          "Linked learner context for instructors where enabled"
+        ],
+        "href": "/driving-instructors",
+        "cta": "Explore instructor search"
+      },
+      {
+        "title": "How Drivest works",
+        "text": "See the learner and instructor paths, role-based onboarding, stage setup, and next steps before choosing the right plan.",
+        "bullets": [
+          "Role-based onboarding for learners and instructors",
+          "Stage-aware routes into theory, practice, and bookings",
+          "Pricing and FAQ linked to the same journey"
+        ],
+        "href": "/start",
+        "cta": "See how it works"
+      }
+    ]
+  },
   "startPaths": {
-    "title": "How to start in Drivest",
+    "title": "How Drivest works",
     "intro": "Future learners and learners use the same preparation path, while instructors follow a separate operating flow. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.",
     "summary": {
       "title": "Role-based onboarding",
@@ -167,7 +247,7 @@
           "Move into Practice, Find Instructor, and Navigation as your confidence score, booking history, and progress tracking build up."
         ],
         "cta": "See pricing",
-        "href": "/pricing.html"
+        "href": "/pricing"
       },
       {
         "id": "instructor",
@@ -180,7 +260,7 @@
           "Use reviews, dispute records, notifications, and learner insights to manage your independent instructor business through Drivest."
         ],
         "cta": "See platform features",
-        "href": "/features.html"
+        "href": "/features"
       }
     ]
   },
@@ -398,6 +478,309 @@
       }
     ]
   },
+  "hubPages": {
+    "theory": {
+      "title": "Theory test preparation in 32 languages",
+      "intro": "Theory pages perform well when they are specific about what the learner can revise. Drivest covers theory questions, Highway Code, traffic signs, and fines preparation in one app flow, with English available to cross-check the same question.",
+      "summary": {
+        "title": "Start theory prep before lessons begin",
+        "text": "Future learners do not need to wait for practical lessons to begin building road knowledge. Drivest lets users start earlier, choose a preferred language, and move into practical preparation when they are ready."
+      },
+      "sections": [
+        {
+          "title": "What learners can revise in Drivest",
+          "intro": "This page targets the exact theory-study topics learners usually search for separately.",
+          "items": [
+            {
+              "title": "Theory questions",
+              "text": "Work through theory questions in a preferred language and compare the English wording on the same question before answering."
+            },
+            {
+              "title": "Highway Code revision",
+              "text": "Keep Highway Code study visible as its own revision surface instead of burying it inside general app copy."
+            },
+            {
+              "title": "Traffic signs and road signs",
+              "text": "Use sign-focused revision to strengthen road-reading before lessons and before test day."
+            },
+            {
+              "title": "Fines and penalties",
+              "text": "See why common mistakes lead to penalties and what rule sits behind them."
+            },
+            {
+              "title": "Future learner preparation",
+              "text": "Start earlier so practical lesson time can focus on driving decisions instead of basic rule decoding."
+            },
+            {
+              "title": "Hazard Perception visibility",
+              "text": "Hazard Perception is already signposted on the home screen as a coming-soon part of the broader learning journey."
+            }
+          ]
+        },
+        {
+          "title": "Why multilingual theory prep matters",
+          "intro": "Theory confidence grows faster when learners can remove language friction without losing sight of the English wording used in the UK test environment.",
+          "items": [
+            {
+              "title": "32-language access",
+              "text": "Users can begin in the language they understand best instead of delaying theory preparation."
+            },
+            {
+              "title": "English cross-check",
+              "text": "Open the English version of the same question to compare wording before committing to an answer."
+            },
+            {
+              "title": "Stage-based onboarding",
+              "text": "Future learners and current learners see the learning path that matches where they actually are."
+            },
+            {
+              "title": "Progress and next steps",
+              "text": "Readiness signals and next-step guidance help users decide when to move from revision into practice and instructor search."
+            }
+          ]
+        }
+      ],
+      "showLanguageSupport": true,
+      "related": {
+        "title": "Keep moving after theory",
+        "intro": "Theory is only one part of the learner journey. These linked pages keep the next search intent one click away.",
+        "items": [
+          {
+            "title": "Driving test centre practice",
+            "text": "See how Drivest structures reconstructed practice routes around a selected test centre.",
+            "href": "/driving-test-centres",
+            "cta": "View test centre routes"
+          },
+          {
+            "title": "Find driving instructors",
+            "text": "Move from revision into instructor discovery, lesson requests, and booking visibility.",
+            "href": "/driving-instructors",
+            "cta": "View instructor search"
+          },
+          {
+            "title": "How Drivest works",
+            "text": "Review the learner path, onboarding choices, and next steps before you subscribe.",
+            "href": "/start",
+            "cta": "See how it works"
+          },
+          {
+            "title": "Pricing and plans",
+            "text": "Compare free learning, selected-centre practice access, and the annual bundle.",
+            "href": "/pricing",
+            "cta": "Compare pricing"
+          }
+        ]
+      }
+    },
+    "centres": {
+      "title": "Driving test centres and practice routes",
+      "intro": "Test-centre competitors win by writing pages around a single local route problem. Drivest adapts the strongest part of that approach by making selected-centre practice a visible public topic tied to the real app experience.",
+      "summary": {
+        "title": "Practice around a selected test centre",
+        "text": "Choose a test centre, repeat reconstructed routes, keep offline support where available, and use route-aware prompts to build local familiarity. Drivest routes are for learning and practice only and are not official DVSA routes."
+      },
+      "sections": [
+        {
+          "title": "What Drivest includes around driving test centres",
+          "intro": "The goal is not just to show a centre name. The goal is to help learners repeat the kinds of roads and decisions they are likely to meet nearby.",
+          "items": [
+            {
+              "title": "Selected-centre routes",
+              "text": "Pick a selected centre and practise reconstructed routes that structure repetition around that area."
+            },
+            {
+              "title": "Off-route alerts",
+              "text": "Know when a learner leaves the planned route and clear the alert once the route is rejoined."
+            },
+            {
+              "title": "Offline packs",
+              "text": "Download route and hazard packs to keep core practice working when signal quality drops."
+            },
+            {
+              "title": "Road feature prompts",
+              "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+            },
+            {
+              "title": "Parking before arrival",
+              "text": "Check nearby parking options and arrival cues while still confirming the live restrictions on street."
+            },
+            {
+              "title": "Coverage across the UK",
+              "text": "Coverage currently spans around 340 test centres and around 3000 structured practice routes across the UK."
+            }
+          ]
+        },
+        {
+          "title": "What learners can rehearse before test day",
+          "intro": "Practical familiarity usually comes from repeating road patterns, not from reading a generic paragraph about a centre.",
+          "items": [
+            {
+              "title": "Roundabouts and lane choice",
+              "text": "Repeat the lane decisions and observation patterns that usually unsettle lower-confidence learners."
+            },
+            {
+              "title": "Traffic lights and crossings",
+              "text": "Use route-aware prompts to reinforce spacing, planning, and observation around busy junction types."
+            },
+            {
+              "title": "Residential roads and school areas",
+              "text": "Practise calmer speed control, scanning, and hazard anticipation where the environment changes quickly."
+            },
+            {
+              "title": "Route repetition with feedback context",
+              "text": "Combine repeated local practice with confidence history and broader progress tracking inside the same app."
+            }
+          ]
+        }
+      ],
+      "infoSections": [
+        {
+          "title": "Important route positioning",
+          "text": "Drivest avoids the misleading claims that often appear around route content. Practice routes are reconstructed for learning support only.",
+          "bullets": [
+            "Routes are reconstructed or generated for learning and are not official DVSA routes.",
+            "Learners must always follow live road signs, road markings, and traffic laws.",
+            "Navigation, route, and parking outputs are advisory only and may be incomplete or delayed."
+          ]
+        }
+      ],
+      "related": {
+        "title": "Build the rest of the learner journey",
+        "intro": "The strongest SEO pages keep related next steps easy to find. Drivest links test-centre practice to theory, instructors, pricing, and FAQs.",
+        "items": [
+          {
+            "title": "Theory test preparation",
+            "text": "Start with theory, Highway Code, traffic signs, and fines revision before or alongside route practice.",
+            "href": "/theory-test-preparation",
+            "cta": "View theory prep"
+          },
+          {
+            "title": "Find driving instructors",
+            "text": "Move from route repetition into instructor discovery, lesson requests, and booking visibility.",
+            "href": "/driving-instructors",
+            "cta": "View instructor search"
+          },
+          {
+            "title": "How Drivest works",
+            "text": "See how learners choose a stage, language, and next steps inside the app journey.",
+            "href": "/start",
+            "cta": "See how it works"
+          },
+          {
+            "title": "Pricing and access",
+            "text": "Compare selected-centre practice access with navigation and annual bundle options.",
+            "href": "/pricing",
+            "cta": "Compare pricing"
+          }
+        ]
+      }
+    },
+    "instructors": {
+      "title": "Find driving instructors and book lessons",
+      "intro": "Instructor competitors win by being clear about discovery, availability, and next steps. Drivest adapts that by treating instructor search as part of the same learner journey as theory, route practice, and progress tracking.",
+      "summary": {
+        "title": "Instructor discovery inside the learning flow",
+        "text": "Instead of treating instructor search as a separate website journey, Drivest keeps instructor profiles, lesson requests, booking status, and payment visibility close to the rest of the learner record."
+      },
+      "sections": [
+        {
+          "title": "What learners can do",
+          "intro": "These are the practical actions learners usually want once they move beyond pure revision.",
+          "items": [
+            {
+              "title": "Browse instructor profiles",
+              "text": "Discover independent instructor profiles without forcing learners into off-platform coordination from the start."
+            },
+            {
+              "title": "Compare availability",
+              "text": "Use visible availability and lesson preferences to narrow down the right instructor fit."
+            },
+            {
+              "title": "Request lesson slots",
+              "text": "Turn discovery into a lesson request inside the same platform where theory and practice already live."
+            },
+            {
+              "title": "Track booking status",
+              "text": "Keep accepted bookings, reschedules, cancellations, and refund outcomes visible in app."
+            },
+            {
+              "title": "Secure lesson payments",
+              "text": "Use secure payment processing where eligible bookings are enabled."
+            },
+            {
+              "title": "See progress in context",
+              "text": "Learners and instructors can keep coaching context connected to the rest of the learner journey."
+            }
+          ]
+        },
+        {
+          "title": "What instructors can do",
+          "intro": "The best instructor pages do not stop at lead capture. They explain the operating workflow clearly.",
+          "items": [
+            {
+              "title": "Create a public profile",
+              "text": "Set up a visible instructor profile so learners can understand who is teaching them."
+            },
+            {
+              "title": "Set availability and lesson preferences",
+              "text": "Publish coverage area, availability, and lesson preferences before taking requests."
+            },
+            {
+              "title": "Link learners in Instructor Hub",
+              "text": "Keep linked learner context, progress, and readiness views together in one place."
+            },
+            {
+              "title": "Monitor bookings and payment state",
+              "text": "Review booking changes, payment status, and operating records without relying on fragmented follow-up."
+            }
+          ]
+        }
+      ],
+      "infoSections": [
+        {
+          "title": "Marketplace terms and cancellations",
+          "text": "Drivest marketplace lessons are delivered by independent instructors. The platform records an 8% fee on completed lessons and no commission on cancelled lessons.",
+          "bullets": [
+            "48 hours or more before a lesson: full refund",
+            "24 to 48 hours before a lesson: up to 25% may be retained by the instructor",
+            "12 to 24 hours before a lesson: up to 50% may be retained by the instructor",
+            "Less than 12 hours before a lesson or no-show: no refund",
+            "If the instructor cancels, the learner receives a full refund"
+          ]
+        }
+      ],
+      "related": {
+        "title": "Connect instructor search to the rest of Drivest",
+        "intro": "Instructor discovery performs better when it sits next to the learner intents that come before and after it.",
+        "items": [
+          {
+            "title": "Theory test preparation",
+            "text": "Start earlier with theory, Highway Code, traffic signs, and fines revision in 32 languages.",
+            "href": "/theory-test-preparation",
+            "cta": "View theory prep"
+          },
+          {
+            "title": "Driving test centre practice",
+            "text": "Repeat reconstructed practice routes around a selected centre with alerts and offline support.",
+            "href": "/driving-test-centres",
+            "cta": "View test centre practice"
+          },
+          {
+            "title": "How Drivest works",
+            "text": "Review onboarding, learner paths, instructor paths, and next steps before you subscribe.",
+            "href": "/start",
+            "cta": "See how it works"
+          },
+          {
+            "title": "Pricing and plans",
+            "text": "Compare free learning, practice-route access, navigation support, and the annual bundle.",
+            "href": "/pricing",
+            "cta": "Compare pricing"
+          }
+        ]
+      }
+    }
+  },
   "pricing": {
     "title": "Pricing aligned to the app",
     "plans": [
@@ -610,6 +993,18 @@
   },
   "footer": {
     "links": [
+      {
+        "label": "Theory Test Preparation",
+        "url": "/theory-test-preparation"
+      },
+      {
+        "label": "Driving Test Centres",
+        "url": "/driving-test-centres"
+      },
+      {
+        "label": "Driving Instructors",
+        "url": "/driving-instructors"
+      },
       {
         "label": "Terms and Conditions",
         "url": "https://drivest.uk/terms"
