@@ -99,6 +99,9 @@ async function build() {
 
   await Promise.all([
     writeSiteFile("robots.txt", renderRobots()),
+    writeSiteFile("llm.txt", renderLlms(marketing, coverage)),
+    writeSiteFile("llms.txt", renderLlms(marketing, coverage)),
+    writeSiteFile("llms-full.txt", renderLlmsFull(marketing, coverage)),
     writeSiteFile("sitemap.xml", renderSitemap(sitemapUrls)),
     writeSiteFile("manifest.webmanifest", renderManifest(marketing)),
     writeSiteFile("404.html", render404Page(scriptSource, marketing, coverage))
@@ -886,10 +889,137 @@ function renderRedirect(destination) {
 }
 
 function renderRobots() {
-  return `User-agent: *
+  return `User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: *
 Allow: /
 
 Sitemap: https://www.drivest.uk/sitemap.xml
+`;
+}
+
+function renderLlms(marketing, coverage) {
+  const summary = coverage?.summary || {};
+  const coverageDate = coverageGeneratedAtLabel(coverage) || today;
+
+  return `# ${marketing.ui.brand}
+
+> ${marketing.press.oneLiner}
+
+Drivest is a public UK learner-driver platform site. Canonical public content is published at https://www.drivest.uk/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes ${summary.centres || "UK"} test centres and ${summary.routes || "a broad set of"} practice routes. Coverage data shown on the site reflects the current corpus generated on ${coverageDate}.
+
+## Core pages
+
+- [Homepage](https://www.drivest.uk/): Product overview and public positioning.
+- [Features](https://www.drivest.uk/features): Learner, navigation, parking, and instructor workflows.
+- [Pricing](https://www.drivest.uk/pricing): Free and paid plan overview.
+- [Getting started](https://www.drivest.uk/start): Role-based onboarding paths for learners and instructors.
+
+## Theory and learner preparation
+
+- [Theory test preparation](https://www.drivest.uk/theory-test-preparation): Main theory learning hub with 32-language support.
+- [Mock theory test](https://www.drivest.uk/mock-theory-test): Mock-test preparation page.
+- [Hazard perception test](https://www.drivest.uk/hazard-perception-test): Hazard-perception preparation page.
+- [Road signs test](https://www.drivest.uk/road-signs-test): Traffic-sign revision page.
+- [Highway Code test](https://www.drivest.uk/highway-code-test): Highway Code revision page.
+- [Driving theory test in Welsh](https://www.drivest.uk/driving-theory-test-in-welsh): Welsh-language learner page.
+- [Driving theory test in Urdu](https://www.drivest.uk/driving-theory-test-in-urdu): Urdu-language learner page.
+- [Driving theory test in Arabic](https://www.drivest.uk/driving-theory-test-in-arabic): Arabic-language learner page.
+
+## Practice, navigation, and instructors
+
+- [Driving test centres](https://www.drivest.uk/driving-test-centres): UK centre directory and practice-route overview.
+- [London driving test centres](https://www.drivest.uk/driving-test-centres/london): London regional hub.
+- [Manchester driving test centres](https://www.drivest.uk/driving-test-centres/manchester): Manchester regional hub.
+- [Birmingham driving test centres](https://www.drivest.uk/driving-test-centres/birmingham): Birmingham regional hub.
+- [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery and booking overview.
+
+## Trust and support
+
+- [FAQ](https://www.drivest.uk/faq): Product, pricing, and policy answers.
+- [Contact](https://www.drivest.uk/contact): Support and coverage methodology.
+- [Terms](https://www.drivest.uk/terms): Terms and conditions.
+- [Privacy](https://www.drivest.uk/privacy): Privacy policy.
+- [Sitemap](https://www.drivest.uk/sitemap.xml): Full public URL inventory.
+
+## Optional
+
+- [llms-full.txt](https://www.drivest.uk/llms-full.txt): Expanded LLM-readable summary of the public site.
+`;
+}
+
+function renderLlmsFull(marketing, coverage) {
+  const summary = coverage?.summary || {};
+  const coverageDate = coverageGeneratedAtLabel(coverage) || today;
+
+  return `# ${marketing.ui.brand}
+
+> ${marketing.press.oneLiner}
+
+Last updated: ${today}
+
+This file is intended to give AI assistants and agentic tools a concise public-site summary without scraping every HTML page. Use the linked URLs as the canonical source for public claims, pricing, policy, and coverage detail.
+
+## Interpretation notes
+
+- Drivest serves future learners, learner drivers, and independent instructors in the UK.
+- Theory preparation supports 32 languages, with English available for cross-checking the same question.
+- Practice routes are reconstructed or generated for learning support only and are not official DVSA routes.
+- The public coverage layer only includes test centres with more than 2 routes.
+- Current coverage snapshot: ${summary.centres || "n/a"} centres, ${summary.routes || "n/a"} routes, ${summary.averageRoutesPerCentre || "n/a"} average routes per centre.
+- Coverage data currently reflects the corpus generated on ${coverageDate}.
+- Navigation and parking features are advisory product features and do not replace legal driving requirements or road-sign compliance.
+
+## Primary product pages
+
+- [Homepage](https://www.drivest.uk/): High-level product positioning and core calls to action.
+- [Features](https://www.drivest.uk/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
+- [Pricing](https://www.drivest.uk/pricing): Public pricing plans and bundle structure.
+- [Getting started](https://www.drivest.uk/start): Role-based onboarding flow for learners and instructors.
+
+## Learner preparation
+
+- [Theory test preparation](https://www.drivest.uk/theory-test-preparation): Main theory hub covering topic quizzes, mock tests, Highway Code, road signs, and penalties revision.
+- [Mock theory test](https://www.drivest.uk/mock-theory-test): Mock-test intent page for search and assistant retrieval.
+- [Hazard perception test](https://www.drivest.uk/hazard-perception-test): Hazard-perception intent page.
+- [Road signs test](https://www.drivest.uk/road-signs-test): Sign-recognition intent page.
+- [Highway Code test](https://www.drivest.uk/highway-code-test): Highway Code revision intent page.
+- [Driving theory test in Welsh](https://www.drivest.uk/driving-theory-test-in-welsh): Welsh-language theory page.
+- [Driving theory test in Urdu](https://www.drivest.uk/driving-theory-test-in-urdu): Urdu-language theory page.
+- [Driving theory test in Arabic](https://www.drivest.uk/driving-theory-test-in-arabic): Arabic-language theory page.
+
+## Practice, route coverage, and navigation
+
+- [Driving test centres](https://www.drivest.uk/driving-test-centres): Public directory of included centres and practice-route coverage.
+- [London driving test centres](https://www.drivest.uk/driving-test-centres/london): Regional hub for London-centre intent.
+- [Manchester driving test centres](https://www.drivest.uk/driving-test-centres/manchester): Regional hub for Manchester-centre intent.
+- [Birmingham driving test centres](https://www.drivest.uk/driving-test-centres/birmingham): Regional hub for Birmingham-centre intent.
+- [Sitemap](https://www.drivest.uk/sitemap.xml): Full list of public pages, including individual centre pages.
+
+## Instructor and commercial flows
+
+- [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
+- [Contact](https://www.drivest.uk/contact): Support contact details and public coverage methodology notes.
+- [FAQ](https://www.drivest.uk/faq): Product and commercial clarification questions.
+
+## Legal and policy
+
+- [Terms](https://www.drivest.uk/terms): Terms and conditions.
+- [Privacy](https://www.drivest.uk/privacy): Privacy policy.
+
+## Optional
+
+- [llms.txt](https://www.drivest.uk/llms.txt): Shorter index for quick retrieval.
 `;
 }
 
