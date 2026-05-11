@@ -355,19 +355,7 @@ function renderHome(m) {
       </div>
     </section>
 
-    <section class="section reveal">
-      <h2>${escapeHtml(m.safety.title)}</h2>
-      <div class="mini-photo-row">
-        <div class="mini-photo"><img src="${PHOTO_URLS.appParkingDestination}" alt="Drivest parking destination screen" loading="lazy" /></div>
-        <div class="mini-photo"><img src="${PHOTO_URLS.appParkingSignQuiz}" alt="Drivest parking sign quiz screen" loading="lazy" /></div>
-      </div>
-      ${bulletList(m.safety.bullets)}
-      <div class="panel reveal-item">
-        <p class="panel-title">${escapeHtml(m.ui.sections.onArrival)}</p>
-        <p>${escapeHtml(m.safety.arrivalAdvisory[0])}</p>
-        <p>${escapeHtml(m.safety.arrivalAdvisory[1])}</p>
-      </div>
-    </section>
+    ${renderSafetySection(m)}
   `;
 }
 
@@ -610,6 +598,47 @@ function renderProductProofSection(config) {
         `
           )
           .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderSafetySection(m) {
+  if (!m?.safety?.title) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(m.safety.title)}</h2>
+      <div class="grid safety-proof-grid">
+        <article class="card reveal-item safety-proof-card">
+          ${renderPhoneShot(
+            PHOTO_URLS.appParkingDestination,
+            "Drivest parking destination screen showing council and OSM parking source options.",
+            "",
+            "phone-shot-proof safety-proof-phone"
+          )}
+          <div class="safety-proof-copy">
+            <h3>Parking destination flow</h3>
+            <p>Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.</p>
+          </div>
+        </article>
+        <article class="card reveal-item safety-proof-card">
+          ${renderPhoneShot(
+            PHOTO_URLS.appParkingSignQuiz,
+            "Drivest parking sign quiz screen showing on-street parking question practice.",
+            "",
+            "phone-shot-proof safety-proof-phone"
+          )}
+          <div class="safety-proof-copy">
+            <h3>Parking sign awareness</h3>
+            <p>Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.</p>
+          </div>
+        </article>
+      </div>
+      ${bulletList(m.safety.bullets)}
+      <div class="panel reveal-item">
+        <p class="panel-title">${escapeHtml(m.ui.sections.onArrival)}</p>
+        <p>${escapeHtml(m.safety.arrivalAdvisory[0])}</p>
+        <p>${escapeHtml(m.safety.arrivalAdvisory[1])}</p>
       </div>
     </section>
   `;
@@ -1557,6 +1586,18 @@ function renderPills(items) {
   return (items || []).map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("");
 }
 
+function activeNavKey(currentPage = page) {
+  switch (currentPage) {
+    case "theory":
+    case "centres":
+    case "instructors":
+    case "centre-detail":
+      return "features";
+    default:
+      return currentPage;
+  }
+}
+
 function renderPrimaryNavLinks(m) {
   const links = [
     { key: "features", href: PATHS.features, label: m.ui.nav.features },
@@ -1564,6 +1605,7 @@ function renderPrimaryNavLinks(m) {
     { key: "start", href: PATHS.start, label: m.ui.nav.gettingStarted },
     { key: "faq", href: PATHS.faq, label: m.ui.nav.faq }
   ];
+  const currentNavKey = activeNavKey();
   const termsText = footerLabel(m, "terms");
   const privacyText = footerLabel(m, "privacy");
   if (termsText) links.push({ key: "terms", href: PATHS.terms, label: termsText });
@@ -1571,7 +1613,7 @@ function renderPrimaryNavLinks(m) {
 
   return links
     .map((link) => {
-      const active = link.key === page;
+      const active = link.key === currentNavKey;
       return `<a class="nav-link${active ? " active" : ""}" data-nav="${escapeAttr(link.key)}" href="${escapeAttr(link.href)}"${active ? ' aria-current="page"' : ""}>${escapeHtml(link.label)}</a>`;
     })
     .join("");
@@ -1653,16 +1695,19 @@ function setupAnimations() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
   );
 
   nodes.forEach((node) => observer.observe(node));
 }
 
 function setActiveNav() {
-  const current = page === "centre-detail" ? "centres" : page;
+  const current = activeNavKey();
   if (!current || current === "home") return;
-  document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => link.classList.add("active"));
+  document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => {
+    link.classList.add("active");
+    link.setAttribute("aria-current", "page");
+  });
 }
 
 function setupMobileNav() {

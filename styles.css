@@ -853,6 +853,37 @@ p {
   margin-bottom: 0;
 }
 
+.safety-proof-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+.safety-proof-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.safety-proof-phone {
+  justify-self: center;
+  max-width: 220px;
+}
+
+.safety-proof-copy {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.safety-proof-copy h3,
+.safety-proof-copy p:last-child {
+  margin-bottom: 0;
+}
+
 ul {
   margin: 0;
   padding-left: 20px;
@@ -1417,6 +1448,18 @@ small {
     max-width: 260px;
   }
 
+  .safety-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .safety-proof-card {
+    grid-template-columns: 1fr;
+  }
+
+  .safety-proof-phone {
+    max-width: 240px;
+  }
+
   .language-proof-visual {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1496,6 +1539,10 @@ small {
 
   .product-proof-phone {
     max-width: none;
+  }
+
+  .safety-proof-phone {
+    max-width: 240px;
   }
 
   .phone-shot-hero,
