@@ -65,7 +65,7 @@
       "How Drivest works"
     ],
     "trustLine": "Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.",
-    "coverageLine": "Around 340 test centres. Around 3000 practice routes across the UK."
+    "coverageLine": "268 UK test centres currently live with more than 2 routes. 2,906 practice routes across the UK."
   },
   "press": {
     "oneLiner": "Drivest is built for future learner drivers, learners, instructors, and newer drivers who need theory preparation, practice structure, lesson operations, parking support, and calmer navigation in one UK-focused platform.",
@@ -196,7 +196,7 @@
         "title": "Driving test centres and practice routes",
         "text": "Choose a selected test centre and repeat reconstructed practice routes with off-route alerts, offline packs, and road feature prompts.",
         "bullets": [
-          "Around 340 test centres and around 3000 practice routes",
+          "268 UK test centres with more than 2 routes and 2,906 practice routes",
           "Reconstructed routes for learning, not official DVSA routes",
           "Built for repetition around a chosen centre"
         ],
@@ -323,7 +323,7 @@
     },
     {
       "title": "UK-wide coverage",
-      "text": "Coverage includes around 340 driving test centres and around 3000 structured practice routes across the UK."
+      "text": "Coverage includes 268 UK driving test centres with more than 2 routes and 2,906 structured practice routes across the UK."
     }
   ],
   "languageSupport": {
@@ -606,7 +606,7 @@
             },
             {
               "title": "Coverage across the UK",
-              "text": "Coverage currently spans around 340 test centres and around 3000 structured practice routes across the UK."
+              "text": "Coverage currently spans 268 test centres with more than 2 routes and 2,906 structured practice routes across the UK."
             }
           ]
         },
@@ -780,6 +780,15 @@
         ]
       }
     }
+  },
+  "liveCoverage": {
+    "title": "Centres currently live in Drivest",
+    "intro": "This coverage directory is based on the current Drivest route-status workbook. It only includes driving test centres with more than 2 routes, so empty and very thin route coverage is excluded from the public index.",
+    "summaryTitle": "Coverage threshold used on this page",
+    "summaryText": "Only test centres with more than 2 routes are shown below. Centres with 0, 1, or 2 routes are intentionally excluded from this visibility layer.",
+    "topCentresTitle": "Highest route-count centres",
+    "directoryTitle": "Browse covered centres A to Z",
+    "note": "Refresh this directory whenever the route workbook changes so search engines and users see the current live coverage."
   },
   "pricing": {
     "title": "Pricing aligned to the app",

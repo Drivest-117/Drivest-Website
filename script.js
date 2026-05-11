@@ -1,4 +1,5 @@
 const CONTENT_URL = "/site/content/marketing.en-GB.json";
+const COVERAGE_URL = "/site/data/test-centre-coverage.en-GB.json";
 
 const PATHS = {
   home: "/",
@@ -45,8 +46,13 @@ if (!page || !app) {
 }
 
 async function init() {
-  const response = await fetch(CONTENT_URL);
-  const m = await response.json();
+  const [contentResponse, coverageResponse] = await Promise.all([
+    fetch(CONTENT_URL),
+    fetch(COVERAGE_URL).catch(() => null)
+  ]);
+  const m = await contentResponse.json();
+  const coverage = coverageResponse ? await coverageResponse.json().catch(() => null) : null;
+  if (coverage) m.testCentreCoverage = coverage;
 
   document.title = pageTitle(page, m);
   setDescription(pageDescription(page, m));
@@ -84,6 +90,12 @@ function pageTitle(currentPage, m) {
 
 function pageDescription(currentPage, m) {
   if (currentPage === "home") return m.seo.description;
+  if (currentPage === "centres") {
+    const summary = coverageSummary(m);
+    if (summary) {
+      return `Browse ${formatNumber(summary.centres)} UK driving test centres currently live in Drivest, covering ${formatNumber(summary.routes)} reconstructed practice routes with off-route alerts, offline packs, and road feature prompts.`;
+    }
+  }
   if (m.pageSeo?.[currentPage]?.description) return m.pageSeo[currentPage].description;
 
   const descriptions = {
@@ -176,7 +188,7 @@ function renderShellEnd(m) {
       <div class="container footer-wrap">
         <div class="footer-brand-col">
           <img class="footer-logo" src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
-          <p class="footer-summary">${escapeHtml(m.hero.coverageLine || m.hero.subhead)}</p>
+          <p class="footer-summary">${escapeHtml(coverageLineText(m))}</p>
           <p class="footer-muted">${escapeHtml(m.hero.trustLine)}</p>
           <p class="footer-contact"><a href="mailto:${escapeAttr(supportEmail)}">${escapeHtml(m.footer.contact)}</a></p>
           <small>&copy; <span id="year"></span> ${escapeHtml(m.ui.brand)}</small>
@@ -245,7 +257,7 @@ function renderHome(m) {
             ${button(m.hero.secondaryCtas[1], "#how-it-works", "secondary")}
           </div>
           <p class="trust">${escapeHtml(m.hero.trustLine)}</p>
-          ${m.hero.coverageLine ? `<p class="trust">${escapeHtml(m.hero.coverageLine)}</p>` : ""}
+          ${coverageLineText(m) ? `<p class="trust">${escapeHtml(coverageLineText(m))}</p>` : ""}
           <div class="pill-row">${renderPills(m.press.usp)}</div>
         </div>
         <div class="hero-visual reveal-item">${renderHeroShowcase(m)}</div>
@@ -518,6 +530,8 @@ function renderHubPage(pageKey, m) {
 
     ${(hub.sections || []).map((section) => renderCardGridSection(section)).join("")}
 
+    ${pageKey === "centres" ? renderCoverageDirectorySection(m) : ""}
+
     ${hub.showLanguageSupport ? renderLanguageSupportSection(m.languageSupport) : ""}
 
     ${(hub.infoSections || []).map((section) => renderInfoSection(section)).join("")}
@@ -724,12 +738,13 @@ function renderPricingAppGallery(config) {
 }
 
 function renderHeroShowcase(m) {
+  const summary = coverageSummary(m);
   return `
     <div class="hero-showcase">
       <div class="hero-stat-strip">
         ${renderShowcaseStat("32", "languages")}
-        ${renderShowcaseStat("340", "test centres")}
-        ${renderShowcaseStat("3000", "practice routes")}
+        ${renderShowcaseStat(formatNumber(summary?.centres || 340), "test centres")}
+        ${renderShowcaseStat(formatNumber(summary?.routes || 3000), "practice routes")}
       </div>
       <div class="hero-showcase-grid">
         <div class="hero-phone-cluster">
@@ -768,6 +783,91 @@ function renderHeroShowcase(m) {
         </div>
       </div>
     </div>
+  `;
+}
+
+function renderCoverageDirectorySection(m) {
+  const config = m.liveCoverage;
+  const coverage = m.testCentreCoverage;
+  const summary = coverageSummary(m);
+  const groups = coverageGroups(coverage);
+  const topCentres = coverageTopCentres(coverage, 12);
+  if (!config || !summary || !groups.length) return "";
+
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="coverage-stat-grid">
+        <article class="card reveal-item">
+          <p class="panel-title">Centres listed</p>
+          <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.centres))}</p>
+          <p>Only centres with more than ${escapeHtml(String(summary.threshold))} routes are included.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Routes represented</p>
+          <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.routes))}</p>
+          <p>These are the current routes attached to the centres included in this directory.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Build status mix</p>
+          <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.completed + summary.alreadyDone))}</p>
+          <p>${escapeHtml(formatNumber(summary.alreadyDone))} already done and ${escapeHtml(formatNumber(summary.completed))} completed in the workbook.</p>
+        </article>
+      </div>
+      <div class="panel reveal-item">
+        <p class="panel-title">${escapeHtml(config.summaryTitle)}</p>
+        <p>${escapeHtml(config.summaryText)}</p>
+        ${config.note ? `<p class="coverage-summary-note">${escapeHtml(config.note)}</p>` : ""}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(config.topCentresTitle)}</h2>
+      <div class="grid three-up">
+        ${topCentres
+          .map(
+            (centre) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(centre.name)}</h3>
+            <p class="coverage-route-count">${escapeHtml(formatNumber(centre.routeCount))} routes</p>
+            <p>Coverage currently exceeds the public threshold used for this directory.</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(config.directoryTitle)}</h2>
+      <div class="coverage-letter-grid">
+        ${groups
+          .map(
+            (group) => `
+          <article class="card reveal-item coverage-letter-card">
+            <div class="coverage-letter-head">
+              <h3>${escapeHtml(group.letter)}</h3>
+              <span class="tile-badge">${escapeHtml(formatNumber(group.centres.length))} centres</span>
+            </div>
+            <ul class="coverage-centre-list">
+              ${group.centres
+                .map(
+                  (centre) => `
+                <li class="coverage-centre-item">
+                  <span>${escapeHtml(centre.name)}</span>
+                  <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -947,6 +1047,52 @@ function renderInfoSection(info) {
       </div>
     </section>
   `;
+}
+
+function coverageSummary(m) {
+  const summary = m?.testCentreCoverage?.summary;
+  if (!summary) return null;
+  const statusCounts = summary.statusCounts || {};
+  return {
+    centres: Number(summary.centres) || 0,
+    routes: Number(summary.routes) || 0,
+    threshold: Number(m.testCentreCoverage?.filter?.routeCountGreaterThan) || 2,
+    completed: Number(statusCounts.completed) || 0,
+    alreadyDone: Number(statusCounts.already_done) || 0
+  };
+}
+
+function coverageLineText(m) {
+  const summary = coverageSummary(m);
+  if (!summary) return m.hero.coverageLine || m.hero.subhead;
+  return `${formatNumber(summary.centres)} UK test centres currently live with more than ${summary.threshold} routes. ${formatNumber(summary.routes)} practice routes across the UK.`;
+}
+
+function coverageGroups(coverage) {
+  const centres = coverage?.centres || [];
+  const map = new Map();
+  centres.forEach((centre) => {
+    const letter = String(centre.name || "").trim().charAt(0).toUpperCase() || "#";
+    if (!map.has(letter)) map.set(letter, []);
+    map.get(letter).push(centre);
+  });
+  return Array.from(map.entries())
+    .sort((a, b) => a[0].localeCompare(b[0], "en-GB"))
+    .map(([letter, centres]) => ({ letter, centres }));
+}
+
+function coverageTopCentres(coverage, limit) {
+  const centres = (coverage?.centres || []).slice();
+  return centres
+    .sort((a, b) => {
+      if ((b.routeCount || 0) !== (a.routeCount || 0)) return (b.routeCount || 0) - (a.routeCount || 0);
+      return String(a.name || "").localeCompare(String(b.name || ""), "en-GB");
+    })
+    .slice(0, limit);
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("en-GB").format(Number(value) || 0);
 }
 
 function renderLanguageSupportSection(info) {

@@ -6,6 +6,7 @@ import vm from "node:vm";
 const siteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const scriptPath = path.join(siteDir, "script.js");
 const contentPath = path.join(siteDir, "site", "content", "marketing.en-GB.json");
+const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en-GB.json");
 const today = new Date().toISOString().slice(0, 10);
 const ogImage = "https://www.drivest.uk/assets/drivest-wordmark-preview.png";
 
@@ -45,11 +46,14 @@ const sitemapUrls = [
 await build();
 
 async function build() {
-  const [scriptSource, rawContent] = await Promise.all([
+  const [scriptSource, rawContent, rawCoverage] = await Promise.all([
     fs.readFile(scriptPath, "utf8"),
-    fs.readFile(contentPath, "utf8")
+    fs.readFile(contentPath, "utf8"),
+    fs.readFile(coveragePath, "utf8")
   ]);
   const marketing = JSON.parse(rawContent);
+  const coverage = JSON.parse(rawCoverage);
+  marketing.testCentreCoverage = coverage;
 
   for (const target of pageTargets) {
     const renderer = loadRenderer(scriptSource, target.page);
@@ -256,6 +260,40 @@ function buildStructuredData(page, canonical, title, description, marketing) {
         description: [plan.subLine, ...(plan.bullets || [])].filter(Boolean).join(" "),
         url: canonical
       }))
+    });
+  }
+
+  if (page === "centres" && marketing.testCentreCoverage?.summary) {
+    const centres = (marketing.testCentreCoverage.centres || []).slice();
+    data.push({
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name: "Drivest covered driving test centres",
+      description: `Driving test centres currently live in Drivest with more than ${marketing.testCentreCoverage.filter?.routeCountGreaterThan || 2} routes.`,
+      creator: { "@id": "https://www.drivest.uk/#organization" },
+      includedInDataCatalog: { "@id": "https://www.drivest.uk/#website" },
+      measurementTechnique: "Workbook filter Route Count > 2",
+      distribution: {
+        "@type": "DataDownload",
+        encodingFormat: "text/html",
+        contentUrl: canonical
+      }
+    });
+    data.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Top covered driving test centres in Drivest",
+      itemListElement: centres
+        .sort((a, b) => {
+          if ((b.routeCount || 0) !== (a.routeCount || 0)) return (b.routeCount || 0) - (a.routeCount || 0);
+          return String(a.name || "").localeCompare(String(b.name || ""), "en-GB");
+        })
+        .slice(0, 20)
+        .map((centre, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: `${centre.name} (${centre.routeCount} routes)`
+        }))
     });
   }
 
