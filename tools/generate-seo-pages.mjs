@@ -408,13 +408,14 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
 
 function buildCustomPageTargets(marketing, coverage) {
   const targets = [];
+  const brand = marketing.ui?.brand || "Drivest";
   if (marketing.contactPage?.title) {
     targets.push({
       kind: "contact",
       bodyPage: "contact",
       output: path.join("contact", "index.html"),
       canonical: "https://www.drivest.uk/contact",
-      title: marketing.contactPage.title,
+      title: brandDocumentTitle(marketing.pageSeo?.contact?.title || marketing.contactPage.title, brand),
       description: marketing.pageSeo?.contact?.description || marketing.contactPage.intro || marketing.seo.description,
       data: marketing.contactPage
     });
@@ -427,7 +428,7 @@ function buildCustomPageTargets(marketing, coverage) {
       bodyPage: "theory",
       output: path.join(item.slug, "index.html"),
       canonical: `https://www.drivest.uk/${item.slug}`,
-      title: item.title,
+      title: brandDocumentTitle(item.seoTitle || item.title, brand),
       description: item.description,
       data: item
     });
@@ -440,13 +441,18 @@ function buildCustomPageTargets(marketing, coverage) {
       bodyPage: "centres",
       output: path.join("driving-test-centres", item.slug, "index.html"),
       canonical: `https://www.drivest.uk/driving-test-centres/${item.slug}`,
-      title: item.title,
+      title: brandDocumentTitle(item.seoTitle || item.title, brand),
       description: item.description,
       data: item
     });
   }
 
   return targets;
+}
+
+function brandDocumentTitle(title, brand) {
+  if (!title) return brand;
+  return title.includes(`| ${brand}`) ? title : `${title} | ${brand}`;
 }
 
 function renderCustomPage(target, renderer, marketing, coverage) {
