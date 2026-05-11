@@ -1,8 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
-const siteDir = path.resolve(process.cwd(), "DrivestWeb");
+const siteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const scriptPath = path.join(siteDir, "script.js");
 const contentPath = path.join(siteDir, "site", "content", "marketing.en-GB.json");
 const today = new Date().toISOString().slice(0, 10);
