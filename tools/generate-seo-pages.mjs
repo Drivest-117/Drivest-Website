@@ -10,7 +10,7 @@ const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en
 const today = new Date().toISOString().slice(0, 10);
 const ogImage = "https://www.drivest.uk/assets/drivest-wordmark-preview.png";
 
-const pageTargets = [
+const basePageTargets = [
   { page: "home", output: "index.html", canonical: "https://www.drivest.uk/" },
   { page: "features", output: path.join("features", "index.html"), canonical: "https://www.drivest.uk/features" },
   { page: "pricing", output: path.join("pricing", "index.html"), canonical: "https://www.drivest.uk/pricing" },
@@ -21,7 +21,7 @@ const pageTargets = [
   { page: "instructors", output: path.join("driving-instructors", "index.html"), canonical: "https://www.drivest.uk/driving-instructors" }
 ];
 
-const redirectTargets = [
+const baseRedirectTargets = [
   { output: "features.html", destination: "/features" },
   { output: "pricing.html", destination: "/pricing" },
   { output: path.join("how-it-works", "index.html"), destination: "/start" },
@@ -30,7 +30,7 @@ const redirectTargets = [
   { output: "privacypolicy.html", destination: "/privacy" }
 ];
 
-const sitemapUrls = [
+const baseSitemapUrls = [
   "https://www.drivest.uk/",
   "https://www.drivest.uk/features",
   "https://www.drivest.uk/pricing",
@@ -54,16 +54,20 @@ async function build() {
   const marketing = JSON.parse(rawContent);
   const coverage = JSON.parse(rawCoverage);
   marketing.testCentreCoverage = coverage;
+  const pageTargets = [...basePageTargets, ...buildCentrePageTargets(coverage)];
+  const redirectTargets = [...baseRedirectTargets, ...buildCentreRedirectTargets(coverage)];
+  const sitemapUrls = [...baseSitemapUrls, ...buildCentreSitemapUrls(coverage)];
 
   for (const target of pageTargets) {
-    const renderer = loadRenderer(scriptSource, target.page);
-    const title = renderer.pageTitle(target.page, marketing);
-    const description = renderer.pageDescription(target.page, marketing);
+    const renderer = loadRenderer(scriptSource, target.page, target.centreId);
+    const title = renderer.pageTitle(target.page, marketing, target.centreId);
+    const description = renderer.pageDescription(target.page, marketing, target.centreId);
     const appHtml = `${renderer.renderShellStart(marketing)}${renderer.renderPage(target.page, marketing)}${renderer.renderShellEnd(marketing)}`.trim();
-    const jsonLd = buildStructuredData(target.page, target.canonical, title, description, marketing);
+    const jsonLd = buildStructuredData(target.page, target.canonical, title, description, marketing, target.centreId);
     const html = renderDocument({
       appHtml,
       canonical: target.canonical,
+      centreId: target.centreId,
       description,
       jsonLd,
       page: target.page,
@@ -78,15 +82,15 @@ async function build() {
 
   await Promise.all([
     writeSiteFile("robots.txt", renderRobots()),
-    writeSiteFile("sitemap.xml", renderSitemap())
+    writeSiteFile("sitemap.xml", renderSitemap(sitemapUrls))
   ]);
 }
 
-function loadRenderer(source, page) {
+function loadRenderer(source, page, centreId = "") {
   const sandbox = {
     console,
     document: {
-      body: { dataset: { page } },
+      body: { dataset: { page, centreId } },
       getElementById: () => null,
       querySelector: () => null,
       querySelectorAll: () => [],
@@ -108,13 +112,15 @@ function loadRenderer(source, page) {
   return sandbox;
 }
 
-function renderDocument({ appHtml, canonical, description, jsonLd, page, title }) {
+function renderDocument({ appHtml, canonical, centreId, description, jsonLd, page, title }) {
   const ldScripts = jsonLd
     .map(
       (item) =>
         `  <script type="application/ld+json">\n${escapeScriptJson(JSON.stringify(item, null, 2))}\n  </script>`
     )
     .join("\n");
+  const bodyAttrs = [`data-page="${page}"`];
+  if (centreId) bodyAttrs.push(`data-centre-id="${escapeHtml(centreId)}"`);
 
   return `<!doctype html>
 <html lang="en-GB">
@@ -146,7 +152,7 @@ function renderDocument({ appHtml, canonical, description, jsonLd, page, title }
   <link rel="stylesheet" href="/styles.css" />
 ${ldScripts}
 </head>
-<body data-page="${page}">
+<body ${bodyAttrs.join(" ")}>
   <div id="app">
 ${indent(appHtml, 4)}
   </div>
@@ -156,10 +162,13 @@ ${indent(appHtml, 4)}
 `;
 }
 
-function buildStructuredData(page, canonical, title, description, marketing) {
+function buildStructuredData(page, canonical, title, description, marketing, centreId = "") {
+  const centre = findCentre(marketing.testCentreCoverage, centreId);
   const pageType =
     page === "faq"
       ? "FAQPage"
+      : page === "centre-detail"
+        ? "AboutPage"
       : ["features", "theory", "centres", "instructors"].includes(page)
         ? "CollectionPage"
         : "WebPage";
@@ -212,23 +221,47 @@ function buildStructuredData(page, canonical, title, description, marketing) {
   ];
 
   if (page !== "home") {
+    const itemListElement =
+      page === "centre-detail" && centre
+        ? [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://www.drivest.uk/"
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Driving test centres",
+              item: "https://www.drivest.uk/driving-test-centres"
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: centre.name,
+              item: canonical
+            }
+          ]
+        : [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://www.drivest.uk/"
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: title.split(" | ")[0],
+              item: canonical
+            }
+          ];
+
     data.push({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://www.drivest.uk/"
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: title.split(" | ")[0],
-          item: canonical
-        }
-      ]
+      itemListElement
     });
   }
 
@@ -272,7 +305,7 @@ function buildStructuredData(page, canonical, title, description, marketing) {
       description: `Driving test centres currently live in Drivest with more than ${marketing.testCentreCoverage.filter?.routeCountGreaterThan || 2} routes.`,
       creator: { "@id": "https://www.drivest.uk/#organization" },
       includedInDataCatalog: { "@id": "https://www.drivest.uk/#website" },
-      measurementTechnique: "Workbook filter Route Count > 2",
+      measurementTechnique: "Route corpus filter: publish only centres with more than 2 routes and exclude temporary, duplicate, and broken variants",
       distribution: {
         "@type": "DataDownload",
         encodingFormat: "text/html",
@@ -294,6 +327,47 @@ function buildStructuredData(page, canonical, title, description, marketing) {
           position: index + 1,
           name: `${centre.name} (${centre.routeCount} routes)`
         }))
+    });
+  }
+
+  if (page === "centre-detail" && centre) {
+    data.push({
+      "@context": "https://schema.org",
+      "@type": "Place",
+      "@id": `${canonical}#place`,
+      name: centre.name,
+      geo: centre.coordinates
+        ? {
+            "@type": "GeoCoordinates",
+            latitude: centre.coordinates.lat,
+            longitude: centre.coordinates.lon
+          }
+        : undefined
+    });
+    data.push({
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name: `Drivest practice routes for ${centre.name}`,
+      description,
+      creator: { "@id": "https://www.drivest.uk/#organization" },
+      includedInDataCatalog: { "@id": "https://www.drivest.uk/#website" },
+      spatialCoverage: { "@id": `${canonical}#place` },
+      measurementTechnique: "Derived from Drivest route corpus with public threshold Route Count > 2",
+      distribution: {
+        "@type": "DataDownload",
+        encodingFormat: "text/html",
+        contentUrl: canonical
+      }
+    });
+    data.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: `${centre.name} sample practice routes`,
+      itemListElement: (centre.sampleRoutes || []).map((route, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: `${route.name} (${route.distanceKm} km, ${route.durationMinutes} minutes)`
+      }))
     });
   }
 
@@ -328,7 +402,7 @@ Sitemap: https://www.drivest.uk/sitemap.xml
 `;
 }
 
-function renderSitemap() {
+function renderSitemap(sitemapUrls) {
   const urls = sitemapUrls
     .map(
       (url) => `  <url>
@@ -343,6 +417,61 @@ function renderSitemap() {
 ${urls}
 </urlset>
 `;
+}
+
+function buildCentrePageTargets(coverage) {
+  return (coverage?.centres || []).map((centre) => ({
+    page: "centre-detail",
+    centreId: centre.id,
+    output: outputPathForUrl(centre.url || `/driving-test-centres/${centre.id}`),
+    canonical: `https://www.drivest.uk${centre.url || `/driving-test-centres/${centre.id}`}`
+  }));
+}
+
+function buildCentreRedirectTargets(coverage) {
+  const centres = coverage?.centres || [];
+  const centreMap = new Map(centres.map((centre) => [centre.id, centre]));
+  const slugRedirects = centres
+    .map((centre) => {
+      const legacyPath = `/driving-test-centres/${centre.id}`;
+      if ((centre.url || legacyPath) === legacyPath) return null;
+      return {
+        output: outputPathForUrl(legacyPath),
+        destination: centre.url
+      };
+    })
+    .filter(Boolean);
+
+  const aliasRedirects = (coverage?.aliases || [])
+    .map((alias) => {
+      const canonical = centreMap.get(alias.canonicalId);
+      if (!canonical) return null;
+      return {
+        output: outputPathForUrl(`/driving-test-centres/${alias.id}`),
+        destination: canonical.url || `/driving-test-centres/${canonical.id}`
+      };
+    })
+    .filter(Boolean);
+
+  return [...slugRedirects, ...aliasRedirects];
+}
+
+function buildCentreSitemapUrls(coverage) {
+  return (coverage?.centres || []).map(
+    (centre) => `https://www.drivest.uk${centre.url || `/driving-test-centres/${centre.id}`}`
+  );
+}
+
+function findCentre(coverage, centreId) {
+  return (coverage?.centres || []).find((centre) => centre.id === centreId) || null;
+}
+
+function outputPathForUrl(urlPath) {
+  const parts = String(urlPath || "")
+    .replace(/^\/+|\/+$/g, "")
+    .split("/")
+    .filter(Boolean);
+  return path.join(...parts, "index.html");
 }
 
 async function writeSiteFile(relativePath, content) {

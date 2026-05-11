@@ -74,7 +74,11 @@ function finalizePageChrome() {
   setupMobileNav();
 }
 
-function pageTitle(currentPage, m) {
+function pageTitle(currentPage, m, centreId = document.body.dataset.centreId) {
+  if (currentPage === "centre-detail") {
+    const centre = coverageCentreById(m?.testCentreCoverage, centreId);
+    if (centre) return `${centre.name} driving test routes and practice | ${m.ui.brand}`;
+  }
   if (currentPage === "home") return m.seo.title;
   if (m.pageSeo?.[currentPage]?.title) return `${m.pageSeo[currentPage].title} | ${m.ui.brand}`;
   const map = {
@@ -82,13 +86,20 @@ function pageTitle(currentPage, m) {
     pricing: m.ui.nav.pricing,
     start: m.ui.nav.gettingStarted,
     faq: m.ui.nav.faq,
+    "centre-detail": "Driving test centre practice",
     terms: footerLabel(m, "terms") || "Terms",
     privacy: footerLabel(m, "privacy") || "Privacy"
   };
   return `${map[currentPage] || m.seo.title} | ${m.ui.brand}`;
 }
 
-function pageDescription(currentPage, m) {
+function pageDescription(currentPage, m, centreId = document.body.dataset.centreId) {
+  if (currentPage === "centre-detail") {
+    const centre = coverageCentreById(m?.testCentreCoverage, centreId);
+    if (centre) {
+      return `Practice ${formatNumber(centre.routeCount)} Drivest routes around ${centre.name}. Average route ${formatMetricValue(centre.averageDistanceKm, 1)} km and ${formatMetricValue(centre.averageDurationMinutes, 1)} minutes with ${difficultySummaryText(centre.dominantDifficulty)}.`;
+    }
+  }
   if (currentPage === "home") return m.seo.description;
   if (currentPage === "centres") {
     const summary = coverageSummary(m);
@@ -234,6 +245,8 @@ function renderPage(currentPage, m) {
     case "centres":
     case "instructors":
       return renderHubPage(currentPage, m);
+    case "centre-detail":
+      return renderCentreDetailPage(m, coverageCentreById(m?.testCentreCoverage, document.body.dataset.centreId));
     case "home":
     default:
       return renderHome(m);
@@ -792,6 +805,9 @@ function renderCoverageDirectorySection(m) {
   const summary = coverageSummary(m);
   const groups = coverageGroups(coverage);
   const topCentres = coverageTopCentres(coverage, 12);
+  const aliasCount = Number(coverage?.summary?.aliasCount) || 0;
+  const excludedCount = Number(coverage?.summary?.excludedCount) || 0;
+  const aliasText = `${formatNumber(aliasCount)} duplicate slug variant${aliasCount === 1 ? " is" : "s are"} collapsed into canonical centre page${aliasCount === 1 ? "" : "s"}.`;
   if (!config || !summary || !groups.length) return "";
 
   return `
@@ -810,14 +826,20 @@ function renderCoverageDirectorySection(m) {
           <p>These are the current routes attached to the centres included in this directory.</p>
         </article>
         <article class="card reveal-item">
-          <p class="panel-title">Build status mix</p>
-          <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.completed + summary.alreadyDone))}</p>
-          <p>${escapeHtml(formatNumber(summary.alreadyDone))} already done and ${escapeHtml(formatNumber(summary.completed))} completed in the workbook.</p>
+          <p class="panel-title">Average route length</p>
+          <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDistanceKm, 1))} km</p>
+          <p>Typical published routes sit inside a realistic lesson-length practice window.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Average guided time</p>
+          <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDurationMinutes, 1))} min</p>
+          <p>Average route quality across the public corpus is ${escapeHtml(formatMetricValue(summary.averageQualityScore, 3))}.</p>
         </article>
       </div>
       <div class="panel reveal-item">
         <p class="panel-title">${escapeHtml(config.summaryTitle)}</p>
         <p>${escapeHtml(config.summaryText)}</p>
+        <p class="coverage-summary-note">${escapeHtml(formatNumber(excludedCount))} temporary, backup, or broken centre variants are excluded from the public layer, and ${escapeHtml(aliasText)}</p>
         ${config.note ? `<p class="coverage-summary-note">${escapeHtml(config.note)}</p>` : ""}
       </div>
     </section>
@@ -829,9 +851,10 @@ function renderCoverageDirectorySection(m) {
           .map(
             (centre) => `
           <article class="card reveal-item">
-            <h3>${escapeHtml(centre.name)}</h3>
+            <h3><a class="centre-link" href="${escapeAttr(centreHref(centre))}">${escapeHtml(centre.name)}</a></h3>
             <p class="coverage-route-count">${escapeHtml(formatNumber(centre.routeCount))} routes</p>
-            <p>Coverage currently exceeds the public threshold used for this directory.</p>
+            <p>Average route: ${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km over ${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} minutes.</p>
+            <a class="text-link" href="${escapeAttr(centreHref(centre))}">View centre practice page</a>
           </article>
         `
           )
@@ -855,8 +878,10 @@ function renderCoverageDirectorySection(m) {
                 .map(
                   (centre) => `
                 <li class="coverage-centre-item">
-                  <span>${escapeHtml(centre.name)}</span>
-                  <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
+                  <a class="coverage-centre-link" href="${escapeAttr(centreHref(centre))}">
+                    <span>${escapeHtml(centre.name)}</span>
+                    <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
+                  </a>
                 </li>
               `
                 )
@@ -869,6 +894,166 @@ function renderCoverageDirectorySection(m) {
       </div>
     </section>
   `;
+}
+
+function renderCentreDetailPage(m, centre) {
+  if (!centre) {
+    return `
+      <section class="section reveal">
+        <h1>Driving test centre practice</h1>
+        <p>This centre is not currently available in the public Drivest route layer.</p>
+      </section>
+      ${renderLinkCardsSection(m.hubPages?.centres?.related)}
+    `;
+  }
+
+  const difficultyList = renderCountList(
+    centre.difficultyCounts,
+    (key) => `${toDisplayLabel(key)} difficulty`
+  );
+  const familyList = renderCountList(centre.routeFamilyCounts, (key) => toDisplayLabel(key));
+  const topRoads = centre.topRoads || [];
+  const topZones = centre.topZones || [];
+  const sampleRoutes = centre.sampleRoutes || [];
+  const validation = centre.validation || {};
+  const hintCoverage = typeof validation.hintCoverageRatio === "number" ? `${Math.round(validation.hintCoverageRatio * 100)}%` : "Not stated";
+  const rangeText = `${formatMetricValue(centre.minDistanceKm, 1)}-${formatMetricValue(centre.maxDistanceKm, 1)} km and ${formatMetricValue(centre.minDurationMinutes, 1)}-${formatMetricValue(centre.maxDurationMinutes, 1)} minutes`;
+
+  return `
+    <section class="section reveal feature-hero">
+      <div class="feature-hero-grid">
+        <div>
+          <p class="eyebrow">Selected-centre practice</p>
+          <h1>${escapeHtml(centre.name)} driving test routes and practice</h1>
+          <p>Practice around ${escapeHtml(centre.name)} with ${escapeHtml(formatNumber(centre.routeCount))} Drivest routes currently above the public threshold. The set averages ${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km and ${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} minutes, with ${escapeHtml(difficultySummaryText(centre.dominantDifficulty))} in the current public set.</p>
+          <div class="pill-row">
+            <span class="pill">${escapeHtml(formatNumber(centre.routeCount))} routes</span>
+            <span class="pill">${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km average</span>
+            <span class="pill">${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} min average</span>
+            <span class="pill">Quality ${escapeHtml(formatMetricValue(centre.averageQualityScore, 3))}</span>
+          </div>
+        </div>
+        <div class="panel reveal-item">
+          <p class="panel-title">At a glance</p>
+          <ul class="detail-list">
+            <li>Published because this centre has more than ${escapeHtml(String(coverageSummary(m)?.threshold || 2))} routes.</li>
+            <li>Typical route range: ${escapeHtml(rangeText)}.</li>
+            <li>${escapeHtml(formatNumber(validation.selected || centre.routeCount))} routes selected from ${escapeHtml(formatNumber(validation.candidates || 0))} route candidates in the current validation file.</li>
+            <li>Hint-road coverage in the current validation file: ${escapeHtml(hintCoverage)}.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="coverage-stat-grid">
+        <article class="card reveal-item">
+          <p class="panel-title">Practice routes</p>
+          <p class="coverage-stat-value">${escapeHtml(formatNumber(centre.routeCount))}</p>
+          <p>Only this centre's public route set is counted here.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Distance range</p>
+          <p class="coverage-stat-value">${escapeHtml(formatMetricValue(centre.minDistanceKm, 1))}-${escapeHtml(formatMetricValue(centre.maxDistanceKm, 1))} km</p>
+          <p>Useful for judging whether the local practice set leans shorter or longer.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Time range</p>
+          <p class="coverage-stat-value">${escapeHtml(formatMetricValue(centre.minDurationMinutes, 1))}-${escapeHtml(formatMetricValue(centre.maxDurationMinutes, 1))} min</p>
+          <p>Based on the estimated guided duration attached to each route.</p>
+        </article>
+        <article class="card reveal-item">
+          <p class="panel-title">Source route files</p>
+          <p class="coverage-stat-value">${escapeHtml(formatNumber(centre.sourcePdfCount || 0))}</p>
+          <p>Distinct route-source files contributing to the current centre page.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid two-up">
+        <article class="card reveal-item">
+          <h2>Difficulty and route shape mix</h2>
+          <div class="detail-subsection">
+            <h3>Difficulty</h3>
+            <ul class="detail-list">${difficultyList}</ul>
+          </div>
+          <div class="detail-subsection">
+            <h3>Route families</h3>
+            <ul class="detail-list">${familyList}</ul>
+          </div>
+        </article>
+        <article class="card reveal-item">
+          <h2>Roads and zones covered</h2>
+          <div class="detail-subsection">
+            <h3>Most repeated roads</h3>
+            <div class="tag-cloud">
+              ${topRoads.map((road) => `<span class="pill">${escapeHtml(road.name)} (${escapeHtml(formatNumber(road.count))})</span>`).join("")}
+            </div>
+          </div>
+          <div class="detail-subsection">
+            <h3>Route zones</h3>
+            <div class="tag-cloud">
+              ${topZones.map((zone) => `<span class="pill">${escapeHtml(toDisplayLabel(zone.name))} (${escapeHtml(formatNumber(zone.count))})</span>`).join("")}
+            </div>
+          </div>
+        </article>
+        <article class="card reveal-item">
+          <h2>Validation profile</h2>
+          <ul class="detail-list">
+            <li>${escapeHtml(formatNumber(validation.validated || 0))} validated routes in the current validation report.</li>
+            <li>${escapeHtml(formatNumber(validation.selected || centre.routeCount))} selected routes in the public practice set.</li>
+            <li>${escapeHtml(formatNumber(validation.matchedHintRoads || 0))} matched hint roads recorded for this centre.</li>
+            <li>Hint-road coverage ratio: ${escapeHtml(hintCoverage)}.</li>
+          </ul>
+        </article>
+        <article class="card reveal-item">
+          <h2>Important positioning</h2>
+          <ul class="detail-list">
+            <li>Routes are reconstructed or generated for learning support and are not official DVSA routes.</li>
+            <li>Learners must always follow live road signs, markings, instructions, and traffic law.</li>
+            <li>Navigation, route, and parking outputs remain advisory only and can be incomplete or delayed.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>Sample practice routes for ${escapeHtml(centre.name)}</h2>
+      <p class="section-intro">These routes are the highest-quality examples currently attached to this centre in the public data layer.</p>
+      <div class="grid three-up">
+        ${sampleRoutes
+          .map(
+            (route) => `
+          <article class="card reveal-item">
+            <h3>${escapeHtml(route.name || "Practice route")}</h3>
+            <p class="coverage-route-count">${escapeHtml(formatMetricValue(route.distanceKm, 1))} km</p>
+            <p>${escapeHtml(formatMetricValue(route.durationMinutes, 1))} minutes, ${escapeHtml(toDisplayLabel(route.difficultyLevel))} difficulty, quality ${escapeHtml(formatMetricValue(route.qualityScore, 3))}.</p>
+            <p>${escapeHtml(toDisplayLabel(route.routeFamily))} route family with ${escapeHtml(formatNumber((route.routeZones || []).length))} named zone markers.</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    ${renderLinkCardsSection(m.hubPages?.centres?.related)}
+  `;
+}
+
+function renderCountList(counts, labelBuilder) {
+  const entries = Object.entries(counts || {});
+  if (!entries.length) return "<li>No count summary available for this centre yet.</li>";
+  return entries
+    .sort((a, b) => {
+      if ((b[1] || 0) !== (a[1] || 0)) return (b[1] || 0) - (a[1] || 0);
+      return String(a[0] || "").localeCompare(String(b[0] || ""), "en-GB");
+    })
+    .map(
+      ([key, value]) =>
+        `<li>${escapeHtml(formatNumber(value))} routes in the ${escapeHtml(labelBuilder(key))} category.</li>`
+    )
+    .join("");
 }
 
 function renderShowcaseStat(value, label) {
@@ -1052,13 +1237,14 @@ function renderInfoSection(info) {
 function coverageSummary(m) {
   const summary = m?.testCentreCoverage?.summary;
   if (!summary) return null;
-  const statusCounts = summary.statusCounts || {};
   return {
     centres: Number(summary.centres) || 0,
     routes: Number(summary.routes) || 0,
     threshold: Number(m.testCentreCoverage?.filter?.routeCountGreaterThan) || 2,
-    completed: Number(statusCounts.completed) || 0,
-    alreadyDone: Number(statusCounts.already_done) || 0
+    averageRoutesPerCentre: Number(summary.averageRoutesPerCentre) || 0,
+    averageDistanceKm: Number(summary.averageRouteDistanceKm) || 0,
+    averageDurationMinutes: Number(summary.averageRouteDurationMinutes) || 0,
+    averageQualityScore: Number(summary.averageQualityScore) || 0
   };
 }
 
@@ -1066,6 +1252,17 @@ function coverageLineText(m) {
   const summary = coverageSummary(m);
   if (!summary) return m.hero.coverageLine || m.hero.subhead;
   return `${formatNumber(summary.centres)} UK test centres currently live with more than ${summary.threshold} routes. ${formatNumber(summary.routes)} practice routes across the UK.`;
+}
+
+function coverageCentreById(coverage, centreId) {
+  if (!coverage || !centreId) return null;
+  return (coverage.centres || []).find((centre) => centre.id === centreId) || null;
+}
+
+function centreHref(centre) {
+  if (typeof centre === "object" && centre?.url) return centre.url;
+  const id = typeof centre === "string" ? centre : centre?.id;
+  return `${PATHS.centres}/${id}`;
 }
 
 function coverageGroups(coverage) {
@@ -1093,6 +1290,28 @@ function coverageTopCentres(coverage, limit) {
 
 function formatNumber(value) {
   return new Intl.NumberFormat("en-GB").format(Number(value) || 0);
+}
+
+function formatMetricValue(value, digits = 1) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) return "0";
+  return numericValue.toFixed(digits);
+}
+
+function difficultySummaryText(value) {
+  const key = String(value || "").toLowerCase();
+  if (key === "hard") return "a hard-skewed route mix";
+  if (key === "medium") return "a mostly medium-difficulty route mix";
+  if (key === "easy") return "an easier-skewed route mix";
+  return "mixed difficulty coverage";
+}
+
+function toDisplayLabel(value) {
+  return String(value || "")
+    .replace(/[_:]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (match) => match.toUpperCase());
 }
 
 function renderLanguageSupportSection(info) {
@@ -1271,7 +1490,7 @@ function setupAnimations() {
 }
 
 function setActiveNav() {
-  const current = page;
+  const current = page === "centre-detail" ? "centres" : page;
   if (!current || current === "home") return;
   document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => link.classList.add("active"));
 }
