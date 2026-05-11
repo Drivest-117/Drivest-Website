@@ -7,6 +7,7 @@ const PATHS = {
   pricing: "/pricing",
   start: "/start",
   faq: "/faq",
+  contact: "/contact",
   theory: "/theory-test-preparation",
   centres: "/driving-test-centres",
   instructors: "/driving-instructors",
@@ -25,8 +26,22 @@ const PHOTO_URLS = {
   map: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
   roadsigns: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
   school: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+  appHighwayQuiz: "/assets/app-highway-quiz.jpeg",
   appHomeArabic: "/assets/app-home-arabic.jpeg",
-  appTheoryChinese: "/assets/app-theory-chinese.jpeg"
+  appHomeLearner: "/assets/app-home-learner.jpeg",
+  appHomeWelsh: "/assets/app-home-welsh.jpeg",
+  appInstructorAvailability: "/assets/app-instructor-availability.jpeg",
+  appInstructorBookings: "/assets/app-instructor-bookings.jpeg",
+  appInstructorHub: "/assets/app-instructor-hub.jpeg",
+  appNavigationOverview: "/assets/app-navigation-overview.jpeg",
+  appNavigationSearch: "/assets/app-navigation-search.jpeg",
+  appParkingDestination: "/assets/app-parking-destination.jpeg",
+  appParkingSignQuiz: "/assets/app-parking-sign-quiz.jpeg",
+  appPracticeCentres: "/assets/app-practice-centres.jpeg",
+  appTheoryChinese: "/assets/app-theory-chinese.jpeg",
+  appTheoryMastery: "/assets/app-theory-mastery.jpeg",
+  appTheoryQuizEnglish: "/assets/app-theory-quiz-english.jpeg",
+  appTheoryQuizWelsh: "/assets/app-theory-quiz-welsh.jpeg"
 };
 
 const page = document.body.dataset.page;
@@ -303,6 +318,8 @@ function renderHome(m) {
 
     ${renderHomeModulesSection(m.homeModules)}
 
+    ${renderProductProofSection(m.productProof)}
+
     ${renderAudienceSection(m.audienceTracks)}
 
     ${renderLinkCardsSection(m.searchIntentLinks)}
@@ -341,8 +358,8 @@ function renderHome(m) {
     <section class="section reveal">
       <h2>${escapeHtml(m.safety.title)}</h2>
       <div class="mini-photo-row">
-        <div class="mini-photo"><img src="${PHOTO_URLS.roadsigns}" alt="Road signs" loading="lazy" /></div>
-        <div class="mini-photo"><img src="${PHOTO_URLS.school}" alt="School zone awareness" loading="lazy" /></div>
+        <div class="mini-photo"><img src="${PHOTO_URLS.appParkingDestination}" alt="Drivest parking destination screen" loading="lazy" /></div>
+        <div class="mini-photo"><img src="${PHOTO_URLS.appParkingSignQuiz}" alt="Drivest parking sign quiz screen" loading="lazy" /></div>
       </div>
       ${bulletList(m.safety.bullets)}
       <div class="panel reveal-item">
@@ -364,7 +381,7 @@ function renderFeatures(m) {
           <p>${escapeHtml(m.hero.subhead)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${PHOTO_URLS.route}" alt="Navigation route experience" loading="lazy" />
+          <img src="${PHOTO_URLS.appNavigationOverview}" alt="Drivest navigation overview screen" loading="lazy" />
         </div>
       </div>
     </section>
@@ -378,6 +395,8 @@ function renderFeatures(m) {
     ${renderAudienceSection(m.audienceTracks)}
 
     ${renderFeatureGroups(m.featureGroups)}
+
+    ${renderProductProofSection(m.productProof)}
 
     ${renderLinkCardsSection(m.searchIntentLinks)}
 
@@ -417,7 +436,7 @@ function renderStart(m) {
           <p>${escapeHtml(m.startPaths.intro)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${PHOTO_URLS.learn}" alt="Learner and instructor onboarding" loading="lazy" />
+          <img src="${PHOTO_URLS.appHomeLearner}" alt="Drivest learner home screen" loading="lazy" />
         </div>
       </div>
     </section>
@@ -456,7 +475,7 @@ function renderPricing(m) {
           <p>${escapeHtml(m.pricing.disclaimer)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${PHOTO_URLS.learn}" alt="Driver training and pricing" loading="lazy" />
+          <img src="${PHOTO_URLS.appNavigationOverview}" alt="Drivest navigation and parking screen" loading="lazy" />
         </div>
       </div>
     </section>
@@ -567,6 +586,32 @@ function renderFeatureCards(items) {
         )
         .join("")}
     </div>
+  `;
+}
+
+function renderProductProofSection(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="grid two-up">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="card reveal-item product-proof-card">
+            ${renderPhoneShot(item.image, item.alt, item.caption, "phone-shot-proof product-proof-phone")}
+            <div class="product-proof-copy">
+              ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </div>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -762,17 +807,17 @@ function renderHeroShowcase(m) {
       <div class="hero-showcase-grid">
         <div class="hero-phone-cluster">
           ${renderPhoneShot(
-            PHOTO_URLS.appHomeArabic,
-            "Drivest app home screen in Arabic showing theory, practice, navigation, find instructor, and explore modules.",
-            "Arabic home screen",
+            PHOTO_URLS.appHomeLearner,
+            "Drivest learner home screen showing theory, practice, navigation, and find instructor modules.",
+            "Learner home screen",
             "phone-shot-hero phone-shot-home",
             "eager"
           )}
           <div class="hero-phone-float">
             ${renderPhoneShot(
-              PHOTO_URLS.appTheoryChinese,
-              "Drivest theory question screen in Simplified Chinese with an English UK cross-check option.",
-              "Simplified Chinese theory view",
+              PHOTO_URLS.appTheoryMastery,
+              "Drivest theory mastery screen showing learn, quiz, and mock progression.",
+              "Theory mastery flow",
               "phone-shot-hero phone-shot-theory",
               "eager"
             )}
@@ -915,9 +960,12 @@ function renderCentreDetailPage(m, centre) {
   const topRoads = centre.topRoads || [];
   const topZones = centre.topZones || [];
   const sampleRoutes = centre.sampleRoutes || [];
+  const nearbyCentres = nearestCoverageCentres(m.testCentreCoverage, centre, 6);
+  const challengeBullets = centreChallengeBullets(centre);
   const validation = centre.validation || {};
   const hintCoverage = typeof validation.hintCoverageRatio === "number" ? `${Math.round(validation.hintCoverageRatio * 100)}%` : "Not stated";
   const rangeText = `${formatMetricValue(centre.minDistanceKm, 1)}-${formatMetricValue(centre.maxDistanceKm, 1)} km and ${formatMetricValue(centre.minDurationMinutes, 1)}-${formatMetricValue(centre.maxDurationMinutes, 1)} minutes`;
+  const generatedAtText = coverageGeneratedAtText(m.testCentreCoverage);
 
   return `
     <section class="section reveal feature-hero">
@@ -940,6 +988,7 @@ function renderCentreDetailPage(m, centre) {
             <li>Typical route range: ${escapeHtml(rangeText)}.</li>
             <li>${escapeHtml(formatNumber(validation.selected || centre.routeCount))} routes selected from ${escapeHtml(formatNumber(validation.candidates || 0))} route candidates in the current validation file.</li>
             <li>Hint-road coverage in the current validation file: ${escapeHtml(hintCoverage)}.</li>
+            ${generatedAtText ? `<li>Public coverage file generated: ${escapeHtml(generatedAtText)}.</li>` : ""}
           </ul>
         </div>
       </div>
@@ -1008,11 +1057,53 @@ function renderCentreDetailPage(m, centre) {
           </ul>
         </article>
         <article class="card reveal-item">
+          <h2>Common local practice signals</h2>
+          <ul class="detail-list">
+            ${challengeBullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </article>
+        <article class="card reveal-item">
           <h2>Important positioning</h2>
           <ul class="detail-list">
             <li>Routes are reconstructed or generated for learning support and are not official DVSA routes.</li>
             <li>Learners must always follow live road signs, markings, instructions, and traffic law.</li>
             <li>Navigation, route, and parking outputs remain advisory only and can be incomplete or delayed.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid two-up">
+        <article class="card reveal-item">
+          <h2>Nearby covered centres</h2>
+          <p class="section-intro">Use nearby-centre pages when you want a broader local practice comparison without leaving the current area completely.</p>
+          ${nearbyCentres.length
+            ? `
+              <ul class="coverage-centre-list">
+                ${nearbyCentres
+                  .map(
+                    (item) => `
+                  <li class="coverage-centre-item">
+                    <a class="coverage-centre-link" href="${escapeAttr(centreHref(item))}">
+                      <span>${escapeHtml(item.name)}${item.distanceKm != null ? ` · ${escapeHtml(formatMetricValue(item.distanceKm, 1))} km away` : ""}</span>
+                      <strong>${escapeHtml(formatNumber(item.routeCount))}</strong>
+                    </a>
+                  </li>
+                `
+                  )
+                  .join("")}
+              </ul>
+            `
+            : "<p>No nearby covered centres are available from the current public coordinate layer.</p>"}
+        </article>
+        <article class="card reveal-item">
+          <h2>Before arrival and after practice</h2>
+          <ul class="detail-list">
+            <li>Use the selected-centre practice page to judge route depth before committing lesson time around ${escapeHtml(centre.name)}.</li>
+            <li>Allow extra time for arrival and still confirm any live signs, markings, or parking restrictions around the area.</li>
+            <li>If you practise across more than one nearby centre, compare route-count depth and route shape mix instead of assuming all centres behave the same.</li>
+            <li>Keep theory, instructor, and calmer navigation pages linked so local practice stays part of the wider learner journey.</li>
           </ul>
         </article>
       </div>
@@ -1248,6 +1339,18 @@ function coverageSummary(m) {
   };
 }
 
+function coverageGeneratedAtText(coverage) {
+  const value = coverage?.generatedAt;
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+}
+
 function coverageLineText(m) {
   const summary = coverageSummary(m);
   if (!summary) return m.hero.coverageLine || m.hero.subhead;
@@ -1263,6 +1366,62 @@ function centreHref(centre) {
   if (typeof centre === "object" && centre?.url) return centre.url;
   const id = typeof centre === "string" ? centre : centre?.id;
   return `${PATHS.centres}/${id}`;
+}
+
+function nearestCoverageCentres(coverage, centre, limit = 6) {
+  const source = centre?.coordinates;
+  if (!source?.lat || !source?.lon) return [];
+  return (coverage?.centres || [])
+    .filter((candidate) => candidate.id !== centre.id && candidate.coordinates?.lat && candidate.coordinates?.lon)
+    .map((candidate) => ({
+      ...candidate,
+      distanceKm: haversineKm(source, candidate.coordinates)
+    }))
+    .sort((a, b) => a.distanceKm - b.distanceKm)
+    .slice(0, limit);
+}
+
+function haversineKm(a, b) {
+  const earthRadiusKm = 6371;
+  const dLat = degreesToRadians((b.lat || 0) - (a.lat || 0));
+  const dLon = degreesToRadians((b.lon || 0) - (a.lon || 0));
+  const lat1 = degreesToRadians(a.lat || 0);
+  const lat2 = degreesToRadians(b.lat || 0);
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  return 2 * earthRadiusKm * Math.asin(Math.sqrt(h));
+}
+
+function degreesToRadians(value) {
+  return (value * Math.PI) / 180;
+}
+
+function centreChallengeBullets(centre) {
+  const bullets = [];
+  const hardRoutes = Number(centre?.difficultyCounts?.hard) || 0;
+  const mediumRoutes = Number(centre?.difficultyCounts?.medium) || 0;
+  if (hardRoutes > mediumRoutes) {
+    bullets.push(`The current public set leans harder than medium-only local practice, with ${formatNumber(hardRoutes)} hard routes visible.`);
+  }
+  const sharpTurns = Number(centre?.validationFlagCounts?.sharp_turns_present) || 0;
+  if (sharpTurns > 0) {
+    bullets.push(`Sharp-turn markers appear in ${formatNumber(sharpTurns)} routes in the current public set.`);
+  }
+  const dominantFamily = Object.entries(centre?.routeFamilyCounts || {})
+    .sort((a, b) => (b[1] || 0) - (a[1] || 0))[0];
+  if (dominantFamily?.[0]) {
+    bullets.push(`${toDisplayLabel(dominantFamily[0])} route families dominate the current public set, which usually means repeated decision density rather than one simple loop.`);
+  }
+  const roads = (centre?.topRoads || []).slice(0, 3).map((road) => road.name).filter(Boolean);
+  if (roads.length) {
+    bullets.push(`Most repeated roads in the current public set include ${roads.join(", ")}.`);
+  }
+  const zones = (centre?.topZones || []).slice(0, 3).map((zone) => toDisplayLabel(zone.name)).filter(Boolean);
+  if (zones.length) {
+    bullets.push(`Route repetition is strongest across ${zones.join(", ")} coverage zones in the current public layer.`);
+  }
+  return bullets.length ? bullets.slice(0, 4) : ["The current public set gives a structured local practice layer rather than one generic centre description."];
 }
 
 function coverageGroups(coverage) {
@@ -1334,13 +1493,19 @@ function renderLanguageSupportSection(info) {
           )}
           <div class="language-proof-side">
             ${renderPhoneShot(
-              PHOTO_URLS.appHomeArabic,
-              "Arabic Drivest home screen showing the translated module surface.",
-              "Home screen translated into Arabic",
+              PHOTO_URLS.appHomeWelsh,
+              "Welsh Drivest home screen showing translated module labels.",
+              "Welsh-translated home screen",
+              "phone-shot-proof phone-shot-proof-sm"
+            )}
+            ${renderPhoneShot(
+              PHOTO_URLS.appTheoryQuizEnglish,
+              "Theory question screen with English UK available beside Welsh.",
+              "English cross-check inside theory flow",
               "phone-shot-proof phone-shot-proof-sm"
             )}
             <div class="language-proof-note">
-              Users can study in a preferred language, then open English (UK) on the same question to compare wording before answering.
+              Users can study in a preferred language, including Welsh and Arabic, then open English (UK) on the same question to compare wording before answering.
             </div>
           </div>
         </div>
@@ -1351,32 +1516,34 @@ function renderLanguageSupportSection(info) {
 
 function stepPhotoByTitle(title) {
   const t = String(title).toLowerCase();
-  if (t.includes("learner") || t.includes("instructor")) return PHOTO_URLS.learn;
-  if (t.includes("language") || t.includes("stage")) return PHOTO_URLS.theory;
-  if (t.includes("book")) return PHOTO_URLS.practice;
-  if (t.includes("progress") || t.includes("review")) return PHOTO_URLS.confidence;
-  if (t.includes("mode")) return PHOTO_URLS.confidence;
-  if (t.includes("centre") || t.includes("destination")) return PHOTO_URLS.map;
-  if (t.includes("prompt")) return PHOTO_URLS.navigation;
-  return PHOTO_URLS.route;
+  if (t.includes("learner") || t.includes("stage")) return PHOTO_URLS.appHomeLearner;
+  if (t.includes("instructor")) return PHOTO_URLS.appInstructorHub;
+  if (t.includes("language")) return PHOTO_URLS.appTheoryQuizWelsh;
+  if (t.includes("book")) return PHOTO_URLS.appInstructorBookings;
+  if (t.includes("progress") || t.includes("review")) return PHOTO_URLS.appInstructorHub;
+  if (t.includes("mode")) return PHOTO_URLS.appHomeLearner;
+  if (t.includes("centre")) return PHOTO_URLS.appPracticeCentres;
+  if (t.includes("destination")) return PHOTO_URLS.appParkingDestination;
+  if (t.includes("prompt")) return PHOTO_URLS.appNavigationOverview;
+  return PHOTO_URLS.appTheoryMastery;
 }
 
 function hubPagePhoto(pageKey) {
   switch (pageKey) {
     case "theory":
       return {
-        src: PHOTO_URLS.theory,
-        alt: "Driving theory revision and study planning"
+        src: PHOTO_URLS.appTheoryMastery,
+        alt: "Drivest theory mastery screen"
       };
     case "centres":
       return {
-        src: PHOTO_URLS.map,
-        alt: "Driving test centre route planning"
+        src: PHOTO_URLS.appPracticeCentres,
+        alt: "Drivest practice centre search screen"
       };
     case "instructors":
       return {
-        src: PHOTO_URLS.learn,
-        alt: "Learner meeting driving instructor"
+        src: PHOTO_URLS.appInstructorHub,
+        alt: "Drivest Instructor Hub screen"
       };
     default:
       return {
@@ -1420,9 +1587,12 @@ function renderTabIcon(title) {
 function renderFeatureIcon(title) {
   const t = String(title).toLowerCase();
   if (t.includes("language")) return iconBadge("globe");
+  if (t.includes("quiz") || t.includes("mock")) return iconBadge("book");
   if (t.includes("instructor") || t.includes("marketplace") || t.includes("learner")) return iconBadge("people");
+  if (t.includes("availability")) return iconBadge("card");
   if (t.includes("analytics") || t.includes("progress")) return iconBadge("chart");
   if (t.includes("payment") || t.includes("booking") || t.includes("subscription")) return iconBadge("card");
+  if (t.includes("bookmark")) return iconBadge("book");
   if (t.includes("parking")) return iconBadge("car");
   if (t.includes("notification")) return iconBadge("bell");
   if (t.includes("highway") || t.includes("sign") || t.includes("theory")) return iconBadge("book");

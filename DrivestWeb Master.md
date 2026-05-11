@@ -1,6 +1,6 @@
 # DrivestWeb Master
 
-Last updated: 10 May 2026
+Last updated: 11 May 2026
 
 ## Purpose
 
@@ -28,7 +28,7 @@ This document does not replace the product-wide app master file. It only describ
 
 ## Current Repo Status
 
-As of 10 May 2026, this repository contains website updates that include:
+As of 11 May 2026, this repository contains website updates that include:
 
 - expanded marketing copy aligned to the current app
 - updated Terms, Privacy, and FAQ website content
@@ -37,6 +37,10 @@ As of 10 May 2026, this repository contains website updates that include:
 - mobile navigation and a persistent website preparation CTA
 - future learner driver positioning across homepage, start flow, pricing, and FAQ
 - stronger static metadata for marketing page titles, descriptions, and sharing
+- screenshot-backed product proof pulled from the live app UI
+- a new `Contact, trust, and coverage methodology` page
+- theory-intent landing pages and regional driving-test-centre hub pages
+- a branded `404.html` and generated `manifest.webmanifest`
 
 Important status note:
 
@@ -98,6 +102,23 @@ These should be kept aligned with the directory-based legal routes.
 - `/pricing.html`
 - `/faq`
 - `/start`
+- `/contact`
+- `/theory-test-preparation`
+- `/driving-test-centres`
+- `/driving-instructors`
+
+### SEO landing pages
+
+- `/mock-theory-test`
+- `/hazard-perception-test`
+- `/road-signs-test`
+- `/highway-code-test`
+- `/driving-theory-test-in-urdu`
+- `/driving-theory-test-in-arabic`
+- `/driving-theory-test-in-welsh`
+- `/driving-test-centres/london`
+- `/driving-test-centres/manchester`
+- `/driving-test-centres/birmingham`
 
 ### Legal pages
 
@@ -143,6 +164,23 @@ Current platform story on the website includes:
 - analytics and progress tracking
 - parking support
 - role-based onboarding
+
+## Pitch Deck Signals Captured
+
+The investor deck at `c:\Users\ferro\Downloads\Drivest_Pitch_Deck.pdf` adds a few strong public-positioning signals worth reusing on the website:
+
+- integrated platform for learner drivers to practise, navigate, and build confidence
+- one platform from first lesson to independent driving
+- learner-first navigation aimed at cognitive ease rather than fastest-route bias
+- 3,000+ practice routes already generated across UK-wide test-centre coverage
+
+Some deck material should stay out of public website copy unless explicitly needed:
+
+- fundraising targets
+- internal AI operations/process slides
+- speculative multi-country rollout sequencing
+
+For public pages, keep the website's stronger legal and advisory wording even when the deck uses shorter investor shorthand.
 
 ## Key Website Messaging Now Reflected
 
@@ -380,12 +418,15 @@ This file currently drives:
 - navigation labels
 - hero copy
 - home module content
+- screenshot-backed product proof content
 - audience track content
 - language support content
 - feature group content
 - getting started content
 - pricing content
 - FAQ content
+- trust/contact content
+- theory-intent and regional SEO landing-page content
 - footer labels and links
 
 ### Legal source handling
@@ -408,6 +449,7 @@ At minimum, keep these pairs aligned:
 - added clearer learner and instructor audience framing
 - added the 32-language theory message with English cross-checking
 - aligned home screen website content with visible app modules
+- added screenshot-backed proof for theory mastery, centre search, low-stress routing, parking flow, Welsh UI, and instructor operations
 - updated pricing copy to the current plan structure
 - updated legal and FAQ content to the latest supplied public website versions
 
@@ -417,12 +459,21 @@ At minimum, keep these pairs aligned:
 - replaced homepage primary CTA destinations with role-based website routes
 - added a new `Getting Started` page and route
 - added anchored learner and instructor start sections
+- added theory-intent SEO pages and regional centre hub pages
+- added a branded contact/trust page and branded 404 page
 
 ### Legal and compliance messaging changes
 
 - reinforced advisory-only language for driving and parking
 - clarified reconstructed routes wording
 - kept independent instructor positioning visible
+- added public coverage-methodology wording and dataset freshness context
+
+### Technical polish
+
+- added `manifest.webmanifest` to generated pages
+- replaced the oversized root `favicon.ico` with the smaller wheel icon
+- prepared a permanent non-www to www redirect rule in `vercel.json`
 
 ## Maintenance Notes
 
@@ -451,6 +502,7 @@ git status --short --branch
 The current website direction was informed by these external files:
 
 - `c:\Users\ferro\Downloads\drivest_website_gap_analysis_2026-05-09.md`
+- `c:\Users\ferro\Downloads\Drivest_Pitch_Deck.pdf`
 - `c:\Users\ferro\Downloads\translation_handoff_2026-04-25_modernized_20260506.zip`
 - `c:\Users\ferro\Downloads\master.md`
 

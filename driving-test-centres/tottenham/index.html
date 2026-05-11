@@ -15,6 +15,7 @@
   <meta property="og:image" content="https://www.drivest.uk/assets/drivest-wordmark-preview.png" />
   <meta property="og:image:alt" content="Drivest wordmark preview" />
   <meta property="og:site_name" content="Drivest" />
+  <meta name="application-name" content="Drivest" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tottenham driving test routes and practice | Drivest" />
   <meta name="twitter:description" content="Practice 4 Drivest routes around Tottenham. Average route 11.9 km and 30.2 minutes with a hard-skewed route mix." />
@@ -22,6 +23,7 @@
   <meta name="theme-color" content="#111827" />
   <link rel="icon" href="/assets/favicon-wheel.ico" />
   <link rel="apple-touch-icon" href="/assets/favicon-wheel.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
@@ -37,7 +39,20 @@
     "@type": "ImageObject",
     "url": "https://www.drivest.uk/assets/drivest-wordmark-preview.png"
   },
-  "email": "admin@drivest.uk"
+  "email": "admin@drivest.uk",
+  "areaServed": "GB",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "admin@drivest.uk",
+      "areaServed": "GB",
+      "availableLanguage": [
+        "en",
+        "cy"
+      ]
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
@@ -47,7 +62,7 @@
   "@id": "https://www.drivest.uk/#website",
   "url": "https://www.drivest.uk/",
   "name": "Drivest",
-  "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation.",
+  "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation.",
   "publisher": {
     "@id": "https://www.drivest.uk/#organization"
   },
@@ -79,7 +94,7 @@
   "name": "Drivest",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS, Android",
-  "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation.",
+  "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation.",
   "featureList": [
     "Future learner preparation",
     "Theory in 32 languages",
@@ -251,6 +266,7 @@
                 <li>Typical route range: 10.3-13.3 km and 25.1-34.6 minutes.</li>
                 <li>4 routes selected from 210 route candidates in the current validation file.</li>
                 <li>Hint-road coverage in the current validation file: 20%.</li>
+                <li>Public coverage file generated: 11 May 2026.</li>
               </ul>
             </div>
           </div>
@@ -319,11 +335,82 @@
               </ul>
             </article>
             <article class="card reveal-item">
+              <h2>Common local practice signals</h2>
+              <ul class="detail-list">
+                <li>The current public set leans harder than medium-only local practice, with 3 hard routes visible.</li><li>Cross Town route families dominate the current public set, which usually means repeated decision density rather than one simple loop.</li><li>Most repeated roads in the current public set include Lordship Lane, White Hart Lane, High Road.</li><li>Route repetition is strongest across Inner N, Inner S, Inner Nw coverage zones in the current public layer.</li>
+              </ul>
+            </article>
+            <article class="card reveal-item">
               <h2>Important positioning</h2>
               <ul class="detail-list">
                 <li>Routes are reconstructed or generated for learning support and are not official DVSA routes.</li>
                 <li>Learners must always follow live road signs, markings, instructions, and traffic law.</li>
                 <li>Navigation, route, and parking outputs remain advisory only and can be incomplete or delayed.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+    
+        <section class="section reveal">
+          <div class="grid two-up">
+            <article class="card reveal-item">
+              <h2>Nearby covered centres</h2>
+              <p class="section-intro">Use nearby-centre pages when you want a broader local practice comparison without leaving the current area completely.</p>
+              
+                  <ul class="coverage-centre-list">
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/wood-green-london">
+                          <span>Wood Green London · 3.1 km away</span>
+                          <strong>13</strong>
+                        </a>
+                      </li>
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/chingford-london">
+                          <span>Chingford London · 6.4 km away</span>
+                          <strong>13</strong>
+                        </a>
+                      </li>
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/wanstead-london">
+                          <span>Wanstead London · 6.7 km away</span>
+                          <strong>11</strong>
+                        </a>
+                      </li>
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/enfield-innova-business-park">
+                          <span>Enfield Innova Business Park · 7.3 km away</span>
+                          <strong>15</strong>
+                        </a>
+                      </li>
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/barnet-london">
+                          <span>Barnet London · 9.5 km away</span>
+                          <strong>15</strong>
+                        </a>
+                      </li>
+                    
+                      <li class="coverage-centre-item">
+                        <a class="coverage-centre-link" href="/driving-test-centres/loughton-london">
+                          <span>Loughton London · 10.2 km away</span>
+                          <strong>12</strong>
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+            </article>
+            <article class="card reveal-item">
+              <h2>Before arrival and after practice</h2>
+              <ul class="detail-list">
+                <li>Use the selected-centre practice page to judge route depth before committing lesson time around Tottenham.</li>
+                <li>Allow extra time for arrival and still confirm any live signs, markings, or parking restrictions around the area.</li>
+                <li>If you practise across more than one nearby centre, compare route-count depth and route shape mix instead of assuming all centres behave the same.</li>
+                <li>Keep theory, instructor, and calmer navigation pages linked so local practice stays part of the wider learner journey.</li>
               </ul>
             </article>
           </div>
@@ -421,7 +508,7 @@
                 <a href="/pricing">Pricing</a>
                 <a href="/start">Getting Started</a>
                 <a href="/faq">FAQ</a>
-                <a href="/theory-test-preparation">Theory Test Preparation</a><a href="/driving-test-centres">Driving Test Centres</a><a href="/driving-instructors">Driving Instructors</a><a href="/terms">Terms and Conditions</a><a href="/privacy">Privacy Policy</a>
+                <a href="/theory-test-preparation">Theory Test Preparation</a><a href="/driving-test-centres">Driving Test Centres</a><a href="/driving-instructors">Driving Instructors</a><a href="/contact">Contact</a><a href="/terms">Terms and Conditions</a><a href="/privacy">Privacy Policy</a>
               </div>
             </div>
             <div class="footer-col">

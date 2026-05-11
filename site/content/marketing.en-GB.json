@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Drivest | Theory test prep, driving test centre practice routes, and instructor bookings",
-    "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation."
+    "title": "Drivest | Theory mock tests, practice routes, learner-first navigation, parking, and instructor bookings",
+    "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation."
   },
   "pageSeo": {
     "features": {
@@ -21,16 +21,20 @@
       "description": "Read common Drivest questions about theory preparation, driving test centre practice routes, instructor bookings, parking guidance, subscriptions, privacy, and legal positioning."
     },
     "theory": {
-      "title": "Theory test preparation in 32 languages",
-      "description": "Prepare for the UK driving theory test with theory questions, Highway Code, traffic signs, and fines revision in 32 languages with English cross-check support."
+      "title": "Theory test preparation, mock tests, and road signs in 32 languages",
+      "description": "Prepare for the UK driving theory test with topic quizzes, mock tests, Highway Code, road signs, and fines revision in 32 languages with English cross-check support."
     },
     "centres": {
-      "title": "Driving test centres and practice routes",
-      "description": "Explore Drivest practice around UK driving test centres with reconstructed routes, off-route alerts, offline packs, road feature prompts, and clear legal positioning."
+      "title": "Driving test centres, practice routes, and local rehearsal",
+      "description": "Explore Drivest practice around UK driving test centres with searchable centre selection, reconstructed routes, off-route alerts, offline packs, road feature prompts, and clear legal positioning."
     },
     "instructors": {
       "title": "Find driving instructors and book lessons",
-      "description": "Discover independent driving instructors, compare availability, request lessons, and keep booking and payment visibility inside Drivest."
+      "description": "Discover independent driving instructors, compare availability, request lessons, and keep booking, payment, and Instructor Hub visibility inside Drivest."
+    },
+    "contact": {
+      "title": "Contact, trust, and coverage methodology",
+      "description": "Find Drivest contact details, legal identity references, public coverage methodology notes, and current website support information."
     }
   },
   "ui": {
@@ -55,7 +59,7 @@
   "hero": {
     "positioningLine": "For learner and future learner driver preparation.",
     "headline": "Build theory, lesson, and route confidence before, during, and after learning to drive.",
-    "subhead": "Start theory, Highway Code, traffic signs, and fines preparation early, then move into reconstructed practice routes, instructor discovery, bookings, parking support, and calmer navigation when your stage allows.",
+    "subhead": "Start theory, Highway Code, traffic signs, and fines preparation early, then move into structured local practice routes, instructor discovery, bookings, parking support, and calmer learner-first navigation when your stage allows.",
     "primaryCtas": [
       "Start preparing",
       "Join as instructor"
@@ -65,10 +69,10 @@
       "How Drivest works"
     ],
     "trustLine": "Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.",
-    "coverageLine": "UK test centres currently live with more than 2 routes. Structured practice routes across the UK."
+    "coverageLine": "3,000+ practice routes generated across UK test-centre coverage. Public centre pages only show locations live with more than 2 routes."
   },
   "press": {
-    "oneLiner": "Drivest is built for future learner drivers, learners, instructors, and newer drivers who need theory preparation, practice structure, lesson operations, parking support, and calmer navigation in one UK-focused platform.",
+    "oneLiner": "Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.",
     "usp": [
       "Future learner preparation",
       "Theory in 32 languages",
@@ -110,19 +114,19 @@
         "items": [
           {
             "title": "Theory",
-            "text": "Theory revision remains a first-row home screen module."
+            "text": "Theory revision remains a first-row home screen module with mastery tracking, topic quizzes, mock tests, bookmarks, and wrong-answer review."
           },
           {
             "title": "Practice",
-            "text": "Selected-centre practice routes stay visible as a main module."
+            "text": "Selected-centre practice routes stay visible as a main module with searchable test-centre access."
           },
           {
             "title": "Navigation",
-            "text": "Navigation is available directly from the home screen for calmer journeys."
+            "text": "Navigation is available directly from the home screen with low-stress routing and leave-now or timed trip setup."
           },
           {
             "title": "Find Instructor",
-            "text": "Instructor discovery is a visible primary module, not a buried marketplace extra."
+            "text": "Instructor discovery is a visible primary module, not a buried marketplace extra, and it connects into bookings and availability."
           }
         ]
       },
@@ -144,7 +148,7 @@
           },
           {
             "title": "Fines and Penalties",
-            "text": "Penalty-focused learning is part of the visible explore module set."
+            "text": "Penalty-focused learning is part of the visible explore module set with its own quiz flow."
           }
         ]
       }
@@ -160,16 +164,16 @@
         "bullets": [
           "Begin theory, signs, Highway Code, and fines preparation early before practical lessons start",
           "Choose your stage and preferred language during onboarding",
-          "Study theory content and cross-check in English when needed",
+          "Study theory content with mastery flow, topic quizzes, mock tests, and English cross-checks when needed",
           "Book independent instructors and track lesson status in one app",
-          "Review analytics, confidence, and next-step recommendations"
+          "Review analytics, confidence, resume state, and next-step recommendations"
         ]
       },
       {
         "title": "For instructors",
         "text": "Run a lighter-weight operating hub while staying an independent instructor business.",
         "bullets": [
-          "Create a public profile and publish availability",
+          "Create a public profile and publish availability slots",
           "Accept lesson requests and monitor booking or payment status",
           "Link learners and review progress from Instructor Hub",
           "Work with bookings, reviews, and dispute records in one place"
@@ -341,6 +345,60 @@
       "Simplified Chinese"
     ]
   },
+  "productProof": {
+    "title": "Real product workflows already visible in Drivest",
+    "intro": "These screens show the live product direction already visible in the app across learning, practice, navigation, parking, and instructor operations.",
+    "items": [
+      {
+        "badge": "Theory",
+        "title": "Theory mastery flow",
+        "text": "Theory uses a learn, quiz, and mock sequence with mastery tracking, continue-from-last-lesson, bookmarks, and wrong-answer review tools.",
+        "image": "/assets/app-theory-mastery.jpeg",
+        "alt": "Drivest theory mastery screen showing steps for learn, quiz, and mock with continue from last lesson, topic quiz, and wrong answer tools.",
+        "caption": "Mastery, quizzes, mock tests, bookmarks, and wrong answers"
+      },
+      {
+        "badge": "Practice",
+        "title": "Searchable test-centre practice",
+        "text": "Practical preparation starts from a searchable centre list so learners can jump straight into the selected-centre route layer.",
+        "image": "/assets/app-practice-centres.jpeg",
+        "alt": "Drivest practice screen showing searchable UK driving test centres.",
+        "caption": "Searchable UK test-centre practice list"
+      },
+      {
+        "badge": "Navigation",
+        "title": "Low-stress routing setup",
+        "text": "Navigation exposes low-stress routing directly in trip setup alongside leave-now, depart-at, and arrive-by timing modes.",
+        "image": "/assets/app-navigation-search.jpeg",
+        "alt": "Drivest navigation search screen showing leave now, depart at, arrive by, and low-stress routing toggle.",
+        "caption": "Trip timing controls and low-stress routing"
+      },
+      {
+        "badge": "Parking",
+        "title": "Parking destination flow",
+        "text": "Parking starts from the destination first, then compares nearby options with council plus OSM inputs and a free-first filter.",
+        "image": "/assets/app-parking-destination.jpeg",
+        "alt": "Drivest parking destination screen showing council and OSM sources and a free-first filter.",
+        "caption": "Destination-first parking search with source cues"
+      },
+      {
+        "badge": "Languages",
+        "title": "Welsh and English cross-check proof",
+        "text": "The app already shows multilingual theory and home-screen surfaces, including Welsh and English cross-check behaviour inside the same learning journey.",
+        "image": "/assets/app-theory-quiz-welsh.jpeg",
+        "alt": "Drivest Welsh theory quiz screen with language switcher.",
+        "caption": "Welsh theory flow with language switching visible"
+      },
+      {
+        "badge": "Instructor Hub",
+        "title": "Instructor operations and scheduling",
+        "text": "Instructor Hub already covers linked learners, bookings, progress, published availability, and a calendar-based slot publishing workflow.",
+        "image": "/assets/app-instructor-hub.jpeg",
+        "alt": "Drivest Instructor Hub home screen showing learners, bookings, and progress actions.",
+        "caption": "Instructor Hub, bookings, and availability workflow"
+      }
+    ]
+  },
   "featureGroups": [
     {
       "title": "Learn",
@@ -361,6 +419,14 @@
         {
           "title": "Fines and Penalties learning",
           "text": "Work through educational content that explains penalties, mistakes, and the rules behind them."
+        },
+        {
+          "title": "Topic quizzes and mock tests",
+          "text": "Move from short focused quizzes into mock-test mode inside the same theory journey instead of leaving the app flow."
+        },
+        {
+          "title": "Bookmarks and wrong-answer review",
+          "text": "Return to saved questions and review mistakes directly from the theory surface."
         },
         {
           "title": "Hazard Perception",
@@ -396,7 +462,7 @@
       "items": [
         {
           "title": "Low-stress route choice",
-          "text": "Where alternatives exist, Drivest can prefer calmer navigation options for lower-confidence drivers."
+          "text": "Where alternatives exist, Drivest can prefer calmer navigation options for lower-confidence drivers, with a visible low-stress routing toggle in trip setup."
         },
         {
           "title": "Voice modes",
@@ -404,7 +470,7 @@
         },
         {
           "title": "Parking companion",
-          "text": "Search parking near the destination, review source signals, and choose options before arrival."
+          "text": "Search parking near the destination, review council and map-source signals, and choose options before arrival."
         },
         {
           "title": "Arrival cues",
@@ -423,6 +489,10 @@
         {
           "title": "Instructor Hub",
           "text": "Independent instructors can manage linked learners, booking operations, availability, and readiness views."
+        },
+        {
+          "title": "Availability publishing",
+          "text": "Instructors can publish dated lesson slots with duration controls instead of manually negotiating every booking."
         },
         {
           "title": "Bookings and cancellations",
@@ -502,6 +572,14 @@
             {
               "title": "Traffic signs and road signs",
               "text": "Use sign-focused revision to strengthen road-reading before lessons and before test day."
+            },
+            {
+              "title": "Topic quizzes and mock tests",
+              "text": "Move from shorter focused quizzes into mock-test mode without breaking the theory learning sequence."
+            },
+            {
+              "title": "Bookmarks and wrong answers",
+              "text": "Return to saved questions and review mistakes directly from the theory tools area."
             },
             {
               "title": "Fines and penalties",
@@ -602,7 +680,7 @@
             },
             {
               "title": "Parking before arrival",
-              "text": "Check nearby parking options and arrival cues while still confirming the live restrictions on street."
+              "text": "Check nearby parking options, destination flow, and arrival cues while still confirming the live restrictions on street."
             },
             {
               "title": "Coverage across the UK",
@@ -780,6 +858,319 @@
         ]
       }
     }
+  },
+  "contactPage": {
+    "title": "Contact, trust, and coverage methodology",
+    "intro": "Use this page for support contact, public trust signals, and the website methodology behind current route-coverage claims.",
+    "cards": [
+      {
+        "title": "Support contact",
+        "text": "Support, privacy requests, platform questions, and route-coverage queries can be sent directly to Drivest.",
+        "bullets": [
+          "Email: admin@drivest.uk",
+          "Support, access, and public-site questions are handled through the same address",
+          "Data access or deletion requests may require identity verification"
+        ]
+      },
+      {
+        "title": "Company and legal identity",
+        "text": "The website already identifies the product as Drivest and refers to Drivest Limited in public-facing material.",
+        "bullets": [
+          "Terms and Privacy pages are published on the same domain",
+          "FAQ and legal wording explain the independent-product position clearly",
+          "Independent instructors remain responsible for their own lessons, licences, insurance, and legal compliance"
+        ]
+      },
+      {
+        "title": "Current website and app status",
+        "text": "The public website is live and crawlable. Product access, rollout timing, and partnership questions can be requested directly.",
+        "bullets": [
+          "Website pages reflect theory, practice, navigation, parking, and instructor workflows already visible in the app",
+          "Current app availability or launch questions can be directed to support",
+          "The site keeps legal and advisory wording visible around real-world driving and parking"
+        ]
+      },
+      {
+        "title": "Coverage methodology",
+        "text": "Current route-coverage claims come from the public Drivest route-corpus export used to generate the centre directory and centre pages.",
+        "bullets": [
+          "Only centres with more than 2 routes are included in the public visibility layer",
+          "Temporary, backup, broken, and duplicate centre variants are excluded",
+          "Coverage claims should be refreshed whenever the route corpus changes so search engines and users see the current public layer"
+        ]
+      }
+    ]
+  },
+  "seoLandingPages": {
+    "theoryIntentPages": [
+      {
+        "slug": "mock-theory-test",
+        "title": "Mock theory test practice in 32 languages",
+        "description": "Use Drivest for mock theory test practice with language choice, English cross-checks, and a broader learn-to-quiz-to-mock flow before practical lessons begin.",
+        "eyebrow": "Theory intent page",
+        "intro": "Learners often search for mock theory tests on their own. Drivest keeps mock testing connected to the same theory journey as topic learning, bookmarks, wrong-answer review, and English cross-check support.",
+        "summaryTitle": "Mock tests sit inside a fuller theory flow",
+        "summaryText": "Drivest lets users learn first, run shorter quizzes, then move into mock tests when they are ready instead of treating revision as one flat question bank.",
+        "highlights": [
+          "Mock tests sit alongside topic quizzes and theory mastery",
+          "Users can cross-check the English wording on the same question",
+          "Future learners can start before practical lessons begin"
+        ],
+        "modules": [
+          {
+            "title": "Learn, quiz, then mock",
+            "text": "Move through a clear theory sequence instead of guessing when to switch into test-style practice."
+          },
+          {
+            "title": "Bookmarks and wrong answers",
+            "text": "Return to saved questions and mistakes directly from the same theory surface."
+          },
+          {
+            "title": "Preferred language with English cross-check",
+            "text": "Study in the language you understand best, then open English on the same question when you want certainty."
+          }
+        ],
+        "image": "/assets/app-theory-mastery.jpeg",
+        "imageAlt": "Drivest theory mastery screen showing learn, quiz, and mock steps.",
+        "imageCaption": "Theory mastery with quiz and mock progression"
+      },
+      {
+        "slug": "hazard-perception-test",
+        "title": "Hazard perception test preparation",
+        "description": "Explore Drivest's broader theory preparation journey, including visible Hazard Perception positioning alongside theory, road signs, Highway Code, and fines learning.",
+        "eyebrow": "Theory intent page",
+        "intro": "Hazard Perception is a separate learner intent from theory questions, but it sits inside the same confidence-building journey. Drivest already makes that module visible on the home screen while the broader revision stack is live today.",
+        "summaryTitle": "Hazard Perception is part of the wider revision journey",
+        "summaryText": "The website can target hazard-perception demand without pretending the whole product is only one module. Drivest keeps the module visible and connected to the rest of learner preparation.",
+        "highlights": [
+          "Hazard Perception is visible from the home module surface",
+          "Theory, signs, Highway Code, and penalties prep are already live",
+          "Learners can build earlier theory confidence before practical lessons"
+        ],
+        "modules": [
+          {
+            "title": "Visible module journey",
+            "text": "Hazard Perception is already signposted as a distinct upcoming module in the live product surface."
+          },
+          {
+            "title": "Linked revision context",
+            "text": "Learners can stay inside one app flow instead of switching between unrelated revision tools."
+          },
+          {
+            "title": "Stage-based preparation",
+            "text": "Future learners can begin earlier, then move into practical preparation when their stage allows."
+          }
+        ],
+        "image": "/assets/app-home-learner.jpeg",
+        "imageAlt": "Drivest learner home screen showing Hazard Perception in the explore modules area.",
+        "imageCaption": "Hazard Perception visible on the learner home screen"
+      },
+      {
+        "slug": "road-signs-test",
+        "title": "Road signs test and traffic signs revision",
+        "description": "Revise road signs inside Drivest with traffic sign learning, theory support, and multilingual preparation linked to the wider learner journey.",
+        "eyebrow": "Theory intent page",
+        "intro": "Road-sign searches deserve their own page because many learners do not start with full theory sessions. Drivest keeps traffic-sign study visible as its own module while still connecting it to theory, Highway Code, and practical preparation.",
+        "summaryTitle": "Road signs are not buried under general theory copy",
+        "summaryText": "Traffic-sign revision is visible from the app home screen and sits next to theory, Highway Code, and fines learning.",
+        "highlights": [
+          "Dedicated traffic-sign revision module",
+          "Road-reading confidence before lessons and before test day",
+          "Connected to the same multilingual theory journey"
+        ],
+        "modules": [
+          {
+            "title": "Traffic signs as its own module",
+            "text": "Keep sign meaning and recognition visible instead of treating it as a hidden subsection."
+          },
+          {
+            "title": "Theory-linked preparation",
+            "text": "Use road-sign learning as part of the same wider revision path as quizzes and mock tests."
+          },
+          {
+            "title": "Language choice and cross-checking",
+            "text": "Preferred-language study still keeps English available when wording needs to be compared."
+          }
+        ],
+        "image": "/assets/app-home-learner.jpeg",
+        "imageAlt": "Drivest home screen showing Traffic Signs and Highway Code modules.",
+        "imageCaption": "Traffic Signs stays visible from the app home surface"
+      },
+      {
+        "slug": "highway-code-test",
+        "title": "Highway Code test and revision support",
+        "description": "Use Drivest for Highway Code revision alongside theory questions, road signs, and multilingual preparation before lessons and before test day.",
+        "eyebrow": "Theory intent page",
+        "intro": "Highway Code searches are usually specific, not generic. Drivest treats Highway Code as its own revision surface inside a broader theory journey that also covers road signs, quizzes, mock tests, and future-learner preparation.",
+        "summaryTitle": "Highway Code revision stays visible in the app",
+        "summaryText": "Instead of forcing learners into one undifferentiated theory tab, Drivest keeps Highway Code study visible from the main module surface.",
+        "highlights": [
+          "Highway Code appears as its own module",
+          "Theory questions, signs, and penalties stay connected",
+          "Preparation can start before practical lessons begin"
+        ],
+        "modules": [
+          {
+            "title": "Visible Highway Code module",
+            "text": "Drivest gives Highway Code study a clear home inside the learner product surface."
+          },
+          {
+            "title": "Revision with practical context",
+            "text": "Users can move from theory knowledge into practice routes, navigation, and instructor search later."
+          },
+          {
+            "title": "Multilingual preparation",
+            "text": "Language choice lowers friction while English remains available for comparison."
+          }
+        ],
+        "image": "/assets/app-highway-quiz.jpeg",
+        "imageAlt": "Drivest Highway quick quiz screen.",
+        "imageCaption": "Highway quick-quiz flow inside the learning stack"
+      },
+      {
+        "slug": "driving-theory-test-in-urdu",
+        "title": "Driving theory test preparation in Urdu",
+        "description": "Prepare for the UK driving theory test in Urdu with Drivest's multilingual theory flow and English cross-check support on the same question.",
+        "eyebrow": "Language-specific theory page",
+        "intro": "Urdu is one of the supported language options in Drivest's multilingual theory journey. The goal is to reduce language friction without removing the ability to compare the English wording used in the UK test environment.",
+        "summaryTitle": "Preferred-language study with English available when needed",
+        "summaryText": "Learners can begin in Urdu, build theory confidence earlier, and still open English on the same question when they want to compare wording before answering.",
+        "highlights": [
+          "Urdu is part of the current supported language set",
+          "English can be opened on the same question for comparison",
+          "Theory, signs, Highway Code, and fines stay in one flow"
+        ],
+        "modules": [
+          {
+            "title": "Language-first theory access",
+            "text": "Start in the language that makes the question easier to understand instead of delaying preparation."
+          },
+          {
+            "title": "English cross-check",
+            "text": "Compare the English wording on the same question before you commit to an answer."
+          },
+          {
+            "title": "Move on when ready",
+            "text": "Theory preparation can lead into practice routes, instructor search, and navigation later in the learner journey."
+          }
+        ],
+        "image": "/assets/app-theory-chinese.jpeg",
+        "imageAlt": "Drivest multilingual theory question screen with English option visible.",
+        "imageCaption": "Same-question English cross-check in the multilingual theory flow"
+      },
+      {
+        "slug": "driving-theory-test-in-arabic",
+        "title": "Driving theory test preparation in Arabic",
+        "description": "Prepare for the UK driving theory test in Arabic with Drivest's multilingual theory flow, translated home surface, and English cross-check support.",
+        "eyebrow": "Language-specific theory page",
+        "intro": "Arabic is part of Drivest's supported theory language set. The learner flow is designed so people can start in a preferred language, then compare the same question in English when they want extra certainty.",
+        "summaryTitle": "Arabic support is visible in the live product surface",
+        "summaryText": "The app already shows translated home-surface proof while theory keeps English available as a same-question cross-check.",
+        "highlights": [
+          "Arabic is included in the supported language set",
+          "English cross-check support remains available",
+          "Translated surfaces are already visible in the current app"
+        ],
+        "modules": [
+          {
+            "title": "Translated home and theory flow",
+            "text": "Learners can enter a product surface that already reflects multilingual positioning."
+          },
+          {
+            "title": "Same-question comparison",
+            "text": "Open English on the same question when you want to check UK wording directly."
+          },
+          {
+            "title": "Future learner preparation",
+            "text": "Early theory support means practical lessons can focus more on driving decisions."
+          }
+        ],
+        "image": "/assets/app-home-arabic.jpeg",
+        "imageAlt": "Drivest home screen in Arabic.",
+        "imageCaption": "Arabic-translated learner home screen"
+      },
+      {
+        "slug": "driving-theory-test-in-welsh",
+        "title": "Driving theory test preparation in Welsh",
+        "description": "Prepare for the UK driving theory test in Welsh with Drivest's multilingual learner flow and English cross-check support on the same screen.",
+        "eyebrow": "Language-specific theory page",
+        "intro": "Welsh is a strong local proof point for Drivest because the app already shows Welsh home and theory surfaces. This page gives that learner intent a direct crawlable destination.",
+        "summaryTitle": "Welsh product proof is already visible",
+        "summaryText": "Drivest already shows Welsh-language theory and home-screen proof, while still letting users switch back to English (UK) inside the same flow.",
+        "highlights": [
+          "Welsh home and theory screens are already visible in the app",
+          "English (UK) remains available inside the same session",
+          "Theory preparation still connects to practice and bookings later"
+        ],
+        "modules": [
+          {
+            "title": "Welsh learner home surface",
+            "text": "Core learner modules can be shown in Welsh rather than only in generic English copy."
+          },
+          {
+            "title": "Welsh theory with English toggle",
+            "text": "The theory flow can switch between Welsh and English (UK) inside the same screen."
+          },
+          {
+            "title": "Connected learner journey",
+            "text": "Theory language support still leads into the same practice, navigation, and instructor path."
+          }
+        ],
+        "image": "/assets/app-theory-quiz-welsh.jpeg",
+        "imageAlt": "Drivest Welsh theory quiz screen with Cymraeg and English options.",
+        "imageCaption": "Welsh theory screen with English toggle"
+      }
+    ],
+    "centreRegionPages": [
+      {
+        "slug": "london",
+        "title": "London driving test centres and practice routes",
+        "description": "Browse London driving test centres currently live in Drivest and compare reconstructed practice-route coverage around each selected centre.",
+        "eyebrow": "Regional coverage hub",
+        "intro": "London searches need a broader hub as well as single-centre pages. This page groups the London centres currently visible in the public Drivest route layer.",
+        "slugIncludes": [
+          "london"
+        ],
+        "includeIds": [
+          "tottenham"
+        ],
+        "highlights": [
+          "Compare London centres that currently meet the public route threshold",
+          "Move from city-level search into the exact centre page you need",
+          "Keep theory, instructors, pricing, and route-practice links connected"
+        ]
+      },
+      {
+        "slug": "manchester",
+        "title": "Manchester driving test centres and practice routes",
+        "description": "Browse Manchester-area driving test centres currently live in Drivest and compare reconstructed practice-route coverage around each selected centre.",
+        "eyebrow": "Regional coverage hub",
+        "intro": "Manchester searches are broader than one centre page. This hub groups the Manchester-area centres currently visible in the public Drivest route layer.",
+        "slugIncludes": [
+          "manchester"
+        ],
+        "highlights": [
+          "Group Manchester-area centres under one crawlable hub",
+          "Compare route-count depth before jumping into an individual centre page",
+          "Keep surrounding learner-intent pages one click away"
+        ]
+      },
+      {
+        "slug": "birmingham",
+        "title": "Birmingham driving test centres and practice routes",
+        "description": "Browse Birmingham driving test centres currently live in Drivest and compare reconstructed practice-route coverage around each selected centre.",
+        "eyebrow": "Regional coverage hub",
+        "intro": "Birmingham searches also need a city-level entry point. This page groups the Birmingham centres currently visible in the public Drivest route layer.",
+        "slugStartsWith": [
+          "birmingham"
+        ],
+        "highlights": [
+          "See which Birmingham centres are currently public in Drivest",
+          "Compare route counts, average route length, and average duration at a glance",
+          "Link city-level search intent into centre-detail practice pages"
+        ]
+      }
+    ]
   },
   "liveCoverage": {
     "title": "Centres currently live in Drivest",
@@ -1013,6 +1404,10 @@
       {
         "label": "Driving Instructors",
         "url": "/driving-instructors"
+      },
+      {
+        "label": "Contact",
+        "url": "/contact"
       },
       {
         "label": "Terms and Conditions",

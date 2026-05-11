@@ -15,6 +15,7 @@
   <meta property="og:image" content="https://www.drivest.uk/assets/drivest-wordmark-preview.png" />
   <meta property="og:image:alt" content="Drivest wordmark preview" />
   <meta property="og:site_name" content="Drivest" />
+  <meta name="application-name" content="Drivest" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How Drivest works | Drivest" />
   <meta name="twitter:description" content="See how Drivest works for future learners, learner drivers, and instructors with role-based onboarding, language setup, practice routes, and booking flows." />
@@ -22,6 +23,7 @@
   <meta name="theme-color" content="#111827" />
   <link rel="icon" href="/assets/favicon-wheel.ico" />
   <link rel="apple-touch-icon" href="/assets/favicon-wheel.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
@@ -37,7 +39,20 @@
     "@type": "ImageObject",
     "url": "https://www.drivest.uk/assets/drivest-wordmark-preview.png"
   },
-  "email": "admin@drivest.uk"
+  "email": "admin@drivest.uk",
+  "areaServed": "GB",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "admin@drivest.uk",
+      "areaServed": "GB",
+      "availableLanguage": [
+        "en",
+        "cy"
+      ]
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
@@ -47,7 +62,7 @@
   "@id": "https://www.drivest.uk/#website",
   "url": "https://www.drivest.uk/",
   "name": "Drivest",
-  "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation.",
+  "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation.",
   "publisher": {
     "@id": "https://www.drivest.uk/#organization"
   },
@@ -79,7 +94,7 @@
   "name": "Drivest",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS, Android",
-  "description": "Prepare for learning to drive with theory in 32 languages, Highway Code and traffic signs revision, reconstructed practice routes around UK driving test centres, instructor discovery, and calmer navigation.",
+  "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation.",
   "featureList": [
     "Future learner preparation",
     "Theory in 32 languages",
@@ -167,7 +182,7 @@
               <p>Future learners and learners use the same preparation path, while instructors follow a separate operating flow. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.</p>
             </div>
             <div class="feature-photo">
-              <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80" alt="Learner and instructor onboarding" loading="lazy" />
+              <img src="/assets/app-home-learner.jpeg" alt="Drivest learner home screen" loading="lazy" />
             </div>
           </div>
         </section>
@@ -222,13 +237,21 @@
                 
         <figure class="phone-shot phone-shot-proof phone-shot-proof-sm">
           <div class="phone-shot-frame">
-            <img src="/assets/app-home-arabic.jpeg" alt="Arabic Drivest home screen showing the translated module surface." loading="lazy" />
+            <img src="/assets/app-home-welsh.jpeg" alt="Welsh Drivest home screen showing translated module labels." loading="lazy" />
           </div>
-          <figcaption class="phone-shot-caption">Home screen translated into Arabic</figcaption>
+          <figcaption class="phone-shot-caption">Welsh-translated home screen</figcaption>
+        </figure>
+      
+                
+        <figure class="phone-shot phone-shot-proof phone-shot-proof-sm">
+          <div class="phone-shot-frame">
+            <img src="/assets/app-theory-quiz-english.jpeg" alt="Theory question screen with English UK available beside Welsh." loading="lazy" />
+          </div>
+          <figcaption class="phone-shot-caption">English cross-check inside theory flow</figcaption>
         </figure>
       
                 <div class="language-proof-note">
-                  Users can study in a preferred language, then open English (UK) on the same question to compare wording before answering.
+                  Users can study in a preferred language, including Welsh and Arabic, then open English (UK) on the same question to compare wording before answering.
                 </div>
               </div>
             </div>
@@ -272,13 +295,13 @@
               <article class="card reveal-item">
                 <h3>For future learners and learners</h3>
                 <p>Start preparing before practical lessons begin, then move into practice, instructor booking, secure lesson payments, and calmer navigation after your test.</p>
-                <ul><li>Begin theory, signs, Highway Code, and fines preparation early before practical lessons start</li><li>Choose your stage and preferred language during onboarding</li><li>Study theory content and cross-check in English when needed</li><li>Book independent instructors and track lesson status in one app</li><li>Review analytics, confidence, and next-step recommendations</li></ul>
+                <ul><li>Begin theory, signs, Highway Code, and fines preparation early before practical lessons start</li><li>Choose your stage and preferred language during onboarding</li><li>Study theory content with mastery flow, topic quizzes, mock tests, and English cross-checks when needed</li><li>Book independent instructors and track lesson status in one app</li><li>Review analytics, confidence, resume state, and next-step recommendations</li></ul>
               </article>
             
               <article class="card reveal-item">
                 <h3>For instructors</h3>
                 <p>Run a lighter-weight operating hub while staying an independent instructor business.</p>
-                <ul><li>Create a public profile and publish availability</li><li>Accept lesson requests and monitor booking or payment status</li><li>Link learners and review progress from Instructor Hub</li><li>Work with bookings, reviews, and dispute records in one place</li></ul>
+                <ul><li>Create a public profile and publish availability slots</li><li>Accept lesson requests and monitor booking or payment status</li><li>Link learners and review progress from Instructor Hub</li><li>Work with bookings, reviews, and dispute records in one place</li></ul>
               </article>
             
           </div>
@@ -303,7 +326,7 @@
                 <a href="/pricing">Pricing</a>
                 <a href="/start">Getting Started</a>
                 <a href="/faq">FAQ</a>
-                <a href="/theory-test-preparation">Theory Test Preparation</a><a href="/driving-test-centres">Driving Test Centres</a><a href="/driving-instructors">Driving Instructors</a><a href="/terms">Terms and Conditions</a><a href="/privacy">Privacy Policy</a>
+                <a href="/theory-test-preparation">Theory Test Preparation</a><a href="/driving-test-centres">Driving Test Centres</a><a href="/driving-instructors">Driving Instructors</a><a href="/contact">Contact</a><a href="/terms">Terms and Conditions</a><a href="/privacy">Privacy Policy</a>
               </div>
             </div>
             <div class="footer-col">
