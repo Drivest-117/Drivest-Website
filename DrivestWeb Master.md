@@ -533,6 +533,7 @@ At minimum, keep these pairs aligned:
 - top-aligned the desktop product-proof and safety-proof cards and reduced their phone rail width so lower sections stop showing giant empty text columns
 - tightened the homepage hero for shorter desktop viewports by shrinking the phone stack and reducing first-fold vertical load
 - simplified the shorter-desktop homepage hero further by dropping the overlapping secondary phone and compressing proof-card density
+- compressed the shorter-desktop homepage hero again with smaller headline scale, smaller device rail, and hidden pill row to expose more of the first fold
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
