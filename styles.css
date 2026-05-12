@@ -1934,25 +1934,55 @@ small {
   }
 
   body[data-page="home"] .hero-showcase-grid {
-    grid-template-columns: minmax(0, 0.82fr) minmax(300px, 1fr);
-    gap: 16px;
+    grid-template-columns: minmax(210px, 248px) minmax(300px, 1fr);
+    gap: 14px;
+    align-items: start;
   }
 
   body[data-page="home"] .hero-phone-cluster {
-    min-height: 500px;
-    padding: 0 44px 0 0;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   body[data-page="home"] .phone-shot-hero {
-    max-width: 248px;
+    max-width: 228px;
   }
 
   body[data-page="home"] .phone-shot-theory {
-    max-width: 168px;
+    max-width: 154px;
+  }
+
+  body[data-page="home"] .hero-phone-float {
+    display: none;
+  }
+
+  body[data-page="home"] .phone-shot-caption {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  body[data-page="home"] .hero-proof-grid {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  body[data-page="home"] .hero-proof-card {
+    padding: 14px;
+  }
+
+  body[data-page="home"] .hero-proof-card strong {
+    font-size: 17px;
+  }
+
+  body[data-page="home"] .hero-proof-card p {
+    font-size: 13px;
   }
 
   body[data-page="home"] .hero-story-card {
-    padding: 16px;
+    padding: 14px;
   }
 
   body[data-page="home"] .hero-story-card h3 {
