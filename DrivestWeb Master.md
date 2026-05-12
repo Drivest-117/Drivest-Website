@@ -530,6 +530,7 @@ At minimum, keep these pairs aligned:
 - rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark, with size-specific transparent favicons for tabs and white-tile icons for touch/PWA use
 - stopped above-the-fold reveal fades from washing out the first viewport and top-aligned the desktop homepage hero
 - widened the homepage main container on large desktops and trimmed the hero phone stack so the 2K-width first fold breathes properly
+- top-aligned the desktop product-proof and safety-proof cards and reduced their phone rail width so lower sections stop showing giant empty text columns
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 

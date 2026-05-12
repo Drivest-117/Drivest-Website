@@ -1016,25 +1016,27 @@ p {
 
 .product-proof-card {
   display: grid;
-  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
+  grid-template-columns: minmax(150px, 188px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
   min-width: 0;
   overflow: hidden;
 }
 
 .product-proof-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
+  align-items: start;
 }
 
 .product-proof-phone {
-  max-width: 220px;
+  justify-self: center;
+  max-width: 188px;
 }
 
 .product-proof-copy {
   display: grid;
   gap: 8px;
+  align-content: start;
   min-width: 0;
 }
 
@@ -1138,27 +1140,28 @@ p {
 
 .safety-proof-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
+  align-items: start;
   margin-bottom: 16px;
 }
 
 .safety-proof-card {
   display: grid;
-  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
+  grid-template-columns: minmax(150px, 188px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
   min-width: 0;
   overflow: hidden;
 }
 
 .safety-proof-phone {
   justify-self: center;
-  max-width: 220px;
+  max-width: 188px;
 }
 
 .safety-proof-copy {
   display: grid;
   gap: 8px;
+  align-content: start;
   min-width: 0;
 }
 
