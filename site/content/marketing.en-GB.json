@@ -1183,10 +1183,20 @@
   },
   "pricing": {
     "title": "Pricing aligned to the app",
+    "intro": "Start free for theory and onboarding, add monthly centre practice when lessons begin, or move into annual navigation once driving is active.",
+    "comparePills": [
+      "Start free",
+      "Practice monthly",
+      "Navigation yearly",
+      "Bundle when you need both"
+    ],
     "plans": [
       {
         "name": "Free Learning",
         "price": "\u00a30",
+        "tag": "Start here",
+        "billing": "No payment required",
+        "summary": "Best for future learners and theory-first preparation.",
         "bullets": [
           "Core theory learning and onboarding for future learners and current learners",
           "Language selection with English cross-check support",
@@ -1199,6 +1209,9 @@
       {
         "name": "Selected-Centre Practice",
         "price": "\u00a312.99 / month",
+        "tag": "Monthly",
+        "billing": "Recurring while active",
+        "summary": "Best for learners repeating routes around one chosen centre.",
         "bullets": [
           "1 selected test centre",
           "Reconstructed practice routes and off-route alerts",
@@ -1211,6 +1224,9 @@
       {
         "name": "Navigation",
         "price": "\u00a319.99 / year",
+        "tag": "Yearly",
+        "billing": "12-month access",
+        "summary": "Best for newer drivers who need calmer ongoing guidance.",
         "subLine": "12 months of calmer navigation support for newer drivers.",
         "bullets": [
           "Low-stress route choice and voice modes",
@@ -1224,6 +1240,10 @@
       {
         "name": "Annual Bundle",
         "price": "\u00a329.99 / year",
+        "tag": "Best value",
+        "billing": "12 months navigation + 1 month practice",
+        "summary": "Best when you want navigation now and a short centre-practice boost.",
+        "featured": true,
         "subLine": "12 months of navigation plus 1 month of selected-centre practice routes.",
         "bullets": [
           "Navigation access for 12 months",

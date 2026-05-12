@@ -276,24 +276,23 @@ function renderHome(m) {
         <div class="hero-copy">
           ${m.hero.positioningLine ? `<p class="eyebrow">${escapeHtml(m.hero.positioningLine)}</p>` : ""}
           <h1>${escapeHtml(m.hero.headline)}</h1>
-          <p>${escapeHtml(m.hero.subhead)}</p>
-          <div class="btn-row">
+          <p class="hero-lead">${escapeHtml(m.hero.subhead)}</p>
+          <div class="btn-row hero-primary-actions">
             ${button(m.hero.primaryCtas[0], startHref("learner"), "primary")}
             ${button(m.hero.primaryCtas[1], startHref("instructor"), "secondary")}
           </div>
-          <div class="btn-row">
+          <div class="btn-row hero-secondary-actions">
             ${button(m.hero.secondaryCtas[0], PATHS.pricing, "secondary")}
             ${button(m.hero.secondaryCtas[1], "#how-it-works", "secondary")}
           </div>
-          <p class="trust">${escapeHtml(m.hero.trustLine)}</p>
-          ${coverageLineText(m) ? `<p class="trust">${escapeHtml(coverageLineText(m))}</p>` : ""}
+          ${renderHeroProofGrid(m)}
+          <div class="hero-trust-stack">
+            <p class="trust hero-trust-primary">${escapeHtml(m.hero.trustLine)}</p>
+            ${coverageLineText(m) ? `<p class="trust hero-trust-secondary">${escapeHtml(coverageLineText(m))}</p>` : ""}
+          </div>
           <div class="pill-row">${renderPills(m.press.usp)}</div>
         </div>
         <div class="hero-visual reveal-item">${renderHeroShowcase(m)}</div>
-      </div>
-      <div class="panel reveal-item">
-        <p class="panel-title">${escapeHtml(m.press.oneLiner)}</p>
-        ${bulletList(m.press.usp)}
       </div>
     </section>
 
@@ -457,29 +456,40 @@ function renderStart(m) {
 function renderPricing(m) {
   const pricingTitle = m.pageSeo?.pricing?.title || m.pricing.title;
   return `
-    <section class="section reveal feature-hero">
-      <div class="feature-hero-grid">
-        <div>
+    <section class="section reveal feature-hero pricing-hero">
+      <div class="feature-hero-grid pricing-hero-grid">
+        <div class="pricing-hero-copy">
+          <p class="eyebrow">Free first, upgrade by stage</p>
           <h1>${escapeHtml(pricingTitle)}</h1>
-          <p>${escapeHtml(m.pricing.disclaimer)}</p>
+          <p class="hero-lead">${escapeHtml(m.pricing.intro || m.pricing.disclaimer)}</p>
+          ${m.pricing.comparePills?.length ? `<div class="pill-row pricing-pill-row">${renderPills(m.pricing.comparePills)}</div>` : ""}
+          <p class="trust hero-trust-secondary">${escapeHtml(m.pricing.disclaimer)}</p>
         </div>
-        <div class="feature-photo">
-          <img src="${PHOTO_URLS.appNavigationOverview}" alt="Drivest navigation and parking screen" loading="lazy" />
+        <div class="pricing-hero-side reveal-item">
+          ${renderPricingSummaryPanel(m.pricing)}
         </div>
       </div>
     </section>
 
     <section class="section reveal">
-      <div class="grid three-up">
+      <div class="pricing-grid">
         ${m.pricing.plans
           .map(
             (p) => `
-          <article class="card reveal-item">
-            <h3>${escapeHtml(p.name)}</h3>
+          <article class="card reveal-item price-card${p.featured ? " price-card-featured" : ""}">
+            <div class="price-card-top">
+              <div>
+                ${p.tag ? `<p class="price-plan-tag">${escapeHtml(p.tag)}</p>` : ""}
+                <h3>${escapeHtml(p.name)}</h3>
+              </div>
+              ${p.featured ? `<span class="price-featured-chip">Recommended</span>` : ""}
+            </div>
             <p class="price">${escapeHtml(p.price)}</p>
-            ${p.subLine ? `<p>${escapeHtml(p.subLine)}</p>` : ""}
+            ${p.billing ? `<p class="price-billing">${escapeHtml(p.billing)}</p>` : ""}
+            ${p.summary ? `<p class="price-summary">${escapeHtml(p.summary)}</p>` : ""}
+            ${p.subLine ? `<p class="price-subline">${escapeHtml(p.subLine)}</p>` : ""}
             ${bulletList(p.bullets)}
-            <div class="btn-row">
+            <div class="btn-row price-card-actions">
               ${button(p.cta, p.href || startHref("learner"), "primary")}
               ${p.secondaryCta ? button(p.secondaryCta, p.secondaryHref || PATHS.features, "secondary") : ""}
             </div>
@@ -1241,6 +1251,53 @@ function renderShowcaseStat(value, label) {
     <div class="hero-stat-card">
       <strong>${escapeHtml(value)}</strong>
       <span>${escapeHtml(label)}</span>
+    </div>
+  `;
+}
+
+function renderHeroProofGrid(m) {
+  const summary = coverageSummary(m);
+  const thresholdText = summary ? `Only centres with more than ${summary.threshold} routes appear in the live public layer.` : m.hero.coverageLine || "";
+  const coverageHeadline = summary
+    ? `${formatNumber(summary.centres)} live centres · ${formatNumber(summary.routes)} routes`
+    : coverageLineText(m);
+
+  return `
+    <div class="hero-proof-grid">
+      <article class="hero-proof-card">
+        <span class="hero-proof-label">Live coverage</span>
+        <strong>${escapeHtml(coverageHeadline)}</strong>
+        <p>${escapeHtml(thresholdText)}</p>
+      </article>
+      <article class="hero-proof-card hero-proof-card-accent">
+        <span class="hero-proof-label">Platform scope</span>
+        <strong>One learner platform from theory to independent driving</strong>
+        <p>${escapeHtml(m.press.oneLiner)}</p>
+      </article>
+    </div>
+  `;
+}
+
+function renderPricingSummaryPanel(pricing) {
+  if (!pricing?.plans?.length) return "";
+  return `
+    <div class="panel pricing-summary-panel">
+      <p class="panel-title">How the plans step up</p>
+      <div class="pricing-summary-stack">
+        ${pricing.plans
+          .map(
+            (plan) => `
+          <div class="pricing-summary-row${plan.featured ? " pricing-summary-row-featured" : ""}">
+            <div>
+              <strong>${escapeHtml(plan.name)}</strong>
+              <p>${escapeHtml(plan.summary || plan.subLine || "")}</p>
+            </div>
+            <span>${escapeHtml(plan.price)}</span>
+          </div>
+        `
+          )
+          .join("")}
+      </div>
     </div>
   `;
 }
