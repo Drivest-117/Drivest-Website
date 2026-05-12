@@ -871,21 +871,58 @@ p {
 
 .proof-carousel-nav {
   flex: 0 0 auto;
-  min-width: 76px;
-  min-height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: linear-gradient(180deg, #fff, #f7f8fb);
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.01em;
   cursor: pointer;
+  box-shadow: 0 8px 18px rgba(17, 26, 44, 0.08);
 }
 
 .proof-carousel-nav:disabled {
-  opacity: 0.45;
+  opacity: 0.38;
+  box-shadow: none;
   cursor: default;
+}
+
+.proof-carousel-meta {
+  display: grid;
+  gap: 10px;
+  flex: 1 1 auto;
+  justify-items: center;
+}
+
+.proof-carousel-status {
+  display: inline-grid;
+  gap: 4px;
+  justify-items: center;
+  min-width: min(100%, 260px);
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 100, 26, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(255, 188, 121, 0.18), transparent 60%),
+    #fff7f2;
+}
+
+.proof-carousel-count {
+  color: var(--brand-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.proof-carousel-title {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .proof-carousel-dots {
@@ -893,7 +930,6 @@ p {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  flex: 1 1 auto;
 }
 
 .proof-carousel-dot {
@@ -1581,7 +1617,9 @@ small {
   }
 
   .proof-carousel-controls {
-    display: flex;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 46px;
+    align-items: center;
   }
 
   .proof-carousel-track.product-proof-grid,

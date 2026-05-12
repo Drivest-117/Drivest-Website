@@ -611,29 +611,37 @@ function renderProofCarousel(items, config) {
       ${total > 1 ? `
         <div class="proof-carousel-controls reveal-item">
           <button type="button" class="proof-carousel-nav" data-carousel-prev aria-controls="${escapeAttr(idPrefix)}-track" aria-label="Show previous ${escapeAttr(label.toLowerCase())} card">
-            Prev
+            <span aria-hidden="true">&#8592;</span>
+            <span class="sr-only">Previous</span>
           </button>
-          <div class="proof-carousel-dots" aria-label="${escapeAttr(label)} slide navigation">
-            ${items
-              .map(
-                (_, index) => `
-              <button
-                type="button"
-                class="proof-carousel-dot${index === 0 ? " active" : ""}"
-                data-carousel-dot
-                data-target-index="${index}"
-                aria-controls="${escapeAttr(idPrefix)}-track"
-                aria-label="Show ${escapeAttr(label.toLowerCase())} card ${index + 1} of ${total}"
-                aria-pressed="${index === 0 ? "true" : "false"}"
-              >
-                <span class="sr-only">${escapeHtml(`${label} card ${index + 1}`)}</span>
-              </button>
-            `
-              )
-              .join("")}
+          <div class="proof-carousel-meta">
+            <div class="proof-carousel-status" aria-live="polite">
+              <span class="proof-carousel-count" data-carousel-count>1 / ${total}</span>
+              <span class="proof-carousel-title" data-carousel-title>${escapeHtml(items[0].title)}</span>
+            </div>
+            <div class="proof-carousel-dots" aria-label="${escapeAttr(label)} slide navigation">
+              ${items
+                .map(
+                  (_, index) => `
+                <button
+                  type="button"
+                  class="proof-carousel-dot${index === 0 ? " active" : ""}"
+                  data-carousel-dot
+                  data-target-index="${index}"
+                  aria-controls="${escapeAttr(idPrefix)}-track"
+                  aria-label="Show ${escapeAttr(label.toLowerCase())} card ${index + 1} of ${total}"
+                  aria-pressed="${index === 0 ? "true" : "false"}"
+                >
+                  <span class="sr-only">${escapeHtml(`${label} card ${index + 1}`)}</span>
+                </button>
+              `
+                )
+                .join("")}
+            </div>
           </div>
           <button type="button" class="proof-carousel-nav" data-carousel-next aria-controls="${escapeAttr(idPrefix)}-track" aria-label="Show next ${escapeAttr(label.toLowerCase())} card">
-            Next
+            <span aria-hidden="true">&#8594;</span>
+            <span class="sr-only">Next</span>
           </button>
         </div>
       ` : ""}
@@ -664,13 +672,13 @@ function renderSafetySection(m) {
   const safetyItems = [
     {
       title: "Parking destination flow",
-      text: "Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.",
+      text: "Compare nearby parking from the destination first, with clearer source cues and a free-first filter.",
       image: PHOTO_URLS.appParkingDestination,
       alt: "Drivest parking destination screen showing council and OSM parking source options."
     },
     {
       title: "Parking sign awareness",
-      text: "Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.",
+      text: "Parking sign practice stays inside theory revision before arrival-time guidance takes over.",
       image: PHOTO_URLS.appParkingSignQuiz,
       alt: "Drivest parking sign quiz screen showing on-street parking question practice."
     }
@@ -1765,6 +1773,8 @@ function setupProofCarousels() {
     const prev = carousel.querySelector("[data-carousel-prev]");
     const next = carousel.querySelector("[data-carousel-next]");
     const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    const count = carousel.querySelector("[data-carousel-count]");
+    const title = carousel.querySelector("[data-carousel-title]");
     const mobileMedia = window.matchMedia("(max-width: 760px)");
     if (!track || slides.length < 2) return;
 
@@ -1777,6 +1787,11 @@ function setupProofCarousels() {
     const syncButtons = () => {
       if (prev) prev.disabled = !isMobile() || currentIndex <= 0;
       if (next) next.disabled = !isMobile() || currentIndex >= maxIndex;
+      if (count) count.textContent = `${currentIndex + 1} / ${slides.length}`;
+      if (title) {
+        const heading = slides[currentIndex].querySelector("h3");
+        title.textContent = heading ? heading.textContent.trim() : `${currentIndex + 1}`;
+      }
       dots.forEach((dot, index) => {
         const active = index === currentIndex;
         dot.classList.toggle("active", active);

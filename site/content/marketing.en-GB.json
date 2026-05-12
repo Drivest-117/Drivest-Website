@@ -352,7 +352,7 @@
       {
         "badge": "Theory",
         "title": "Theory mastery flow",
-        "text": "Theory uses a learn, quiz, and mock sequence with mastery tracking, continue-from-last-lesson, bookmarks, and wrong-answer review tools.",
+        "text": "Learn, quiz, and mock stay in one flow with mastery, resume, bookmarks, and wrong-answer review.",
         "image": "/assets/app-theory-mastery.jpeg",
         "alt": "Drivest theory mastery screen showing steps for learn, quiz, and mock with continue from last lesson, topic quiz, and wrong answer tools.",
         "caption": "Mastery, quizzes, mock tests, bookmarks, and wrong answers"
@@ -360,7 +360,7 @@
       {
         "badge": "Practice",
         "title": "Searchable test-centre practice",
-        "text": "Practical preparation starts from a searchable centre list so learners can jump straight into the selected-centre route layer.",
+        "text": "Start from a searchable centre list and jump straight into selected-centre route practice.",
         "image": "/assets/app-practice-centres.jpeg",
         "alt": "Drivest practice screen showing searchable UK driving test centres.",
         "caption": "Searchable UK test-centre practice list"
@@ -368,7 +368,7 @@
       {
         "badge": "Navigation",
         "title": "Low-stress routing setup",
-        "text": "Navigation exposes low-stress routing directly in trip setup alongside leave-now, depart-at, and arrive-by timing modes.",
+        "text": "Trip setup keeps low-stress routing beside leave-now, depart-at, and arrive-by timing.",
         "image": "/assets/app-navigation-search.jpeg",
         "alt": "Drivest navigation search screen showing leave now, depart at, arrive by, and low-stress routing toggle.",
         "caption": "Trip timing controls and low-stress routing"
@@ -376,7 +376,7 @@
       {
         "badge": "Parking",
         "title": "Parking destination flow",
-        "text": "Parking starts from the destination first, then compares nearby options with council plus OSM inputs and a free-first filter.",
+        "text": "Destination-first parking compares nearby options with council, OSM, and free-first cues.",
         "image": "/assets/app-parking-destination.jpeg",
         "alt": "Drivest parking destination screen showing council and OSM sources and a free-first filter.",
         "caption": "Destination-first parking search with source cues"
@@ -384,7 +384,7 @@
       {
         "badge": "Languages",
         "title": "Welsh and English cross-check proof",
-        "text": "The app already shows multilingual theory and home-screen surfaces, including Welsh and English cross-check behaviour inside the same learning journey.",
+        "text": "Welsh and English cross-checking is already visible inside the same theory journey.",
         "image": "/assets/app-theory-quiz-welsh.jpeg",
         "alt": "Drivest Welsh theory quiz screen with language switcher.",
         "caption": "Welsh theory flow with language switching visible"
@@ -392,7 +392,7 @@
       {
         "badge": "Instructor Hub",
         "title": "Instructor operations and scheduling",
-        "text": "Instructor Hub already covers linked learners, bookings, progress, published availability, and a calendar-based slot publishing workflow.",
+        "text": "Instructor Hub brings linked learners, bookings, progress, availability, and slot publishing into one view.",
         "image": "/assets/app-instructor-hub.jpeg",
         "alt": "Drivest Instructor Hub home screen showing learners, bookings, and progress actions.",
         "caption": "Instructor Hub, bookings, and availability workflow"
