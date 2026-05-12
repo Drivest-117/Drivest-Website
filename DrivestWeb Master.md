@@ -535,6 +535,7 @@ At minimum, keep these pairs aligned:
 - simplified the shorter-desktop homepage hero further by dropping the overlapping secondary phone and compressing proof-card density
 - compressed the shorter-desktop homepage hero again with smaller headline scale, smaller device rail, and hidden pill row to expose more of the first fold
 - reduced the laptop-height homepage hero to a true first-fold variant by removing duplicate secondary CTAs, proof/trust blocks, the second story card, and the legal note while shrinking and cropping the remaining device preview
+- added a shorter-desktop compact mode for homepage product-proof, language-proof, and safety-proof sections so tall app screenshots no longer create giant empty text columns below the fold
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
