@@ -1863,6 +1863,47 @@ small {
   padding: 22px;
 }
 
+@media (min-width: 1400px) {
+  body[data-page="home"] .main-content {
+    width: min(1380px, 94vw);
+  }
+
+  body[data-page="home"] .hero {
+    padding: 30px 32px;
+  }
+
+  body[data-page="home"] .hero-grid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    gap: 30px;
+  }
+
+  body[data-page="home"] .hero-showcase-grid {
+    grid-template-columns: minmax(0, 0.94fr) minmax(280px, 0.82fr);
+    gap: 18px;
+  }
+
+  body[data-page="home"] .hero-phone-cluster {
+    min-height: 560px;
+    padding: 0 58px 12px 0;
+  }
+
+  body[data-page="home"] .phone-shot-hero {
+    max-width: 280px;
+  }
+
+  body[data-page="home"] .phone-shot-theory {
+    max-width: 188px;
+  }
+
+  body[data-page="home"] .hero-story-card {
+    padding: 16px;
+  }
+
+  body[data-page="home"] .hero-legal-note {
+    padding: 12px 14px;
+  }
+}
+
 @media (max-width: 980px) {
   .hero {
     padding: 22px;
