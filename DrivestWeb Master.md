@@ -531,6 +531,7 @@ At minimum, keep these pairs aligned:
 - stopped above-the-fold reveal fades from washing out the first viewport and top-aligned the desktop homepage hero
 - widened the homepage main container on large desktops and trimmed the hero phone stack so the 2K-width first fold breathes properly
 - top-aligned the desktop product-proof and safety-proof cards and reduced their phone rail width so lower sections stop showing giant empty text columns
+- tightened the homepage hero for shorter desktop viewports by shrinking the phone stack and reducing first-fold vertical load
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
