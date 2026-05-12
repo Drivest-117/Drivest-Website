@@ -77,7 +77,7 @@ The website is a mostly static marketing site with shared rendering logic.
 - `tools/generate-seo-pages.mjs`
   - static generator for page shells, centre pages, redirects, crawl files, sitemap, and manifest
 - `tools/build_browser_icons.py`
-  - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source and exports favicon/app-icon sizes
+  - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source, exports size-specific transparent favicons for tabs with a stronger 16px render, and exports white-tile app icons for touch/PWA contexts
 - `tools/verify-generated-site.mjs`
   - executable verification for generated runtime references, paid-plan request flow, and legacy centre redirects
 - `tools/extract_route_corpus_coverage.py`
@@ -527,7 +527,7 @@ At minimum, keep these pairs aligned:
 - moved legacy centre alias redirects into the generator for both underscore and hyphen path variants
 - added intrinsic image dimensions and stronger hero image loading hints to generated page images
 - added `manifest.webmanifest` to generated pages
-- rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark
+- rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark, with size-specific transparent favicons for tabs and white-tile icons for touch/PWA use
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
