@@ -853,6 +853,63 @@ p {
   margin-bottom: 0;
 }
 
+.proof-carousel {
+  display: grid;
+  gap: 14px;
+}
+
+.proof-carousel-track {
+  min-width: 0;
+}
+
+.proof-carousel-controls {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proof-carousel-nav {
+  flex: 0 0 auto;
+  min-width: 76px;
+  min-height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.proof-carousel-nav:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.proof-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.proof-carousel-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 26, 44, 0.14);
+  background: rgba(17, 26, 44, 0.14);
+  cursor: pointer;
+}
+
+.proof-carousel-dot.active {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
 .safety-proof-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
@@ -935,6 +992,8 @@ li {
 .btn:focus-visible,
 .nav-toggle:focus-visible,
 .doc-back:focus-visible,
+.proof-carousel-nav:focus-visible,
+.proof-carousel-dot:focus-visible,
 .footer-links a:focus-visible,
 .footer-contact a:focus-visible {
   outline: 3px solid rgba(255, 100, 26, 0.35);
@@ -1519,6 +1578,33 @@ small {
 
   .main-content {
     padding-bottom: 96px;
+  }
+
+  .proof-carousel-controls {
+    display: flex;
+  }
+
+  .proof-carousel-track.product-proof-grid,
+  .proof-carousel-track.safety-proof-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .proof-carousel-track.product-proof-grid::-webkit-scrollbar,
+  .proof-carousel-track.safety-proof-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .proof-carousel-track.product-proof-grid > .product-proof-card,
+  .proof-carousel-track.safety-proof-grid > .safety-proof-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .mini-photo-row,

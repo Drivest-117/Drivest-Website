@@ -470,9 +470,11 @@
         <section class="section reveal">
           <h2>Real product workflows already visible in Drivest</h2>
           <p class="section-intro">These screens show the live product direction already visible in the app across learning, practice, navigation, parking, and instructor operations.</p>
-          <div class="grid product-proof-grid">
+          
+        <div class="proof-carousel" data-carousel data-carousel-label="Product proof">
+          <div id="product-proof-track" class="grid product-proof-grid proof-carousel-track" data-carousel-track tabindex="0">
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 1 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -488,7 +490,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 2 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -504,7 +506,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 3 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -520,7 +522,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 4 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -536,7 +538,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 5 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -552,7 +554,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 6 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -569,6 +571,93 @@
               </article>
             
           </div>
+          
+            <div class="proof-carousel-controls reveal-item">
+              <button type="button" class="proof-carousel-nav" data-carousel-prev aria-controls="product-proof-track" aria-label="Show previous product proof card">
+                Prev
+              </button>
+              <div class="proof-carousel-dots" aria-label="Product proof slide navigation">
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot active"
+                    data-carousel-dot
+                    data-target-index="0"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 1 of 6"
+                    aria-pressed="true"
+                  >
+                    <span class="sr-only">Product proof card 1</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="1"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 2 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 2</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="2"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 3 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 3</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="3"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 4 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 4</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="4"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 5 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 5</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="5"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 6 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 6</span>
+                  </button>
+                
+              </div>
+              <button type="button" class="proof-carousel-nav" data-carousel-next aria-controls="product-proof-track" aria-label="Show next product proof card">
+                Next
+              </button>
+            </div>
+          
+        </div>
+      
         </section>
       
     
@@ -797,9 +886,12 @@
         
         <section class="section reveal">
           <h2>Safety and trust</h2>
-          <div class="grid safety-proof-grid">
-            <article class="card reveal-item safety-proof-card">
-              
+          
+        <div class="proof-carousel" data-carousel data-carousel-label="Safety proof">
+          <div id="safety-proof-track" class="grid safety-proof-grid proof-carousel-track" data-carousel-track tabindex="0">
+            
+              <article class="card reveal-item safety-proof-card" data-carousel-slide aria-label="Safety proof 1 of 2">
+                
         <figure class="phone-shot phone-shot-proof safety-proof-phone">
           <div class="phone-shot-frame">
             <img src="/assets/app-parking-destination.jpeg" alt="Drivest parking destination screen showing council and OSM parking source options." loading="lazy" />
@@ -807,13 +899,15 @@
           
         </figure>
       
-              <div class="safety-proof-copy">
-                <h3>Parking destination flow</h3>
-                <p>Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.</p>
-              </div>
-            </article>
-            <article class="card reveal-item safety-proof-card">
-              
+                <div class="safety-proof-copy">
+                  
+                  <h3>Parking destination flow</h3>
+                  <p>Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.</p>
+                </div>
+              </article>
+            
+              <article class="card reveal-item safety-proof-card" data-carousel-slide aria-label="Safety proof 2 of 2">
+                
         <figure class="phone-shot phone-shot-proof safety-proof-phone">
           <div class="phone-shot-frame">
             <img src="/assets/app-parking-sign-quiz.jpeg" alt="Drivest parking sign quiz screen showing on-street parking question practice." loading="lazy" />
@@ -821,12 +915,53 @@
           
         </figure>
       
-              <div class="safety-proof-copy">
-                <h3>Parking sign awareness</h3>
-                <p>Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.</p>
-              </div>
-            </article>
+                <div class="safety-proof-copy">
+                  
+                  <h3>Parking sign awareness</h3>
+                  <p>Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.</p>
+                </div>
+              </article>
+            
           </div>
+          
+            <div class="proof-carousel-controls reveal-item">
+              <button type="button" class="proof-carousel-nav" data-carousel-prev aria-controls="safety-proof-track" aria-label="Show previous safety proof card">
+                Prev
+              </button>
+              <div class="proof-carousel-dots" aria-label="Safety proof slide navigation">
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot active"
+                    data-carousel-dot
+                    data-target-index="0"
+                    aria-controls="safety-proof-track"
+                    aria-label="Show safety proof card 1 of 2"
+                    aria-pressed="true"
+                  >
+                    <span class="sr-only">Safety proof card 1</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="1"
+                    aria-controls="safety-proof-track"
+                    aria-label="Show safety proof card 2 of 2"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Safety proof card 2</span>
+                  </button>
+                
+              </div>
+              <button type="button" class="proof-carousel-nav" data-carousel-next aria-controls="safety-proof-track" aria-label="Show next safety proof card">
+                Next
+              </button>
+            </div>
+          
+        </div>
+      
           <ul><li>Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.</li><li>Drivest guidance is advisory only and may be incomplete or delayed.</li><li>Practice routes are reconstructed for learning and are not official DVSA routes.</li><li>Keep full control of the vehicle and always follow live road signs, road markings, and traffic laws.</li><li>Do not interact with the app while driving.</li><li>Independent instructors remain responsible for their own lessons, licences, insurance, and legal compliance.</li></ul>
           <div class="panel reveal-item">
             <p class="panel-title">On arrival</p>

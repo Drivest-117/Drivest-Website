@@ -552,9 +552,11 @@
         <section class="section reveal">
           <h2>Real product workflows already visible in Drivest</h2>
           <p class="section-intro">These screens show the live product direction already visible in the app across learning, practice, navigation, parking, and instructor operations.</p>
-          <div class="grid product-proof-grid">
+          
+        <div class="proof-carousel" data-carousel data-carousel-label="Product proof">
+          <div id="product-proof-track" class="grid product-proof-grid proof-carousel-track" data-carousel-track tabindex="0">
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 1 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -570,7 +572,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 2 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -586,7 +588,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 3 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -602,7 +604,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 4 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -618,7 +620,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 5 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -634,7 +636,7 @@
                 </div>
               </article>
             
-              <article class="card reveal-item product-proof-card">
+              <article class="card reveal-item product-proof-card" data-carousel-slide aria-label="Product proof 6 of 6">
                 
         <figure class="phone-shot phone-shot-proof product-proof-phone">
           <div class="phone-shot-frame">
@@ -651,6 +653,93 @@
               </article>
             
           </div>
+          
+            <div class="proof-carousel-controls reveal-item">
+              <button type="button" class="proof-carousel-nav" data-carousel-prev aria-controls="product-proof-track" aria-label="Show previous product proof card">
+                Prev
+              </button>
+              <div class="proof-carousel-dots" aria-label="Product proof slide navigation">
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot active"
+                    data-carousel-dot
+                    data-target-index="0"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 1 of 6"
+                    aria-pressed="true"
+                  >
+                    <span class="sr-only">Product proof card 1</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="1"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 2 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 2</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="2"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 3 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 3</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="3"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 4 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 4</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="4"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 5 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 5</span>
+                  </button>
+                
+                  <button
+                    type="button"
+                    class="proof-carousel-dot"
+                    data-carousel-dot
+                    data-target-index="5"
+                    aria-controls="product-proof-track"
+                    aria-label="Show product proof card 6 of 6"
+                    aria-pressed="false"
+                  >
+                    <span class="sr-only">Product proof card 6</span>
+                  </button>
+                
+              </div>
+              <button type="button" class="proof-carousel-nav" data-carousel-next aria-controls="product-proof-track" aria-label="Show next product proof card">
+                Next
+              </button>
+            </div>
+          
+        </div>
+      
         </section>
       
     

@@ -85,6 +85,7 @@ function finalizePageChrome() {
   const yearNode = document.getElementById("year");
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
   setupAnimations();
+  setupProofCarousels();
   setActiveNav();
   setupMobileNav();
 }
@@ -577,19 +578,27 @@ function renderFeatureCards(items) {
   `;
 }
 
-function renderProductProofSection(config) {
-  if (!config?.items?.length) return "";
+function renderProofCarousel(items, config) {
+  if (!items?.length) return "";
+  const {
+    idPrefix,
+    label,
+    trackClass,
+    cardClass,
+    phoneClass,
+    copyClass
+  } = config;
+  const total = items.length;
+
   return `
-    <section class="section reveal">
-      <h2>${escapeHtml(config.title)}</h2>
-      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
-      <div class="grid product-proof-grid">
-        ${config.items
+    <div class="proof-carousel" data-carousel data-carousel-label="${escapeAttr(label)}">
+      <div id="${escapeAttr(idPrefix)}-track" class="grid ${escapeAttr(trackClass)} proof-carousel-track" data-carousel-track tabindex="0">
+        ${items
           .map(
-            (item) => `
-          <article class="card reveal-item product-proof-card">
-            ${renderPhoneShot(item.image, item.alt, item.caption, "phone-shot-proof product-proof-phone")}
-            <div class="product-proof-copy">
+            (item, index) => `
+          <article class="card reveal-item ${escapeAttr(cardClass)}" data-carousel-slide aria-label="${escapeAttr(`${label} ${index + 1} of ${total}`)}">
+            ${renderPhoneShot(item.image, item.alt, item.caption || "", `phone-shot-proof ${phoneClass}`)}
+            <div class="${escapeAttr(copyClass)}">
               ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
               <h3>${escapeHtml(item.title)}</h3>
               <p>${escapeHtml(item.text)}</p>
@@ -599,41 +608,84 @@ function renderProductProofSection(config) {
           )
           .join("")}
       </div>
+      ${total > 1 ? `
+        <div class="proof-carousel-controls reveal-item">
+          <button type="button" class="proof-carousel-nav" data-carousel-prev aria-controls="${escapeAttr(idPrefix)}-track" aria-label="Show previous ${escapeAttr(label.toLowerCase())} card">
+            Prev
+          </button>
+          <div class="proof-carousel-dots" aria-label="${escapeAttr(label)} slide navigation">
+            ${items
+              .map(
+                (_, index) => `
+              <button
+                type="button"
+                class="proof-carousel-dot${index === 0 ? " active" : ""}"
+                data-carousel-dot
+                data-target-index="${index}"
+                aria-controls="${escapeAttr(idPrefix)}-track"
+                aria-label="Show ${escapeAttr(label.toLowerCase())} card ${index + 1} of ${total}"
+                aria-pressed="${index === 0 ? "true" : "false"}"
+              >
+                <span class="sr-only">${escapeHtml(`${label} card ${index + 1}`)}</span>
+              </button>
+            `
+              )
+              .join("")}
+          </div>
+          <button type="button" class="proof-carousel-nav" data-carousel-next aria-controls="${escapeAttr(idPrefix)}-track" aria-label="Show next ${escapeAttr(label.toLowerCase())} card">
+            Next
+          </button>
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function renderProductProofSection(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      ${renderProofCarousel(config.items, {
+        idPrefix: "product-proof",
+        label: "Product proof",
+        trackClass: "product-proof-grid",
+        cardClass: "product-proof-card",
+        phoneClass: "product-proof-phone",
+        copyClass: "product-proof-copy"
+      })}
     </section>
   `;
 }
 
 function renderSafetySection(m) {
   if (!m?.safety?.title) return "";
+  const safetyItems = [
+    {
+      title: "Parking destination flow",
+      text: "Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.",
+      image: PHOTO_URLS.appParkingDestination,
+      alt: "Drivest parking destination screen showing council and OSM parking source options."
+    },
+    {
+      title: "Parking sign awareness",
+      text: "Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.",
+      image: PHOTO_URLS.appParkingSignQuiz,
+      alt: "Drivest parking sign quiz screen showing on-street parking question practice."
+    }
+  ];
   return `
     <section class="section reveal">
       <h2>${escapeHtml(m.safety.title)}</h2>
-      <div class="grid safety-proof-grid">
-        <article class="card reveal-item safety-proof-card">
-          ${renderPhoneShot(
-            PHOTO_URLS.appParkingDestination,
-            "Drivest parking destination screen showing council and OSM parking source options.",
-            "",
-            "phone-shot-proof safety-proof-phone"
-          )}
-          <div class="safety-proof-copy">
-            <h3>Parking destination flow</h3>
-            <p>Parking starts with the destination first, then compares nearby options with clearer source cues and a free-first filter.</p>
-          </div>
-        </article>
-        <article class="card reveal-item safety-proof-card">
-          ${renderPhoneShot(
-            PHOTO_URLS.appParkingSignQuiz,
-            "Drivest parking sign quiz screen showing on-street parking question practice.",
-            "",
-            "phone-shot-proof safety-proof-phone"
-          )}
-          <div class="safety-proof-copy">
-            <h3>Parking sign awareness</h3>
-            <p>Parking-related sign interpretation stays inside theory revision so users can prepare before relying on arrival-time guidance.</p>
-          </div>
-        </article>
-      </div>
+      ${renderProofCarousel(safetyItems, {
+        idPrefix: "safety-proof",
+        label: "Safety proof",
+        trackClass: "safety-proof-grid",
+        cardClass: "safety-proof-card",
+        phoneClass: "safety-proof-phone",
+        copyClass: "safety-proof-copy"
+      })}
       ${bulletList(m.safety.bullets)}
       <div class="panel reveal-item">
         <p class="panel-title">${escapeHtml(m.ui.sections.onArrival)}</p>
@@ -1699,6 +1751,112 @@ function setupAnimations() {
   );
 
   nodes.forEach((node) => observer.observe(node));
+}
+
+function setupProofCarousels() {
+  const carousels = document.querySelectorAll("[data-carousel]");
+  if (!carousels.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector("[data-carousel-track]");
+    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    const prev = carousel.querySelector("[data-carousel-prev]");
+    const next = carousel.querySelector("[data-carousel-next]");
+    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    const mobileMedia = window.matchMedia("(max-width: 760px)");
+    if (!track || slides.length < 2) return;
+
+    let currentIndex = 0;
+    let ticking = false;
+
+    const isMobile = () => mobileMedia.matches;
+    const maxIndex = slides.length - 1;
+
+    const syncButtons = () => {
+      if (prev) prev.disabled = !isMobile() || currentIndex <= 0;
+      if (next) next.disabled = !isMobile() || currentIndex >= maxIndex;
+      dots.forEach((dot, index) => {
+        const active = index === currentIndex;
+        dot.classList.toggle("active", active);
+        dot.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    };
+
+    const nearestIndex = () => {
+      const left = track.scrollLeft;
+      let bestIndex = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      slides.forEach((slide, index) => {
+        const distance = Math.abs(slide.offsetLeft - left);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = index;
+        }
+      });
+      return bestIndex;
+    };
+
+    const goTo = (targetIndex, instant = false) => {
+      currentIndex = Math.max(0, Math.min(maxIndex, targetIndex));
+      if (isMobile()) {
+        slides[currentIndex].scrollIntoView({
+          behavior: reduceMotion || instant ? "auto" : "smooth",
+          block: "nearest",
+          inline: "start"
+        });
+      }
+      syncButtons();
+    };
+
+    if (prev) prev.addEventListener("click", () => goTo(currentIndex - 1));
+    if (next) next.addEventListener("click", () => goTo(currentIndex + 1));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => goTo(Number(dot.dataset.targetIndex || 0)));
+    });
+
+    track.addEventListener("keydown", (event) => {
+      if (!isMobile()) return;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goTo(currentIndex - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goTo(currentIndex + 1);
+      }
+    });
+
+    track.addEventListener("scroll", () => {
+      if (!isMobile() || ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        currentIndex = nearestIndex();
+        syncButtons();
+        ticking = false;
+      });
+    });
+
+    const handleMediaChange = (event) => {
+      if (event.matches) {
+        goTo(currentIndex, true);
+      } else {
+        currentIndex = 0;
+        track.scrollLeft = 0;
+        syncButtons();
+      }
+    };
+
+    if (typeof mobileMedia.addEventListener === "function") {
+      mobileMedia.addEventListener("change", handleMediaChange);
+    } else if (typeof mobileMedia.addListener === "function") {
+      mobileMedia.addListener(handleMediaChange);
+    }
+
+    syncButtons();
+  });
 }
 
 function setActiveNav() {
