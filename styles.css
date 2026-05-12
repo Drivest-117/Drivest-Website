@@ -777,6 +777,115 @@ p {
   font-weight: 600;
 }
 
+.coverage-filter-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.coverage-filter-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.coverage-generated-at {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.coverage-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.coverage-field {
+  display: grid;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.coverage-control {
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0 14px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.coverage-control:focus-visible {
+  outline: 2px solid rgba(255, 100, 26, 0.35);
+  outline-offset: 2px;
+  border-color: rgba(255, 100, 26, 0.55);
+}
+
+.coverage-filter-status {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.access-request-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
+  align-items: start;
+}
+
+.access-request-form-card,
+.access-request-form,
+.access-request-side {
+  display: grid;
+  gap: 16px;
+}
+
+.access-request-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.access-request-textarea {
+  min-height: 150px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.access-request-centre-note,
+.access-request-status,
+.access-request-copy-status {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.access-request-preview {
+  display: grid;
+  gap: 12px;
+}
+
+.access-request-preview-box {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fffaf6, #ffffff);
+}
+
+.access-request-preview-box pre {
+  margin: 0;
+  color: var(--ink-soft);
+  font: 600 13px/1.65 "Sora", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .coverage-letter-card {
   padding-top: 16px;
 }
@@ -1821,6 +1930,10 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .access-request-grid {
+    grid-template-columns: 1fr;
+  }
+
   .app-module-grid,
   .photo-grid-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1941,6 +2054,14 @@ small {
 
   .hero-phone-float {
     position: static;
+  }
+
+  .coverage-filter-head {
+    flex-direction: column;
+  }
+
+  .access-request-field-grid {
+    grid-template-columns: 1fr;
   }
 
   .journey-scene-head,

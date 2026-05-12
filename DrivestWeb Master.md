@@ -1,6 +1,6 @@
 # DrivestWeb Master
 
-Last updated: 11 May 2026
+Last updated: 12 May 2026
 
 ## Purpose
 
@@ -28,7 +28,7 @@ This document does not replace the product-wide app master file. It only describ
 
 ## Current Repo Status
 
-As of 11 May 2026, this repository contains website updates that include:
+As of 12 May 2026, this repository contains website updates that include:
 
 - expanded marketing copy aligned to the current app
 - updated Terms, Privacy, and FAQ website content
@@ -38,9 +38,18 @@ As of 11 May 2026, this repository contains website updates that include:
 - future learner driver positioning across homepage, start flow, pricing, and FAQ
 - stronger static metadata for marketing page titles, descriptions, and sharing
 - screenshot-backed product proof pulled from the live app UI
+- a mobile proof carousel path for feature screenshots and tighter proof copy hierarchy
+- stronger homepage hero and pricing hierarchy for product and plan comparison sections
+- a lighter `site-runtime.js` client bundle for pre-rendered pages
+- searchable and filterable live driving-test-centre directory controls
+- intrinsic image dimensions and higher-priority hero image loading across generated pages
+- a structured `/access-request` paid-plan request flow instead of raw pricing-page mailto CTAs
+- generator-owned legacy centre redirects for underscore and hyphen alias paths
+- a refreshed browser icon set for tabs, bookmarks, manifest installs, and touch icons
 - a new `Contact, trust, and coverage methodology` page
 - theory-intent landing pages and regional driving-test-centre hub pages
-- a branded `404.html` and generated `manifest.webmanifest`
+- AI crawl discovery files including `robots.txt`, `llm.txt`, `llms.txt`, and `llms-full.txt`
+- a branded `404.html`, generated `manifest.webmanifest`, and refreshed `sitemap.xml`
 
 Important status note:
 
@@ -59,12 +68,27 @@ The website is a mostly static marketing site with shared rendering logic.
   - renders `home`, `features`, `pricing`, `faq`, and `start`
 - `styles.css`
   - shared global styling for the marketing pages
+- `site-runtime.js`
+  - lightweight client bundle for nav, reveal animations, carousel behaviour, and centre-directory filtering on generated pages
 - `site/content/marketing.en-GB.json`
   - main website content source for marketing copy, pricing, FAQ, and footer labels
+- `site/data/test-centre-coverage.en-GB.json`
+  - generated coverage dataset used for public driving-test-centre pages
+- `tools/generate-seo-pages.mjs`
+  - static generator for page shells, centre pages, redirects, crawl files, sitemap, and manifest
+- `tools/build_browser_icons.py`
+  - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source and exports favicon/app-icon sizes
+- `tools/verify-generated-site.mjs`
+  - executable verification for generated runtime references, paid-plan request flow, and legacy centre redirects
+- `tools/extract_route_corpus_coverage.py`
+  - route-corpus coverage extractor for the public centre dataset
 
 ### Rendering model
 
-The marketing pages use lightweight HTML wrappers with a `data-page` attribute. `script.js` reads that page value and renders the page body using the shared JSON content.
+The marketing pages are generated statically from the shared renderer and content model.
+
+`script.js` remains the source renderer used by the generator.
+`site-runtime.js` is the lighter browser bundle loaded by generated pages for interactive behaviour only.
 
 Examples:
 
@@ -100,6 +124,7 @@ These should be kept aligned with the directory-based legal routes.
 - `/index.html`
 - `/features.html`
 - `/pricing.html`
+- `/access-request`
 - `/faq`
 - `/start`
 - `/contact`
@@ -304,6 +329,7 @@ Pricing page also includes:
 - instructor marketplace fee and cancellation window summary
 - a `What you get in the app` gallery for Theory, Practice, Navigation, Parking, Find Instructor, and Book Lessons
 - app-themed module preview cards instead of generic stock photography
+- paid-plan CTAs that route into `/access-request` with the plan preselected
 
 ## Current Visual Direction
 
@@ -315,9 +341,29 @@ Current visual direction includes:
 - stage cards instead of generic photos for Theory, Practice, and Navigation
 - route-based learner and instructor entry cards on the homepage
 - multilingual proof cards that show translated UI and the English cross-check behavior
+- mobile-friendly proof carousel handling for feature screenshots
 - app-themed module scenes on the pricing page where screenshots have not yet been provided
+- stronger visual separation between core pricing plans and supporting plan detail
+- searchable live-centre browse controls layered onto the public coverage directory
 
 This means the website now leans more heavily on Drivest-specific UI storytelling and less on generic lifestyle or car stock imagery.
+
+### Access Request
+
+Primary purpose:
+
+- prepare structured paid-plan support requests without dropping users into a blank email draft
+
+Current route:
+
+- `/access-request`
+
+Current behaviour includes:
+
+- preselected pricing-plan query support from pricing-page CTAs
+- required centre or nearby-area capture for centre-dependent paid plans
+- prepared email subject and request-body preview
+- copy-to-clipboard and direct email-app fallback actions
 
 ### FAQ
 
@@ -471,9 +517,19 @@ At minimum, keep these pairs aligned:
 
 ### Technical polish
 
+- added route-corpus-based public centre coverage extraction and canonical alias cleanup
+- generated `site/data/test-centre-coverage.en-GB.json` from the route output corpus
+- expanded the static generator to emit crawl-discovery files and refreshed sitemap output
+- added `robots.txt`, `llm.txt`, `llms.txt`, and `llms-full.txt`
+- split generated-page runtime behaviour into `site-runtime.js` instead of shipping the full renderer to the browser
+- added live-centre directory search and minimum-route filtering on `/driving-test-centres`
+- replaced raw paid-plan mailto CTAs with a generated `/access-request` flow and browser-side draft preparation
+- moved legacy centre alias redirects into the generator for both underscore and hyphen path variants
+- added intrinsic image dimensions and stronger hero image loading hints to generated page images
 - added `manifest.webmanifest` to generated pages
-- replaced the oversized root `favicon.ico` with the smaller wheel icon
+- rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark
 - prepared a permanent non-www to www redirect rule in `vercel.json`
+- improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
 ## Maintenance Notes
 
@@ -481,11 +537,18 @@ When future changes arrive, use this order:
 
 1. Check whether the change affects marketing copy, legal copy, or both.
 2. Update `site/content/marketing.en-GB.json` first for marketing pages.
-3. Update `script.js` only if a new section, route, or rendering behavior is needed.
-4. Update `terms/index.html` and `privacy/index.html` for legal changes.
-5. Mirror legal changes into `terms.html` and `privacypolicy.html`.
-6. Verify JSON parsing and `node --check script.js`.
-7. Confirm whether changes are only local or also deployed live.
+3. Update `script.js` if a new section, route, data attribute, or rendering behavior is needed.
+4. Update `site-runtime.js` when generated pages need new browser-side interaction or nav behavior.
+5. Regenerate static outputs if the change affects generated pages, crawl files, sitemap, or centre coverage data.
+6. Update `terms/index.html` and `privacy/index.html` for legal changes.
+7. Mirror legal changes into `terms.html` and `privacypolicy.html`.
+8. Update `DrivestWeb Master.md` in the same change whenever repo behavior, routes, messaging, or generated assets materially change.
+9. Verify JSON parsing and `node --check script.js`.
+10. Verify `node --check site-runtime.js`.
+11. Run `python tools\build_browser_icons.py` when the browser icon or wordmark source changes.
+12. Run `node tools\generate-seo-pages.mjs` when generated outputs or redirects changed.
+13. Run `node tools\verify-generated-site.mjs` after regeneration.
+14. Confirm whether changes are only local or also deployed live.
 
 ## Verification Commands
 
@@ -494,6 +557,14 @@ Useful local checks:
 ```powershell
 Get-Content -Raw 'site\content\marketing.en-GB.json' | ConvertFrom-Json | Out-Null
 node --check script.js
+node --check site-runtime.js
+node --check tools\generate-seo-pages.mjs
+node --check tools\verify-generated-site.mjs
+python -m py_compile tools\build_browser_icons.py
+python tools\build_browser_icons.py
+node tools\generate-seo-pages.mjs
+node tools\verify-generated-site.mjs
+python tools\extract_route_corpus_coverage.py --help
 git status --short --branch
 ```
 

@@ -45,6 +45,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 ## Instructor and commercial flows
 
 - [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
+- [Access request](https://www.drivest.uk/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
 - [Contact](https://www.drivest.uk/contact): Support contact details and public coverage methodology notes.
 - [FAQ](https://www.drivest.uk/faq): Product and commercial clarification questions.
 

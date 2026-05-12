@@ -24,6 +24,8 @@ const basePageTargets = [
 const baseRedirectTargets = [
   { output: "features.html", destination: "/features" },
   { output: "pricing.html", destination: "/pricing" },
+  { output: "contact.html", destination: "/contact" },
+  { output: "access-request.html", destination: "/access-request" },
   { output: path.join("how-it-works", "index.html"), destination: "/start" },
   { output: "faq.html", destination: "/faq" },
   { output: "terms.html", destination: "/terms" },
@@ -167,8 +169,10 @@ function renderDocument({ appHtml, canonical, centreId, description, jsonLd, pag
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="twitter:image" content="${ogImage}" />
   <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="/assets/favicon-wheel.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon-wheel.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -180,7 +184,7 @@ ${ldScripts}
   <div id="app">
 ${indent(appHtml, 4)}
   </div>
-  <script type="module" src="/script.js"></script>
+  <script type="module" src="/site-runtime.js"></script>
 </body>
 </html>
 `;
@@ -424,6 +428,18 @@ function buildCustomPageTargets(marketing, coverage) {
     });
   }
 
+  if (marketing.accessRequestPage?.title) {
+    targets.push({
+      kind: "access-request",
+      bodyPage: "pricing",
+      output: path.join("access-request", "index.html"),
+      canonical: "https://www.drivest.uk/access-request",
+      title: brandDocumentTitle(marketing.pageSeo?.accessRequest?.title || marketing.accessRequestPage.title, brand),
+      description: marketing.pageSeo?.accessRequest?.description || marketing.accessRequestPage.intro || marketing.seo.description,
+      data: marketing.accessRequestPage
+    });
+  }
+
   for (const item of marketing.seoLandingPages?.theoryIntentPages || []) {
     if (!item?.slug || !item?.title || !item?.description) continue;
     targets.push({
@@ -462,6 +478,8 @@ function renderCustomPage(target, renderer, marketing, coverage) {
   switch (target.kind) {
     case "contact":
       return renderContactPage(target.data, renderer, marketing, coverage);
+    case "access-request":
+      return renderAccessRequestPage(target.data, renderer, marketing);
     case "theory-intent":
       return renderTheoryIntentPage(target.data, renderer, marketing);
     case "centre-region":
@@ -475,6 +493,11 @@ function buildCustomStructuredData(target, marketing, coverage) {
   switch (target.kind) {
     case "contact":
       return buildStructuredData("contact", target.canonical, target.title, target.description, marketing, "", {
+        pageType: "ContactPage",
+        skipCentresDataset: true
+      });
+    case "access-request":
+      return buildStructuredData("access-request", target.canonical, target.title, target.description, marketing, "", {
         pageType: "ContactPage",
         skipCentresDataset: true
       });
@@ -534,7 +557,11 @@ function renderContactPage(config, renderer, marketing, coverage) {
           </div>
         </div>
         <div class="feature-photo">
-          <img src="/assets/app-instructor-hub.jpeg" alt="Drivest Instructor Hub screen" loading="lazy" />
+          ${renderer.renderImg("/assets/app-instructor-hub.jpeg", "Drivest Instructor Hub screen", {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -600,6 +627,195 @@ function renderContactPage(config, renderer, marketing, coverage) {
   `;
 }
 
+function renderAccessRequestPage(config, renderer, marketing) {
+  const supportEmail = String(marketing.footer.contact || "admin@drivest.uk").replace(/^Contact:\s*/i, "");
+  const requestablePlans = selectRequestablePlans(marketing);
+
+  return `
+    <section class="section reveal feature-hero pricing-hero">
+      <div class="feature-hero-grid pricing-hero-grid">
+        <div class="pricing-hero-copy">
+          <p class="eyebrow">Paid plan request</p>
+          <h1>${escapeHtml(config.title)}</h1>
+          <p class="hero-lead">${escapeHtml(config.intro)}</p>
+          ${config.highlights?.length ? `<div class="pill-row pricing-pill-row">${renderer.renderPills(config.highlights)}</div>` : ""}
+          <p class="trust hero-trust-secondary">Support inbox: ${escapeHtml(supportEmail)}</p>
+        </div>
+        <div class="pricing-hero-side reveal-item">
+          <div class="panel pricing-summary-panel access-request-summary-panel">
+            <p class="panel-title">Requestable paid plans</p>
+            <div class="pricing-summary-stack">
+              ${requestablePlans
+                .map(
+                  (plan) => `
+                <div class="pricing-summary-row${plan.featured ? " pricing-summary-row-featured" : ""}">
+                  <div>
+                    <strong>${escapeHtml(plan.name)}</strong>
+                    <p>${escapeHtml(plan.summary || plan.subLine || plan.billing || "")}</p>
+                  </div>
+                  <span>${escapeHtml(plan.price)}</span>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid access-request-grid">
+        <article class="card reveal-item access-request-form-card">
+          <h2>Prepare your request</h2>
+          <p>Fill in the key details once, then open your email app with the subject line and request body already prepared.</p>
+          <form class="access-request-form" data-access-request-form data-support-email="${escapeHtml(supportEmail)}">
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Full name</span>
+                <input class="coverage-control" type="text" name="name" autocomplete="name" required />
+              </label>
+              <label class="coverage-field">
+                <span>Email address</span>
+                <input class="coverage-control" type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Paid plan</span>
+                <select class="coverage-control" name="plan" data-access-request-plan required>
+                  <option value="">Choose a paid plan</option>
+                  ${requestablePlans
+                    .map(
+                      (plan) => `
+                    <option
+                      value="${escapeHtml(plan.requestValue)}"
+                      data-plan-name="${escapeHtml(plan.name)}"
+                      data-plan-price="${escapeHtml(plan.price)}"
+                      data-plan-subject="${escapeHtml(plan.requestSubject || `${marketing.ui.brand} access request`)}"
+                      data-plan-requires-centre="${plan.requiresCentre ? "true" : "false"}"
+                    >
+                      ${escapeHtml(plan.name)} (${escapeHtml(plan.price)})
+                    </option>
+                  `
+                    )
+                    .join("")}
+                </select>
+              </label>
+              <label class="coverage-field">
+                <span>Driving stage</span>
+                <select class="coverage-control" name="stage" required>
+                  <option value="">Choose your current stage</option>
+                  ${(config.stageOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+            </div>
+
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Selected test centre or nearby area</span>
+                <input class="coverage-control" type="text" name="centre" data-access-request-centre autocomplete="off" />
+              </label>
+              <label class="coverage-field">
+                <span>Preferred start timing</span>
+                <select class="coverage-control" name="timing" required>
+                  <option value="">Choose a timing preference</option>
+                  ${(config.timingOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+            </div>
+
+            <label class="coverage-field">
+              <span>Extra context</span>
+              <textarea
+                class="coverage-control access-request-textarea"
+                name="message"
+                rows="6"
+                placeholder="Tell support anything important about the centre, timing, or the plan you are comparing."
+              ></textarea>
+            </label>
+
+            <p class="access-request-centre-note" data-access-request-centre-note aria-live="polite">
+              Choose a paid plan to see whether an exact centre or nearby area should be included.
+            </p>
+
+            <div class="btn-row access-request-actions">
+              <button class="btn btn-primary" type="submit">Prepare email request</button>
+              <a class="btn btn-secondary" href="mailto:${escapeHtml(supportEmail)}">Email support directly</a>
+            </div>
+
+            <p class="access-request-status" data-access-request-status aria-live="polite">
+              Choose a paid plan and enter your details to prepare the request.
+            </p>
+
+            <div class="access-request-preview" data-access-request-preview hidden>
+              <div class="access-request-preview-box">
+                <p class="panel-title">Prepared subject</p>
+                <p data-access-request-subject></p>
+              </div>
+              <div class="access-request-preview-box">
+                <p class="panel-title">Prepared request body</p>
+                <pre data-access-request-body></pre>
+              </div>
+              <div class="btn-row access-request-actions">
+                <a class="btn btn-primary" href="#" data-access-request-mailto>Open email app</a>
+                <button class="btn btn-secondary" type="button" data-access-request-copy>Copy request text</button>
+              </div>
+              <p class="access-request-copy-status" data-access-request-copy-status aria-live="polite"></p>
+            </div>
+          </form>
+        </article>
+
+        <div class="access-request-side reveal-item">
+          <article class="card">
+            <h2>${escapeHtml(config.expectationTitle)}</h2>
+            <p>${escapeHtml(config.expectationText)}</p>
+            ${renderer.bulletList(config.expectationBullets)}
+          </article>
+          <article class="card">
+            <h2>${escapeHtml(config.responseTitle)}</h2>
+            ${renderer.bulletList(config.responseBullets)}
+          </article>
+        </div>
+      </div>
+    </section>
+
+    ${renderer.renderLinkCardsSection({
+      title: "Keep the request tied to the product journey",
+      intro: "The request page should still connect back to pricing, centre selection, and support context without making users start again.",
+      items: [
+        {
+          title: "Back to pricing",
+          text: "Return to the pricing page if you want to compare the free plan, centre practice, navigation, and the annual bundle again.",
+          href: "/pricing",
+          cta: "Compare pricing"
+        },
+        {
+          title: "Browse live centres",
+          text: "Pick the exact centre you want before requesting practice or bundle access.",
+          href: "/driving-test-centres",
+          cta: "View centres"
+        },
+        {
+          title: "Support and trust",
+          text: "Use the contact page for support wording, legal identity references, and coverage methodology.",
+          href: "/contact",
+          cta: "View contact page"
+        }
+      ]
+    })}
+  `;
+}
+
+function selectRequestablePlans(marketing) {
+  return (marketing.pricing?.plans || []).filter((plan) => plan.requestValue && plan.href);
+}
+
 function renderTheoryIntentPage(config, renderer, marketing) {
   return `
     <section class="section reveal feature-hero">
@@ -611,7 +827,11 @@ function renderTheoryIntentPage(config, renderer, marketing) {
           ${config.highlights?.length ? `<div class="pill-row">${renderer.renderPills(config.highlights)}</div>` : ""}
         </div>
         <div class="feature-photo">
-          <img src="${escapeHtml(config.image)}" alt="${escapeHtml(config.imageAlt)}" loading="lazy" />
+          ${renderer.renderImg(config.image, config.imageAlt, {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -657,7 +877,11 @@ function renderCentreRegionPage(config, renderer, marketing, coverage) {
           </div>
         </div>
         <div class="feature-photo">
-          <img src="/assets/app-practice-centres.jpeg" alt="Drivest practice centre search screen" loading="lazy" />
+          ${renderer.renderImg("/assets/app-practice-centres.jpeg", "Drivest practice centre search screen", {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -766,7 +990,11 @@ function render404Page(scriptSource, marketing, coverage) {
           </div>
         </div>
         <div class="feature-photo">
-          <img src="/assets/app-home-learner.jpeg" alt="Drivest learner home screen" loading="lazy" />
+          ${renderer.renderImg("/assets/app-home-learner.jpeg", "Drivest learner home screen", {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -823,14 +1051,16 @@ function renderManifest(marketing) {
       theme_color: "#111827",
       icons: [
         {
-          src: "/assets/favicon-wheel.png",
-          sizes: "512x512",
-          type: "image/png"
+          src: "/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any"
         },
         {
-          src: "/assets/app-icon.png",
-          sizes: "1024x1024",
-          type: "image/png"
+          src: "/android-chrome-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any"
         }
       ]
     },
@@ -850,8 +1080,10 @@ function renderNoIndexDocument({ appHtml, canonical, description, page, title })
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="${canonical}" />
   <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="/assets/favicon-wheel.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon-wheel.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -862,7 +1094,7 @@ function renderNoIndexDocument({ appHtml, canonical, description, page, title })
   <div id="app">
 ${indent(appHtml, 4)}
   </div>
-  <script type="module" src="/script.js"></script>
+  <script type="module" src="/site-runtime.js"></script>
 </body>
 </html>
 `;
@@ -923,6 +1155,7 @@ Drivest is a public UK learner-driver platform site. Canonical public content is
 - [Homepage](https://www.drivest.uk/): Product overview and public positioning.
 - [Features](https://www.drivest.uk/features): Learner, navigation, parking, and instructor workflows.
 - [Pricing](https://www.drivest.uk/pricing): Free and paid plan overview.
+- [Access request](https://www.drivest.uk/access-request): Structured request flow for paid-plan support.
 - [Getting started](https://www.drivest.uk/start): Role-based onboarding paths for learners and instructors.
 
 ## Theory and learner preparation
@@ -1009,6 +1242,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 ## Instructor and commercial flows
 
 - [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
+- [Access request](https://www.drivest.uk/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
 - [Contact](https://www.drivest.uk/contact): Support contact details and public coverage methodology notes.
 - [FAQ](https://www.drivest.uk/faq): Product and commercial clarification questions.
 
@@ -1052,29 +1286,50 @@ function buildCentrePageTargets(coverage) {
 function buildCentreRedirectTargets(coverage) {
   const centres = coverage?.centres || [];
   const centreMap = new Map(centres.map((centre) => [centre.id, centre]));
-  const slugRedirects = centres
-    .map((centre) => {
-      const legacyPath = `/driving-test-centres/${centre.id}`;
-      if ((centre.url || legacyPath) === legacyPath) return null;
-      return {
-        output: outputPathForUrl(legacyPath),
-        destination: centre.url
-      };
-    })
-    .filter(Boolean);
+  const redirects = new Map();
+  const addRedirect = (source, destination) => {
+    const sourceKey = normaliseUrlPath(source);
+    const destinationKey = normaliseUrlPath(destination);
+    if (!sourceKey || !destinationKey || sourceKey === destinationKey) return;
+    const output = outputPathForUrl(sourceKey);
+    if (!redirects.has(output)) redirects.set(output, { output, destination: destinationKey });
+  };
 
-  const aliasRedirects = (coverage?.aliases || [])
-    .map((alias) => {
-      const canonical = centreMap.get(alias.canonicalId);
-      if (!canonical) return null;
-      return {
-        output: outputPathForUrl(`/driving-test-centres/${alias.id}`),
-        destination: canonical.url || `/driving-test-centres/${canonical.id}`
-      };
-    })
-    .filter(Boolean);
+  for (const centre of centres) {
+    const canonical = centre.url || `/driving-test-centres/${centre.id}`;
+    const legacyPaths = new Set([
+      `/driving-test-centres/${centre.id}`,
+      centre.slug ? `/driving-test-centres/${centre.slug}` : "",
+      `/driving-test-centres/${hyphenatePathSegment(centre.id)}`,
+      centre.slug ? `/driving-test-centres/${hyphenatePathSegment(centre.slug)}` : ""
+    ]);
+    legacyPaths.forEach((source) => addRedirect(source, canonical));
+  }
 
-  return [...slugRedirects, ...aliasRedirects];
+  for (const alias of coverage?.aliases || []) {
+    const canonical = centreMap.get(alias.canonicalId);
+    if (!canonical) continue;
+    const destination = canonical.url || `/driving-test-centres/${canonical.id}`;
+    const legacyPaths = new Set([
+      `/driving-test-centres/${alias.id}`,
+      `/driving-test-centres/${hyphenatePathSegment(alias.id)}`
+    ]);
+    legacyPaths.forEach((source) => addRedirect(source, destination));
+  }
+
+  return [...redirects.values()];
+}
+
+function normaliseUrlPath(urlPath) {
+  const clean = `/${String(urlPath || "").replace(/^\/+|\/+$/g, "")}`;
+  return clean === "/" ? "" : clean;
+}
+
+function hyphenatePathSegment(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[_\s]+/g, "-")
+    .replace(/-+/g, "-");
 }
 
 function buildCentreSitemapUrls(coverage) {

@@ -44,6 +44,35 @@ const PHOTO_URLS = {
   appTheoryQuizWelsh: "/assets/app-theory-quiz-welsh.jpeg"
 };
 
+const IMAGE_DIMENSIONS = {
+  "/android-chrome-192x192.png": { width: 192, height: 192 },
+  "/android-chrome-512x512.png": { width: 512, height: 512 },
+  "/apple-touch-icon.png": { width: 180, height: 180 },
+  "/assets/app-highway-quiz.jpeg": { width: 736, height: 1600 },
+  "/assets/app-home-arabic.jpeg": { width: 589, height: 1280 },
+  "/assets/app-home-learner.jpeg": { width: 736, height: 1600 },
+  "/assets/app-home-welsh.jpeg": { width: 736, height: 1600 },
+  "/assets/app-instructor-availability.jpeg": { width: 736, height: 1600 },
+  "/assets/app-instructor-bookings.jpeg": { width: 736, height: 1600 },
+  "/assets/app-instructor-hub.jpeg": { width: 736, height: 1600 },
+  "/assets/app-navigation-overview.jpeg": { width: 736, height: 1600 },
+  "/assets/app-navigation-search.jpeg": { width: 736, height: 1600 },
+  "/assets/app-parking-destination.jpeg": { width: 736, height: 1600 },
+  "/assets/app-parking-sign-quiz.jpeg": { width: 736, height: 1600 },
+  "/assets/app-practice-centres.jpeg": { width: 736, height: 1600 },
+  "/assets/app-theory-chinese.jpeg": { width: 589, height: 1280 },
+  "/assets/app-theory-mastery.jpeg": { width: 736, height: 1600 },
+  "/assets/app-theory-quiz-english.jpeg": { width: 736, height: 1600 },
+  "/assets/app-theory-quiz-welsh.jpeg": { width: 736, height: 1600 },
+  "/assets/drivest-wordmark-preview.png": { width: 600, height: 144 },
+  "/assets/drivest-wordmark.png": { width: 929, height: 224 },
+  "/favicon-16x16.png": { width: 16, height: 16 },
+  "/favicon-32x32.png": { width: 32, height: 32 },
+  "/favicon.ico": { width: 64, height: 64 },
+  "/assets/favicon-wheel.ico": { width: 256, height: 256 },
+  "/assets/favicon-wheel.png": { width: 512, height: 512 }
+};
+
 const page = document.body.dataset.page;
 const app = document.getElementById("app");
 
@@ -156,7 +185,11 @@ function renderShellStart(m) {
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="${PATHS.home}" aria-label="${escapeAttr(m.ui.brand)} home">
-          <img src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
+          ${renderImg("/assets/drivest-wordmark.png", m.ui.brand, {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 760px) 150px, 178px"
+          })}
         </a>
         <nav class="nav-links site-nav" aria-label="Primary navigation">
           ${renderPrimaryNavLinks(m)}
@@ -214,7 +247,10 @@ function renderShellEnd(m) {
     <footer class="site-footer">
       <div class="container footer-wrap">
         <div class="footer-brand-col">
-          <img class="footer-logo" src="/assets/drivest-wordmark.png" alt="${escapeHtml(m.ui.brand)}" />
+          ${renderImg("/assets/drivest-wordmark.png", m.ui.brand, {
+            className: "footer-logo",
+            sizes: "178px"
+          })}
           <p class="footer-summary">${escapeHtml(coverageLineText(m))}</p>
           <p class="footer-muted">${escapeHtml(m.hero.trustLine)}</p>
           <p class="footer-contact"><a href="mailto:${escapeAttr(supportEmail)}">${escapeHtml(m.footer.contact)}</a></p>
@@ -344,7 +380,10 @@ function renderHome(m) {
             (s) => `
           <article class="card reveal-item">
             <div class="card-photo">
-              <img src="${stepPhotoByTitle(s.title)}" alt="${escapeAttr(s.title)} visual" loading="lazy" />
+              ${renderImg(stepPhotoByTitle(s.title), `${s.title} visual`, {
+                loading: "lazy",
+                sizes: "(max-width: 760px) 92vw, (max-width: 1200px) 42vw, 320px"
+              })}
             </div>
             <h3>${escapeHtml(s.title)}</h3>
             <p>${escapeHtml(s.text)}</p>
@@ -369,7 +408,11 @@ function renderFeatures(m) {
           <p>${escapeHtml(m.hero.subhead)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${PHOTO_URLS.appNavigationOverview}" alt="Drivest navigation overview screen" loading="lazy" />
+          ${renderImg(PHOTO_URLS.appNavigationOverview, "Drivest navigation overview screen", {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -424,7 +467,11 @@ function renderStart(m) {
           <p>${escapeHtml(m.startPaths.intro)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${PHOTO_URLS.appHomeLearner}" alt="Drivest learner home screen" loading="lazy" />
+          ${renderImg(PHOTO_URLS.appHomeLearner, "Drivest learner home screen", {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -545,7 +592,11 @@ function renderHubPage(pageKey, m) {
           <p>${escapeHtml(hub.intro)}</p>
         </div>
         <div class="feature-photo">
-          <img src="${escapeAttr(photo.src)}" alt="${escapeAttr(photo.alt)}" loading="lazy" />
+          ${renderImg(photo.src, photo.alt, {
+            loading: "eager",
+            fetchPriority: "high",
+            sizes: "(max-width: 980px) 92vw, 420px"
+          })}
         </div>
       </div>
     </section>
@@ -951,6 +1002,7 @@ function renderCoverageDirectorySection(m) {
   const topCentres = coverageTopCentres(coverage, 12);
   const aliasCount = Number(coverage?.summary?.aliasCount) || 0;
   const excludedCount = Number(coverage?.summary?.excludedCount) || 0;
+  const generatedAtText = coverageGeneratedAtText(coverage);
   const aliasText = `${formatNumber(aliasCount)} duplicate slug variant${aliasCount === 1 ? " is" : "s are"} collapsed into canonical centre page${aliasCount === 1 ? "" : "s"}.`;
   if (!config || !summary || !groups.length) return "";
 
@@ -984,6 +1036,7 @@ function renderCoverageDirectorySection(m) {
         <p class="panel-title">${escapeHtml(config.summaryTitle)}</p>
         <p>${escapeHtml(config.summaryText)}</p>
         <p class="coverage-summary-note">${escapeHtml(formatNumber(excludedCount))} temporary, backup, or broken centre variants are excluded from the public layer, and ${escapeHtml(aliasText)}</p>
+        ${generatedAtText ? `<p class="coverage-summary-note">Current public coverage file generated: ${escapeHtml(generatedAtText)}.</p>` : ""}
         ${config.note ? `<p class="coverage-summary-note">${escapeHtml(config.note)}</p>` : ""}
       </div>
     </section>
@@ -1007,21 +1060,62 @@ function renderCoverageDirectorySection(m) {
     </section>
 
     <section class="section reveal">
+      <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
+        <div class="coverage-filter-head">
+          <div>
+            <p class="panel-title">Find a covered centre faster</p>
+            <p>Search the live public directory by centre name and filter out thinner route sets when you only want deeper local practice coverage.</p>
+          </div>
+          ${generatedAtText ? `<p class="coverage-generated-at">Coverage file generated: ${escapeHtml(generatedAtText)}</p>` : ""}
+        </div>
+        <div class="coverage-filter-grid">
+          <label class="coverage-field">
+            <span>Search centre name</span>
+            <input
+              type="search"
+              class="coverage-control"
+              placeholder="Search by centre, city, or area"
+              autocomplete="off"
+              data-coverage-search
+            />
+          </label>
+          <label class="coverage-field">
+            <span>Minimum routes</span>
+            <select class="coverage-control" data-coverage-min-routes>
+              <option value="0">Any live centre</option>
+              <option value="5">5 or more routes</option>
+              <option value="10">10 or more routes</option>
+              <option value="15">15 routes only</option>
+            </select>
+          </label>
+        </div>
+        <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
+          Showing all ${escapeHtml(formatNumber(summary.centres))} live centres across ${escapeHtml(formatNumber(groups.length))} letter groups.
+        </p>
+      </div>
+    </section>
+
+    <section class="section reveal">
       <h2>${escapeHtml(config.directoryTitle)}</h2>
       <div class="coverage-letter-grid">
         ${groups
           .map(
             (group) => `
-          <article class="card reveal-item coverage-letter-card">
+          <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="${escapeAttr(group.letter)}">
             <div class="coverage-letter-head">
               <h3>${escapeHtml(group.letter)}</h3>
-              <span class="tile-badge">${escapeHtml(formatNumber(group.centres.length))} centres</span>
+              <span class="tile-badge"><span data-coverage-group-count>${escapeHtml(formatNumber(group.centres.length))}</span> centres</span>
             </div>
             <ul class="coverage-centre-list">
               ${group.centres
                 .map(
                   (centre) => `
-                <li class="coverage-centre-item">
+                <li
+                  class="coverage-centre-item"
+                  data-coverage-item
+                  data-centre-name="${escapeAttr(String(centre.name || "").toLowerCase())}"
+                  data-centre-routes="${escapeAttr(String(Number(centre.routeCount) || 0))}"
+                >
                   <a class="coverage-centre-link" href="${escapeAttr(centreHref(centre))}">
                     <span>${escapeHtml(centre.name)}</span>
                     <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
@@ -1185,7 +1279,7 @@ function renderCentreDetailPage(m, centre) {
                     (item) => `
                   <li class="coverage-centre-item">
                     <a class="coverage-centre-link" href="${escapeAttr(centreHref(item))}">
-                      <span>${escapeHtml(item.name)}${item.distanceKm != null ? ` · ${escapeHtml(formatMetricValue(item.distanceKm, 1))} km away` : ""}</span>
+                      <span>${escapeHtml(item.name)}${item.distanceKm != null ? `, ${escapeHtml(formatMetricValue(item.distanceKm, 1))} km away` : ""}</span>
                       <strong>${escapeHtml(formatNumber(item.routeCount))}</strong>
                     </a>
                   </li>
@@ -1259,7 +1353,7 @@ function renderHeroProofGrid(m) {
   const summary = coverageSummary(m);
   const thresholdText = summary ? `Only centres with more than ${summary.threshold} routes appear in the live public layer.` : m.hero.coverageLine || "";
   const coverageHeadline = summary
-    ? `${formatNumber(summary.centres)} live centres · ${formatNumber(summary.routes)} routes`
+    ? `${formatNumber(summary.centres)} live centres, ${formatNumber(summary.routes)} routes`
     : coverageLineText(m);
 
   return `
@@ -1306,11 +1400,36 @@ function renderPhoneShot(src, alt, caption, extraClass = "", loading = "lazy") {
   return `
     <figure class="phone-shot ${escapeAttr(extraClass)}">
       <div class="phone-shot-frame">
-        <img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" loading="${escapeAttr(loading)}" />
+        ${renderImg(src, alt, {
+          loading,
+          fetchPriority: loading === "eager" ? "high" : "",
+          sizes: "(max-width: 760px) 72vw, 280px"
+        })}
       </div>
       ${caption ? `<figcaption class="phone-shot-caption">${escapeHtml(caption)}</figcaption>` : ""}
     </figure>
   `;
+}
+
+function imageMeta(src) {
+  return IMAGE_DIMENSIONS[src] || null;
+}
+
+function renderImg(src, alt, options = {}) {
+  const {
+    className = "",
+    loading = "lazy",
+    decoding = "async",
+    fetchPriority = "",
+    sizes = ""
+  } = options;
+  const meta = imageMeta(src);
+  const classAttr = className ? ` class="${escapeAttr(className)}"` : "";
+  const widthAttr = meta?.width ? ` width="${meta.width}"` : "";
+  const heightAttr = meta?.height ? ` height="${meta.height}"` : "";
+  const fetchPriorityAttr = fetchPriority ? ` fetchpriority="${escapeAttr(fetchPriority)}"` : "";
+  const sizesAttr = sizes ? ` sizes="${escapeAttr(sizes)}"` : "";
+  return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}"${classAttr}${widthAttr}${heightAttr} loading="${escapeAttr(loading)}" decoding="${escapeAttr(decoding)}"${fetchPriorityAttr}${sizesAttr} />`;
 }
 
 function renderJourneyScene(tab) {
@@ -1705,11 +1824,8 @@ function renderPills(items) {
 
 function activeNavKey(currentPage = page) {
   switch (currentPage) {
-    case "theory":
-    case "centres":
-    case "instructors":
     case "centre-detail":
-      return "features";
+      return "";
     default:
       return currentPage;
   }

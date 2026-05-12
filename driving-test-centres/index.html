@@ -21,8 +21,10 @@
   <meta name="twitter:description" content="Browse 317 UK driving test centres currently live in Drivest, covering 3,538 reconstructed practice routes with off-route alerts, offline packs, and road feature prompts." />
   <meta name="twitter:image" content="https://www.drivest.uk/assets/drivest-wordmark-preview.png" />
   <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="/assets/favicon-wheel.ico" />
-  <link rel="apple-touch-icon" href="/assets/favicon-wheel.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -265,10 +267,10 @@
         <header class="site-header">
           <div class="container nav-wrap">
             <a class="brand" href="/" aria-label="Drivest home">
-              <img src="/assets/drivest-wordmark.png" alt="Drivest" />
+              <img src="/assets/drivest-wordmark.png" alt="Drivest" width="929" height="224" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 760px) 150px, 178px" />
             </a>
             <nav class="nav-links site-nav" aria-label="Primary navigation">
-              <a class="nav-link active" data-nav="features" href="/features" aria-current="page">Features</a><a class="nav-link" data-nav="pricing" href="/pricing">Pricing</a><a class="nav-link" data-nav="start" href="/start">Getting Started</a><a class="nav-link" data-nav="faq" href="/faq">FAQ</a><a class="nav-link" data-nav="terms" href="/terms">Terms and Conditions</a><a class="nav-link" data-nav="privacy" href="/privacy">Privacy Policy</a>
+              <a class="nav-link" data-nav="features" href="/features">Features</a><a class="nav-link" data-nav="pricing" href="/pricing">Pricing</a><a class="nav-link" data-nav="start" href="/start">Getting Started</a><a class="nav-link" data-nav="faq" href="/faq">FAQ</a><a class="nav-link" data-nav="terms" href="/terms">Terms and Conditions</a><a class="nav-link" data-nav="privacy" href="/privacy">Privacy Policy</a>
             </nav>
             <div class="nav-actions">
               <a class="btn btn-primary header-cta" href="/start#learner">Start preparing</a>
@@ -293,7 +295,7 @@
           <div id="mobile-menu" class="mobile-menu" hidden>
             <div class="container mobile-menu-inner">
               <nav class="mobile-nav site-nav" aria-label="Mobile navigation">
-                <a class="nav-link active" data-nav="features" href="/features" aria-current="page">Features</a><a class="nav-link" data-nav="pricing" href="/pricing">Pricing</a><a class="nav-link" data-nav="start" href="/start">Getting Started</a><a class="nav-link" data-nav="faq" href="/faq">FAQ</a><a class="nav-link" data-nav="terms" href="/terms">Terms and Conditions</a><a class="nav-link" data-nav="privacy" href="/privacy">Privacy Policy</a>
+                <a class="nav-link" data-nav="features" href="/features">Features</a><a class="nav-link" data-nav="pricing" href="/pricing">Pricing</a><a class="nav-link" data-nav="start" href="/start">Getting Started</a><a class="nav-link" data-nav="faq" href="/faq">FAQ</a><a class="nav-link" data-nav="terms" href="/terms">Terms and Conditions</a><a class="nav-link" data-nav="privacy" href="/privacy">Privacy Policy</a>
               </nav>
               <div class="mobile-menu-cta-row">
                 <a class="btn btn-primary mobile-menu-cta" href="/start#learner">Start preparing</a>
@@ -311,7 +313,7 @@
               <p>Test-centre competitors win by writing pages around a single local route problem. Drivest adapts the strongest part of that approach by making selected-centre practice a visible public topic tied to the real app experience.</p>
             </div>
             <div class="feature-photo">
-              <img src="/assets/app-practice-centres.jpeg" alt="Drivest practice centre search screen" loading="lazy" />
+              <img src="/assets/app-practice-centres.jpeg" alt="Drivest practice centre search screen" width="736" height="1600" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 980px) 92vw, 420px" />
             </div>
           </div>
         </section>
@@ -427,6 +429,7 @@
             <p class="panel-title">Coverage threshold used on this page</p>
             <p>Only test centres with more than 2 routes are shown below. Centres with 0, 1, or 2 routes are intentionally excluded from this visibility layer.</p>
             <p class="coverage-summary-note">8 temporary, backup, or broken centre variants are excluded from the public layer, and 4 duplicate slug variants are collapsed into canonical centre pages.</p>
+            <p class="coverage-summary-note">Current public coverage file generated: 11 May 2026.</p>
             <p class="coverage-summary-note">Refresh this directory whenever the route corpus changes so search engines and users see the current live coverage.</p>
           </div>
         </section>
@@ -523,115 +526,226 @@
         </section>
     
         <section class="section reveal">
+          <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
+            <div class="coverage-filter-head">
+              <div>
+                <p class="panel-title">Find a covered centre faster</p>
+                <p>Search the live public directory by centre name and filter out thinner route sets when you only want deeper local practice coverage.</p>
+              </div>
+              <p class="coverage-generated-at">Coverage file generated: 11 May 2026</p>
+            </div>
+            <div class="coverage-filter-grid">
+              <label class="coverage-field">
+                <span>Search centre name</span>
+                <input
+                  type="search"
+                  class="coverage-control"
+                  placeholder="Search by centre, city, or area"
+                  autocomplete="off"
+                  data-coverage-search
+                />
+              </label>
+              <label class="coverage-field">
+                <span>Minimum routes</span>
+                <select class="coverage-control" data-coverage-min-routes>
+                  <option value="0">Any live centre</option>
+                  <option value="5">5 or more routes</option>
+                  <option value="10">10 or more routes</option>
+                  <option value="15">15 routes only</option>
+                </select>
+              </label>
+            </div>
+            <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
+              Showing all 317 live centres across 22 letter groups.
+            </p>
+          </div>
+        </section>
+    
+        <section class="section reveal">
           <h2>Browse covered centres A to Z</h2>
           <div class="coverage-letter-grid">
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="A">
                 <div class="coverage-letter-head">
                   <h3>A</h3>
-                  <span class="tile-badge">15 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>15</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="aberdeen north"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/aberdeen-north">
                         <span>Aberdeen North</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="aberdeen south (cove)"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/aberdeen-south-cove">
                         <span>Aberdeen South (Cove)</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="aberfeldy"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/aberfeldy">
                         <span>Aberfeldy</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="abergavenny"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/abergavenny">
                         <span>Abergavenny</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="aberystwyth park avenue"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/aberystwyth-park-avenue">
                         <span>Aberystwyth Park Avenue</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="airdrie"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/airdrie">
                         <span>Airdrie</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="alness"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/alness">
                         <span>Alness</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="alnwick"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/alnwick">
                         <span>Alnwick</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="arbroath"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/arbroath">
                         <span>Arbroath</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ashfield"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ashfield">
                         <span>Ashfield</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ashford (middx)"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ashford-middx">
                         <span>Ashford (Middx)</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ashford kent"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ashford-kent">
                         <span>Ashford Kent</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="atherton mptc"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/atherton-mptc">
                         <span>Atherton MPTC</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="aylesbury"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/aylesbury">
                         <span>Aylesbury</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ayr"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ayr">
                         <span>Ayr</span>
                         <strong>13</strong>
@@ -641,392 +755,667 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="B">
                 <div class="coverage-letter-head">
                   <h3>B</h3>
-                  <span class="tile-badge">55 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>55</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bala"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bala">
                         <span>Bala</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ballachulish"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ballachulish">
                         <span>Ballachulish</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ballater"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ballater">
                         <span>Ballater</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="banbury"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/banbury">
                         <span>Banbury</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="banff"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/banff">
                         <span>Banff</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bangor"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bangor">
                         <span>Bangor</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barking (tanner st)"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barking-tanner-st">
                         <span>Barking (Tanner St)</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barnet london"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barnet-london">
                         <span>Barnet London</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barnsley"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barnsley">
                         <span>Barnsley</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barnstaple"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barnstaple">
                         <span>Barnstaple</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barrow in furness"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barrow-in-furness">
                         <span>Barrow In Furness</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="barry"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/barry">
                         <span>Barry</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="basildon mptc"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/basildon-mptc">
                         <span>Basildon MPTC</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="basingstoke"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/basingstoke">
                         <span>Basingstoke</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bathgate"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bathgate">
                         <span>Bathgate</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bedford"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bedford">
                         <span>Bedford</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="belvedere london"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/belvedere-london">
                         <span>Belvedere London</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="benbecula island"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/benbecula-island">
                         <span>Benbecula Island</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="berwick-on-tweed"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/berwick-on-tweed">
                         <span>Berwick-On-Tweed</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham garretts green"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-garretts-green">
                         <span>Birmingham Garretts Green</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham kings heath"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-kings-heath">
                         <span>Birmingham Kings Heath</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham kingstanding"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-kingstanding">
                         <span>Birmingham Kingstanding</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham shirley"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-shirley">
                         <span>Birmingham Shirley</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham south yardley"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-south-yardley">
                         <span>Birmingham South Yardley</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="birmingham sutton coldfield"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/birmingham-sutton-coldfield">
                         <span>Birmingham Sutton Coldfield</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bishopbriggs"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bishopbriggs">
                         <span>Bishopbriggs</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bishops stortford"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bishops-stortford">
                         <span>Bishops Stortford</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="blackburn with darwen"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/blackburn-with-darwen">
                         <span>Blackburn with Darwen</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="blackpool"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/blackpool">
                         <span>Blackpool</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bletchley"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bletchley">
                         <span>Bletchley</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="blyth"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/blyth">
                         <span>Blyth</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bodmin"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bodmin">
                         <span>Bodmin</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bolton manchester"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bolton-manchester">
                         <span>Bolton Manchester</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="borehamwood london"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/borehamwood-london">
                         <span>Borehamwood London</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="boston"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/boston">
                         <span>Boston</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bournemouth"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bournemouth">
                         <span>Bournemouth</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bradford heaton"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bradford-heaton">
                         <span>Bradford Heaton</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bradford thornbury"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bradford-thornbury">
                         <span>Bradford Thornbury</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="brecon"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/brecon">
                         <span>Brecon</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bredbury manchester"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bredbury-manchester">
                         <span>Bredbury Manchester</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="brentwood london"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/brentwood-london">
                         <span>Brentwood London</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bridgend"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bridgend">
                         <span>Bridgend</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bridlington"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bridlington">
                         <span>Bridlington</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bristol (avonmouth)"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bristol-avonmouth">
                         <span>Bristol (Avonmouth)</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bristol (kingswood)"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bristol-kingswood">
                         <span>Bristol (Kingswood)</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bristol brislington"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bristol-brislington">
                         <span>Bristol Brislington</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="brodick isle of arran"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/brodick-isle-of-arran">
                         <span>Brodick Isle of Arran</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bromley (london)"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bromley-london">
                         <span>Bromley (London)</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bromsgrove"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bromsgrove">
                         <span>Bromsgrove</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="buckie"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/buckie">
                         <span>Buckie</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="burgess hill"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/burgess-hill">
                         <span>Burgess Hill</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="burton on trent"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/burton-on-trent">
                         <span>Burton on Trent</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bury manchester"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bury-manchester">
                         <span>Bury Manchester</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="bury st edmunds"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/bury-st-edmunds">
                         <span>Bury St Edmunds</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="buxton"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/buxton">
                         <span>Buxton</span>
                         <strong>8</strong>
@@ -1036,189 +1425,319 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="C">
                 <div class="coverage-letter-head">
                   <h3>C</h3>
-                  <span class="tile-badge">26 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>26</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="callander"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/callander">
                         <span>Callander</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="camborne"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/camborne">
                         <span>Camborne</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cambridge (cowley road)"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cambridge-cowley-road">
                         <span>Cambridge (Cowley Road)</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="campbeltown"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/campbeltown">
                         <span>Campbeltown</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="canterbury"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/canterbury">
                         <span>Canterbury</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cardiff llanishen"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cardiff-llanishen">
                         <span>Cardiff Llanishen</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cardigan"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cardigan">
                         <span>Cardigan</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="carlisle"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/carlisle">
                         <span>Carlisle</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="carmarthen"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/carmarthen">
                         <span>Carmarthen</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="castle douglas"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/castle-douglas">
                         <span>Castle Douglas</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chadderton"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chadderton">
                         <span>Chadderton</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cheetham hill manchester"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cheetham-hill-manchester">
                         <span>Cheetham Hill Manchester</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chelmsford"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chelmsford">
                         <span>Chelmsford</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cheltenham"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cheltenham">
                         <span>Cheltenham</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chertsey london"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chertsey-london">
                         <span>Chertsey London</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chester"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chester">
                         <span>Chester</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chesterfield"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chesterfield">
                         <span>Chesterfield</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chichester"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chichester">
                         <span>Chichester</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chingford london"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chingford-london">
                         <span>Chingford London</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chippenham"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chippenham">
                         <span>Chippenham</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="chorley"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/chorley">
                         <span>Chorley</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="clacton-on-sea"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/clacton-on-sea">
                         <span>Clacton-on-Sea</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="coventry"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/coventry">
                         <span>Coventry</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="crawley"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/crawley">
                         <span>Crawley</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="crewe"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/crewe">
                         <span>Crewe</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="cumnock"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/cumnock">
                         <span>Cumnock</span>
                         <strong>15</strong>
@@ -1228,84 +1747,139 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="D">
                 <div class="coverage-letter-head">
                   <h3>D</h3>
-                  <span class="tile-badge">11 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>11</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="darlington"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/darlington">
                         <span>Darlington</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="derby alvaston"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/derby-alvaston">
                         <span>Derby Alvaston</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="doncaster"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/doncaster">
                         <span>Doncaster</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dorchester"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dorchester">
                         <span>Dorchester</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dudley"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dudley">
                         <span>Dudley</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dumbarton"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dumbarton">
                         <span>Dumbarton</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dumfries"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dumfries">
                         <span>Dumfries</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dundee"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dundee">
                         <span>Dundee</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="dunfermline vine"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/dunfermline-vine">
                         <span>Dunfermline Vine</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="duns"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/duns">
                         <span>Duns</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="durham"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/durham">
                         <span>Durham</span>
                         <strong>15</strong>
@@ -1315,63 +1889,103 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="E">
                 <div class="coverage-letter-head">
                   <h3>E</h3>
-                  <span class="tile-badge">8 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>8</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="east kilbride"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/east-kilbride">
                         <span>East Kilbride</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="eastbourne"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/eastbourne">
                         <span>Eastbourne</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="edinburgh (musselburgh)"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/edinburgh-musselburgh">
                         <span>Edinburgh (Musselburgh)</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="edinburgh currie"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/edinburgh-currie">
                         <span>Edinburgh Currie</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="elgin"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/elgin">
                         <span>Elgin</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="enfield innova business park"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/enfield-innova-business-park">
                         <span>Enfield Innova Business Park</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="erith (london)"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/erith-london">
                         <span>Erith (London)</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="exeter"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/exeter">
                         <span>Exeter</span>
                         <strong>15</strong>
@@ -1381,49 +1995,79 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="F">
                 <div class="coverage-letter-head">
                   <h3>F</h3>
-                  <span class="tile-badge">6 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>6</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="farnborough"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/farnborough">
                         <span>Farnborough</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="featherstone"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/featherstone">
                         <span>Featherstone</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="folkestone"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/folkestone">
                         <span>Folkestone</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="forfar"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/forfar">
                         <span>Forfar</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="fort william"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/fort-william">
                         <span>Fort William</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="fraserburgh"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/fraserburgh">
                         <span>Fraserburgh</span>
                         <strong>15</strong>
@@ -1433,140 +2077,235 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="G">
                 <div class="coverage-letter-head">
                   <h3>G</h3>
-                  <span class="tile-badge">19 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>19</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="galashiels"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/galashiels">
                         <span>Galashiels</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="garston (liverpool)"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/garston-liverpool">
                         <span>Garston (Liverpool)</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="gateshead"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/gateshead">
                         <span>Gateshead</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="gillingham"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/gillingham">
                         <span>Gillingham</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="girvan"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/girvan">
                         <span>Girvan</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="glasgow (anniesland)"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/glasgow-anniesland">
                         <span>Glasgow (Anniesland)</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="glasgow (baillieston)"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/glasgow-baillieston">
                         <span>Glasgow (Baillieston)</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="glasgow shieldhall"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/glasgow-shieldhall">
                         <span>Glasgow Shieldhall</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="gloucester"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/gloucester">
                         <span>Gloucester</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="goodmayes london"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/goodmayes-london">
                         <span>Goodmayes London</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="gosforth"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/gosforth">
                         <span>Gosforth</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="grangemouth"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/grangemouth">
                         <span>Grangemouth</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="grantham somerby"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/grantham-somerby">
                         <span>Grantham Somerby</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="greenford (london)"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/greenford-london">
                         <span>Greenford (London)</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="greenford horsenden lane"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/greenford-horsenden-lane">
                         <span>Greenford Horsenden Lane</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="greenock"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/greenock">
                         <span>Greenock</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="grimsby coldwater"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/grimsby-coldwater">
                         <span>Grimsby Coldwater</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="guernsey"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/guernsey">
                         <span>Guernsey</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="guildford"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/guildford">
                         <span>Guildford</span>
                         <strong>10</strong>
@@ -1576,154 +2315,259 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="H">
                 <div class="coverage-letter-head">
                   <h3>H</h3>
-                  <span class="tile-badge">21 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>21</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="haddington"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/haddington">
                         <span>Haddington</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="halifax"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/halifax">
                         <span>Halifax</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hamilton"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hamilton">
                         <span>Hamilton</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hartlepool"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hartlepool">
                         <span>Hartlepool</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hastings ore"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hastings-ore">
                         <span>Hastings Ore</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hawick"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hawick">
                         <span>Hawick</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="heckmondwike"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/heckmondwike">
                         <span>Heckmondwike</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hendon london"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hendon-london">
                         <span>Hendon London</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hereford"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hereford">
                         <span>Hereford</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="herne bay"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/herne-bay">
                         <span>Herne Bay</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hexham"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hexham">
                         <span>Hexham</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="heysham"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/heysham">
                         <span>Heysham</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="high wycombe"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/high-wycombe">
                         <span>High Wycombe</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hinckley"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hinckley">
                         <span>Hinckley</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hither green london"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hither-green-london">
                         <span>Hither Green London</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hornchurch london"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hornchurch-london">
                         <span>Hornchurch London</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="horsforth"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/horsforth">
                         <span>Horsforth</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="huddersfield"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/huddersfield">
                         <span>Huddersfield</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hull"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hull">
                         <span>Hull</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="huntly"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/huntly">
                         <span>Huntly</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="hyde manchester"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/hyde-manchester">
                         <span>Hyde Manchester</span>
                         <strong>10</strong>
@@ -1733,63 +2577,103 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="I">
                 <div class="coverage-letter-head">
                   <h3>I</h3>
-                  <span class="tile-badge">8 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>8</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="inveraray"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/inveraray">
                         <span>Inveraray</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="inverness"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/inverness">
                         <span>Inverness</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="inverurie"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/inverurie">
                         <span>Inverurie</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ipswich"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ipswich">
                         <span>Ipswich</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="irvine"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/irvine">
                         <span>Irvine</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="isle of mull"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/isle-of-mull">
                         <span>Isle of Mull</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="isle of skye broadford"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/isle-of-skye-broadford">
                         <span>Isle of Skye Broadford</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="isleworth fleming way"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/isleworth-fleming-way">
                         <span>Isleworth Fleming Way</span>
                         <strong>12</strong>
@@ -1799,14 +2683,19 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="J">
                 <div class="coverage-letter-head">
                   <h3>J</h3>
-                  <span class="tile-badge">1 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>1</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="jersey"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/jersey">
                         <span>Jersey</span>
                         <strong>15</strong>
@@ -1816,63 +2705,103 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="K">
                 <div class="coverage-letter-head">
                   <h3>K</h3>
-                  <span class="tile-badge">8 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>8</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kendal oxenholme road"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kendal-oxenholme-road">
                         <span>Kendal Oxenholme Road</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kettering"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kettering">
                         <span>Kettering</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kilmarnock"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kilmarnock">
                         <span>Kilmarnock</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kings lynn"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kings-lynn">
                         <span>Kings Lynn</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kirkcaldy"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kirkcaldy">
                         <span>Kirkcaldy</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kirkwall"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kirkwall">
                         <span>Kirkwall</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="knaresborough"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/knaresborough">
                         <span>Knaresborough</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="kyle of lochalsh"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/kyle-of-lochalsh">
                         <span>Kyle of Lochalsh</span>
                         <strong>4</strong>
@@ -1882,161 +2811,271 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="L">
                 <div class="coverage-letter-head">
                   <h3>L</h3>
-                  <span class="tile-badge">22 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>22</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lanark"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lanark">
                         <span>Lanark</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lancing"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lancing">
                         <span>Lancing</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="launceston"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/launceston">
                         <span>Launceston</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lee on the solent"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lee-on-the-solent">
                         <span>Lee on the Solent</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="leeds"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/leeds">
                         <span>Leeds</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="leicester (cannock st)"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/leicester-cannock-st">
                         <span>Leicester (Cannock St)</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="leicester cannock street"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/leicester-cannock-street">
                         <span>Leicester Cannock Street</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="leicester wigston"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/leicester-wigston">
                         <span>Leicester Wigston</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="leighton buzzard stanbridge road"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/leighton-buzzard-stanbridge-road">
                         <span>Leighton Buzzard Stanbridge Road</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lerwick"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lerwick">
                         <span>Lerwick</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="letchworth"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/letchworth">
                         <span>Letchworth</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lichfield"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lichfield">
                         <span>Lichfield</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lincoln"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lincoln">
                         <span>Lincoln</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="livingston"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/livingston">
                         <span>Livingston</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="llanelli"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/llanelli">
                         <span>Llanelli</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="llantrisant"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/llantrisant">
                         <span>Llantrisant</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lochgilphead"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lochgilphead">
                         <span>Lochgilphead</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="loughborough"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/loughborough">
                         <span>Loughborough</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="loughton london"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/loughton-london">
                         <span>Loughton London</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="lowestoft mobbs way"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/lowestoft-mobbs-way">
                         <span>Lowestoft Mobbs Way</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ludlow"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ludlow">
                         <span>Ludlow</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="luton"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/luton">
                         <span>Luton</span>
                         <strong>9</strong>
@@ -2046,133 +3085,223 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="M">
                 <div class="coverage-letter-head">
                   <h3>M</h3>
-                  <span class="tile-badge">18 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>18</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="macclesfield"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/macclesfield">
                         <span>Macclesfield</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="machrihanish"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/machrihanish">
                         <span>Machrihanish</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="maidstone"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/maidstone">
                         <span>Maidstone</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="mallaig"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/mallaig">
                         <span>Mallaig</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="malton"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/malton">
                         <span>Malton</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="manchester (west didsbury)"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/manchester-west-didsbury">
                         <span>Manchester (West Didsbury)</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="mansfield"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/mansfield">
                         <span>Mansfield</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="melton mowbray"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/melton-mowbray">
                         <span>Melton Mowbray</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="merthyr tydfil"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/merthyr-tydfil">
                         <span>Merthyr Tydfil</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="middlesbrough"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/middlesbrough">
                         <span>Middlesbrough</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="mill hill london"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/mill-hill-london">
                         <span>Mill Hill London</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="milton keynes"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/milton-keynes">
                         <span>Milton Keynes</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="mitcham london"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/mitcham-london">
                         <span>Mitcham London</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="monmouth"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/monmouth">
                         <span>Monmouth</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="montrose"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/montrose">
                         <span>Montrose</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="morden london"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/morden-london">
                         <span>Morden London</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="morecambe"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/morecambe">
                         <span>Morecambe</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="musselburgh"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/musselburgh">
                         <span>Musselburgh</span>
                         <strong>6</strong>
@@ -2182,112 +3311,187 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="N">
                 <div class="coverage-letter-head">
                   <h3>N</h3>
-                  <span class="tile-badge">15 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>15</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="nelson"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/nelson">
                         <span>Nelson</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newbury hambridge lane"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newbury-hambridge-lane">
                         <span>Newbury Hambridge Lane</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newcastle-upon-tyne"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newcastle-upon-tyne">
                         <span>Newcastle-Upon-Tyne</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newport (isle of wight)"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newport-isle-of-wight">
                         <span>Newport (Isle of Wight)</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newport gwent"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newport-gwent">
                         <span>Newport Gwent</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newton abbot"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newton-abbot">
                         <span>Newton Abbot</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newton stewart"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newton-stewart">
                         <span>Newton Stewart</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="newtown"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/newtown">
                         <span>Newtown</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="northallerton"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/northallerton">
                         <span>Northallerton</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="northampton"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/northampton">
                         <span>Northampton</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="northwich"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/northwich">
                         <span>Northwich</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="norwich jupiter road"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/norwich-jupiter-road">
                         <span>Norwich Jupiter Road</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="nottingham (chilwell)"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/nottingham-chilwell">
                         <span>Nottingham (Chilwell)</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="nottingham colwick"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/nottingham-colwick">
                         <span>Nottingham Colwick</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="nuneaton"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/nuneaton">
                         <span>Nuneaton</span>
                         <strong>10</strong>
@@ -2297,35 +3501,55 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="O">
                 <div class="coverage-letter-head">
                   <h3>O</h3>
-                  <span class="tile-badge">4 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>4</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="oban"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/oban">
                         <span>Oban</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="orkney"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/orkney">
                         <span>Orkney</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="oswestry"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/oswestry">
                         <span>Oswestry</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="oxford cowley"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/oxford-cowley">
                         <span>Oxford Cowley</span>
                         <strong>14</strong>
@@ -2335,112 +3559,187 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="P">
                 <div class="coverage-letter-head">
                   <h3>P</h3>
-                  <span class="tile-badge">15 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>15</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="paisley"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/paisley">
                         <span>Paisley</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="peebles"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/peebles">
                         <span>Peebles</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="pembroke dock"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/pembroke-dock">
                         <span>Pembroke Dock</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="penzance"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/penzance">
                         <span>Penzance</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="perth arran road"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/perth-arran-road">
                         <span>Perth Arran Road</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="peterborough"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/peterborough">
                         <span>Peterborough</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="peterhead"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/peterhead">
                         <span>Peterhead</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="pinner london"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/pinner-london">
                         <span>Pinner London</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="plymouth"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/plymouth">
                         <span>Plymouth</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="pontefract"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/pontefract">
                         <span>Pontefract</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="pontypridd"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/pontypridd">
                         <span>Pontypridd</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="poole"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/poole">
                         <span>Poole</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="portsmouth"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/portsmouth">
                         <span>Portsmouth</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="preston"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/preston">
                         <span>Preston</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="pwllheli"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/pwllheli">
                         <span>Pwllheli</span>
                         <strong>15</strong>
@@ -2450,56 +3749,91 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="R">
                 <div class="coverage-letter-head">
                   <h3>R</h3>
-                  <span class="tile-badge">7 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>7</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="reading"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/reading">
                         <span>Reading</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="redditch"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/redditch">
                         <span>Redditch</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="redhill aerodrome"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/redhill-aerodrome">
                         <span>Redhill Aerodrome</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="rochdale manchester"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/rochdale-manchester">
                         <span>Rochdale Manchester</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="rotherham"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/rotherham">
                         <span>Rotherham</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="rugby"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/rugby">
                         <span>Rugby</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="runcorn"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/runcorn">
                         <span>Runcorn</span>
                         <strong>15</strong>
@@ -2509,210 +3843,355 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="S">
                 <div class="coverage-letter-head">
                   <h3>S</h3>
-                  <span class="tile-badge">29 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>29</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sale manchester"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sale-manchester">
                         <span>Sale Manchester</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="salisbury"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/salisbury">
                         <span>Salisbury</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="scarborough"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/scarborough">
                         <span>Scarborough</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="scunthorpe"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/scunthorpe">
                         <span>Scunthorpe</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sevenoaks"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sevenoaks">
                         <span>Sevenoaks</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sheffield (middlewood)"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sheffield-middlewood">
                         <span>Sheffield (Middlewood)</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sheffield handsworth"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sheffield-handsworth">
                         <span>Sheffield Handsworth</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="shrewsbury"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/shrewsbury">
                         <span>Shrewsbury</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sidcup london"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sidcup-london">
                         <span>Sidcup London</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="skipton"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/skipton">
                         <span>Skipton</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="slough london"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/slough-london">
                         <span>Slough London</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="south uist island"
+                      data-centre-routes="6"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/south-uist-island">
                         <span>South Uist Island</span>
                         <strong>6</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="southall london"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/southall-london">
                         <span>Southall London</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="southampton maybush"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/southampton-maybush">
                         <span>Southampton Maybush</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="southend-on-sea"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/southend-on-sea">
                         <span>Southend-On-Sea</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="southport liverpool"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/southport-liverpool">
                         <span>Southport Liverpool</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="speke liverpool"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/speke-liverpool">
                         <span>Speke Liverpool</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="st albans"
+                      data-centre-routes="14"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/st-albans">
                         <span>St Albans</span>
                         <strong>14</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="st helens liverpool"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/st-helens-liverpool">
                         <span>St Helens Liverpool</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stafford"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stafford">
                         <span>Stafford</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="steeton"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/steeton">
                         <span>Steeton</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stevenage"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stevenage">
                         <span>Stevenage</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stirling"
+                      data-centre-routes="10"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stirling">
                         <span>Stirling</span>
                         <strong>10</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stoke-on-trent newcastle-under-lyme"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stoke-on-trent-newcastle-under-lyme">
                         <span>Stoke-on-Trent Newcastle-Under-Lyme</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stornoway"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stornoway">
                         <span>Stornoway</span>
                         <strong>5</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="stranraer"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/stranraer">
                         <span>Stranraer</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="sunderland"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/sunderland">
                         <span>Sunderland</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="swansea"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/swansea">
                         <span>Swansea</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="swindon"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/swindon">
                         <span>Swindon</span>
                         <strong>4</strong>
@@ -2722,63 +4201,103 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="T">
                 <div class="coverage-letter-head">
                   <h3>T</h3>
-                  <span class="tile-badge">8 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>8</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="taunton"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/taunton">
                         <span>Taunton</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="telford"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/telford">
                         <span>Telford</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="thurso"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/thurso">
                         <span>Thurso</span>
                         <strong>9</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="tilbury"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/tilbury">
                         <span>Tilbury</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="tolworth london"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/tolworth-london">
                         <span>Tolworth London</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="tottenham"
+                      data-centre-routes="4"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/tottenham">
                         <span>Tottenham</span>
                         <strong>4</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="trowbridge"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/trowbridge">
                         <span>Trowbridge</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="tunbridge wells"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/tunbridge-wells">
                         <span>Tunbridge Wells</span>
                         <strong>12</strong>
@@ -2788,21 +4307,31 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="U">
                 <div class="coverage-letter-head">
                   <h3>U</h3>
-                  <span class="tile-badge">2 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>2</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="ullapool"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/ullapool">
                         <span>Ullapool</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="uxbridge london"
+                      data-centre-routes="9"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/uxbridge-london">
                         <span>Uxbridge London</span>
                         <strong>9</strong>
@@ -2812,126 +4341,211 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="W">
                 <div class="coverage-letter-head">
                   <h3>W</h3>
-                  <span class="tile-badge">17 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>17</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wakefield"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wakefield">
                         <span>Wakefield</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wallasey"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wallasey">
                         <span>Wallasey</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wanstead london"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wanstead-london">
                         <span>Wanstead London</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="warrington"
+                      data-centre-routes="8"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/warrington">
                         <span>Warrington</span>
                         <strong>8</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="warwick wedgenock house"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/warwick-wedgenock-house">
                         <span>Warwick Wedgenock House</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="watford"
+                      data-centre-routes="7"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/watford">
                         <span>Watford</span>
                         <strong>7</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="west bromwich"
+                      data-centre-routes="11"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/west-bromwich">
                         <span>West Bromwich</span>
                         <strong>11</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="west wickham london"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/west-wickham-london">
                         <span>West Wickham London</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="weston-super-mare"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/weston-super-mare">
                         <span>Weston-super-Mare</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="whitby"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/whitby">
                         <span>Whitby</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="whitchurch"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/whitchurch">
                         <span>Whitchurch</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wick"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wick">
                         <span>Wick</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wolverhampton"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wolverhampton">
                         <span>Wolverhampton</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wood green london"
+                      data-centre-routes="13"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wood-green-london">
                         <span>Wood Green London</span>
                         <strong>13</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="worcester"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/worcester">
                         <span>Worcester</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="worksop"
+                      data-centre-routes="12"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/worksop">
                         <span>Worksop</span>
                         <strong>12</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="wrexham"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/wrexham">
                         <span>Wrexham</span>
                         <strong>15</strong>
@@ -2941,21 +4555,31 @@
                 </ul>
               </article>
             
-              <article class="card reveal-item coverage-letter-card">
+              <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="Y">
                 <div class="coverage-letter-head">
                   <h3>Y</h3>
-                  <span class="tile-badge">2 centres</span>
+                  <span class="tile-badge"><span data-coverage-group-count>2</span> centres</span>
                 </div>
                 <ul class="coverage-centre-list">
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="yeovil"
+                      data-centre-routes="15"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/yeovil">
                         <span>Yeovil</span>
                         <strong>15</strong>
                       </a>
                     </li>
                   
-                    <li class="coverage-centre-item">
+                    <li
+                      class="coverage-centre-item"
+                      data-coverage-item
+                      data-centre-name="york"
+                      data-centre-routes="5"
+                    >
                       <a class="coverage-centre-link" href="/driving-test-centres/york">
                         <span>York</span>
                         <strong>5</strong>
@@ -3032,7 +4656,7 @@
         <footer class="site-footer">
           <div class="container footer-wrap">
             <div class="footer-brand-col">
-              <img class="footer-logo" src="/assets/drivest-wordmark.png" alt="Drivest" />
+              <img src="/assets/drivest-wordmark.png" alt="Drivest" class="footer-logo" width="929" height="224" loading="lazy" decoding="async" sizes="178px" />
               <p class="footer-summary">317 UK test centres currently live with more than 2 routes. 3,538 practice routes across the UK.</p>
               <p class="footer-muted">Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.</p>
               <p class="footer-contact"><a href="mailto:admin@drivest.uk">Contact: admin@drivest.uk</a></p>
@@ -3057,6 +4681,6 @@
           </div>
         </footer>
   </div>
-  <script type="module" src="/script.js"></script>
+  <script type="module" src="/site-runtime.js"></script>
 </body>
 </html>

@@ -35,6 +35,10 @@
     "contact": {
       "title": "Contact, trust, and coverage methodology",
       "description": "Find Drivest contact details, legal identity references, public coverage methodology notes, and current website support information."
+    },
+    "accessRequest": {
+      "title": "Request Drivest paid access",
+      "description": "Request Drivest selected-centre practice, navigation, or bundle access with a structured form that prepares the correct support email."
     }
   },
   "ui": {
@@ -901,6 +905,40 @@
       }
     ]
   },
+  "accessRequestPage": {
+    "title": "Request paid access",
+    "intro": "Use this page to prepare a structured paid-access request for Drivest without guessing which details support needs first.",
+    "highlights": [
+      "Choose the exact paid plan you want",
+      "Add your centre or nearby area before support replies",
+      "Prepare one clean request for the support inbox"
+    ],
+    "expectationTitle": "What to include",
+    "expectationText": "Structured requests move faster because support can see the plan, your driving stage, preferred centre, and intended start timing in one message.",
+    "expectationBullets": [
+      "Selected-centre plans should include the exact centre or nearby area you want",
+      "Navigation and bundle requests should include when you want access to start",
+      "If you are still comparing options, use the message box to explain what you need help deciding"
+    ],
+    "responseTitle": "What happens next",
+    "responseBullets": [
+      "The form prepares an email draft to admin@drivest.uk with the plan details already organised",
+      "If your email app does not open, copy the prepared request and send it manually",
+      "Support, rollout timing, and access questions are handled through the same inbox"
+    ],
+    "stageOptions": [
+      "Future learner",
+      "Learner driver",
+      "Recently passed",
+      "Instructor or partner"
+    ],
+    "timingOptions": [
+      "As soon as access is available",
+      "Within the next 2 weeks",
+      "Within the next month",
+      "Just comparing options for now"
+    ]
+  },
   "seoLandingPages": {
     "theoryIntentPages": [
       {
@@ -1212,14 +1250,17 @@
         "tag": "Monthly",
         "billing": "Recurring while active",
         "summary": "Best for learners repeating routes around one chosen centre.",
+        "requestValue": "selected-centre-practice",
+        "requestSubject": "Drivest practice access",
+        "requiresCentre": true,
         "bullets": [
           "1 selected test centre",
           "Reconstructed practice routes and off-route alerts",
           "Offline packs for the chosen centre",
           "Monthly recurring access while the subscription is active"
         ],
-        "cta": "Ask about practice access",
-        "href": "mailto:admin@drivest.uk?subject=Drivest%20practice%20access"
+        "cta": "Request practice access",
+        "href": "/access-request?plan=selected-centre-practice"
       },
       {
         "name": "Navigation",
@@ -1228,14 +1269,16 @@
         "billing": "12-month access",
         "summary": "Best for newer drivers who need calmer ongoing guidance.",
         "subLine": "12 months of calmer navigation support for newer drivers.",
+        "requestValue": "navigation",
+        "requestSubject": "Drivest navigation access",
         "bullets": [
           "Low-stress route choice and voice modes",
           "Road feature prompts and parking support",
           "Confidence-led navigation guidance",
           "Yearly access aligned to the in-app navigation plan"
         ],
-        "cta": "Ask about navigation access",
-        "href": "mailto:admin@drivest.uk?subject=Drivest%20navigation%20access"
+        "cta": "Request navigation access",
+        "href": "/access-request?plan=navigation"
       },
       {
         "name": "Annual Bundle",
@@ -1245,14 +1288,17 @@
         "summary": "Best when you want navigation now and a short centre-practice boost.",
         "featured": true,
         "subLine": "12 months of navigation plus 1 month of selected-centre practice routes.",
+        "requestValue": "annual-bundle",
+        "requestSubject": "Drivest annual bundle",
+        "requiresCentre": true,
         "bullets": [
           "Navigation access for 12 months",
           "Practice routes for 1 selected centre for 1 month",
           "Each entitlement expires on its own timeline",
           "Bundle wording aligned to the current in-app product"
         ],
-        "cta": "Ask about annual access",
-        "href": "mailto:admin@drivest.uk?subject=Drivest%20annual%20bundle"
+        "cta": "Request annual access",
+        "href": "/access-request?plan=annual-bundle"
       }
     ],
     "appGallery": {
