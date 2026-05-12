@@ -1,7 +1,7 @@
 {
   "name": "Drivest",
   "short_name": "Drivest",
-  "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation.",
+  "description": "Drivest UK helps future learners and learner drivers prepare with theory in 32 languages, UK driving test centre practice routes, instructor discovery, parking support, and calmer navigation.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f3f4f8",

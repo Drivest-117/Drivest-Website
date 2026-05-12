@@ -119,13 +119,18 @@ function finalizePageChrome() {
   setupMobileNav();
 }
 
+function seoBrandTitle(m) {
+  return m?.seo?.brandTitle || m?.ui?.brand || "Drivest";
+}
+
 function pageTitle(currentPage, m, centreId = document.body.dataset.centreId) {
+  const brandTitle = seoBrandTitle(m);
   if (currentPage === "centre-detail") {
     const centre = coverageCentreById(m?.testCentreCoverage, centreId);
-    if (centre) return `${centre.name} driving test routes and practice | ${m.ui.brand}`;
+    if (centre) return `${centre.name} driving test routes and practice | ${brandTitle}`;
   }
   if (currentPage === "home") return m.seo.title;
-  if (m.pageSeo?.[currentPage]?.title) return `${m.pageSeo[currentPage].title} | ${m.ui.brand}`;
+  if (m.pageSeo?.[currentPage]?.title) return `${m.pageSeo[currentPage].title} | ${brandTitle}`;
   const map = {
     features: m.ui.nav.features,
     pricing: m.ui.nav.pricing,
@@ -135,7 +140,7 @@ function pageTitle(currentPage, m, centreId = document.body.dataset.centreId) {
     terms: footerLabel(m, "terms") || "Terms",
     privacy: footerLabel(m, "privacy") || "Privacy"
   };
-  return `${map[currentPage] || m.seo.title} | ${m.ui.brand}`;
+  return `${map[currentPage] || m.seo.title} | ${brandTitle}`;
 }
 
 function pageDescription(currentPage, m, centreId = document.body.dataset.centreId) {

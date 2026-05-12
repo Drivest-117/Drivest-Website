@@ -1,36 +1,37 @@
 {
   "seo": {
-    "title": "Drivest | Theory mock tests, practice routes, learner-first navigation, parking, and instructor bookings",
-    "description": "Prepare for learning to drive with theory in 32 languages, topic quizzes, mock tests, Highway Code and road signs revision, reconstructed practice routes around UK driving test centres, parking support, and calmer navigation."
+    "brandTitle": "Drivest UK",
+    "title": "Drivest UK | Theory mock tests, practice routes, and driving instructors",
+    "description": "Drivest UK helps future learners and learner drivers prepare with theory in 32 languages, UK driving test centre practice routes, instructor discovery, parking support, and calmer navigation."
   },
   "pageSeo": {
     "features": {
-      "title": "Driving learner app features",
-      "description": "Explore Drivest features for theory test preparation, driving test centre practice routes, instructor discovery, lesson bookings, parking support, and calmer navigation."
+      "title": "Driving learner app features for theory, routes, and instructors",
+      "description": "Explore Drivest UK features for theory test preparation, UK driving test centre practice routes, instructor discovery, lesson bookings, parking support, and calmer navigation."
     },
     "pricing": {
-      "title": "Driving learner app pricing",
-      "description": "Compare Drivest pricing for free theory preparation, selected-centre practice routes, navigation support, and the annual learner bundle."
+      "title": "Driving learner app pricing for theory, routes, and navigation",
+      "description": "Compare Drivest UK pricing for free theory preparation, selected-centre practice routes, navigation support, and the annual learner bundle."
     },
     "start": {
-      "title": "How Drivest works",
-      "description": "See how Drivest works for future learners, learner drivers, and instructors with role-based onboarding, language setup, practice routes, and booking flows."
+      "title": "How Drivest works for learners and instructors",
+      "description": "See how Drivest UK works for future learners, learner drivers, and instructors with role-based onboarding, language setup, practice routes, and booking flows."
     },
     "faq": {
-      "title": "Driving learner FAQ",
-      "description": "Read common Drivest questions about theory preparation, driving test centre practice routes, instructor bookings, parking guidance, subscriptions, privacy, and legal positioning."
+      "title": "Driving learner FAQ for theory, routes, and instructors",
+      "description": "Read common Drivest UK questions about theory preparation, driving test centre practice routes, instructor bookings, parking guidance, subscriptions, privacy, and legal positioning."
     },
     "theory": {
-      "title": "Theory test preparation, mock tests, and road signs in 32 languages",
-      "description": "Prepare for the UK driving theory test with topic quizzes, mock tests, Highway Code, road signs, and fines revision in 32 languages with English cross-check support."
+      "title": "UK theory test preparation, mock tests, and road signs in 32 languages",
+      "description": "Prepare with Drivest UK for the UK driving theory test using topic quizzes, mock tests, Highway Code, road signs, and fines revision in 32 languages with English cross-check support."
     },
     "centres": {
-      "title": "Driving test centres, practice routes, and local rehearsal",
-      "description": "Explore Drivest practice around UK driving test centres with searchable centre selection, reconstructed routes, off-route alerts, offline packs, road feature prompts, and clear legal positioning."
+      "title": "UK driving test centres, practice routes, and local rehearsal",
+      "description": "Explore Drivest UK practice around UK driving test centres with searchable centre selection, reconstructed routes, off-route alerts, offline packs, road feature prompts, and clear legal positioning."
     },
     "instructors": {
-      "title": "Find driving instructors and book lessons",
-      "description": "Discover independent driving instructors, compare availability, request lessons, and keep booking, payment, and Instructor Hub visibility inside Drivest."
+      "title": "Find UK driving instructors and book lessons",
+      "description": "Discover UK independent driving instructors, compare availability, request lessons, and keep booking, payment, and Instructor Hub visibility inside Drivest UK."
     },
     "contact": {
       "title": "Contact, trust, and coverage methodology",

@@ -192,6 +192,7 @@ ${indent(appHtml, 4)}
 
 function buildStructuredData(page, canonical, title, description, marketing, centreId = "", overrides = {}) {
   const centre = findCentre(marketing.testCentreCoverage, centreId);
+  const seoBrand = seoBrandTitle(marketing);
   const pageType =
     overrides.pageType ||
     (page === "faq"
@@ -258,6 +259,12 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       provider: { "@id": "https://www.drivest.uk/#organization" }
     }
   ];
+
+  if (seoBrand !== marketing.ui.brand) {
+    data[0].alternateName = seoBrand;
+    data[1].alternateName = seoBrand;
+    data[3].alternateName = seoBrand;
+  }
 
   if (page !== "home") {
     const itemListElement =
@@ -415,7 +422,7 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
 
 function buildCustomPageTargets(marketing, coverage) {
   const targets = [];
-  const brand = marketing.ui?.brand || "Drivest";
+  const brand = seoBrandTitle(marketing);
   if (marketing.contactPage?.title) {
     targets.push({
       kind: "contact",
@@ -472,6 +479,10 @@ function buildCustomPageTargets(marketing, coverage) {
 function brandDocumentTitle(title, brand) {
   if (!title) return brand;
   return title.includes(`| ${brand}`) ? title : `${title} | ${brand}`;
+}
+
+function seoBrandTitle(marketing) {
+  return marketing.seo?.brandTitle || marketing.ui?.brand || "Drivest";
 }
 
 function renderCustomPage(target, renderer, marketing, coverage) {
