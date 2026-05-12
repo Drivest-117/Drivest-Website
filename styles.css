@@ -1907,7 +1907,7 @@ small {
   }
 }
 
-@media (min-width: 981px) and (max-height: 1100px) {
+@media (min-width: 981px) and (max-height: 1280px) {
   body[data-page="home"] .hero {
     padding: 24px 26px;
   }
