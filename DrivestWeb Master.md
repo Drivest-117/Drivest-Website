@@ -528,6 +528,7 @@ At minimum, keep these pairs aligned:
 - added intrinsic image dimensions and stronger hero image loading hints to generated page images
 - added `manifest.webmanifest` to generated pages
 - rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark, with size-specific transparent favicons for tabs and white-tile icons for touch/PWA use
+- stopped above-the-fold reveal fades from washing out the first viewport and top-aligned the desktop homepage hero
 - prepared a permanent non-www to www redirect rule in `vercel.json`
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 

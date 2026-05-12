@@ -1931,7 +1931,15 @@ function setupAnimations() {
     { threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
   );
 
-  nodes.forEach((node) => observer.observe(node));
+  // Keep the first viewport crisp on load instead of fading the hero in late.
+  nodes.forEach((node) => {
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+      node.classList.add("is-visible");
+      return;
+    }
+    observer.observe(node);
+  });
 }
 
 function setupProofCarousels() {
