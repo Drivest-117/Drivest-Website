@@ -588,20 +588,14 @@ function renderHubPage(pageKey, m) {
   const hub = m.hubPages?.[pageKey];
   if (!hub) return renderHome(m);
   const photo = hubPagePhoto(pageKey);
-  const centresHeroActions =
-    pageKey === "centres"
-      ? `
-          <div class="btn-row feature-hero-actions">
-            ${button("Find a covered centre", "#centre-directory", "primary", "feature-hero-link")}
-          </div>`
-      : "";
+  const heroActions = renderHubHeroActions(pageKey);
 
   return `
     <section class="section reveal feature-hero">
       <div class="feature-hero-grid">
         <div>
           <h1>${escapeHtml(hub.title)}</h1>
-          <p>${escapeHtml(hub.intro)}</p>${centresHeroActions}
+          <p>${escapeHtml(hub.intro)}</p>${heroActions}
         </div>
         <div class="feature-photo">
           ${renderImg(photo.src, photo.alt, {
@@ -632,6 +626,30 @@ function renderHubPage(pageKey, m) {
 
     ${renderLinkCardsSection(hub.related)}
   `;
+}
+
+function renderHubHeroActions(pageKey) {
+  const actions = {
+    theory: [
+      button("Start preparing", startHref("learner"), "primary", "feature-hero-link"),
+      button("View practice routes", PATHS.centres, "secondary", "feature-hero-link")
+    ],
+    centres: [
+      button("Find a covered centre", "#centre-directory", "primary", "feature-hero-link"),
+      button("Start preparing", startHref("learner"), "secondary", "feature-hero-link")
+    ],
+    instructors: [
+      button("Start preparing", startHref("learner"), "primary", "feature-hero-link"),
+      button("Join as instructor", startHref("instructor"), "secondary", "feature-hero-link")
+    ]
+  }[pageKey];
+
+  if (!actions?.length) return "";
+
+  return `
+          <div class="btn-row feature-hero-actions">
+            ${actions.join("")}
+          </div>`;
 }
 
 function renderFeatureCards(items) {
@@ -1053,24 +1071,6 @@ function renderCoverageDirectorySection(m) {
       </div>
     </section>
 
-    <section class="section reveal">
-      <h2>${escapeHtml(config.topCentresTitle)}</h2>
-      <div class="grid three-up">
-        ${topCentres
-          .map(
-            (centre) => `
-          <article class="card reveal-item">
-            <h3><a class="centre-link" href="${escapeAttr(centreHref(centre))}">${escapeHtml(centre.name)}</a></h3>
-            <p class="coverage-route-count">${escapeHtml(formatNumber(centre.routeCount))} routes</p>
-            <p>Average route: ${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km over ${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} minutes.</p>
-            <a class="text-link" href="${escapeAttr(centreHref(centre))}">View centre practice page</a>
-          </article>
-        `
-          )
-          .join("")}
-      </div>
-    </section>
-
     <section id="centre-directory" class="section reveal">
       <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
         <div class="coverage-filter-head">
@@ -1104,6 +1104,24 @@ function renderCoverageDirectorySection(m) {
         <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
           Showing all ${escapeHtml(formatNumber(summary.centres))} live centres across ${escapeHtml(formatNumber(groups.length))} letter groups.
         </p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>${escapeHtml(config.topCentresTitle)}</h2>
+      <div class="grid three-up">
+        ${topCentres
+          .map(
+            (centre) => `
+          <article class="card reveal-item">
+            <h3><a class="centre-link" href="${escapeAttr(centreHref(centre))}">${escapeHtml(centre.name)}</a></h3>
+            <p class="coverage-route-count">${escapeHtml(formatNumber(centre.routeCount))} routes</p>
+            <p>Average route: ${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km over ${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} minutes.</p>
+            <a class="text-link" href="${escapeAttr(centreHref(centre))}">View centre practice page</a>
+          </article>
+        `
+          )
+          .join("")}
       </div>
     </section>
 

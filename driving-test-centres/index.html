@@ -315,7 +315,7 @@
               <h1>Driving test centres and practice routes</h1>
               <p>Test-centre competitors win by writing pages around a single local route problem. Drivest adapts the strongest part of that approach by making selected-centre practice a visible public topic tied to the real app experience.</p>
               <div class="btn-row feature-hero-actions">
-                <a class="btn btn-primary feature-hero-link" href="#centre-directory">Find a covered centre</a>
+                <a class="btn btn-primary feature-hero-link" href="#centre-directory">Find a covered centre</a><a class="btn btn-secondary feature-hero-link" href="/start#learner">Start preparing</a>
               </div>
             </div>
             <div class="feature-photo">
@@ -440,6 +440,42 @@
           </div>
         </section>
     
+        <section id="centre-directory" class="section reveal">
+          <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
+            <div class="coverage-filter-head">
+              <div>
+                <p class="panel-title">Find a covered centre faster</p>
+                <p>Search the live public directory by centre name and filter out thinner route sets when you only want deeper local practice coverage.</p>
+              </div>
+              <p class="coverage-generated-at">Coverage file generated: 11 May 2026</p>
+            </div>
+            <div class="coverage-filter-grid">
+              <label class="coverage-field">
+                <span>Search centre name</span>
+                <input
+                  type="search"
+                  class="coverage-control"
+                  placeholder="Search by centre, city, or area"
+                  autocomplete="off"
+                  data-coverage-search
+                />
+              </label>
+              <label class="coverage-field">
+                <span>Minimum routes</span>
+                <select class="coverage-control" data-coverage-min-routes>
+                  <option value="0">Any live centre</option>
+                  <option value="5">5 or more routes</option>
+                  <option value="10">10 or more routes</option>
+                  <option value="15">15 routes only</option>
+                </select>
+              </label>
+            </div>
+            <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
+              Showing all 317 live centres across 22 letter groups.
+            </p>
+          </div>
+        </section>
+    
         <section class="section reveal">
           <h2>Highest route-count centres</h2>
           <div class="grid three-up">
@@ -528,42 +564,6 @@
                 <a class="text-link" href="/driving-test-centres/bromsgrove">View centre practice page</a>
               </article>
             
-          </div>
-        </section>
-    
-        <section id="centre-directory" class="section reveal">
-          <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
-            <div class="coverage-filter-head">
-              <div>
-                <p class="panel-title">Find a covered centre faster</p>
-                <p>Search the live public directory by centre name and filter out thinner route sets when you only want deeper local practice coverage.</p>
-              </div>
-              <p class="coverage-generated-at">Coverage file generated: 11 May 2026</p>
-            </div>
-            <div class="coverage-filter-grid">
-              <label class="coverage-field">
-                <span>Search centre name</span>
-                <input
-                  type="search"
-                  class="coverage-control"
-                  placeholder="Search by centre, city, or area"
-                  autocomplete="off"
-                  data-coverage-search
-                />
-              </label>
-              <label class="coverage-field">
-                <span>Minimum routes</span>
-                <select class="coverage-control" data-coverage-min-routes>
-                  <option value="0">Any live centre</option>
-                  <option value="5">5 or more routes</option>
-                  <option value="10">10 or more routes</option>
-                  <option value="15">15 routes only</option>
-                </select>
-              </label>
-            </div>
-            <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
-              Showing all 317 live centres across 22 letter groups.
-            </p>
           </div>
         </section>
     
