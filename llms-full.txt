@@ -18,42 +18,42 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 
 ## Primary product pages
 
-- [Homepage](https://www.drivest.uk/): High-level product positioning and core calls to action.
-- [Features](https://www.drivest.uk/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
-- [Pricing](https://www.drivest.uk/pricing): Public pricing plans and bundle structure.
-- [Getting started](https://www.drivest.uk/start): Role-based onboarding flow for learners and instructors.
+- [Homepage](https://drivest.uk/): High-level product positioning and core calls to action.
+- [Features](https://drivest.uk/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
+- [Pricing](https://drivest.uk/pricing): Public pricing plans and bundle structure.
+- [Getting started](https://drivest.uk/start): Role-based onboarding flow for learners and instructors.
 
 ## Learner preparation
 
-- [Theory test preparation](https://www.drivest.uk/theory-test-preparation): Main theory hub covering topic quizzes, mock tests, Highway Code, road signs, and penalties revision.
-- [Mock theory test](https://www.drivest.uk/mock-theory-test): Mock-test intent page for search and assistant retrieval.
-- [Hazard perception test](https://www.drivest.uk/hazard-perception-test): Hazard-perception intent page.
-- [Road signs test](https://www.drivest.uk/road-signs-test): Sign-recognition intent page.
-- [Highway Code test](https://www.drivest.uk/highway-code-test): Highway Code revision intent page.
-- [Driving theory test in Welsh](https://www.drivest.uk/driving-theory-test-in-welsh): Welsh-language theory page.
-- [Driving theory test in Urdu](https://www.drivest.uk/driving-theory-test-in-urdu): Urdu-language theory page.
-- [Driving theory test in Arabic](https://www.drivest.uk/driving-theory-test-in-arabic): Arabic-language theory page.
+- [Theory test preparation](https://drivest.uk/theory-test-preparation): Main theory hub covering topic quizzes, mock tests, Highway Code, road signs, and penalties revision.
+- [Mock theory test](https://drivest.uk/mock-theory-test): Mock-test intent page for search and assistant retrieval.
+- [Hazard perception test](https://drivest.uk/hazard-perception-test): Hazard-perception intent page.
+- [Road signs test](https://drivest.uk/road-signs-test): Sign-recognition intent page.
+- [Highway Code test](https://drivest.uk/highway-code-test): Highway Code revision intent page.
+- [Driving theory test in Welsh](https://drivest.uk/driving-theory-test-in-welsh): Welsh-language theory page.
+- [Driving theory test in Urdu](https://drivest.uk/driving-theory-test-in-urdu): Urdu-language theory page.
+- [Driving theory test in Arabic](https://drivest.uk/driving-theory-test-in-arabic): Arabic-language theory page.
 
 ## Practice, route coverage, and navigation
 
-- [Driving test centres](https://www.drivest.uk/driving-test-centres): Public directory of included centres and practice-route coverage.
-- [London driving test centres](https://www.drivest.uk/driving-test-centres/london): Regional hub for London-centre intent.
-- [Manchester driving test centres](https://www.drivest.uk/driving-test-centres/manchester): Regional hub for Manchester-centre intent.
-- [Birmingham driving test centres](https://www.drivest.uk/driving-test-centres/birmingham): Regional hub for Birmingham-centre intent.
-- [Sitemap](https://www.drivest.uk/sitemap.xml): Full list of public pages, including individual centre pages.
+- [Driving test centres](https://drivest.uk/driving-test-centres): Public directory of included centres and practice-route coverage.
+- [London driving test centres](https://drivest.uk/driving-test-centres/london): Regional hub for London-centre intent.
+- [Manchester driving test centres](https://drivest.uk/driving-test-centres/manchester): Regional hub for Manchester-centre intent.
+- [Birmingham driving test centres](https://drivest.uk/driving-test-centres/birmingham): Regional hub for Birmingham-centre intent.
+- [Sitemap](https://drivest.uk/sitemap.xml): Full list of public pages, including individual centre pages.
 
 ## Instructor and commercial flows
 
-- [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
-- [Access request](https://www.drivest.uk/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
-- [Contact](https://www.drivest.uk/contact): Support contact details and public coverage methodology notes.
-- [FAQ](https://www.drivest.uk/faq): Product and commercial clarification questions.
+- [Driving instructors](https://drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
+- [Access request](https://drivest.uk/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
+- [Contact](https://drivest.uk/contact): Support contact details and public coverage methodology notes.
+- [FAQ](https://drivest.uk/faq): Product and commercial clarification questions.
 
 ## Legal and policy
 
-- [Terms](https://www.drivest.uk/terms): Terms and conditions.
-- [Privacy](https://www.drivest.uk/privacy): Privacy policy.
+- [Terms](https://drivest.uk/terms): Terms and conditions.
+- [Privacy](https://drivest.uk/privacy): Privacy policy.
 
 ## Optional
 
-- [llms.txt](https://www.drivest.uk/llms.txt): Shorter index for quick retrieval.
+- [llms.txt](https://drivest.uk/llms.txt): Shorter index for quick retrieval.

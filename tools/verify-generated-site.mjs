@@ -89,10 +89,10 @@ for (const alias of coverage.aliases || []) {
 }
 
 const llmsIndex = await readSiteFile("llms.txt");
-assertIncludes(llmsIndex, "llms.txt", "https://www.drivest.uk/access-request");
+assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/access-request");
 
 const llmsFull = await readSiteFile("llms-full.txt");
-assertIncludes(llmsFull, "llms-full.txt", "https://www.drivest.uk/access-request");
+assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/access-request");
 
 const contactRedirect = await readSiteFile("contact.html");
 assertIncludes(contactRedirect, "contact.html", 'content="0; url=/contact"');

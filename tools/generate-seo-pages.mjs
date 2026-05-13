@@ -8,17 +8,18 @@ const scriptPath = path.join(siteDir, "script.js");
 const contentPath = path.join(siteDir, "site", "content", "marketing.en-GB.json");
 const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en-GB.json");
 const today = new Date().toISOString().slice(0, 10);
-const ogImage = "https://www.drivest.uk/assets/drivest-wordmark-preview.png";
+const SITE_URL = "https://drivest.uk";
+const ogImage = `${SITE_URL}/assets/drivest-wordmark-preview.png`;
 
 const basePageTargets = [
-  { page: "home", output: "index.html", canonical: "https://www.drivest.uk/" },
-  { page: "features", output: path.join("features", "index.html"), canonical: "https://www.drivest.uk/features" },
-  { page: "pricing", output: path.join("pricing", "index.html"), canonical: "https://www.drivest.uk/pricing" },
-  { page: "start", output: path.join("start", "index.html"), canonical: "https://www.drivest.uk/start" },
-  { page: "faq", output: path.join("faq", "index.html"), canonical: "https://www.drivest.uk/faq" },
-  { page: "theory", output: path.join("theory-test-preparation", "index.html"), canonical: "https://www.drivest.uk/theory-test-preparation" },
-  { page: "centres", output: path.join("driving-test-centres", "index.html"), canonical: "https://www.drivest.uk/driving-test-centres" },
-  { page: "instructors", output: path.join("driving-instructors", "index.html"), canonical: "https://www.drivest.uk/driving-instructors" }
+  { page: "home", output: "index.html", canonical: `${SITE_URL}/` },
+  { page: "features", output: path.join("features", "index.html"), canonical: `${SITE_URL}/features` },
+  { page: "pricing", output: path.join("pricing", "index.html"), canonical: `${SITE_URL}/pricing` },
+  { page: "start", output: path.join("start", "index.html"), canonical: `${SITE_URL}/start` },
+  { page: "faq", output: path.join("faq", "index.html"), canonical: `${SITE_URL}/faq` },
+  { page: "theory", output: path.join("theory-test-preparation", "index.html"), canonical: `${SITE_URL}/theory-test-preparation` },
+  { page: "centres", output: path.join("driving-test-centres", "index.html"), canonical: `${SITE_URL}/driving-test-centres` },
+  { page: "instructors", output: path.join("driving-instructors", "index.html"), canonical: `${SITE_URL}/driving-instructors` }
 ];
 
 const baseRedirectTargets = [
@@ -33,16 +34,16 @@ const baseRedirectTargets = [
 ];
 
 const baseSitemapUrls = [
-  "https://www.drivest.uk/",
-  "https://www.drivest.uk/features",
-  "https://www.drivest.uk/pricing",
-  "https://www.drivest.uk/start",
-  "https://www.drivest.uk/faq",
-  "https://www.drivest.uk/theory-test-preparation",
-  "https://www.drivest.uk/driving-test-centres",
-  "https://www.drivest.uk/driving-instructors",
-  "https://www.drivest.uk/terms",
-  "https://www.drivest.uk/privacy"
+  `${SITE_URL}/`,
+  `${SITE_URL}/features`,
+  `${SITE_URL}/pricing`,
+  `${SITE_URL}/start`,
+  `${SITE_URL}/faq`,
+  `${SITE_URL}/theory-test-preparation`,
+  `${SITE_URL}/driving-test-centres`,
+  `${SITE_URL}/driving-instructors`,
+  `${SITE_URL}/terms`,
+  `${SITE_URL}/privacy`
 ];
 
 await build();
@@ -206,12 +207,12 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "@id": "https://www.drivest.uk/#organization",
+      "@id": `${SITE_URL}/#organization`,
       name: marketing.ui.brand,
-      url: "https://www.drivest.uk/",
+      url: `${SITE_URL}/`,
       logo: {
         "@type": "ImageObject",
-        url: "https://www.drivest.uk/assets/drivest-wordmark-preview.png"
+        url: `${SITE_URL}/assets/drivest-wordmark-preview.png`
       },
       email: "admin@drivest.uk",
       areaServed: "GB",
@@ -228,11 +229,11 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://www.drivest.uk/#website",
-      url: "https://www.drivest.uk/",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
       name: marketing.ui.brand,
       description: marketing.seo.description,
-      publisher: { "@id": "https://www.drivest.uk/#organization" },
+      publisher: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "en-GB"
     },
     {
@@ -242,21 +243,21 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       url: canonical,
       name: title,
       description,
-      isPartOf: { "@id": "https://www.drivest.uk/#website" },
-      about: { "@id": "https://www.drivest.uk/#organization" },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "en-GB"
     },
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "@id": "https://www.drivest.uk/#app",
+      "@id": `${SITE_URL}/#app`,
       name: marketing.ui.brand,
       applicationCategory: "EducationalApplication",
       operatingSystem: "iOS, Android",
       description: marketing.seo.description,
       featureList: marketing.press.usp,
       inLanguage: "en-GB",
-      provider: { "@id": "https://www.drivest.uk/#organization" }
+      provider: { "@id": `${SITE_URL}/#organization` }
     }
   ];
 
@@ -274,13 +275,13 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
               "@type": "ListItem",
               position: 1,
               name: "Home",
-              item: "https://www.drivest.uk/"
+              item: `${SITE_URL}/`
             },
             {
               "@type": "ListItem",
               position: 2,
               name: "Driving test centres",
-              item: "https://www.drivest.uk/driving-test-centres"
+              item: `${SITE_URL}/driving-test-centres`
             },
             {
               "@type": "ListItem",
@@ -294,7 +295,7 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
               "@type": "ListItem",
               position: 1,
               name: "Home",
-              item: "https://www.drivest.uk/"
+              item: `${SITE_URL}/`
             },
             {
               "@type": "ListItem",
@@ -349,8 +350,8 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       "@type": "Dataset",
       name: "Drivest covered driving test centres",
       description: `Driving test centres currently live in Drivest with more than ${marketing.testCentreCoverage.filter?.routeCountGreaterThan || 2} routes.`,
-      creator: { "@id": "https://www.drivest.uk/#organization" },
-      includedInDataCatalog: { "@id": "https://www.drivest.uk/#website" },
+      creator: { "@id": `${SITE_URL}/#organization` },
+      includedInDataCatalog: { "@id": `${SITE_URL}/#website` },
       measurementTechnique: "Route corpus filter: publish only centres with more than 2 routes and exclude temporary, duplicate, and broken variants",
       distribution: {
         "@type": "DataDownload",
@@ -395,8 +396,8 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       "@type": "Dataset",
       name: `Drivest practice routes for ${centre.name}`,
       description,
-      creator: { "@id": "https://www.drivest.uk/#organization" },
-      includedInDataCatalog: { "@id": "https://www.drivest.uk/#website" },
+      creator: { "@id": `${SITE_URL}/#organization` },
+      includedInDataCatalog: { "@id": `${SITE_URL}/#website` },
       spatialCoverage: { "@id": `${canonical}#place` },
       measurementTechnique: "Derived from Drivest route corpus with public threshold Route Count > 2",
       distribution: {
@@ -428,7 +429,7 @@ function buildCustomPageTargets(marketing, coverage) {
       kind: "contact",
       bodyPage: "contact",
       output: path.join("contact", "index.html"),
-      canonical: "https://www.drivest.uk/contact",
+      canonical: `${SITE_URL}/contact`,
       title: brandDocumentTitle(marketing.pageSeo?.contact?.title || marketing.contactPage.title, brand),
       description: marketing.pageSeo?.contact?.description || marketing.contactPage.intro || marketing.seo.description,
       data: marketing.contactPage
@@ -440,7 +441,7 @@ function buildCustomPageTargets(marketing, coverage) {
       kind: "access-request",
       bodyPage: "pricing",
       output: path.join("access-request", "index.html"),
-      canonical: "https://www.drivest.uk/access-request",
+      canonical: `${SITE_URL}/access-request`,
       title: brandDocumentTitle(marketing.pageSeo?.accessRequest?.title || marketing.accessRequestPage.title, brand),
       description: marketing.pageSeo?.accessRequest?.description || marketing.accessRequestPage.intro || marketing.seo.description,
       data: marketing.accessRequestPage
@@ -453,7 +454,7 @@ function buildCustomPageTargets(marketing, coverage) {
       kind: "theory-intent",
       bodyPage: "theory",
       output: path.join(item.slug, "index.html"),
-      canonical: `https://www.drivest.uk/${item.slug}`,
+      canonical: `${SITE_URL}/${item.slug}`,
       title: brandDocumentTitle(item.seoTitle || item.title, brand),
       description: item.seoDescription || item.description,
       data: item
@@ -466,7 +467,7 @@ function buildCustomPageTargets(marketing, coverage) {
       kind: "centre-region",
       bodyPage: "centres",
       output: path.join("driving-test-centres", item.slug, "index.html"),
-      canonical: `https://www.drivest.uk/driving-test-centres/${item.slug}`,
+      canonical: `${SITE_URL}/driving-test-centres/${item.slug}`,
       title: brandDocumentTitle(item.seoTitle || item.title, brand),
       description: item.seoDescription || buildCentreRegionMetaDescription(item, coverage),
       data: item
@@ -542,7 +543,7 @@ function buildCustomStructuredData(target, marketing, coverage) {
           "@type": "ListItem",
           position: index + 1,
           name: `${centre.name} (${centre.routeCount} routes)`,
-          url: `https://www.drivest.uk${centre.url || `/driving-test-centres/${centre.id}`}`
+          url: `${SITE_URL}${centre.url || `/driving-test-centres/${centre.id}`}`
         }))
       });
       return data;
@@ -1043,7 +1044,7 @@ function render404Page(scriptSource, marketing, coverage) {
 
   return renderNoIndexDocument({
     appHtml,
-    canonical: "https://www.drivest.uk/404",
+    canonical: `${SITE_URL}/404`,
     description: "Drivest page not found.",
     page: "home",
     title: "404 | Drivest"
@@ -1112,7 +1113,7 @@ ${indent(appHtml, 4)}
 }
 
 function renderRedirect(destination) {
-  const canonical = `https://www.drivest.uk${destination}`;
+  const canonical = `${SITE_URL}${destination}`;
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -1147,7 +1148,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.drivest.uk/sitemap.xml
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 }
 
@@ -1159,46 +1160,46 @@ function renderLlms(marketing, coverage) {
 
 > ${marketing.press.oneLiner}
 
-Drivest is a public UK learner-driver platform site. Canonical public content is published at https://www.drivest.uk/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes ${summary.centres || "UK"} test centres and ${summary.routes || "a broad set of"} practice routes. Coverage data shown on the site reflects the current corpus generated on ${coverageDate}.
+Drivest is a public UK learner-driver platform site. Canonical public content is published at ${SITE_URL}/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes ${summary.centres || "UK"} test centres and ${summary.routes || "a broad set of"} practice routes. Coverage data shown on the site reflects the current corpus generated on ${coverageDate}.
 
 ## Core pages
 
-- [Homepage](https://www.drivest.uk/): Product overview and public positioning.
-- [Features](https://www.drivest.uk/features): Learner, navigation, parking, and instructor workflows.
-- [Pricing](https://www.drivest.uk/pricing): Free and paid plan overview.
-- [Access request](https://www.drivest.uk/access-request): Structured request flow for paid-plan support.
-- [Getting started](https://www.drivest.uk/start): Role-based onboarding paths for learners and instructors.
+- [Homepage](${SITE_URL}/): Product overview and public positioning.
+- [Features](${SITE_URL}/features): Learner, navigation, parking, and instructor workflows.
+- [Pricing](${SITE_URL}/pricing): Free and paid plan overview.
+- [Access request](${SITE_URL}/access-request): Structured request flow for paid-plan support.
+- [Getting started](${SITE_URL}/start): Role-based onboarding paths for learners and instructors.
 
 ## Theory and learner preparation
 
-- [Theory test preparation](https://www.drivest.uk/theory-test-preparation): Main theory learning hub with 32-language support.
-- [Mock theory test](https://www.drivest.uk/mock-theory-test): Mock-test preparation page.
-- [Hazard perception test](https://www.drivest.uk/hazard-perception-test): Hazard-perception preparation page.
-- [Road signs test](https://www.drivest.uk/road-signs-test): Traffic-sign revision page.
-- [Highway Code test](https://www.drivest.uk/highway-code-test): Highway Code revision page.
-- [Driving theory test in Welsh](https://www.drivest.uk/driving-theory-test-in-welsh): Welsh-language learner page.
-- [Driving theory test in Urdu](https://www.drivest.uk/driving-theory-test-in-urdu): Urdu-language learner page.
-- [Driving theory test in Arabic](https://www.drivest.uk/driving-theory-test-in-arabic): Arabic-language learner page.
+- [Theory test preparation](${SITE_URL}/theory-test-preparation): Main theory learning hub with 32-language support.
+- [Mock theory test](${SITE_URL}/mock-theory-test): Mock-test preparation page.
+- [Hazard perception test](${SITE_URL}/hazard-perception-test): Hazard-perception preparation page.
+- [Road signs test](${SITE_URL}/road-signs-test): Traffic-sign revision page.
+- [Highway Code test](${SITE_URL}/highway-code-test): Highway Code revision page.
+- [Driving theory test in Welsh](${SITE_URL}/driving-theory-test-in-welsh): Welsh-language learner page.
+- [Driving theory test in Urdu](${SITE_URL}/driving-theory-test-in-urdu): Urdu-language learner page.
+- [Driving theory test in Arabic](${SITE_URL}/driving-theory-test-in-arabic): Arabic-language learner page.
 
 ## Practice, navigation, and instructors
 
-- [Driving test centres](https://www.drivest.uk/driving-test-centres): UK centre directory and practice-route overview.
-- [London driving test centres](https://www.drivest.uk/driving-test-centres/london): London regional hub.
-- [Manchester driving test centres](https://www.drivest.uk/driving-test-centres/manchester): Manchester regional hub.
-- [Birmingham driving test centres](https://www.drivest.uk/driving-test-centres/birmingham): Birmingham regional hub.
-- [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery and booking overview.
+- [Driving test centres](${SITE_URL}/driving-test-centres): UK centre directory and practice-route overview.
+- [London driving test centres](${SITE_URL}/driving-test-centres/london): London regional hub.
+- [Manchester driving test centres](${SITE_URL}/driving-test-centres/manchester): Manchester regional hub.
+- [Birmingham driving test centres](${SITE_URL}/driving-test-centres/birmingham): Birmingham regional hub.
+- [Driving instructors](${SITE_URL}/driving-instructors): Instructor discovery and booking overview.
 
 ## Trust and support
 
-- [FAQ](https://www.drivest.uk/faq): Product, pricing, and policy answers.
-- [Contact](https://www.drivest.uk/contact): Support and coverage methodology.
-- [Terms](https://www.drivest.uk/terms): Terms and conditions.
-- [Privacy](https://www.drivest.uk/privacy): Privacy policy.
-- [Sitemap](https://www.drivest.uk/sitemap.xml): Full public URL inventory.
+- [FAQ](${SITE_URL}/faq): Product, pricing, and policy answers.
+- [Contact](${SITE_URL}/contact): Support and coverage methodology.
+- [Terms](${SITE_URL}/terms): Terms and conditions.
+- [Privacy](${SITE_URL}/privacy): Privacy policy.
+- [Sitemap](${SITE_URL}/sitemap.xml): Full public URL inventory.
 
 ## Optional
 
-- [llms-full.txt](https://www.drivest.uk/llms-full.txt): Expanded LLM-readable summary of the public site.
+- [llms-full.txt](${SITE_URL}/llms-full.txt): Expanded LLM-readable summary of the public site.
 `;
 }
 
@@ -1226,45 +1227,45 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 
 ## Primary product pages
 
-- [Homepage](https://www.drivest.uk/): High-level product positioning and core calls to action.
-- [Features](https://www.drivest.uk/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
-- [Pricing](https://www.drivest.uk/pricing): Public pricing plans and bundle structure.
-- [Getting started](https://www.drivest.uk/start): Role-based onboarding flow for learners and instructors.
+- [Homepage](${SITE_URL}/): High-level product positioning and core calls to action.
+- [Features](${SITE_URL}/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
+- [Pricing](${SITE_URL}/pricing): Public pricing plans and bundle structure.
+- [Getting started](${SITE_URL}/start): Role-based onboarding flow for learners and instructors.
 
 ## Learner preparation
 
-- [Theory test preparation](https://www.drivest.uk/theory-test-preparation): Main theory hub covering topic quizzes, mock tests, Highway Code, road signs, and penalties revision.
-- [Mock theory test](https://www.drivest.uk/mock-theory-test): Mock-test intent page for search and assistant retrieval.
-- [Hazard perception test](https://www.drivest.uk/hazard-perception-test): Hazard-perception intent page.
-- [Road signs test](https://www.drivest.uk/road-signs-test): Sign-recognition intent page.
-- [Highway Code test](https://www.drivest.uk/highway-code-test): Highway Code revision intent page.
-- [Driving theory test in Welsh](https://www.drivest.uk/driving-theory-test-in-welsh): Welsh-language theory page.
-- [Driving theory test in Urdu](https://www.drivest.uk/driving-theory-test-in-urdu): Urdu-language theory page.
-- [Driving theory test in Arabic](https://www.drivest.uk/driving-theory-test-in-arabic): Arabic-language theory page.
+- [Theory test preparation](${SITE_URL}/theory-test-preparation): Main theory hub covering topic quizzes, mock tests, Highway Code, road signs, and penalties revision.
+- [Mock theory test](${SITE_URL}/mock-theory-test): Mock-test intent page for search and assistant retrieval.
+- [Hazard perception test](${SITE_URL}/hazard-perception-test): Hazard-perception intent page.
+- [Road signs test](${SITE_URL}/road-signs-test): Sign-recognition intent page.
+- [Highway Code test](${SITE_URL}/highway-code-test): Highway Code revision intent page.
+- [Driving theory test in Welsh](${SITE_URL}/driving-theory-test-in-welsh): Welsh-language theory page.
+- [Driving theory test in Urdu](${SITE_URL}/driving-theory-test-in-urdu): Urdu-language theory page.
+- [Driving theory test in Arabic](${SITE_URL}/driving-theory-test-in-arabic): Arabic-language theory page.
 
 ## Practice, route coverage, and navigation
 
-- [Driving test centres](https://www.drivest.uk/driving-test-centres): Public directory of included centres and practice-route coverage.
-- [London driving test centres](https://www.drivest.uk/driving-test-centres/london): Regional hub for London-centre intent.
-- [Manchester driving test centres](https://www.drivest.uk/driving-test-centres/manchester): Regional hub for Manchester-centre intent.
-- [Birmingham driving test centres](https://www.drivest.uk/driving-test-centres/birmingham): Regional hub for Birmingham-centre intent.
-- [Sitemap](https://www.drivest.uk/sitemap.xml): Full list of public pages, including individual centre pages.
+- [Driving test centres](${SITE_URL}/driving-test-centres): Public directory of included centres and practice-route coverage.
+- [London driving test centres](${SITE_URL}/driving-test-centres/london): Regional hub for London-centre intent.
+- [Manchester driving test centres](${SITE_URL}/driving-test-centres/manchester): Regional hub for Manchester-centre intent.
+- [Birmingham driving test centres](${SITE_URL}/driving-test-centres/birmingham): Regional hub for Birmingham-centre intent.
+- [Sitemap](${SITE_URL}/sitemap.xml): Full list of public pages, including individual centre pages.
 
 ## Instructor and commercial flows
 
-- [Driving instructors](https://www.drivest.uk/driving-instructors): Instructor discovery, request, and booking overview.
-- [Access request](https://www.drivest.uk/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
-- [Contact](https://www.drivest.uk/contact): Support contact details and public coverage methodology notes.
-- [FAQ](https://www.drivest.uk/faq): Product and commercial clarification questions.
+- [Driving instructors](${SITE_URL}/driving-instructors): Instructor discovery, request, and booking overview.
+- [Access request](${SITE_URL}/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
+- [Contact](${SITE_URL}/contact): Support contact details and public coverage methodology notes.
+- [FAQ](${SITE_URL}/faq): Product and commercial clarification questions.
 
 ## Legal and policy
 
-- [Terms](https://www.drivest.uk/terms): Terms and conditions.
-- [Privacy](https://www.drivest.uk/privacy): Privacy policy.
+- [Terms](${SITE_URL}/terms): Terms and conditions.
+- [Privacy](${SITE_URL}/privacy): Privacy policy.
 
 ## Optional
 
-- [llms.txt](https://www.drivest.uk/llms.txt): Shorter index for quick retrieval.
+- [llms.txt](${SITE_URL}/llms.txt): Shorter index for quick retrieval.
 `;
 }
 
@@ -1290,7 +1291,7 @@ function buildCentrePageTargets(coverage) {
     page: "centre-detail",
     centreId: centre.id,
     output: outputPathForUrl(centre.url || `/driving-test-centres/${centre.id}`),
-    canonical: `https://www.drivest.uk${centre.url || `/driving-test-centres/${centre.id}`}`
+    canonical: `${SITE_URL}${centre.url || `/driving-test-centres/${centre.id}`}`
   }));
 }
 
@@ -1345,7 +1346,7 @@ function hyphenatePathSegment(value) {
 
 function buildCentreSitemapUrls(coverage) {
   return (coverage?.centres || []).map(
-    (centre) => `https://www.drivest.uk${centre.url || `/driving-test-centres/${centre.id}`}`
+    (centre) => `${SITE_URL}${centre.url || `/driving-test-centres/${centre.id}`}`
   );
 }
 

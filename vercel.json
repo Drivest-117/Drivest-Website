@@ -10,10 +10,10 @@
       "has": [
         {
           "type": "host",
-          "value": "drivest.uk"
+          "value": "www.drivest.uk"
         }
       ],
-      "destination": "https://www.drivest.uk/:path*",
+      "destination": "https://drivest.uk/:path*",
       "permanent": true
     },
     {

@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.drivest.uk/sitemap.xml
+Sitemap: https://drivest.uk/sitemap.xml
