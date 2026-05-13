@@ -588,13 +588,20 @@ function renderHubPage(pageKey, m) {
   const hub = m.hubPages?.[pageKey];
   if (!hub) return renderHome(m);
   const photo = hubPagePhoto(pageKey);
+  const centresHeroActions =
+    pageKey === "centres"
+      ? `
+          <div class="btn-row feature-hero-actions">
+            ${button("Find a covered centre", "#centre-directory", "primary", "feature-hero-link")}
+          </div>`
+      : "";
 
   return `
     <section class="section reveal feature-hero">
       <div class="feature-hero-grid">
         <div>
           <h1>${escapeHtml(hub.title)}</h1>
-          <p>${escapeHtml(hub.intro)}</p>
+          <p>${escapeHtml(hub.intro)}</p>${centresHeroActions}
         </div>
         <div class="feature-photo">
           ${renderImg(photo.src, photo.alt, {
@@ -890,7 +897,7 @@ function renderFeatureGroups(groups) {
 }
 
 function renderMobileCtaBar(m) {
-  if (!["home", "features", "pricing", "faq", "theory", "centres", "instructors"].includes(page)) return "";
+  if (page !== "home") return "";
   return `
     <div class="mobile-cta-bar">
       <div class="container mobile-cta-wrap">
@@ -1064,7 +1071,7 @@ function renderCoverageDirectorySection(m) {
       </div>
     </section>
 
-    <section class="section reveal">
+    <section id="centre-directory" class="section reveal">
       <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
         <div class="coverage-filter-head">
           <div>
