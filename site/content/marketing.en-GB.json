@@ -2,7 +2,7 @@
   "seo": {
     "brandTitle": "Drivest UK",
     "title": "Drivest UK | Theory mock tests, practice routes, and driving instructors",
-    "description": "Drivest UK helps future learners and learner drivers prepare with theory in 32 languages, UK driving test centre practice routes, instructor discovery, parking support, and calmer navigation."
+    "description": "Drivest UK helps learners prepare in 32 languages with English Peek, local practice routes, instructor bookings, and calmer navigation across the UK."
   },
   "pageSeo": {
     "features": {
@@ -23,7 +23,7 @@
     },
     "theory": {
       "title": "UK theory test preparation, mock tests, and road signs in 32 languages",
-      "description": "Prepare with Drivest UK for the UK driving theory test using topic quizzes, mock tests, Highway Code, road signs, and fines revision in 32 languages with English cross-check support."
+      "description": "Prepare with Drivest UK for the UK driving theory test using topic quizzes, mock tests, Highway Code, road signs, and fines revision in 32 languages with English Peek."
     },
     "centres": {
       "title": "UK driving test centres, practice routes, and local rehearsal",
@@ -31,7 +31,7 @@
     },
     "instructors": {
       "title": "Find UK driving instructors and book lessons",
-      "description": "Discover UK independent driving instructors, compare availability, request lessons, and keep booking, payment, and Instructor Hub visibility inside Drivest UK."
+      "description": "Discover UK independent driving instructors or join Drivest Instructor Hub to take lesson requests, manage availability, and keep learner context in one place."
     },
     "contact": {
       "title": "Contact, trust, and coverage methodology",
@@ -62,12 +62,12 @@
     }
   },
   "hero": {
-    "positioningLine": "For learner and future learner driver preparation.",
-    "headline": "Build theory, lesson, and route confidence before, during, and after learning to drive.",
-    "subhead": "Start theory, Highway Code, traffic signs, and fines preparation early, then move into structured local practice routes, instructor discovery, bookings, parking support, and calmer learner-first navigation when your stage allows.",
+    "positioningLine": "For learners, new arrivals, and independent instructors.",
+    "headline": "Get ready for your UK theory, lessons, and routes in one clear app.",
+    "subhead": "Study in 32 languages, use English Peek when wording gets difficult, then move into local practice routes, instructor bookings, and calmer navigation.",
     "primaryCtas": [
-      "Start preparing",
-      "Join as instructor"
+      "I'm learning",
+      "I'm an instructor"
     ],
     "secondaryCtas": [
       "See pricing",
@@ -92,7 +92,7 @@
       {
         "title": "Theory",
         "line1": "Theory, Highway Code, Traffic Signs, and Fines and Penalties learning for future learners and current learners.",
-        "line2": "Study in 32 languages and peek into English to cross-check the same question."
+        "line2": "Study in 32 languages and use English Peek to see the same question in English."
       },
       {
         "title": "Practice",
@@ -160,23 +160,23 @@
     ]
   },
   "audienceTracks": {
-    "title": "Built for future learners, learners, and instructors",
-    "intro": "Drivest now supports early theory preparation, the live learner journey, and the instructors behind lessons and bookings.",
+    "title": "Built for learners and instructors",
+    "intro": "Drivest helps future learners start earlier, helps current learners stay clear, and gives independent instructors a simpler place to win bookings and manage linked learners.",
     "items": [
       {
         "title": "For future learners and learners",
-        "text": "Start preparing before practical lessons begin, then move into practice, instructor booking, secure lesson payments, and calmer navigation after your test.",
+        "text": "Start before lessons, keep theory simple, and move into local practice and bookings when you are ready.",
         "bullets": [
           "Begin theory, signs, Highway Code, and fines preparation early before practical lessons start",
           "Choose your stage and preferred language during onboarding",
-          "Study theory content with mastery flow, topic quizzes, mock tests, and English cross-checks when needed",
+          "Study theory content with mastery flow, topic quizzes, mock tests, and English Peek when needed",
           "Book independent instructors and track lesson status in one app",
           "Review analytics, confidence, resume state, and next-step recommendations"
         ]
       },
       {
         "title": "For instructors",
-        "text": "Run a lighter-weight operating hub while staying an independent instructor business.",
+        "text": "Get found, publish slots, take lesson requests, and keep learner context together without heavy admin.",
         "bullets": [
           "Create a public profile and publish availability slots",
           "Accept lesson requests and monitor booking or payment status",
@@ -187,16 +187,16 @@
     ]
   },
   "searchIntentLinks": {
-    "title": "Search the learner journey by intent",
-    "intro": "The strongest competing sites win by matching exact learner searches. Drivest now turns the same high-intent topics into crawlable, connected pages built around the real product.",
+    "title": "Go straight to what you need",
+    "intro": "Choose the part of Drivest that matches your next step.",
     "items": [
       {
         "title": "Theory test preparation",
-        "text": "Study theory questions, Highway Code, traffic signs, and fines before lessons or alongside them, with 32-language support and English cross-checks.",
+        "text": "Study theory questions, Highway Code, traffic signs, and fines in 32 languages with English Peek on the same question.",
         "bullets": [
           "Start before practical lessons begin",
           "Revise theory, signs, and Highway Code in one flow",
-          "Cross-check the same question in English"
+          "Use English Peek on the same question"
         ],
         "href": "/theory-test-preparation",
         "cta": "Explore theory prep"
@@ -205,7 +205,7 @@
         "title": "Driving test centres and practice routes",
         "text": "Choose a selected test centre and repeat reconstructed practice routes with off-route alerts, offline packs, and road feature prompts.",
         "bullets": [
-          "UK test centres with more than 2 routes and a large route corpus",
+          "UK test centres with enough live routes to make local practice useful",
           "Reconstructed routes for learning, not official DVSA routes",
           "Built for repetition around a chosen centre"
         ],
@@ -214,7 +214,7 @@
       },
       {
         "title": "Find driving instructors",
-        "text": "Browse independent instructor profiles, compare availability, request lessons, and keep bookings and payment state visible in one place.",
+        "text": "Browse instructor profiles, compare availability, request lessons, or join Instructor Hub if you teach independently.",
         "bullets": [
           "Instructor discovery without leaving the app journey",
           "Lesson requests, payments, and cancellations tracked in app",
@@ -225,7 +225,7 @@
       },
       {
         "title": "How Drivest works",
-        "text": "See the learner and instructor paths, role-based onboarding, stage setup, and next steps before choosing the right plan.",
+        "text": "See the learner and instructor routes, stage setup, and next steps before choosing the right plan.",
         "bullets": [
           "Role-based onboarding for learners and instructors",
           "Stage-aware routes into theory, practice, and bookings",
@@ -237,23 +237,22 @@
     ]
   },
   "startPaths": {
-    "title": "How Drivest works",
-    "intro": "Future learners and learners use the same preparation path, while instructors follow a separate operating flow. Drivest uses role-based onboarding so the right legal prompts, permissions, modules, and progress tools appear in the right order.",
+    "title": "Choose your route into Drivest",
+    "intro": "Learners and instructors start differently. Drivest gives learners a simple path into theory and practice, while instructors get a separate setup for profiles, availability, bookings, and Instructor Hub.",
     "summary": {
-      "title": "Role-based onboarding",
-      "text": "The first choice decides what the person sees next. Future learners and learners move into theory and practice support, while instructors move into profile setup, marketplace readiness, and Instructor Hub operations."
+      "title": "Two clear starting routes",
+      "text": "Learners can start in the right language and stage. Instructors can set up a public profile, availability, and learner management without extra admin first."
     },
     "paths": [
       {
         "id": "learner",
-        "title": "Start learner preparation",
-        "text": "Use the learner preparation flow whether you are starting theory early or already moving into practical preparation, instructor booking, and calmer navigation.",
+        "title": "Start as a learner",
+        "text": "Start with theory, signs, Highway Code, and mock tests, then move into practice routes, instructor bookings, and calmer navigation when you need them.",
         "bullets": [
-          "Future learner drivers can begin theory, signs, Highway Code, and fines preparation early before practical lessons start.",
-          "When ready, create or continue a learner profile, choose your current stage, and confirm the safety and legal acknowledgements used before data collection starts.",
-          "Pick one of 32 supported languages, then peek into English whenever you want to cross-check the same theory question.",
-          "Set your analytics, notification, and location preferences before opening Theory, Traffic Signs, Highway Code, or Fines and Penalties.",
-          "Move into Practice, Find Instructor, and Navigation as your confidence score, booking history, and progress tracking build up."
+          "Choose your stage and preferred language in a few steps.",
+          "Use English Peek whenever you want to compare the same theory question in English.",
+          "Move from theory into practice routes and instructor search as your confidence grows.",
+          "Keep bookings, progress, and next-step guidance in one app."
         ],
         "cta": "See pricing",
         "href": "/pricing"
@@ -261,14 +260,14 @@
       {
         "id": "instructor",
         "title": "Join as instructor",
-        "text": "Use the instructor flow when you need profile approval, marketplace visibility, linked learners, bookings, and operating records from the start.",
+        "text": "Use the instructor route when you want a public profile, lesson requests, availability control, and Instructor Hub from day one.",
         "bullets": [
-          "Create your instructor account and complete the professional legal flow and instructor agreement required before listing.",
-          "Set up your public profile, coverage area, availability, and lesson preferences so learners can discover and request slots.",
-          "Open Instructor Hub to link learners, track bookings and payment status, and keep coaching context together in one place.",
-          "Use reviews, dispute records, notifications, and learner insights to manage your independent instructor business through Drivest."
+          "Create your instructor profile and complete the required checks before listing.",
+          "Set your area, availability, and lesson preferences.",
+          "Accept lesson requests and track booking or payment state.",
+          "Link learners and review progress inside Instructor Hub."
         ],
-        "cta": "See platform features",
+        "cta": "See instructor features",
         "href": "/features"
       }
     ]
@@ -287,8 +286,8 @@
       "text": "Drivest is not only for people already taking lessons. It supports early theory, signs, Highway Code, and fines preparation before practical driving begins."
     },
     {
-      "title": "Theory in 32 languages",
-      "text": "Learners can study theory in a preferred language and peek into English to cross-check the same question before moving on."
+      "title": "Theory in 32 languages with English Peek",
+      "text": "Learners can study theory in a preferred language, then use English Peek to compare the same question in English before moving on."
     },
     {
       "title": "Learn beyond theory",
@@ -332,12 +331,12 @@
     },
     {
       "title": "UK-wide coverage",
-      "text": "Coverage includes UK driving test centres with more than 2 routes and a broad structured practice-route corpus across the UK."
+      "text": "Coverage includes UK test centres with enough live routes to make local practice worthwhile."
     }
   ],
   "languageSupport": {
-    "title": "32 languages, with English available to cross-check",
-    "text": "Theory questions and supporting learning content can be studied in a preferred language. Future learners and current learners can peek into English and compare the same question before answering when they want extra certainty.",
+    "title": "32 languages with English Peek",
+    "text": "Study in the language you understand best, then open English Peek to compare the same question in English when you need more confidence.",
     "pills": [
       "Arabic",
       "Welsh",
@@ -388,8 +387,8 @@
       },
       {
         "badge": "Languages",
-        "title": "Welsh and English cross-check proof",
-        "text": "Welsh and English cross-checking is already visible inside the same theory journey.",
+        "title": "Welsh with English Peek",
+        "text": "Welsh and English are both visible inside the same theory journey.",
         "image": "/assets/app-theory-quiz-welsh.jpeg",
         "alt": "Drivest Welsh theory quiz screen with language switcher.",
         "caption": "Welsh theory flow with language switching visible"
@@ -555,36 +554,36 @@
   },
   "hubPages": {
     "theory": {
-      "title": "Theory test preparation in 32 languages",
-      "intro": "Theory pages perform well when they are specific about what the learner can revise. Drivest covers theory questions, Highway Code, traffic signs, and fines preparation in one app flow, with English available to cross-check the same question.",
+      "title": "UK theory prep in 32 languages with English Peek",
+      "intro": "Start your UK theory prep in the language you understand best. Drivest keeps theory questions, Highway Code, traffic signs, mock tests, and fines in one flow, with English Peek on the same question when you need it.",
       "summary": {
-        "title": "Start theory prep before lessons begin",
-        "text": "Future learners do not need to wait for practical lessons to begin building road knowledge. Drivest lets users start earlier, choose a preferred language, and move into practical preparation when they are ready."
+        "title": "Start before lessons start",
+        "text": "You do not need to wait for practical lessons to begin. Build theory confidence early, then move into practice when you are ready."
       },
       "sections": [
         {
-          "title": "What learners can revise in Drivest",
-          "intro": "This page targets the exact theory-study topics learners usually search for separately.",
+          "title": "What you can practise in Drivest",
+          "intro": "Keep the core theory journey in one place instead of jumping between separate tools.",
           "items": [
             {
               "title": "Theory questions",
-              "text": "Work through theory questions in a preferred language and compare the English wording on the same question before answering."
+              "text": "Work through theory questions in a preferred language and use English Peek to compare the same question in English."
             },
             {
               "title": "Highway Code revision",
-              "text": "Keep Highway Code study visible as its own revision surface instead of burying it inside general app copy."
+              "text": "Revise the Highway Code in its own clear study area."
             },
             {
               "title": "Traffic signs and road signs",
-              "text": "Use sign-focused revision to strengthen road-reading before lessons and before test day."
+              "text": "Build sign recognition and road-reading confidence before lessons and before test day."
             },
             {
               "title": "Topic quizzes and mock tests",
-              "text": "Move from shorter focused quizzes into mock-test mode without breaking the theory learning sequence."
+              "text": "Move from short topic quizzes into mock tests without losing your learning flow."
             },
             {
               "title": "Bookmarks and wrong answers",
-              "text": "Return to saved questions and review mistakes directly from the theory tools area."
+              "text": "Save questions and come back to mistakes without losing your place."
             },
             {
               "title": "Fines and penalties",
@@ -592,33 +591,33 @@
             },
             {
               "title": "Future learner preparation",
-              "text": "Start earlier so practical lesson time can focus on driving decisions instead of basic rule decoding."
+              "text": "Start earlier so lesson time can focus on driving decisions instead of basic rule decoding."
             },
             {
-              "title": "Hazard Perception visibility",
-              "text": "Hazard Perception is already signposted on the home screen as a coming-soon part of the broader learning journey."
+              "title": "Hazard Perception",
+              "text": "Hazard Perception is already visible on the home screen as a coming-soon part of the wider learning journey."
             }
           ]
         },
         {
-          "title": "Why multilingual theory prep matters",
-          "intro": "Theory confidence grows faster when learners can remove language friction without losing sight of the English wording used in the UK test environment.",
+          "title": "Why English Peek helps",
+          "intro": "Many learners understand the rule faster in their own language but still want to see the English wording used in the UK test.",
           "items": [
             {
               "title": "32-language access",
-              "text": "Users can begin in the language they understand best instead of delaying theory preparation."
+              "text": "Start in the language you understand best instead of delaying theory prep."
             },
             {
-              "title": "English cross-check",
-              "text": "Open the English version of the same question to compare wording before committing to an answer."
+              "title": "English Peek",
+              "text": "Open the English version of the same question before you answer."
             },
             {
-              "title": "Stage-based onboarding",
-              "text": "Future learners and current learners see the learning path that matches where they actually are."
+              "title": "Start at the right stage",
+              "text": "Future learners and current learners see the path that matches where they actually are."
             },
             {
-              "title": "Progress and next steps",
-              "text": "Readiness signals and next-step guidance help users decide when to move from revision into practice and instructor search."
+              "title": "Know when to move on",
+              "text": "Readiness signals help you decide when to move from revision into practice and instructor search."
             }
           ]
         }
@@ -626,7 +625,7 @@
       "showLanguageSupport": true,
       "related": {
         "title": "Keep moving after theory",
-        "intro": "Theory is only one part of the learner journey. These linked pages keep the next search intent one click away.",
+        "intro": "Theory is only one part of the learner journey. Keep the next step one click away.",
         "items": [
           {
             "title": "Driving test centre practice",
@@ -656,16 +655,16 @@
       }
     },
     "centres": {
-      "title": "Driving test centres and practice routes",
-      "intro": "Test-centre competitors win by writing pages around a single local route problem. Drivest adapts the strongest part of that approach by making selected-centre practice a visible public topic tied to the real app experience.",
+      "title": "Driving test centres and local practice routes",
+      "intro": "Choose a centre, practise nearby routes, and repeat the road types that usually catch learners out. Drivest routes are for learning support only and are not official DVSA routes.",
       "summary": {
-        "title": "Practice around a selected test centre",
-        "text": "Choose a test centre, repeat reconstructed routes, keep offline support where available, and use route-aware prompts to build local familiarity. Drivest routes are for learning and practice only and are not official DVSA routes."
+        "title": "Find a centre and build local familiarity",
+        "text": "Search centres, repeat reconstructed local routes, and use route-aware prompts to make nearby roads feel more familiar before test day."
       },
       "sections": [
         {
-          "title": "What Drivest includes around driving test centres",
-          "intro": "The goal is not just to show a centre name. The goal is to help learners repeat the kinds of roads and decisions they are likely to meet nearby.",
+          "title": "What you get around a test centre",
+          "intro": "This is about helping you repeat the local roads and decisions around your centre.",
           "items": [
             {
               "title": "Selected-centre routes",
@@ -689,13 +688,13 @@
             },
             {
               "title": "Coverage across the UK",
-              "text": "Coverage spans Drivest test centres with more than 2 routes and a broad structured practice-route corpus across the UK."
+              "text": "Public coverage focuses on centres with enough live routes to make local practice worthwhile."
             }
           ]
         },
         {
           "title": "What learners can rehearse before test day",
-          "intro": "Practical familiarity usually comes from repeating road patterns, not from reading a generic paragraph about a centre.",
+          "intro": "The aim is simple: repeat the road patterns that usually make learners hesitate.",
           "items": [
             {
               "title": "Roundabouts and lane choice",
@@ -729,7 +728,7 @@
       ],
       "related": {
         "title": "Build the rest of the learner journey",
-        "intro": "The strongest SEO pages keep related next steps easy to find. Drivest links test-centre practice to theory, instructors, pricing, and FAQs.",
+        "intro": "Theory, instructors, pricing, and next steps stay one click away.",
         "items": [
           {
             "title": "Theory test preparation",
@@ -759,70 +758,70 @@
       }
     },
     "instructors": {
-      "title": "Find driving instructors and book lessons",
-      "intro": "Instructor competitors win by being clear about discovery, availability, and next steps. Drivest adapts that by treating instructor search as part of the same learner journey as theory, route practice, and progress tracking.",
+      "title": "Driving instructors, lesson bookings, and Instructor Hub",
+      "intro": "Drivest helps independent instructors get found, take lesson requests, and manage linked learners without juggling separate tools.",
       "summary": {
-        "title": "Instructor discovery inside the learning flow",
-        "text": "Instead of treating instructor search as a separate website journey, Drivest keeps instructor profiles, lesson requests, booking status, and payment visibility close to the rest of the learner record."
+        "title": "More visibility, less admin",
+        "text": "Create a public profile, set your area and slots, accept lesson requests, and keep learner context together inside Instructor Hub."
       },
       "sections": [
         {
-          "title": "What learners can do",
-          "intro": "These are the practical actions learners usually want once they move beyond pure revision.",
+          "title": "What instructors can do",
+          "intro": "Instructors need more than a lead form. They need visibility, slot control, and clean follow-up.",
           "items": [
             {
-              "title": "Browse instructor profiles",
-              "text": "Discover independent instructor profiles without forcing learners into off-platform coordination from the start."
+              "title": "Create a profile learners can trust",
+              "text": "Show who you are, what you teach, and where you cover before a learner ever messages you."
             },
             {
-              "title": "Compare availability",
-              "text": "Use visible availability and lesson preferences to narrow down the right instructor fit."
+              "title": "Set area, slots, and lesson preferences",
+              "text": "Publish your coverage area and availability so learners can see if you are a fit."
             },
             {
-              "title": "Request lesson slots",
-              "text": "Turn discovery into a lesson request inside the same platform where theory and practice already live."
+              "title": "Receive lesson requests in app",
+              "text": "Turn visibility into real lesson requests without relying on scattered chats."
             },
             {
-              "title": "Track booking status",
-              "text": "Keep accepted bookings, reschedules, cancellations, and refund outcomes visible in app."
+              "title": "Link learners in Instructor Hub",
+              "text": "Keep learner context, progress, and readiness in one place."
             },
             {
-              "title": "Secure lesson payments",
-              "text": "Use secure payment processing where eligible bookings are enabled."
-            },
-            {
-              "title": "See progress in context",
-              "text": "Learners and instructors can keep coaching context connected to the rest of the learner journey."
+              "title": "Track bookings and payment status",
+              "text": "Review changes, payment state, and lesson history without extra admin."
             }
           ]
         },
         {
-          "title": "What instructors can do",
-          "intro": "The best instructor pages do not stop at lead capture. They explain the operating workflow clearly.",
+          "title": "What learners can do",
+          "intro": "Learners can discover and book without leaving the same app they use for theory and practice.",
           "items": [
             {
-              "title": "Create a public profile",
-              "text": "Set up a visible instructor profile so learners can understand who is teaching them."
+              "title": "Browse instructor profiles",
+              "text": "Discover independent instructor profiles without leaving the app journey."
             },
             {
-              "title": "Set availability and lesson preferences",
-              "text": "Publish coverage area, availability, and lesson preferences before taking requests."
+              "title": "Compare availability",
+              "text": "Use visible availability and lesson preferences to narrow down the right fit."
             },
             {
-              "title": "Link learners in Instructor Hub",
-              "text": "Keep linked learner context, progress, and readiness views together in one place."
+              "title": "Request lesson slots",
+              "text": "Turn discovery into a lesson request inside the same platform."
             },
             {
-              "title": "Monitor bookings and payment state",
-              "text": "Review booking changes, payment status, and operating records without relying on fragmented follow-up."
+              "title": "Track booking changes",
+              "text": "Keep accepted bookings, reschedules, cancellations, and payment visibility in one place."
+            },
+            {
+              "title": "Keep progress in context",
+              "text": "Learners and instructors can keep coaching context connected to the rest of the journey."
             }
           ]
         }
       ],
       "infoSections": [
         {
-          "title": "Marketplace terms and cancellations",
-          "text": "Drivest marketplace lessons are delivered by independent instructors. The platform records an 8% fee on completed lessons and no commission on cancelled lessons.",
+          "title": "Payments, fees, and cancellations",
+          "text": "Independent instructors deliver the lessons. Drivest keeps the platform fee and cancellation rules clear before a booking goes ahead.",
           "bullets": [
             "48 hours or more before a lesson: full refund",
             "24 to 48 hours before a lesson: up to 25% may be retained by the instructor",
@@ -833,8 +832,8 @@
         }
       ],
       "related": {
-        "title": "Connect instructor search to the rest of Drivest",
-        "intro": "Instructor discovery performs better when it sits next to the learner intents that come before and after it.",
+        "title": "Keep instructors connected to the rest of Drivest",
+        "intro": "Learners should be able to move from theory to routes to instructors without starting over.",
         "items": [
           {
             "title": "Theory test preparation",
@@ -945,9 +944,9 @@
       {
         "slug": "mock-theory-test",
         "title": "Mock theory test practice in 32 languages",
-        "description": "Use Drivest for mock theory test practice with language choice, English cross-checks, and a broader learn-to-quiz-to-mock flow before practical lessons begin.",
+        "description": "Use Drivest for mock theory test practice with language choice, English Peek, and a broader learn-to-quiz-to-mock flow before practical lessons begin.",
         "eyebrow": "Theory intent page",
-        "intro": "Learners often search for mock theory tests on their own. Drivest keeps mock testing connected to the same theory journey as topic learning, bookmarks, wrong-answer review, and English cross-check support.",
+        "intro": "Learners often search for mock theory tests on their own. Drivest keeps mock testing connected to the same theory journey as topic learning, bookmarks, wrong-answer review, and English Peek support.",
         "summaryTitle": "Mock tests sit inside a fuller theory flow",
         "summaryText": "Drivest lets users learn first, run shorter quizzes, then move into mock tests when they are ready instead of treating revision as one flat question bank.",
         "highlights": [
@@ -965,7 +964,7 @@
             "text": "Return to saved questions and mistakes directly from the same theory surface."
           },
           {
-            "title": "Preferred language with English cross-check",
+            "title": "Preferred language with English Peek",
             "text": "Study in the language you understand best, then open English on the same question when you want certainty."
           }
         ],
@@ -1070,8 +1069,8 @@
         "slug": "driving-theory-test-in-urdu",
         "title": "Driving theory test preparation in Urdu",
         "seoTitle": "UK driving theory test in Urdu, mock tests, and Highway Code",
-        "seoDescription": "Prepare for the UK driving theory test in Urdu with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, fines revision, and same-question English cross-checks.",
-        "description": "Prepare for the UK driving theory test in Urdu with Drivest's multilingual theory flow and English cross-check support on the same question.",
+        "seoDescription": "Prepare for the UK driving theory test in Urdu with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, fines revision, and same-question English Peek.",
+        "description": "Prepare for the UK driving theory test in Urdu with Drivest's multilingual theory flow and English Peek on the same question.",
         "eyebrow": "Language-specific theory page",
         "intro": "Urdu is one of the supported language options in Drivest's multilingual theory journey. The goal is to reduce language friction without removing the ability to compare the English wording used in the UK test environment.",
         "summaryTitle": "Preferred-language study with English available when needed",
@@ -1087,7 +1086,7 @@
             "text": "Start in the language that makes the question easier to understand instead of delaying preparation."
           },
           {
-            "title": "English cross-check",
+            "title": "English Peek",
             "text": "Compare the English wording on the same question before you commit to an answer."
           },
           {
@@ -1097,21 +1096,21 @@
         ],
         "image": "/assets/app-theory-chinese.jpeg",
         "imageAlt": "Drivest multilingual theory question screen with English option visible.",
-        "imageCaption": "Same-question English cross-check in the multilingual theory flow"
+        "imageCaption": "Same-question English Peek in the multilingual theory flow"
       },
       {
         "slug": "driving-theory-test-in-arabic",
         "title": "Driving theory test preparation in Arabic",
         "seoTitle": "UK driving theory test in Arabic, mock tests, and Highway Code",
-        "seoDescription": "Prepare for the UK driving theory test in Arabic with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, translated learner screens, and same-question English cross-checks.",
-        "description": "Prepare for the UK driving theory test in Arabic with Drivest's multilingual theory flow, translated home surface, and English cross-check support.",
+        "seoDescription": "Prepare for the UK driving theory test in Arabic with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, translated learner screens, and same-question English Peek.",
+        "description": "Prepare for the UK driving theory test in Arabic with Drivest's multilingual theory flow, translated home surface, and English Peek support.",
         "eyebrow": "Language-specific theory page",
         "intro": "Arabic is part of Drivest's supported theory language set. The learner flow is designed so people can start in a preferred language, then compare the same question in English when they want extra certainty.",
         "summaryTitle": "Arabic support is visible in the live product surface",
         "summaryText": "The app already shows translated home-surface proof while theory keeps English available as a same-question cross-check.",
         "highlights": [
           "Arabic is included in the supported language set",
-          "English cross-check support remains available",
+          "English Peek remains available",
           "Translated surfaces are already visible in the current app"
         ],
         "modules": [
@@ -1136,8 +1135,8 @@
         "slug": "driving-theory-test-in-welsh",
         "title": "Driving theory test preparation in Welsh",
         "seoTitle": "UK driving theory test in Welsh, mock tests, and Highway Code",
-        "seoDescription": "Prepare for the UK driving theory test in Welsh with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, Welsh learner screens, and same-question English cross-checks.",
-        "description": "Prepare for the UK driving theory test in Welsh with Drivest's multilingual learner flow and English cross-check support on the same screen.",
+        "seoDescription": "Prepare for the UK driving theory test in Welsh with Drivest UK using topic quizzes, mock tests, Highway Code, road signs, Welsh learner screens, and same-question English Peek.",
+        "description": "Prepare for the UK driving theory test in Welsh with Drivest's multilingual learner flow and English Peek on the same screen.",
         "eyebrow": "Language-specific theory page",
         "intro": "Welsh is a strong local proof point for Drivest because the app already shows Welsh home and theory surfaces. This page gives that learner intent a direct crawlable destination.",
         "summaryTitle": "Welsh product proof is already visible",
@@ -1219,12 +1218,12 @@
   },
   "liveCoverage": {
     "title": "Centres currently live in Drivest",
-    "intro": "This coverage directory is based on the current Drivest route corpus. It only includes driving test centres with more than 2 routes, so empty, very thin, temporary, and duplicate route variants stay out of the public index.",
-    "summaryTitle": "Coverage threshold used on this page",
-    "summaryText": "Only test centres with more than 2 routes are shown below. Centres with 0, 1, or 2 routes are intentionally excluded from this visibility layer.",
-    "topCentresTitle": "Highest route-count centres",
+    "intro": "Search the centres where Drivest currently has enough live route coverage to make local practice useful.",
+    "summaryTitle": "How this list stays useful",
+    "summaryText": "We only show centres once there is enough live route coverage to help with real local repetition.",
+    "topCentresTitle": "Popular high-coverage centres",
     "directoryTitle": "Browse covered centres A to Z",
-    "note": "Refresh this directory whenever the route corpus changes so search engines and users see the current live coverage."
+    "note": "Coverage updates as live route support changes."
   },
   "pricing": {
     "title": "Pricing aligned to the app",
@@ -1244,7 +1243,7 @@
         "summary": "Best for future learners and theory-first preparation.",
         "bullets": [
           "Core theory learning and onboarding for future learners and current learners",
-          "Language selection with English cross-check support",
+          "Language selection with English Peek support",
           "Safety notices and legal acknowledgement",
           "Upgrade later for selected-centre practice or yearly navigation"
         ],
@@ -1392,7 +1391,7 @@
     },
     {
       "q": "Can I study in another language and still check the English question?",
-      "a": "Yes. Drivest supports theory learning across 32 languages. Learners can study in a preferred language and peek into English to cross-check the same question when they want to compare wording."
+      "a": "Yes. Drivest supports theory learning across 32 languages. Learners can study in a preferred language and use English Peek to compare the same question in English when they want extra certainty."
     },
     {
       "q": "Can I rely on Drivest as the final authority while driving?",

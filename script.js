@@ -337,6 +337,8 @@ function renderHome(m) {
       </div>
     </section>
 
+    ${renderAudienceSection(m.audienceTracks)}
+
     <section class="section reveal">
       <h2>${escapeHtml(m.threeTabs.title)}</h2>
       <div class="grid three-up">
@@ -360,8 +362,6 @@ function renderHome(m) {
     ${renderHomeModulesSection(m.homeModules)}
 
     ${renderProductProofSection(m.productProof)}
-
-    ${renderAudienceSection(m.audienceTracks)}
 
     ${renderLinkCardsSection(m.searchIntentLinks)}
 
@@ -639,8 +639,8 @@ function renderHubHeroActions(pageKey) {
       button("Start preparing", startHref("learner"), "secondary", "feature-hero-link")
     ],
     instructors: [
-      button("Start preparing", startHref("learner"), "primary", "feature-hero-link"),
-      button("Join as instructor", startHref("instructor"), "secondary", "feature-hero-link")
+      button("Join as instructor", startHref("instructor"), "primary", "feature-hero-link"),
+      button("Start preparing", startHref("learner"), "secondary", "feature-hero-link")
     ]
   }[pageKey];
 
@@ -1033,7 +1033,7 @@ function renderCoverageDirectorySection(m) {
   const aliasCount = Number(coverage?.summary?.aliasCount) || 0;
   const excludedCount = Number(coverage?.summary?.excludedCount) || 0;
   const generatedAtText = coverageGeneratedAtText(coverage);
-  const aliasText = `${formatNumber(aliasCount)} duplicate slug variant${aliasCount === 1 ? " is" : "s are"} collapsed into canonical centre page${aliasCount === 1 ? "" : "s"}.`;
+  const aliasText = `${formatNumber(aliasCount)} duplicate centre page${aliasCount === 1 ? " is" : "s are"} hidden behind the clean public list.`;
   if (!config || !summary || !groups.length) return "";
 
   return `
@@ -1044,28 +1044,28 @@ function renderCoverageDirectorySection(m) {
         <article class="card reveal-item">
           <p class="panel-title">Centres listed</p>
           <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.centres))}</p>
-          <p>Only centres with more than ${escapeHtml(String(summary.threshold))} routes are included.</p>
+          <p>We only list centres once there is enough live route coverage to make practice useful.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Routes represented</p>
           <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.routes))}</p>
-          <p>These are the current routes attached to the centres included in this directory.</p>
+          <p>These are the live routes currently attached to the centres shown in this directory.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Average route length</p>
           <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDistanceKm, 1))} km</p>
-          <p>Typical published routes sit inside a realistic lesson-length practice window.</p>
+          <p>Typical route length across the live centres shown here.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Average guided time</p>
           <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDurationMinutes, 1))} min</p>
-          <p>Average route quality across the public corpus is ${escapeHtml(formatMetricValue(summary.averageQualityScore, 3))}.</p>
+          <p>Typical guided drive time across the live centres shown here.</p>
         </article>
       </div>
       <div class="panel reveal-item">
         <p class="panel-title">${escapeHtml(config.summaryTitle)}</p>
         <p>${escapeHtml(config.summaryText)}</p>
-        <p class="coverage-summary-note">${escapeHtml(formatNumber(excludedCount))} temporary, backup, or broken centre variants are excluded from the public layer, and ${escapeHtml(aliasText)}</p>
+        <p class="coverage-summary-note">${escapeHtml(formatNumber(excludedCount))} temporary, thin, or broken centre variants are hidden from the public list, and ${escapeHtml(aliasText)}</p>
         ${generatedAtText ? `<p class="coverage-summary-note">Current public coverage file generated: ${escapeHtml(generatedAtText)}.</p>` : ""}
         ${config.note ? `<p class="coverage-summary-note">${escapeHtml(config.note)}</p>` : ""}
       </div>
@@ -1075,8 +1075,8 @@ function renderCoverageDirectorySection(m) {
       <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
         <div class="coverage-filter-head">
           <div>
-            <p class="panel-title">Find a covered centre faster</p>
-            <p>Search the live public directory by centre name and filter out thinner route sets when you only want deeper local practice coverage.</p>
+            <p class="panel-title">Find a centre near you</p>
+            <p>Search by centre, town, or area, then use the route filter when you want centres with broader local practice coverage.</p>
           </div>
           ${generatedAtText ? `<p class="coverage-generated-at">Coverage file generated: ${escapeHtml(generatedAtText)}</p>` : ""}
         </div>
@@ -1381,7 +1381,7 @@ function renderShowcaseStat(value, label) {
 
 function renderHeroProofGrid(m) {
   const summary = coverageSummary(m);
-  const thresholdText = summary ? `Only centres with more than ${summary.threshold} routes appear in the live public layer.` : m.hero.coverageLine || "";
+  const thresholdText = summary ? `Only centres with enough live routes to make practice useful are shown here.` : m.hero.coverageLine || "";
   const coverageHeadline = summary
     ? `${formatNumber(summary.centres)} live centres, ${formatNumber(summary.routes)} routes`
     : coverageLineText(m);
@@ -1484,7 +1484,7 @@ function journeySceneMeta(title) {
       className: "journey-scene-theory",
       stage: "Before lessons",
       metric: "32 languages",
-      chips: ["Theory", "Highway Code", "English cross-check"]
+      chips: ["Theory", "Highway Code", "English Peek"]
     };
   }
   if (t.includes("practice")) {
@@ -1568,7 +1568,7 @@ function moduleSceneMeta(title) {
     return {
       className: "module-scene-theory",
       badge: "32 languages",
-      pills: ["Question view", "English cross-check", "Theory prep"]
+      pills: ["Question view", "English Peek", "Theory prep"]
     };
   }
   if (t.includes("practice")) {
@@ -1714,9 +1714,9 @@ function centreChallengeBullets(centre) {
   }
   const zones = (centre?.topZones || []).slice(0, 3).map((zone) => toDisplayLabel(zone.name)).filter(Boolean);
   if (zones.length) {
-    bullets.push(`Route repetition is strongest across ${zones.join(", ")} coverage zones in the current public layer.`);
+    bullets.push(`Route repetition is strongest across ${zones.join(", ")}, which helps you focus on the areas learners are most likely to repeat.`);
   }
-  return bullets.length ? bullets.slice(0, 4) : ["The current public set gives a structured local practice layer rather than one generic centre description."];
+  return bullets.length ? bullets.slice(0, 4) : ["This page gives a structured local practice view instead of one generic centre description."];
 }
 
 function coverageGroups(coverage) {
@@ -1783,7 +1783,7 @@ function renderLanguageSupportSection(info) {
           ${renderPhoneShot(
             PHOTO_URLS.appTheoryChinese,
             "Theory question screen in Simplified Chinese with English UK option visible.",
-            "Theory question with English cross-check",
+            "Theory question with English Peek",
             "phone-shot-proof"
           )}
           <div class="language-proof-side">
@@ -1796,11 +1796,11 @@ function renderLanguageSupportSection(info) {
             ${renderPhoneShot(
               PHOTO_URLS.appTheoryQuizEnglish,
               "Theory question screen with English UK available beside Welsh.",
-              "English cross-check inside theory flow",
+              "English Peek inside theory flow",
               "phone-shot-proof phone-shot-proof-sm"
             )}
             <div class="language-proof-note">
-              Users can study in a preferred language, including Welsh and Arabic, then open English (UK) on the same question to compare wording before answering.
+              Users can study in a preferred language, including Welsh and Arabic, then open English Peek on the same question before answering.
             </div>
           </div>
         </div>
