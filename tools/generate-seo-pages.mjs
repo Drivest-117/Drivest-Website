@@ -455,7 +455,7 @@ function buildCustomPageTargets(marketing, coverage) {
       output: path.join(item.slug, "index.html"),
       canonical: `https://www.drivest.uk/${item.slug}`,
       title: brandDocumentTitle(item.seoTitle || item.title, brand),
-      description: item.description,
+      description: item.seoDescription || item.description,
       data: item
     });
   }
@@ -468,7 +468,7 @@ function buildCustomPageTargets(marketing, coverage) {
       output: path.join("driving-test-centres", item.slug, "index.html"),
       canonical: `https://www.drivest.uk/driving-test-centres/${item.slug}`,
       title: brandDocumentTitle(item.seoTitle || item.title, brand),
-      description: item.description,
+      description: item.seoDescription || buildCentreRegionMetaDescription(item, coverage),
       data: item
     });
   }
@@ -1424,6 +1424,29 @@ function aggregateCountMaps(countMaps) {
     }
   }
   return output;
+}
+
+function buildCentreRegionMetaDescription(config, coverage) {
+  const centres = selectCentresForRegion(config, coverage);
+  const summary = summariseCentreList(centres);
+  if (!summary.centres || !summary.routes) return config.description;
+  const label = centreRegionLabel(config);
+  return `Browse ${formatInteger(summary.centres)} ${label} driving test centres currently live in Drivest, covering ${formatInteger(summary.routes)} practice routes with centre-by-centre route counts, average route lengths, and guided durations.`;
+}
+
+function centreRegionLabel(config) {
+  const titleLabel = String(config?.title || "")
+    .replace(/ driving test centres and practice routes$/i, "")
+    .trim();
+  if (titleLabel) return titleLabel;
+  const slugLabel = String(config?.slug || "")
+    .replace(/-/g, " ")
+    .trim();
+  return slugLabel || "UK";
+}
+
+function formatInteger(value) {
+  return new Intl.NumberFormat("en-GB").format(Number(value) || 0);
 }
 
 function findCentre(coverage, centreId) {

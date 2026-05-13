@@ -127,7 +127,7 @@ function pageTitle(currentPage, m, centreId = document.body.dataset.centreId) {
   const brandTitle = seoBrandTitle(m);
   if (currentPage === "centre-detail") {
     const centre = coverageCentreById(m?.testCentreCoverage, centreId);
-    if (centre) return `${centre.name} driving test routes and practice | ${brandTitle}`;
+    if (centre) return `${centre.name} driving test centre practice routes | ${brandTitle}`;
   }
   if (currentPage === "home") return m.seo.title;
   if (m.pageSeo?.[currentPage]?.title) return `${m.pageSeo[currentPage].title} | ${brandTitle}`;
@@ -147,7 +147,7 @@ function pageDescription(currentPage, m, centreId = document.body.dataset.centre
   if (currentPage === "centre-detail") {
     const centre = coverageCentreById(m?.testCentreCoverage, centreId);
     if (centre) {
-      return `Practice ${formatNumber(centre.routeCount)} Drivest routes around ${centre.name}. Average route ${formatMetricValue(centre.averageDistanceKm, 1)} km and ${formatMetricValue(centre.averageDurationMinutes, 1)} minutes with ${difficultySummaryText(centre.dominantDifficulty)}.`;
+      return `Explore ${formatNumber(centre.routeCount)} practice routes for ${centre.name} driving test centre in Drivest, with average route ${formatMetricValue(centre.averageDistanceKm, 1)} km, ${formatMetricValue(centre.averageDurationMinutes, 1)} minutes, off-route alerts, offline packs, and road feature prompts.`;
     }
   }
   if (currentPage === "home") return m.seo.description;
