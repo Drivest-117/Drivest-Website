@@ -15,6 +15,7 @@ const basePageTargets = [
   { page: "home", output: "index.html", canonical: `${SITE_URL}/` },
   { page: "features", output: path.join("features", "index.html"), canonical: `${SITE_URL}/features` },
   { page: "pricing", output: path.join("pricing", "index.html"), canonical: `${SITE_URL}/pricing` },
+  { page: "download", output: path.join("download", "index.html"), canonical: `${SITE_URL}/download` },
   { page: "start", output: path.join("start", "index.html"), canonical: `${SITE_URL}/start` },
   { page: "faq", output: path.join("faq", "index.html"), canonical: `${SITE_URL}/faq` },
   { page: "theory", output: path.join("theory-test-preparation", "index.html"), canonical: `${SITE_URL}/theory-test-preparation` },
@@ -25,6 +26,7 @@ const basePageTargets = [
 const baseRedirectTargets = [
   { output: "features.html", destination: "/features" },
   { output: "pricing.html", destination: "/pricing" },
+  { output: "download.html", destination: "/download" },
   { output: "contact.html", destination: "/contact" },
   { output: "access-request.html", destination: "/access-request" },
   { output: "instructor-apply.html", destination: "/instructor-apply" },
@@ -38,6 +40,7 @@ const baseSitemapUrls = [
   `${SITE_URL}/`,
   `${SITE_URL}/features`,
   `${SITE_URL}/pricing`,
+  `${SITE_URL}/download`,
   `${SITE_URL}/start`,
   `${SITE_URL}/faq`,
   `${SITE_URL}/theory-test-preparation`,
@@ -699,8 +702,8 @@ function renderAccessRequestPage(config, renderer, marketing) {
     <section class="section reveal">
       <div class="grid access-request-grid">
         <article class="card reveal-item access-request-form-card">
-          <h2>Prepare your request</h2>
-          <p>Fill in the key details once, then open your email app with the subject line and learner-access request body already prepared.</p>
+          <h2>Create your request</h2>
+          <p>Fill in the key details once, then continue in your email app with the learner-access draft already organised.</p>
           <form class="access-request-form" data-access-request-form data-support-email="${escapeHtml(supportEmail)}">
             <div class="access-request-field-grid">
               <label class="coverage-field">
@@ -777,12 +780,12 @@ function renderAccessRequestPage(config, renderer, marketing) {
             </p>
 
             <div class="btn-row access-request-actions">
-              <button class="btn btn-primary" type="submit">Prepare email request</button>
+              <button class="btn btn-primary" type="submit">Create learner request</button>
               <a class="btn btn-secondary" href="mailto:${escapeHtml(supportEmail)}">Email support directly</a>
             </div>
 
             <p class="access-request-status" data-access-request-status aria-live="polite">
-              Choose an access option and enter your details to prepare the request.
+              Choose an access option and enter your details to create the request draft.
             </p>
 
             <div class="access-request-preview" data-access-request-preview hidden>
@@ -795,8 +798,8 @@ function renderAccessRequestPage(config, renderer, marketing) {
                 <pre data-access-request-body></pre>
               </div>
               <div class="btn-row access-request-actions">
-                <a class="btn btn-primary" href="#" data-access-request-mailto>Open email app</a>
-                <button class="btn btn-secondary" type="button" data-access-request-copy>Copy request text</button>
+                <a class="btn btn-primary" href="#" data-access-request-mailto>Continue in email</a>
+                <button class="btn btn-secondary" type="button" data-access-request-copy>Copy request details</button>
               </div>
               <p class="access-request-copy-status" data-access-request-copy-status aria-live="polite"></p>
             </div>
@@ -895,8 +898,8 @@ function renderInstructorApplyPage(config, renderer, marketing) {
     <section class="section reveal">
       <div class="grid access-request-grid">
         <article class="card reveal-item access-request-form-card">
-          <h2>Prepare your application</h2>
-          <p>Fill in the key details once, then open your email app with the subject line and instructor-application body already prepared.</p>
+          <h2>Create your application</h2>
+          <p>Fill in the key details once, then continue in your email app with the instructor-application draft already organised.</p>
           <form class="access-request-form" data-instructor-apply-form data-support-email="${escapeHtml(supportEmail)}">
             <div class="access-request-field-grid">
               <label class="coverage-field">
@@ -973,12 +976,12 @@ function renderInstructorApplyPage(config, renderer, marketing) {
             </label>
 
             <div class="btn-row access-request-actions">
-              <button class="btn btn-primary" type="submit">Prepare instructor application</button>
+              <button class="btn btn-primary" type="submit">Create instructor application</button>
               <a class="btn btn-secondary" href="mailto:${escapeHtml(supportEmail)}">Email support directly</a>
             </div>
 
             <p class="access-request-status" data-instructor-apply-status aria-live="polite">
-              Enter your details to prepare the application.
+              Enter your details to create the application draft.
             </p>
 
             <div class="access-request-preview" data-instructor-apply-preview hidden>
@@ -991,8 +994,8 @@ function renderInstructorApplyPage(config, renderer, marketing) {
                 <pre data-instructor-apply-body></pre>
               </div>
               <div class="btn-row access-request-actions">
-                <a class="btn btn-primary" href="#" data-instructor-apply-mailto>Open email app</a>
-                <button class="btn btn-secondary" type="button" data-instructor-apply-copy>Copy application text</button>
+                <a class="btn btn-primary" href="#" data-instructor-apply-mailto>Continue in email</a>
+                <button class="btn btn-secondary" type="button" data-instructor-apply-copy>Copy application details</button>
               </div>
               <p class="access-request-copy-status" data-instructor-apply-copy-status aria-live="polite"></p>
             </div>
@@ -1209,7 +1212,7 @@ function render404Page(scriptSource, marketing, coverage) {
           <h1>That page is not available on the public Drivest site.</h1>
           <p>Use one of the main learner or instructor routes below to get back into the current public site structure.</p>
           <div class="btn-row">
-            ${renderer.button("Start preparing", "/access-request?plan=free-learning", "primary")}
+            ${renderer.button("Get the app", "/download", "primary")}
             ${renderer.button("Go to homepage", "/", "secondary")}
           </div>
         </div>
@@ -1379,6 +1382,7 @@ Drivest is a public UK learner-driver platform site. Canonical public content is
 - [Homepage](${SITE_URL}/): Product overview and public positioning.
 - [Features](${SITE_URL}/features): Learner, navigation, parking, and instructor workflows.
 - [Pricing](${SITE_URL}/pricing): Free and paid plan overview.
+- [Get Drivest for iPhone](${SITE_URL}/download): Current iPhone launch status and direct download route.
 - [Access request](${SITE_URL}/access-request): Structured learner-access request flow for free and paid routes.
 - [Instructor apply](${SITE_URL}/instructor-apply): Structured instructor application flow.
 - [Getting started](${SITE_URL}/start): Role-based onboarding paths for learners and instructors.
@@ -1443,6 +1447,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 - [Homepage](${SITE_URL}/): High-level product positioning and core calls to action.
 - [Features](${SITE_URL}/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
 - [Pricing](${SITE_URL}/pricing): Public pricing plans and bundle structure.
+- [Get Drivest for iPhone](${SITE_URL}/download): Launch-status page and eventual direct App Store route.
 - [Getting started](${SITE_URL}/start): Role-based onboarding flow for learners and instructors.
 
 ## Learner preparation

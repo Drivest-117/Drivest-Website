@@ -445,7 +445,7 @@ function setupAccessRequestForm() {
   const invalidatePreview = () => {
     if (preview && !preview.hidden) preview.hidden = true;
     if (copyStatus) copyStatus.textContent = "";
-    if (status) status.textContent = "Request details changed. Prepare the request again to refresh the draft.";
+    if (status) status.textContent = "Request details changed. Create the request again to refresh the draft.";
   };
 
   form.querySelectorAll("input, select, textarea").forEach((field) => {
@@ -464,7 +464,7 @@ function setupAccessRequestForm() {
 
     const plan = selectedPlan();
     if (!plan) {
-      if (status) status.textContent = "Choose an access option before preparing the request.";
+      if (status) status.textContent = "Choose an access option before creating the request.";
       planSelect.focus();
       return;
     }
@@ -483,7 +483,7 @@ function setupAccessRequestForm() {
       mailtoLink.href = `mailto:${supportEmail}?subject=${encodeURIComponent(request.subject)}&body=${encodeURIComponent(request.body)}`;
     }
     if (preview) preview.hidden = false;
-    if (status) status.textContent = "Your request is prepared. Open your email app or copy the text below.";
+    if (status) status.textContent = "Your request is ready. Continue in email or copy the details below.";
     if (copyStatus) copyStatus.textContent = "";
   });
 
@@ -491,7 +491,7 @@ function setupAccessRequestForm() {
     copyButton.addEventListener("click", async () => {
       const request = prepareRequest();
       if (!request) {
-        if (copyStatus) copyStatus.textContent = "Prepare the request first so there is text to copy.";
+        if (copyStatus) copyStatus.textContent = "Create the request first so there is text to copy.";
         return;
       }
       if (!navigator.clipboard?.writeText) {
@@ -501,7 +501,7 @@ function setupAccessRequestForm() {
 
       try {
         await navigator.clipboard.writeText(`Subject: ${request.subject}\n\n${request.body}`);
-        if (copyStatus) copyStatus.textContent = "Request text copied. You can paste it into any email app.";
+        if (copyStatus) copyStatus.textContent = "Request details copied. You can paste them into any email app.";
       } catch (error) {
         if (copyStatus) copyStatus.textContent = "Clipboard copy failed. Use the prepared text below instead.";
       }
@@ -554,7 +554,7 @@ function setupInstructorApplyForm() {
   const invalidatePreview = () => {
     if (preview && !preview.hidden) preview.hidden = true;
     if (copyStatus) copyStatus.textContent = "";
-    if (status) status.textContent = "Application details changed. Prepare the application again to refresh the draft.";
+    if (status) status.textContent = "Application details changed. Create the application again to refresh the draft.";
   };
 
   form.querySelectorAll("input, select, textarea").forEach((field) => {
@@ -573,7 +573,7 @@ function setupInstructorApplyForm() {
       mailtoLink.href = `mailto:${supportEmail}?subject=${encodeURIComponent(application.subject)}&body=${encodeURIComponent(application.body)}`;
     }
     if (preview) preview.hidden = false;
-    if (status) status.textContent = "Your instructor application is prepared. Open your email app or copy the text below.";
+    if (status) status.textContent = "Your instructor application is ready. Continue in email or copy the details below.";
     if (copyStatus) copyStatus.textContent = "";
   });
 
@@ -587,7 +587,7 @@ function setupInstructorApplyForm() {
 
       try {
         await navigator.clipboard.writeText(`Subject: ${application.subject}\n\n${application.body}`);
-        if (copyStatus) copyStatus.textContent = "Application text copied. You can paste it into any email app.";
+        if (copyStatus) copyStatus.textContent = "Application details copied. You can paste them into any email app.";
       } catch (error) {
         if (copyStatus) copyStatus.textContent = "Clipboard copy failed. Use the prepared text below instead.";
       }

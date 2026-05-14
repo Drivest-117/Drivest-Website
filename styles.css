@@ -2366,6 +2366,10 @@ small {
     display: none;
   }
 
+  body[data-page="home"] .hero-secondary-actions {
+    display: none;
+  }
+
   .brand img {
     width: 150px;
   }

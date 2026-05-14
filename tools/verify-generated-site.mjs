@@ -35,15 +35,23 @@ const accessRequestHtml = await readSiteFile("access-request/index.html");
   "data-access-request-form",
   "data-access-request-plan",
   "data-access-request-preview",
-  "Prepare email request"
+  "Create learner request"
 ].forEach((marker) => assertIncludes(accessRequestHtml, "access-request/index.html", marker));
 
 const instructorApplyHtml = await readSiteFile("instructor-apply/index.html");
 [
   "data-instructor-apply-form",
   "data-instructor-apply-preview",
-  "Prepare instructor application"
+  "Create instructor application"
 ].forEach((marker) => assertIncludes(instructorApplyHtml, "instructor-apply/index.html", marker));
+
+const downloadHtml = await readSiteFile("download/index.html");
+[
+  "Get Drivest for iPhone",
+  "Expected from 15 May 2026",
+  "/access-request?plan=free-learning",
+  "/instructor-apply"
+].forEach((marker) => assertIncludes(downloadHtml, "download/index.html", marker));
 
 const coverageDirectoryHtml = await readSiteFile("driving-test-centres/index.html");
 [
@@ -53,7 +61,7 @@ const coverageDirectoryHtml = await readSiteFile("driving-test-centres/index.htm
   "data-coverage-status"
 ].forEach((marker) => assertIncludes(coverageDirectoryHtml, "driving-test-centres/index.html", marker));
 
-for (const relativePath of ["index.html", "pricing/index.html", "access-request/index.html", "instructor-apply/index.html", "privacy/index.html", "terms/index.html"]) {
+for (const relativePath of ["index.html", "pricing/index.html", "download/index.html", "access-request/index.html", "instructor-apply/index.html", "privacy/index.html", "terms/index.html"]) {
   const content = await readSiteFile(relativePath);
   assertIncludes(content, relativePath, '/favicon.ico');
   assertIncludes(content, relativePath, '/favicon-32x32.png');
@@ -96,10 +104,12 @@ for (const alias of coverage.aliases || []) {
 }
 
 const llmsIndex = await readSiteFile("llms.txt");
+assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/download");
 assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/access-request");
 assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/instructor-apply");
 
 const llmsFull = await readSiteFile("llms-full.txt");
+assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/download");
 assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/access-request");
 assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/instructor-apply");
 
@@ -112,6 +122,9 @@ assertIncludes(accessRequestRedirect, "access-request.html", 'content="0; url=/a
 const instructorApplyRedirect = await readSiteFile("instructor-apply.html");
 assertIncludes(instructorApplyRedirect, "instructor-apply.html", 'content="0; url=/instructor-apply"');
 
+const downloadRedirect = await readSiteFile("download.html");
+assertIncludes(downloadRedirect, "download.html", 'content="0; url=/download"');
+
 if (failures.length) {
   console.error("Generated site verification failed:");
   failures.forEach((failure) => console.error(`- ${failure}`));
@@ -119,7 +132,7 @@ if (failures.length) {
 }
 
 console.log(
-  `Verified ${allHtmlFiles.length} HTML files, ${coverage.aliases?.length || 0} alias redirect families, and the learner/instructor request flows.`
+  `Verified ${allHtmlFiles.length} HTML files, ${coverage.aliases?.length || 0} alias redirect families, and the launch/request flows.`
 );
 
 async function collectHtmlFiles(rootDir, relativeDir = "") {

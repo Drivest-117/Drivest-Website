@@ -9,6 +9,7 @@ Drivest is a public UK learner-driver platform site. Canonical public content is
 - [Homepage](https://drivest.uk/): Product overview and public positioning.
 - [Features](https://drivest.uk/features): Learner, navigation, parking, and instructor workflows.
 - [Pricing](https://drivest.uk/pricing): Free and paid plan overview.
+- [Get Drivest for iPhone](https://drivest.uk/download): Current iPhone launch status and direct download route.
 - [Access request](https://drivest.uk/access-request): Structured learner-access request flow for free and paid routes.
 - [Instructor apply](https://drivest.uk/instructor-apply): Structured instructor application flow.
 - [Getting started](https://drivest.uk/start): Role-based onboarding paths for learners and instructors.

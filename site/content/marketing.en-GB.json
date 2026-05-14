@@ -44,19 +44,25 @@
     "instructorApply": {
       "title": "Apply as a driving instructor",
       "description": "Prepare a structured Drivest instructor application with your teaching area, lesson type, and onboarding timing before support replies."
+    },
+    "download": {
+      "title": "Get Drivest for iPhone",
+      "description": "See Drivest's iPhone release status, direct App Store availability, learner access routes, and instructor onboarding options."
     }
   },
   "ui": {
     "brand": "Drivest",
     "nav": {
       "features": "Features",
+      "testCentres": "Test Centres",
+      "instructors": "Instructors",
       "pricing": "Pricing",
       "gettingStarted": "Getting Started",
       "faq": "FAQ",
       "comingSoon": "Coming soon"
     },
     "actions": {
-      "prepare": "Start preparing",
+      "prepare": "Get the app",
       "menu": "Menu",
       "closeMenu": "Close menu"
     },
@@ -66,19 +72,33 @@
     }
   },
   "hero": {
-    "positioningLine": "For learners, new arrivals, and independent instructors.",
-    "headline": "Get ready for your UK theory, lessons, and routes in one clear app.",
-    "subhead": "Study in 32 languages, use English Peek when wording gets difficult, then move into local practice routes, instructor bookings, and calmer navigation.",
+    "positioningLine": "Theory in 32 languages, live practice routes, and calmer learner driving.",
+    "headline": "Prepare for UK theory, lessons, and routes in one learner app.",
+    "subhead": "Start with free theory preparation, move into selected-centre practice and instructor bookings, then keep calmer navigation when you are driving independently.",
     "primaryCtas": [
-      "I'm learning",
-      "I'm an instructor"
+      "Get the iPhone app",
+      "Apply as instructor"
     ],
     "secondaryCtas": [
-      "See pricing",
-      "How Drivest works"
+      "Request learner access today",
+      "View practice routes"
     ],
-    "trustLine": "Real-world driving, lessons, bookings, and navigation must follow UK legal requirements.",
+    "trustLine": "iPhone App Store availability is expected from 15 May 2026. The download link will be added here as soon as Apple makes it available.",
     "coverageLine": "3,000+ practice routes generated across UK test-centre coverage. Public centre pages only show locations live with more than 2 routes."
+  },
+  "launchStatus": {
+    "title": "iPhone launch update",
+    "headline": "App Store availability expected from 15 May 2026",
+    "text": "The iPhone build was accepted on 14 May 2026. Until the public App Store URL is available, learners can request access and instructors can apply through the website.",
+    "pills": [
+      "Build accepted on 14 May 2026",
+      "App Store link planned for 15 May 2026",
+      "Learner and instructor routes already live"
+    ],
+    "primaryCta": "Go to the launch page",
+    "primaryHref": "/download",
+    "secondaryCta": "Request learner access today",
+    "secondaryHref": "/access-request?plan=free-learning"
   },
   "press": {
     "oneLiner": "Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.",
@@ -911,11 +931,11 @@
   },
   "accessRequestPage": {
     "title": "Start learner access",
-    "intro": "Use this page to prepare a structured learner-access request for free learning or a paid plan without guessing which details support needs first.",
+    "intro": "Use this page if you want learner access before the public App Store link is live or if you need a paid route tied to a centre.",
     "highlights": [
-      "Start with free learning or choose the exact paid plan you want",
+      "Request free theory access before the App Store link is live",
       "Add your centre or nearby area when the route depends on it",
-      "Prepare one clean request for the support inbox"
+      "Keep the support request clean and structured"
     ],
     "expectationTitle": "What to include",
     "expectationText": "Structured learner requests move faster because support can see the route, your driving stage, preferred centre when relevant, and intended start timing in one message.",
@@ -927,9 +947,9 @@
     ],
     "responseTitle": "What happens next",
     "responseBullets": [
-      "The form prepares an email draft to admin@drivest.uk with the learner-access details already organised",
-      "If your email app does not open, copy the prepared request and send it manually",
-      "Support, rollout timing, and learner-access questions are handled through the same inbox"
+      "This page creates a clean learner-access draft for admin@drivest.uk with the key details already organised",
+      "If your email app does not open, copy the request text and send it manually",
+      "The public iPhone App Store link will be added to the site separately once it is live"
     ],
     "stageOptions": [
       "Future learner",
@@ -946,11 +966,11 @@
   },
   "instructorApplyPage": {
     "title": "Apply as an instructor",
-    "intro": "Use this page to prepare a structured instructor application for Drivest without leaving support to chase the basic onboarding details later.",
+    "intro": "Use this page to create a structured instructor application without leaving support to chase the basic onboarding details later.",
     "highlights": [
       "Share your teaching area and lesson type",
       "Explain your onboarding stage before support replies",
-      "Prepare one clean instructor application for the support inbox"
+      "Keep one clean instructor application ready for support"
     ],
     "expectationTitle": "What to include",
     "expectationText": "Structured instructor applications move faster because support can see your teaching area, lesson type, readiness, and timing in one message.",
@@ -961,8 +981,8 @@
     ],
     "responseTitle": "What happens next",
     "responseBullets": [
-      "The form prepares an email draft to admin@drivest.uk with your instructor details already organised",
-      "If your email app does not open, copy the prepared application and send it manually",
+      "This page creates a clean instructor-application draft for admin@drivest.uk with your details already organised",
+      "If your email app does not open, copy the application text and send it manually",
       "Support can reply about onboarding, rollout timing, and instructor workflow questions from the same inbox"
     ],
     "stageOptions": [
@@ -988,6 +1008,40 @@
       "Profile ready, documents in progress",
       "Early conversation only",
       "Partnership or rollout question"
+    ]
+  },
+  "downloadPage": {
+    "title": "Get Drivest for iPhone",
+    "intro": "The iPhone build was accepted on 14 May 2026. The public App Store link is expected to go live from 15 May 2026 and will be added to this page as soon as Apple exposes the final URL.",
+    "highlights": [
+      "Build accepted on 14 May 2026",
+      "Direct App Store link planned for 15 May 2026",
+      "Learner and instructor routes already live on this site"
+    ],
+    "statusTitle": "Launch status",
+    "statusBullets": [
+      "Today, 14 May 2026: the iPhone build is accepted but the public App Store URL is not available yet.",
+      "From 15 May 2026: this page will carry the direct iPhone download link as soon as Apple makes it available.",
+      "Until then, learners can request access and instructors can apply through the site."
+    ],
+    "cards": [
+      {
+        "title": "iPhone App Store",
+        "text": "This is where the direct iPhone download button will appear once the live App Store URL is available.",
+        "meta": "Expected from 15 May 2026"
+      },
+      {
+        "title": "Need learner access today?",
+        "text": "Use the learner-access route if you want free theory access now or if you need a paid plan tied to a centre before the App Store link is public.",
+        "cta": "Request learner access",
+        "href": "/access-request?plan=free-learning"
+      },
+      {
+        "title": "Instructor onboarding",
+        "text": "Independent instructors can already send a structured onboarding application through the site today.",
+        "cta": "Apply as instructor",
+        "href": "/instructor-apply"
+      }
     ]
   },
   "seoLandingPages": {
@@ -1529,6 +1583,10 @@
       {
         "label": "Driving Instructors",
         "url": "/driving-instructors"
+      },
+      {
+        "label": "Get Drivest for iPhone",
+        "url": "/download"
       },
       {
         "label": "Contact",

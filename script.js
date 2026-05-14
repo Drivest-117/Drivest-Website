@@ -8,6 +8,7 @@ const PATHS = {
   start: "/start",
   faq: "/faq",
   contact: "/contact",
+  download: "/download",
   accessRequest: "/access-request",
   instructorApply: "/instructor-apply",
   theory: "/theory-test-preparation",
@@ -202,7 +203,7 @@ function renderShellStart(m) {
           ${renderPrimaryNavLinks(m)}
         </nav>
         <div class="nav-actions">
-          ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "header-cta")}
+          ${button(m.ui.actions.prepare, downloadHref(), "primary", "header-cta")}
           <button
             class="nav-toggle"
             type="button"
@@ -227,7 +228,7 @@ function renderShellStart(m) {
             ${renderPrimaryNavLinks(m)}
           </nav>
           <div class="mobile-menu-cta-row">
-            ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "mobile-menu-cta")}
+            ${button(m.ui.actions.prepare, downloadHref(), "primary", "mobile-menu-cta")}
             ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary", "mobile-menu-secondary")}
           </div>
         </div>
@@ -296,6 +297,8 @@ function renderPage(currentPage, m) {
       return renderFeatures(m);
     case "pricing":
       return renderPricing(m);
+    case "download":
+      return renderDownload(m);
     case "start":
       return renderStart(m);
     case "faq":
@@ -321,12 +324,12 @@ function renderHome(m) {
           <h1>${escapeHtml(m.hero.headline)}</h1>
           <p class="hero-lead">${escapeHtml(m.hero.subhead)}</p>
           <div class="btn-row hero-primary-actions">
-            ${button(m.hero.primaryCtas[0], learnerAccessHref(), "primary")}
+            ${button(m.hero.primaryCtas[0], downloadHref(), "primary")}
             ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary")}
           </div>
           <div class="btn-row hero-secondary-actions">
-            ${button(m.hero.secondaryCtas[0], PATHS.pricing, "secondary")}
-            ${button(m.hero.secondaryCtas[1], "#how-it-works", "secondary")}
+            ${button(m.hero.secondaryCtas[0], learnerAccessHref(), "secondary")}
+            ${button(m.hero.secondaryCtas[1], PATHS.centres, "secondary")}
           </div>
           ${renderHeroProofGrid(m)}
           <div class="hero-trust-stack">
@@ -338,6 +341,12 @@ function renderHome(m) {
         <div class="hero-visual reveal-item">${renderHeroShowcase(m)}</div>
       </div>
     </section>
+
+    ${renderLaunchStatusSection(m.launchStatus)}
+
+    ${renderHomeStartSplit(m.startPaths)}
+
+    ${renderLinkCardsSection(m.searchIntentLinks)}
 
     ${renderAudienceSection(m.audienceTracks)}
 
@@ -359,49 +368,25 @@ function renderHome(m) {
       </div>
     </section>
 
-    ${renderHomeStartSplit(m.startPaths)}
-
-    ${renderHomeModulesSection(m.homeModules)}
-
-    ${renderProductProofSection(m.productProof)}
-
-    ${renderLinkCardsSection(m.searchIntentLinks)}
-
-    <section class="section reveal">
-      <h2>${escapeHtml(m.why.title)}</h2>
-      ${bulletList(m.why.bullets)}
-    </section>
-
-    <section class="section reveal">
-      <h2>${escapeHtml(m.ui.sections.coreFeatures)}</h2>
-      ${renderFeatureCards(m.coreUsps)}
-    </section>
-
     ${renderLanguageSupportSection(m.languageSupport)}
+  `;
+}
 
-    <section id="how-it-works" class="section reveal">
-      <h2>${escapeHtml(m.howItWorks.title)}</h2>
-      <div class="grid two-up">
-        ${m.howItWorks.steps
-          .map(
-            (s) => `
-          <article class="card reveal-item">
-            <div class="card-photo">
-              ${renderImg(stepPhotoByTitle(s.title), `${s.title} visual`, {
-                loading: "lazy",
-                sizes: "(max-width: 760px) 92vw, (max-width: 1200px) 42vw, 320px"
-              })}
-            </div>
-            <h3>${escapeHtml(s.title)}</h3>
-            <p>${escapeHtml(s.text)}</p>
-          </article>
-        `
-          )
-          .join("")}
+function renderLaunchStatusSection(config) {
+  if (!config?.title) return "";
+  return `
+    <section class="section reveal">
+      <div class="panel reveal-item">
+        <p class="panel-title">${escapeHtml(config.title)}</p>
+        <h2>${escapeHtml(config.headline || config.title)}</h2>
+        <p>${escapeHtml(config.text || "")}</p>
+        ${config.pills?.length ? `<div class="pill-row">${renderPills(config.pills)}</div>` : ""}
+        <div class="btn-row">
+          ${config.primaryCta ? button(config.primaryCta, config.primaryHref || downloadHref(), "primary") : ""}
+          ${config.secondaryCta ? button(config.secondaryCta, config.secondaryHref || learnerAccessHref(), "secondary") : ""}
+        </div>
       </div>
     </section>
-
-    ${renderSafetySection(m)}
   `;
 }
 
@@ -561,6 +546,51 @@ function renderPricing(m) {
   `;
 }
 
+function renderDownload(m) {
+  const config = m.downloadPage;
+  if (!config) return renderHome(m);
+  return `
+    <section class="section reveal feature-hero pricing-hero">
+      <div class="feature-hero-grid pricing-hero-grid">
+        <div class="pricing-hero-copy">
+          <p class="eyebrow">iPhone launch</p>
+          <h1>${escapeHtml(config.title)}</h1>
+          <p class="hero-lead">${escapeHtml(config.intro)}</p>
+          ${config.highlights?.length ? `<div class="pill-row pricing-pill-row">${renderPills(config.highlights)}</div>` : ""}
+          <div class="btn-row feature-hero-actions">
+            ${button("Request learner access", learnerAccessHref(), "primary", "feature-hero-link")}
+            ${button("Apply as instructor", instructorApplyHref(), "secondary", "feature-hero-link")}
+          </div>
+          <p class="trust hero-trust-secondary">This page will carry the direct App Store URL once it is available.</p>
+        </div>
+        <div class="pricing-hero-side reveal-item">
+          <div class="panel pricing-summary-panel access-request-summary-panel">
+            <p class="panel-title">${escapeHtml(config.statusTitle || "Launch status")}</p>
+            ${bulletList(config.statusBullets)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid three-up">
+        ${(config.cards || [])
+          .map(
+            (card) => `
+          <article class="card reveal-item">
+            <h2>${escapeHtml(card.title)}</h2>
+            <p>${escapeHtml(card.text)}</p>
+            ${card.meta ? `<p class="note">${escapeHtml(card.meta)}</p>` : ""}
+            ${card.cta ? `<div class="btn-row">${button(card.cta, card.href || PATHS.home, "secondary")}</div>` : ""}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderFaq(m) {
   const faqTitle = m.pageSeo?.faq?.title || m.faqHeader?.title || m.ui.nav.faq;
   const faqMeta = m.faqHeader
@@ -633,16 +663,16 @@ function renderHubPage(pageKey, m) {
 function renderHubHeroActions(pageKey) {
   const actions = {
     theory: [
-      button("Start preparing", learnerAccessHref(), "primary", "feature-hero-link"),
+      button("Get the app", downloadHref(), "primary", "feature-hero-link"),
       button("View practice routes", PATHS.centres, "secondary", "feature-hero-link")
     ],
     centres: [
       button("Find a covered centre", "#centre-directory", "primary", "feature-hero-link"),
-      button("Start preparing", learnerAccessHref(), "secondary", "feature-hero-link")
+      button("Request learner access", learnerAccessHref(), "secondary", "feature-hero-link")
     ],
     instructors: [
       button("Join as instructor", instructorApplyHref(), "primary", "feature-hero-link"),
-      button("Start preparing", learnerAccessHref(), "secondary", "feature-hero-link")
+      button("Get the app", downloadHref(), "secondary", "feature-hero-link")
     ]
   }[pageKey];
 
@@ -921,8 +951,8 @@ function renderMobileCtaBar(m) {
   return `
     <div class="mobile-cta-bar">
       <div class="container mobile-cta-wrap">
-        <p class="mobile-cta-copy">${escapeHtml(m.hero.positioningLine || m.ui.actions.prepare)}</p>
-        ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "mobile-cta-link")}
+        <p class="mobile-cta-copy">iPhone App Store link expected from 15 May 2026.</p>
+        ${button(m.ui.actions.prepare, downloadHref(), "primary", "mobile-cta-link")}
       </div>
     </div>
   `;
@@ -1536,8 +1566,14 @@ function renderHomeStartSplit(config) {
                 .join("")}
             </div>
             <div class="btn-row">
-              ${button(path.id === "instructor" ? "See instructor start" : "See learner start", startHref(path.id), "primary")}
-              ${path.cta ? button(path.cta, path.href || PATHS.home, "secondary") : ""}
+              ${path.id === "instructor"
+                ? button(path.cta || "Apply as instructor", path.href || instructorApplyHref(), "primary")
+                : button("Get the iPhone app", downloadHref(), "primary")}
+              ${path.id === "instructor"
+                ? button("See instructor start", startHref(path.id), "secondary")
+                : path.cta
+                  ? button(path.cta, path.href || PATHS.home, "secondary")
+                  : ""}
             </div>
           </article>
         `
@@ -1857,7 +1893,7 @@ function renderPills(items) {
 function activeNavKey(currentPage = page) {
   switch (currentPage) {
     case "centre-detail":
-      return "";
+      return "centres";
     default:
       return currentPage;
   }
@@ -1866,15 +1902,12 @@ function activeNavKey(currentPage = page) {
 function renderPrimaryNavLinks(m) {
   const links = [
     { key: "features", href: PATHS.features, label: m.ui.nav.features },
+    { key: "centres", href: PATHS.centres, label: m.ui.nav.testCentres || "Test Centres" },
+    { key: "instructors", href: PATHS.instructors, label: m.ui.nav.instructors || "Instructors" },
     { key: "pricing", href: PATHS.pricing, label: m.ui.nav.pricing },
-    { key: "start", href: PATHS.start, label: m.ui.nav.gettingStarted },
     { key: "faq", href: PATHS.faq, label: m.ui.nav.faq }
   ];
   const currentNavKey = activeNavKey();
-  const termsText = footerLabel(m, "terms");
-  const privacyText = footerLabel(m, "privacy");
-  if (termsText) links.push({ key: "terms", href: PATHS.terms, label: termsText });
-  if (privacyText) links.push({ key: "privacy", href: PATHS.privacy, label: privacyText });
 
   return links
     .map((link) => {
@@ -2146,6 +2179,10 @@ function startHref(role) {
 
 function learnerAccessHref(plan = "free-learning") {
   return `${PATHS.accessRequest}?plan=${encodeURIComponent(plan)}`;
+}
+
+function downloadHref() {
+  return PATHS.download;
 }
 
 function instructorApplyHref() {
