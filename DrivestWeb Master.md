@@ -82,6 +82,8 @@ The website is a mostly static marketing site with shared rendering logic.
   - executable verification for generated runtime references, paid-plan request flow, and legacy centre redirects
 - `tools/extract_route_corpus_coverage.py`
   - route-corpus coverage extractor for the public centre dataset
+- `tests/test_extract_route_corpus_coverage.py`
+  - regression coverage for route-corpus aliasing, filtering, validation shaping, and summary metrics
 
 ### Rendering model
 
@@ -519,6 +521,7 @@ At minimum, keep these pairs aligned:
 
 - added route-corpus-based public centre coverage extraction and canonical alias cleanup
 - generated `site/data/test-centre-coverage.en-GB.json` from the route output corpus
+- added regression tests for route-corpus coverage aliasing, filtering, and summary extraction
 - expanded the static generator to emit crawl-discovery files and refreshed sitemap output
 - added `robots.txt`, `llm.txt`, `llms.txt`, and `llms-full.txt`
 - split generated-page runtime behaviour into `site-runtime.js` instead of shipping the full renderer to the browser
@@ -557,7 +560,8 @@ When future changes arrive, use this order:
 11. Run `python tools\build_browser_icons.py` when the browser icon or wordmark source changes.
 12. Run `node tools\generate-seo-pages.mjs` when generated outputs or redirects changed.
 13. Run `node tools\verify-generated-site.mjs` after regeneration.
-14. Confirm whether changes are only local or also deployed live.
+14. Run `python -m unittest discover -s tests -p "test_*.py" -v` when touching route-corpus extraction or coverage generation logic.
+15. Confirm whether changes are only local or also deployed live.
 
 ## Verification Commands
 
@@ -570,9 +574,11 @@ node --check site-runtime.js
 node --check tools\generate-seo-pages.mjs
 node --check tools\verify-generated-site.mjs
 python -m py_compile tools\build_browser_icons.py
+python -m py_compile tools\extract_route_corpus_coverage.py tests\test_extract_route_corpus_coverage.py
 python tools\build_browser_icons.py
 node tools\generate-seo-pages.mjs
 node tools\verify-generated-site.mjs
+python -m unittest discover -s tests -p "test_*.py" -v
 python tools\extract_route_corpus_coverage.py --help
 git status --short --branch
 ```

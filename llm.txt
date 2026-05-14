@@ -2,7 +2,7 @@
 
 > Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.
 
-Drivest is a public UK learner-driver platform site. Canonical public content is published at https://drivest.uk/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes 317 test centres and 3538 practice routes. Coverage data shown on the site reflects the current corpus generated on 11 May 2026.
+Drivest is a public UK learner-driver platform site. Canonical public content is published at https://drivest.uk/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes 317 test centres and 3538 practice routes. Coverage data shown on the site reflects the current corpus generated on 14 May 2026.
 
 ## Core pages
 

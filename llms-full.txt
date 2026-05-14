@@ -2,7 +2,7 @@
 
 > Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.
 
-Last updated: 2026-05-13
+Last updated: 2026-05-14
 
 This file is intended to give AI assistants and agentic tools a concise public-site summary without scraping every HTML page. Use the linked URLs as the canonical source for public claims, pricing, policy, and coverage detail.
 
@@ -13,7 +13,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 - Practice routes are reconstructed or generated for learning support only and are not official DVSA routes.
 - The public coverage layer only includes test centres with more than 2 routes.
 - Current coverage snapshot: 317 centres, 3538 routes, 11.2 average routes per centre.
-- Coverage data currently reflects the corpus generated on 11 May 2026.
+- Coverage data currently reflects the corpus generated on 14 May 2026.
 - Navigation and parking features are advisory product features and do not replace legal driving requirements or road-sign compliance.
 
 ## Primary product pages
