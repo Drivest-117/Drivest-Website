@@ -43,7 +43,7 @@ As of 12 May 2026, this repository contains website updates that include:
 - a lighter `site-runtime.js` client bundle for pre-rendered pages
 - searchable and filterable live driving-test-centre directory controls
 - intrinsic image dimensions and higher-priority hero image loading across generated pages
-- a structured `/access-request` paid-plan request flow instead of raw pricing-page mailto CTAs
+- a structured `/access-request` learner-access flow and `/instructor-apply` instructor application flow instead of dead-end CTA loops or raw mailto prompts
 - generator-owned legacy centre redirects for underscore and hyphen alias paths
 - a refreshed browser icon set for tabs, bookmarks, manifest installs, and touch icons
 - a new `Contact, trust, and coverage methodology` page

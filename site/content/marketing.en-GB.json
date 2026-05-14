@@ -38,8 +38,12 @@
       "description": "Find Drivest contact details, legal identity references, public coverage methodology notes, and current website support information."
     },
     "accessRequest": {
-      "title": "Request Drivest paid access",
-      "description": "Request Drivest selected-centre practice, navigation, or bundle access with a structured form that prepares the correct support email."
+      "title": "Start learner access with Drivest",
+      "description": "Prepare a structured Drivest learner-access request for free learning, selected-centre practice, navigation, or the annual bundle without losing key support details."
+    },
+    "instructorApply": {
+      "title": "Apply as a driving instructor",
+      "description": "Prepare a structured Drivest instructor application with your teaching area, lesson type, and onboarding timing before support replies."
     }
   },
   "ui": {
@@ -254,8 +258,8 @@
           "Move from theory into practice routes and instructor search as your confidence grows.",
           "Keep bookings, progress, and next-step guidance in one app."
         ],
-        "cta": "See pricing",
-        "href": "/pricing"
+        "cta": "Request learner access",
+        "href": "/access-request?plan=free-learning"
       },
       {
         "id": "instructor",
@@ -267,8 +271,8 @@
           "Accept lesson requests and track booking or payment state.",
           "Link learners and review progress inside Instructor Hub."
         ],
-        "cta": "See instructor features",
-        "href": "/features"
+        "cta": "Apply as instructor",
+        "href": "/instructor-apply"
       }
     ]
   },
@@ -906,37 +910,84 @@
     ]
   },
   "accessRequestPage": {
-    "title": "Request paid access",
-    "intro": "Use this page to prepare a structured paid-access request for Drivest without guessing which details support needs first.",
+    "title": "Start learner access",
+    "intro": "Use this page to prepare a structured learner-access request for free learning or a paid plan without guessing which details support needs first.",
     "highlights": [
-      "Choose the exact paid plan you want",
-      "Add your centre or nearby area before support replies",
+      "Start with free learning or choose the exact paid plan you want",
+      "Add your centre or nearby area when the route depends on it",
       "Prepare one clean request for the support inbox"
     ],
     "expectationTitle": "What to include",
-    "expectationText": "Structured requests move faster because support can see the plan, your driving stage, preferred centre, and intended start timing in one message.",
+    "expectationText": "Structured learner requests move faster because support can see the route, your driving stage, preferred centre when relevant, and intended start timing in one message.",
     "expectationBullets": [
+      "Free Learning requests can stay simple if you only need theory-first access",
       "Selected-centre plans should include the exact centre or nearby area you want",
       "Navigation and bundle requests should include when you want access to start",
       "If you are still comparing options, use the message box to explain what you need help deciding"
     ],
     "responseTitle": "What happens next",
     "responseBullets": [
-      "The form prepares an email draft to admin@drivest.uk with the plan details already organised",
+      "The form prepares an email draft to admin@drivest.uk with the learner-access details already organised",
       "If your email app does not open, copy the prepared request and send it manually",
-      "Support, rollout timing, and access questions are handled through the same inbox"
+      "Support, rollout timing, and learner-access questions are handled through the same inbox"
     ],
     "stageOptions": [
       "Future learner",
       "Learner driver",
       "Recently passed",
-      "Instructor or partner"
+      "Supporting a learner"
     ],
     "timingOptions": [
       "As soon as access is available",
       "Within the next 2 weeks",
       "Within the next month",
       "Just comparing options for now"
+    ]
+  },
+  "instructorApplyPage": {
+    "title": "Apply as an instructor",
+    "intro": "Use this page to prepare a structured instructor application for Drivest without leaving support to chase the basic onboarding details later.",
+    "highlights": [
+      "Share your teaching area and lesson type",
+      "Explain your onboarding stage before support replies",
+      "Prepare one clean instructor application for the support inbox"
+    ],
+    "expectationTitle": "What to include",
+    "expectationText": "Structured instructor applications move faster because support can see your teaching area, lesson type, readiness, and timing in one message.",
+    "expectationBullets": [
+      "Include the area you currently cover or want to cover first",
+      "Say whether you teach manual, automatic, or both",
+      "Use the message box for ADI or PDI status, partnership questions, or anything unusual"
+    ],
+    "responseTitle": "What happens next",
+    "responseBullets": [
+      "The form prepares an email draft to admin@drivest.uk with your instructor details already organised",
+      "If your email app does not open, copy the prepared application and send it manually",
+      "Support can reply about onboarding, rollout timing, and instructor workflow questions from the same inbox"
+    ],
+    "stageOptions": [
+      "ADI qualified instructor",
+      "PDI or trainee instructor",
+      "Independent instructor exploring Drivest",
+      "School, fleet, or partnership enquiry"
+    ],
+    "transmissionOptions": [
+      "Manual only",
+      "Automatic only",
+      "Manual and automatic",
+      "Not lesson-type specific"
+    ],
+    "timingOptions": [
+      "Ready to start onboarding now",
+      "Within the next 2 weeks",
+      "Within the next month",
+      "Just exploring for now"
+    ],
+    "readinessOptions": [
+      "Profile and documents ready",
+      "Profile ready, documents in progress",
+      "Early conversation only",
+      "Partnership or rollout question"
     ]
   },
   "seoLandingPages": {
@@ -1241,14 +1292,16 @@
         "tag": "Start here",
         "billing": "No payment required",
         "summary": "Best for future learners and theory-first preparation.",
+        "requestValue": "free-learning",
+        "requestSubject": "Drivest free learning access",
         "bullets": [
           "Core theory learning and onboarding for future learners and current learners",
           "Language selection with English Peek support",
           "Safety notices and legal acknowledgement",
           "Upgrade later for selected-centre practice or yearly navigation"
         ],
-        "cta": "Start free learning",
-        "href": "/start#learner"
+        "cta": "Request free learner access",
+        "href": "/access-request?plan=free-learning"
       },
       {
         "name": "Selected-Centre Practice",

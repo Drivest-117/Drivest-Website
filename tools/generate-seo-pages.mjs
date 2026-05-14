@@ -27,6 +27,7 @@ const baseRedirectTargets = [
   { output: "pricing.html", destination: "/pricing" },
   { output: "contact.html", destination: "/contact" },
   { output: "access-request.html", destination: "/access-request" },
+  { output: "instructor-apply.html", destination: "/instructor-apply" },
   { output: path.join("how-it-works", "index.html"), destination: "/start" },
   { output: "faq.html", destination: "/faq" },
   { output: "terms.html", destination: "/terms" },
@@ -448,6 +449,18 @@ function buildCustomPageTargets(marketing, coverage) {
     });
   }
 
+  if (marketing.instructorApplyPage?.title) {
+    targets.push({
+      kind: "instructor-apply",
+      bodyPage: "instructors",
+      output: path.join("instructor-apply", "index.html"),
+      canonical: `${SITE_URL}/instructor-apply`,
+      title: brandDocumentTitle(marketing.pageSeo?.instructorApply?.title || marketing.instructorApplyPage.title, brand),
+      description: marketing.pageSeo?.instructorApply?.description || marketing.instructorApplyPage.intro || marketing.seo.description,
+      data: marketing.instructorApplyPage
+    });
+  }
+
   for (const item of marketing.seoLandingPages?.theoryIntentPages || []) {
     if (!item?.slug || !item?.title || !item?.description) continue;
     targets.push({
@@ -492,6 +505,8 @@ function renderCustomPage(target, renderer, marketing, coverage) {
       return renderContactPage(target.data, renderer, marketing, coverage);
     case "access-request":
       return renderAccessRequestPage(target.data, renderer, marketing);
+    case "instructor-apply":
+      return renderInstructorApplyPage(target.data, renderer, marketing);
     case "theory-intent":
       return renderTheoryIntentPage(target.data, renderer, marketing);
     case "centre-region":
@@ -510,6 +525,11 @@ function buildCustomStructuredData(target, marketing, coverage) {
       });
     case "access-request":
       return buildStructuredData("access-request", target.canonical, target.title, target.description, marketing, "", {
+        pageType: "ContactPage",
+        skipCentresDataset: true
+      });
+    case "instructor-apply":
+      return buildStructuredData("instructors", target.canonical, target.title, target.description, marketing, "", {
         pageType: "ContactPage",
         skipCentresDataset: true
       });
@@ -647,7 +667,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
     <section class="section reveal feature-hero pricing-hero">
       <div class="feature-hero-grid pricing-hero-grid">
         <div class="pricing-hero-copy">
-          <p class="eyebrow">Paid plan request</p>
+          <p class="eyebrow">Learner access request</p>
           <h1>${escapeHtml(config.title)}</h1>
           <p class="hero-lead">${escapeHtml(config.intro)}</p>
           ${config.highlights?.length ? `<div class="pill-row pricing-pill-row">${renderer.renderPills(config.highlights)}</div>` : ""}
@@ -655,7 +675,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
         </div>
         <div class="pricing-hero-side reveal-item">
           <div class="panel pricing-summary-panel access-request-summary-panel">
-            <p class="panel-title">Requestable paid plans</p>
+            <p class="panel-title">Learner access options</p>
             <div class="pricing-summary-stack">
               ${requestablePlans
                 .map(
@@ -680,7 +700,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
       <div class="grid access-request-grid">
         <article class="card reveal-item access-request-form-card">
           <h2>Prepare your request</h2>
-          <p>Fill in the key details once, then open your email app with the subject line and request body already prepared.</p>
+          <p>Fill in the key details once, then open your email app with the subject line and learner-access request body already prepared.</p>
           <form class="access-request-form" data-access-request-form data-support-email="${escapeHtml(supportEmail)}">
             <div class="access-request-field-grid">
               <label class="coverage-field">
@@ -695,9 +715,9 @@ function renderAccessRequestPage(config, renderer, marketing) {
 
             <div class="access-request-field-grid">
               <label class="coverage-field">
-                <span>Paid plan</span>
+                <span>Access route</span>
                 <select class="coverage-control" name="plan" data-access-request-plan required>
-                  <option value="">Choose a paid plan</option>
+                  <option value="">Choose an access option</option>
                   ${requestablePlans
                     .map(
                       (plan) => `
@@ -753,7 +773,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
             </label>
 
             <p class="access-request-centre-note" data-access-request-centre-note aria-live="polite">
-              Choose a paid plan to see whether an exact centre or nearby area should be included.
+              Choose an access option to see whether an exact centre or nearby area should be included.
             </p>
 
             <div class="btn-row access-request-actions">
@@ -762,7 +782,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
             </div>
 
             <p class="access-request-status" data-access-request-status aria-live="polite">
-              Choose a paid plan and enter your details to prepare the request.
+              Choose an access option and enter your details to prepare the request.
             </p>
 
             <div class="access-request-preview" data-access-request-preview hidden>
@@ -799,11 +819,11 @@ function renderAccessRequestPage(config, renderer, marketing) {
 
     ${renderer.renderLinkCardsSection({
       title: "Keep the request tied to the product journey",
-      intro: "The request page should still connect back to pricing, centre selection, and support context without making users start again.",
+      intro: "The learner-access page should still connect back to pricing, centre selection, and support context without making users start again.",
       items: [
         {
           title: "Back to pricing",
-          text: "Return to the pricing page if you want to compare the free plan, centre practice, navigation, and the annual bundle again.",
+          text: "Return to the pricing page if you want to compare free learning, centre practice, navigation, and the annual bundle again.",
           href: "/pricing",
           cta: "Compare pricing"
         },
@@ -826,6 +846,198 @@ function renderAccessRequestPage(config, renderer, marketing) {
 
 function selectRequestablePlans(marketing) {
   return (marketing.pricing?.plans || []).filter((plan) => plan.requestValue && plan.href);
+}
+
+function renderInstructorApplyPage(config, renderer, marketing) {
+  const supportEmail = String(marketing.footer.contact || "admin@drivest.uk").replace(/^Contact:\s*/i, "");
+
+  return `
+    <section class="section reveal feature-hero pricing-hero">
+      <div class="feature-hero-grid pricing-hero-grid">
+        <div class="pricing-hero-copy">
+          <p class="eyebrow">Instructor application</p>
+          <h1>${escapeHtml(config.title)}</h1>
+          <p class="hero-lead">${escapeHtml(config.intro)}</p>
+          ${config.highlights?.length ? `<div class="pill-row pricing-pill-row">${renderer.renderPills(config.highlights)}</div>` : ""}
+          <p class="trust hero-trust-secondary">Support inbox: ${escapeHtml(supportEmail)}</p>
+        </div>
+        <div class="pricing-hero-side reveal-item">
+          <div class="panel pricing-summary-panel access-request-summary-panel">
+            <p class="panel-title">What the application captures</p>
+            <div class="pricing-summary-stack">
+              <div class="pricing-summary-row">
+                <div>
+                  <strong>Teaching area</strong>
+                  <p>So support can review the first market and local demand you want to cover.</p>
+                </div>
+                <span>Area</span>
+              </div>
+              <div class="pricing-summary-row">
+                <div>
+                  <strong>Lesson type</strong>
+                  <p>Manual, automatic, or mixed delivery expectations before onboarding starts.</p>
+                </div>
+                <span>Type</span>
+              </div>
+              <div class="pricing-summary-row pricing-summary-row-featured">
+                <div>
+                  <strong>Onboarding timing</strong>
+                  <p>Readiness, document stage, and whether this is immediate onboarding or early exploration.</p>
+                </div>
+                <span>Timing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid access-request-grid">
+        <article class="card reveal-item access-request-form-card">
+          <h2>Prepare your application</h2>
+          <p>Fill in the key details once, then open your email app with the subject line and instructor-application body already prepared.</p>
+          <form class="access-request-form" data-instructor-apply-form data-support-email="${escapeHtml(supportEmail)}">
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Full name</span>
+                <input class="coverage-control" type="text" name="name" autocomplete="name" required />
+              </label>
+              <label class="coverage-field">
+                <span>Email address</span>
+                <input class="coverage-control" type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Phone number</span>
+                <input class="coverage-control" type="tel" name="phone" autocomplete="tel" />
+              </label>
+              <label class="coverage-field">
+                <span>Instructor stage</span>
+                <select class="coverage-control" name="stage" required>
+                  <option value="">Choose your instructor stage</option>
+                  ${(config.stageOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+            </div>
+
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Teaching area or first launch area</span>
+                <input class="coverage-control" type="text" name="area" autocomplete="address-level2" required />
+              </label>
+              <label class="coverage-field">
+                <span>Lesson type</span>
+                <select class="coverage-control" name="transmission" required>
+                  <option value="">Choose your lesson type</option>
+                  ${(config.transmissionOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+            </div>
+
+            <div class="access-request-field-grid">
+              <label class="coverage-field">
+                <span>Preferred onboarding timing</span>
+                <select class="coverage-control" name="timing" required>
+                  <option value="">Choose a timing preference</option>
+                  ${(config.timingOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+              <label class="coverage-field">
+                <span>Readiness</span>
+                <select class="coverage-control" name="readiness" required>
+                  <option value="">Choose your readiness stage</option>
+                  ${(config.readinessOptions || [])
+                    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+                    .join("")}
+                </select>
+              </label>
+            </div>
+
+            <label class="coverage-field">
+              <span>Extra context</span>
+              <textarea
+                class="coverage-control access-request-textarea"
+                name="message"
+                rows="6"
+                placeholder="Tell support anything important about your teaching area, ADI or PDI status, documents, or rollout questions."
+              ></textarea>
+            </label>
+
+            <div class="btn-row access-request-actions">
+              <button class="btn btn-primary" type="submit">Prepare instructor application</button>
+              <a class="btn btn-secondary" href="mailto:${escapeHtml(supportEmail)}">Email support directly</a>
+            </div>
+
+            <p class="access-request-status" data-instructor-apply-status aria-live="polite">
+              Enter your details to prepare the application.
+            </p>
+
+            <div class="access-request-preview" data-instructor-apply-preview hidden>
+              <div class="access-request-preview-box">
+                <p class="panel-title">Prepared subject</p>
+                <p data-instructor-apply-subject></p>
+              </div>
+              <div class="access-request-preview-box">
+                <p class="panel-title">Prepared application body</p>
+                <pre data-instructor-apply-body></pre>
+              </div>
+              <div class="btn-row access-request-actions">
+                <a class="btn btn-primary" href="#" data-instructor-apply-mailto>Open email app</a>
+                <button class="btn btn-secondary" type="button" data-instructor-apply-copy>Copy application text</button>
+              </div>
+              <p class="access-request-copy-status" data-instructor-apply-copy-status aria-live="polite"></p>
+            </div>
+          </form>
+        </article>
+
+        <div class="access-request-side reveal-item">
+          <article class="card">
+            <h2>${escapeHtml(config.expectationTitle)}</h2>
+            <p>${escapeHtml(config.expectationText)}</p>
+            ${renderer.bulletList(config.expectationBullets)}
+          </article>
+          <article class="card">
+            <h2>${escapeHtml(config.responseTitle)}</h2>
+            ${renderer.bulletList(config.responseBullets)}
+          </article>
+        </div>
+      </div>
+    </section>
+
+    ${renderer.renderLinkCardsSection({
+      title: "Keep the application tied to the product journey",
+      intro: "Instructor onboarding should still connect back to the public instructor story, support context, and the wider learner journey.",
+      items: [
+        {
+          title: "Back to instructor overview",
+          text: "Return to the instructor page if you want to review discovery, bookings, and Instructor Hub positioning again.",
+          href: "/driving-instructors",
+          cta: "View instructor overview"
+        },
+        {
+          title: "Support and trust",
+          text: "Use the contact page for support wording, legal identity references, and current product-status context.",
+          href: "/contact",
+          cta: "View contact page"
+        },
+        {
+          title: "How Drivest works",
+          text: "See the learner and instructor routes together before you commit to onboarding.",
+          href: "/start",
+          cta: "See how it works"
+        }
+      ]
+    })}
+  `;
 }
 
 function renderTheoryIntentPage(config, renderer, marketing) {
@@ -997,7 +1209,7 @@ function render404Page(scriptSource, marketing, coverage) {
           <h1>That page is not available on the public Drivest site.</h1>
           <p>Use one of the main learner or instructor routes below to get back into the current public site structure.</p>
           <div class="btn-row">
-            ${renderer.button("Start preparing", "/start#learner", "primary")}
+            ${renderer.button("Start preparing", "/access-request?plan=free-learning", "primary")}
             ${renderer.button("Go to homepage", "/", "secondary")}
           </div>
         </div>
@@ -1167,7 +1379,8 @@ Drivest is a public UK learner-driver platform site. Canonical public content is
 - [Homepage](${SITE_URL}/): Product overview and public positioning.
 - [Features](${SITE_URL}/features): Learner, navigation, parking, and instructor workflows.
 - [Pricing](${SITE_URL}/pricing): Free and paid plan overview.
-- [Access request](${SITE_URL}/access-request): Structured request flow for paid-plan support.
+- [Access request](${SITE_URL}/access-request): Structured learner-access request flow for free and paid routes.
+- [Instructor apply](${SITE_URL}/instructor-apply): Structured instructor application flow.
 - [Getting started](${SITE_URL}/start): Role-based onboarding paths for learners and instructors.
 
 ## Theory and learner preparation
@@ -1254,7 +1467,8 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 ## Instructor and commercial flows
 
 - [Driving instructors](${SITE_URL}/driving-instructors): Instructor discovery, request, and booking overview.
-- [Access request](${SITE_URL}/access-request): Structured request page for selected-centre practice, navigation, and bundle access.
+- [Access request](${SITE_URL}/access-request): Structured learner-access page for free learning, selected-centre practice, navigation, and bundle access.
+- [Instructor apply](${SITE_URL}/instructor-apply): Structured instructor application page for onboarding, rollout, and partnership enquiries.
 - [Contact](${SITE_URL}/contact): Support contact details and public coverage methodology notes.
 - [FAQ](${SITE_URL}/faq): Product and commercial clarification questions.
 

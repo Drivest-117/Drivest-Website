@@ -11,6 +11,7 @@ function finalizePageChrome() {
   setupMobileNav();
   setupCoverageDirectory();
   setupAccessRequestForm();
+  setupInstructorApplyForm();
 }
 
 function activeNavKey(currentPage = page) {
@@ -382,7 +383,7 @@ function setupAccessRequestForm() {
     if (!plan) {
       centreInput.required = false;
       if (centreNote) {
-        centreNote.textContent = "Choose a paid plan to see whether an exact centre or nearby area should be included.";
+        centreNote.textContent = "Choose an access option to see whether an exact centre or nearby area should be included.";
       }
       return;
     }
@@ -463,7 +464,7 @@ function setupAccessRequestForm() {
 
     const plan = selectedPlan();
     if (!plan) {
-      if (status) status.textContent = "Choose a paid plan before preparing the request.";
+      if (status) status.textContent = "Choose an access option before preparing the request.";
       planSelect.focus();
       return;
     }
@@ -501,6 +502,92 @@ function setupAccessRequestForm() {
       try {
         await navigator.clipboard.writeText(`Subject: ${request.subject}\n\n${request.body}`);
         if (copyStatus) copyStatus.textContent = "Request text copied. You can paste it into any email app.";
+      } catch (error) {
+        if (copyStatus) copyStatus.textContent = "Clipboard copy failed. Use the prepared text below instead.";
+      }
+    });
+  }
+}
+
+function setupInstructorApplyForm() {
+  const form = document.querySelector("[data-instructor-apply-form]");
+  if (!form) return;
+
+  const status = form.querySelector("[data-instructor-apply-status]");
+  const preview = form.querySelector("[data-instructor-apply-preview]");
+  const subjectNode = form.querySelector("[data-instructor-apply-subject]");
+  const bodyNode = form.querySelector("[data-instructor-apply-body]");
+  const mailtoLink = form.querySelector("[data-instructor-apply-mailto]");
+  const copyButton = form.querySelector("[data-instructor-apply-copy]");
+  const copyStatus = form.querySelector("[data-instructor-apply-copy-status]");
+  const supportEmail = String(form.dataset.supportEmail || "admin@drivest.uk").trim();
+
+  const prepareApplication = () => {
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const stage = String(formData.get("stage") || "").trim();
+    const area = String(formData.get("area") || "").trim();
+    const transmission = String(formData.get("transmission") || "").trim();
+    const timing = String(formData.get("timing") || "").trim();
+    const readiness = String(formData.get("readiness") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const subject = area ? `Drivest instructor application - ${area}` : "Drivest instructor application";
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Instructor stage: ${stage}`,
+      `Teaching area: ${area}`,
+      `Lesson type: ${transmission}`,
+      `Preferred onboarding timing: ${timing}`,
+      `Readiness: ${readiness}`,
+      "",
+      "Extra context:",
+      message || "None provided"
+    ].join("\n");
+
+    return { subject, body };
+  };
+
+  const invalidatePreview = () => {
+    if (preview && !preview.hidden) preview.hidden = true;
+    if (copyStatus) copyStatus.textContent = "";
+    if (status) status.textContent = "Application details changed. Prepare the application again to refresh the draft.";
+  };
+
+  form.querySelectorAll("input, select, textarea").forEach((field) => {
+    const eventName = field.tagName === "SELECT" ? "change" : "input";
+    field.addEventListener(eventName, invalidatePreview);
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+
+    const application = prepareApplication();
+    if (subjectNode) subjectNode.textContent = application.subject;
+    if (bodyNode) bodyNode.textContent = application.body;
+    if (mailtoLink) {
+      mailtoLink.href = `mailto:${supportEmail}?subject=${encodeURIComponent(application.subject)}&body=${encodeURIComponent(application.body)}`;
+    }
+    if (preview) preview.hidden = false;
+    if (status) status.textContent = "Your instructor application is prepared. Open your email app or copy the text below.";
+    if (copyStatus) copyStatus.textContent = "";
+  });
+
+  if (copyButton) {
+    copyButton.addEventListener("click", async () => {
+      const application = prepareApplication();
+      if (!navigator.clipboard?.writeText) {
+        if (copyStatus) copyStatus.textContent = "Clipboard copy is not available in this browser. Use the prepared text below.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(`Subject: ${application.subject}\n\n${application.body}`);
+        if (copyStatus) copyStatus.textContent = "Application text copied. You can paste it into any email app.";
       } catch (error) {
         if (copyStatus) copyStatus.textContent = "Clipboard copy failed. Use the prepared text below instead.";
       }

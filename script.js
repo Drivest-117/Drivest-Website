@@ -8,6 +8,8 @@ const PATHS = {
   start: "/start",
   faq: "/faq",
   contact: "/contact",
+  accessRequest: "/access-request",
+  instructorApply: "/instructor-apply",
   theory: "/theory-test-preparation",
   centres: "/driving-test-centres",
   instructors: "/driving-instructors",
@@ -200,7 +202,7 @@ function renderShellStart(m) {
           ${renderPrimaryNavLinks(m)}
         </nav>
         <div class="nav-actions">
-          ${button(m.ui.actions.prepare, startHref("learner"), "primary", "header-cta")}
+          ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "header-cta")}
           <button
             class="nav-toggle"
             type="button"
@@ -225,8 +227,8 @@ function renderShellStart(m) {
             ${renderPrimaryNavLinks(m)}
           </nav>
           <div class="mobile-menu-cta-row">
-            ${button(m.ui.actions.prepare, startHref("learner"), "primary", "mobile-menu-cta")}
-            ${button(m.hero.primaryCtas[1], startHref("instructor"), "secondary", "mobile-menu-secondary")}
+            ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "mobile-menu-cta")}
+            ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary", "mobile-menu-secondary")}
           </div>
         </div>
       </div>
@@ -319,8 +321,8 @@ function renderHome(m) {
           <h1>${escapeHtml(m.hero.headline)}</h1>
           <p class="hero-lead">${escapeHtml(m.hero.subhead)}</p>
           <div class="btn-row hero-primary-actions">
-            ${button(m.hero.primaryCtas[0], startHref("learner"), "primary")}
-            ${button(m.hero.primaryCtas[1], startHref("instructor"), "secondary")}
+            ${button(m.hero.primaryCtas[0], learnerAccessHref(), "primary")}
+            ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary")}
           </div>
           <div class="btn-row hero-secondary-actions">
             ${button(m.hero.secondaryCtas[0], PATHS.pricing, "secondary")}
@@ -631,16 +633,16 @@ function renderHubPage(pageKey, m) {
 function renderHubHeroActions(pageKey) {
   const actions = {
     theory: [
-      button("Start preparing", startHref("learner"), "primary", "feature-hero-link"),
+      button("Start preparing", learnerAccessHref(), "primary", "feature-hero-link"),
       button("View practice routes", PATHS.centres, "secondary", "feature-hero-link")
     ],
     centres: [
       button("Find a covered centre", "#centre-directory", "primary", "feature-hero-link"),
-      button("Start preparing", startHref("learner"), "secondary", "feature-hero-link")
+      button("Start preparing", learnerAccessHref(), "secondary", "feature-hero-link")
     ],
     instructors: [
-      button("Join as instructor", startHref("instructor"), "primary", "feature-hero-link"),
-      button("Start preparing", startHref("learner"), "secondary", "feature-hero-link")
+      button("Join as instructor", instructorApplyHref(), "primary", "feature-hero-link"),
+      button("Start preparing", learnerAccessHref(), "secondary", "feature-hero-link")
     ]
   }[pageKey];
 
@@ -920,7 +922,7 @@ function renderMobileCtaBar(m) {
     <div class="mobile-cta-bar">
       <div class="container mobile-cta-wrap">
         <p class="mobile-cta-copy">${escapeHtml(m.hero.positioningLine || m.ui.actions.prepare)}</p>
-        ${button(m.ui.actions.prepare, startHref("learner"), "primary", "mobile-cta-link")}
+        ${button(m.ui.actions.prepare, learnerAccessHref(), "primary", "mobile-cta-link")}
       </div>
     </div>
   `;
@@ -2140,6 +2142,14 @@ function setupMobileNav() {
 
 function startHref(role) {
   return `${PATHS.start}#${role}`;
+}
+
+function learnerAccessHref(plan = "free-learning") {
+  return `${PATHS.accessRequest}?plan=${encodeURIComponent(plan)}`;
+}
+
+function instructorApplyHref() {
+  return PATHS.instructorApply;
 }
 
 function footerLabel(m, key) {
