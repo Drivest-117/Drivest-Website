@@ -6,6 +6,7 @@ const siteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en-GB.json");
 const ignoreDirs = new Set([".git", "site", "tools", "node_modules"]);
 const failures = [];
+const iconVersion = "2026-05-14-premium";
 
 const coverage = JSON.parse(await fs.readFile(coveragePath, "utf8"));
 const allHtmlFiles = await collectHtmlFiles(siteDir);
@@ -63,10 +64,11 @@ const coverageDirectoryHtml = await readSiteFile("driving-test-centres/index.htm
 
 for (const relativePath of ["index.html", "pricing/index.html", "download/index.html", "access-request/index.html", "instructor-apply/index.html", "privacy/index.html", "terms/index.html"]) {
   const content = await readSiteFile(relativePath);
-  assertIncludes(content, relativePath, '/favicon.ico');
-  assertIncludes(content, relativePath, '/favicon-32x32.png');
-  assertIncludes(content, relativePath, '/favicon-16x16.png');
-  assertIncludes(content, relativePath, '/apple-touch-icon.png');
+  assertIncludes(content, relativePath, versionedIcon("/favicon.ico"));
+  assertIncludes(content, relativePath, versionedIcon("/favicon-32x32.png"));
+  assertIncludes(content, relativePath, versionedIcon("/favicon-16x16.png"));
+  assertIncludes(content, relativePath, versionedIcon("/apple-touch-icon.png"));
+  assertIncludes(content, relativePath, versionedIcon("/manifest.webmanifest"));
   assertMissing(content, relativePath, '/assets/favicon-wheel.ico');
 }
 
@@ -77,8 +79,8 @@ for (const relativePath of ["terms/index.html", "privacy/index.html", "contact/i
 
 const manifest = await readSiteFile("manifest.webmanifest");
 [
-  "/android-chrome-192x192.png",
-  "/android-chrome-512x512.png"
+  versionedIcon("/android-chrome-192x192.png"),
+  versionedIcon("/android-chrome-512x512.png")
 ].forEach((marker) => assertIncludes(manifest, "manifest.webmanifest", marker));
 assertMissing(manifest, "manifest.webmanifest", "/assets/app-icon.png");
 
@@ -180,4 +182,8 @@ function hyphenatePathSegment(value) {
     .trim()
     .replace(/[_\s]+/g, "-")
     .replace(/-+/g, "-");
+}
+
+function versionedIcon(assetPath) {
+  return `${assetPath}?v=${iconVersion}`;
 }

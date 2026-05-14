@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,8 +8,6 @@ SOURCE_WORDMARK = ROOT / "assets" / "drivest-wordmark.png"
 
 # Tight crop of the standalone steering-wheel locator mark inside the wordmark art.
 MARK_BOX = (10, 10, 180, 214)
-BRAND_DARK = (0, 0, 0)
-BRAND_ORANGE = (243, 93, 25)
 
 
 def main() -> None:
@@ -60,10 +58,53 @@ def main() -> None:
 
 
 def build_app_icon(mark: Image.Image, size: int) -> Image.Image:
+    return build_tile_icon(
+        mark,
+        size,
+        tile_inset_scale=0.045,
+        radius_scale=0.16,
+        border_scale=0.008,
+        mark_scale=0.82,
+        y_offset_scale=0.085,
+        border_color=(236, 238, 242, 255),
+    )
+
+
+def build_favicon_icon(mark: Image.Image, size: int) -> Image.Image:
+    master_size = 192 if size <= 16 else 256 if size <= 32 else max(256, size * 4)
+    master = build_tile_icon(
+        mark,
+        master_size,
+        tile_inset_scale=0.02,
+        radius_scale=0.22,
+        border_scale=0.01,
+        mark_scale=0.86,
+        y_offset_scale=0.075,
+        border_color=(232, 234, 238, 255),
+    )
+    icon = master.resize((size, size), Image.Resampling.LANCZOS)
+    if size <= 16:
+        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.5, percent=180, threshold=1))
+    elif size <= 32:
+        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.7, percent=165, threshold=1))
+    return icon
+
+
+def build_tile_icon(
+    mark: Image.Image,
+    size: int,
+    *,
+    tile_inset_scale: float,
+    radius_scale: float,
+    border_scale: float,
+    mark_scale: float,
+    y_offset_scale: float,
+    border_color: tuple[int, int, int, int],
+) -> Image.Image:
     canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    inset = max(1, round(size * 0.045))
-    radius = round(size * 0.16)
-    border = max(1, round(size * 0.008))
+    inset = max(1, round(size * tile_inset_scale))
+    radius = round(size * radius_scale)
+    border = max(1, round(size * border_scale))
 
     background = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(background)
@@ -71,85 +112,20 @@ def build_app_icon(mark: Image.Image, size: int) -> Image.Image:
         (inset, inset, size - inset, size - inset),
         radius=radius,
         fill=(255, 255, 255, 255),
-        outline=(236, 238, 242, 255),
+        outline=border_color,
         width=border,
     )
     canvas.alpha_composite(background)
 
-    target_width = round(size * 0.78)
-    target_height = round(size * 0.78)
+    target_width = round(size * mark_scale)
+    target_height = round(size * mark_scale)
     scaled = ImageOps.contain(mark, (target_width, target_height), Image.Resampling.LANCZOS)
     x = (size - scaled.width) // 2
-    y = max(inset, round(size * 0.095))
+    y = max(inset, round(size * y_offset_scale))
     if y + scaled.height > size - inset:
         y = size - inset - scaled.height
     canvas.alpha_composite(scaled, (x, y))
     return canvas
-
-
-def build_favicon_icon(mark: Image.Image, size: int) -> Image.Image:
-    black_layer, orange_layer = split_mark_layers(mark)
-    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    target_scale = 0.96 if size <= 16 else 0.94 if size <= 32 else 0.92
-    target_width = round(size * target_scale)
-    target_height = round(size * target_scale)
-    scaled_black = ImageOps.contain(black_layer, (target_width, target_height), Image.Resampling.LANCZOS)
-    scaled_orange = ImageOps.contain(orange_layer, (target_width, target_height), Image.Resampling.LANCZOS)
-    if size <= 16:
-        scaled_black = scaled_black.filter(ImageFilter.UnsharpMask(radius=0.4, percent=180, threshold=2))
-        scaled_orange = scaled_orange.filter(ImageFilter.UnsharpMask(radius=0.4, percent=180, threshold=2))
-        black_alpha = harden_alpha(scaled_black.getchannel("A"), floor=14, ceiling=135)
-        orange_alpha = harden_alpha(scaled_orange.getchannel("A"), floor=10, ceiling=128).filter(
-            ImageFilter.MaxFilter(3)
-        )
-        outline_kernel = 3
-    elif size <= 32:
-        black_alpha = harden_alpha(scaled_black.getchannel("A"), floor=10, ceiling=160)
-        orange_alpha = harden_alpha(scaled_orange.getchannel("A"), floor=10, ceiling=160)
-        outline_kernel = 3
-    else:
-        black_alpha = harden_alpha(scaled_black.getchannel("A"), floor=8, ceiling=175)
-        orange_alpha = harden_alpha(scaled_orange.getchannel("A"), floor=8, ceiling=175)
-        outline_kernel = 3
-    scaled_black.putalpha(black_alpha)
-    scaled_orange.putalpha(orange_alpha)
-
-    x = (size - scaled_black.width) // 2
-    y = max(0, (size - scaled_black.height) // 2 - max(0, round(size * 0.05)))
-
-    outline_mask = ImageChops.subtract(black_alpha.filter(ImageFilter.MaxFilter(outline_kernel)), black_alpha)
-    outline_strength = 205 if size <= 16 else 210
-    outline = Image.new("RGBA", scaled_black.size, (255, 255, 255, 0))
-    outline.putalpha(outline_mask.point(lambda value: 0 if value < 18 else min(value, outline_strength)))
-
-    canvas.alpha_composite(outline, (x, y))
-    canvas.alpha_composite(scaled_black, (x, y))
-    canvas.alpha_composite(scaled_orange, (x, y))
-    return canvas
-
-
-def harden_alpha(alpha: Image.Image, floor: int, ceiling: int) -> Image.Image:
-    span = max(1, ceiling - floor)
-    return alpha.point(
-        lambda value: 0
-        if value < floor
-        else 255 if value > ceiling else min(255, round((value - floor) * 255 / span))
-    )
-
-
-def split_mark_layers(mark: Image.Image) -> tuple[Image.Image, Image.Image]:
-    black_layer = Image.new("RGBA", mark.size, (0, 0, 0, 0))
-    orange_layer = Image.new("RGBA", mark.size, (0, 0, 0, 0))
-    for x in range(mark.width):
-        for y in range(mark.height):
-            red, green, blue, alpha = mark.getpixel((x, y))
-            if alpha == 0:
-                continue
-            if red > 150 and red - green > 70 and green > blue:
-                orange_layer.putpixel((x, y), (*BRAND_ORANGE, alpha))
-            else:
-                black_layer.putpixel((x, y), (*BRAND_DARK, alpha))
-    return black_layer, orange_layer
 
 
 if __name__ == "__main__":

@@ -77,7 +77,7 @@ The website is a mostly static marketing site with shared rendering logic.
 - `tools/generate-seo-pages.mjs`
   - static generator for page shells, centre pages, redirects, crawl files, sitemap, and manifest
 - `tools/build_browser_icons.py`
-  - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source, exports size-specific transparent favicons for tabs with a stronger 16px render, and exports white-tile app icons for touch/PWA contexts
+  - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source, exports premium white-tile favicons for tabs with a larger, cleaner mark treatment, and exports matching white-tile app icons for touch/PWA contexts
 - `tools/verify-generated-site.mjs`
   - executable verification for generated runtime references, paid-plan request flow, and legacy centre redirects
 - `tools/extract_route_corpus_coverage.py`
@@ -530,7 +530,7 @@ At minimum, keep these pairs aligned:
 - moved legacy centre alias redirects into the generator for both underscore and hyphen path variants
 - added intrinsic image dimensions and stronger hero image loading hints to generated page images
 - added `manifest.webmanifest` to generated pages
-- rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark, with size-specific transparent favicons for tabs and white-tile icons for touch/PWA use
+- rebuilt the browser favicon, touch icon, and manifest icon set around the standalone steering-wheel locator mark, using premium white-tile favicons for browser chrome and matching white-tile icons for touch/PWA use
 - stopped above-the-fold reveal fades from washing out the first viewport and top-aligned the desktop homepage hero
 - widened the homepage main container on large desktops and trimmed the hero phone stack so the 2K-width first fold breathes properly
 - top-aligned the desktop product-proof and safety-proof cards and reduced their phone rail width so lower sections stop showing giant empty text columns

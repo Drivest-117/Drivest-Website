@@ -10,6 +10,7 @@ const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en
 const today = new Date().toISOString().slice(0, 10);
 const SITE_URL = "https://drivest.uk";
 const ogImage = `${SITE_URL}/assets/drivest-wordmark-preview.png`;
+const ICON_VERSION = "2026-05-14-premium";
 
 const basePageTargets = [
   { page: "home", output: "index.html", canonical: `${SITE_URL}/` },
@@ -174,11 +175,11 @@ function renderDocument({ appHtml, canonical, centreId, description, jsonLd, pag
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="twitter:image" content="${ogImage}" />
   <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="${iconAsset("/favicon.ico")}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="${iconAsset("/favicon-32x32.png")}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="${iconAsset("/favicon-16x16.png")}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="${iconAsset("/apple-touch-icon.png")}" />
+  <link rel="manifest" href="${iconAsset("/manifest.webmanifest")}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
@@ -1278,13 +1279,13 @@ function renderManifest(marketing) {
       theme_color: "#111827",
       icons: [
         {
-          src: "/android-chrome-192x192.png",
+          src: iconAsset("/android-chrome-192x192.png"),
           sizes: "192x192",
           type: "image/png",
           purpose: "any"
         },
         {
-          src: "/android-chrome-512x512.png",
+          src: iconAsset("/android-chrome-512x512.png"),
           sizes: "512x512",
           type: "image/png",
           purpose: "any"
@@ -1307,11 +1308,11 @@ function renderNoIndexDocument({ appHtml, canonical, description, page, title })
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="${canonical}" />
   <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="${iconAsset("/favicon.ico")}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="${iconAsset("/favicon-32x32.png")}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="${iconAsset("/favicon-16x16.png")}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="${iconAsset("/apple-touch-icon.png")}" />
+  <link rel="manifest" href="${iconAsset("/manifest.webmanifest")}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
@@ -1345,6 +1346,10 @@ function renderRedirect(destination) {
 </body>
 </html>
 `;
+}
+
+function iconAsset(assetPath) {
+  return `${assetPath}?v=${ICON_VERSION}`;
 }
 
 function renderRobots() {
