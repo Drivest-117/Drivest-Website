@@ -5,6 +5,9 @@ from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_WORDMARK = ROOT / "assets" / "drivest-wordmark.png"
+BRAND_CHARCOAL = (33, 30, 34, 255)
+BRAND_ORANGE = (243, 93, 25, 255)
+WHITE = (255, 255, 255, 255)
 
 # Tight crop of the standalone steering-wheel locator mark inside the wordmark art.
 MARK_BOX = (10, 10, 180, 214)
@@ -71,23 +74,33 @@ def build_app_icon(mark: Image.Image, size: int) -> Image.Image:
 
 
 def build_favicon_icon(mark: Image.Image, size: int) -> Image.Image:
+    glyph = build_favicon_glyph(mark)
     master_size = 192 if size <= 16 else 256 if size <= 32 else max(256, size * 4)
     master = build_tile_icon(
-        mark,
+        glyph,
         master_size,
-        tile_inset_scale=0.02,
-        radius_scale=0.22,
-        border_scale=0.01,
-        mark_scale=0.86,
-        y_offset_scale=0.075,
-        border_color=(232, 234, 238, 255),
+        tile_inset_scale=0.015,
+        radius_scale=0.24,
+        border_scale=0,
+        mark_scale=0.8,
+        y_offset_scale=0.12,
+        fill_color=BRAND_ORANGE,
+        border_color=BRAND_ORANGE,
     )
     icon = master.resize((size, size), Image.Resampling.LANCZOS)
     if size <= 16:
-        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.5, percent=180, threshold=1))
+        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.4, percent=210, threshold=1))
     elif size <= 32:
-        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.7, percent=165, threshold=1))
+        icon = icon.filter(ImageFilter.UnsharpMask(radius=0.6, percent=190, threshold=1))
     return icon
+
+
+def build_favicon_glyph(mark: Image.Image) -> Image.Image:
+    wheel_only = mark.crop((0, 0, mark.width, round(mark.height * 0.77)))
+    wheel_only = wheel_only.crop(wheel_only.getbbox())
+    glyph = Image.new("RGBA", wheel_only.size, BRAND_CHARCOAL)
+    glyph.putalpha(wheel_only.getchannel("A"))
+    return glyph
 
 
 def build_tile_icon(
@@ -99,22 +112,21 @@ def build_tile_icon(
     border_scale: float,
     mark_scale: float,
     y_offset_scale: float,
+    fill_color: tuple[int, int, int, int] = WHITE,
     border_color: tuple[int, int, int, int],
 ) -> Image.Image:
     canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     inset = max(1, round(size * tile_inset_scale))
     radius = round(size * radius_scale)
-    border = max(1, round(size * border_scale))
+    border = max(0, round(size * border_scale))
 
     background = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(background)
-    draw.rounded_rectangle(
-        (inset, inset, size - inset, size - inset),
-        radius=radius,
-        fill=(255, 255, 255, 255),
-        outline=border_color,
-        width=border,
-    )
+    shape = (inset, inset, size - inset, size - inset)
+    if border:
+        draw.rounded_rectangle(shape, radius=radius, fill=fill_color, outline=border_color, width=border)
+    else:
+        draw.rounded_rectangle(shape, radius=radius, fill=fill_color)
     canvas.alpha_composite(background)
 
     target_width = round(size * mark_scale)

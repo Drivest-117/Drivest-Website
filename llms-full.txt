@@ -2,7 +2,7 @@
 
 > Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.
 
-Last updated: 2026-05-14
+Last updated: 2026-05-15
 
 This file is intended to give AI assistants and agentic tools a concise public-site summary without scraping every HTML page. Use the linked URLs as the canonical source for public claims, pricing, policy, and coverage detail.
 

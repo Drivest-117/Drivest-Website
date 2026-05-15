@@ -6,7 +6,7 @@ const siteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en-GB.json");
 const ignoreDirs = new Set([".git", "site", "tools", "node_modules"]);
 const failures = [];
-const iconVersion = "2026-05-14-premium";
+const iconVersion = "2026-05-15-favicon-solid";
 
 const coverage = JSON.parse(await fs.readFile(coveragePath, "utf8"));
 const allHtmlFiles = await collectHtmlFiles(siteDir);

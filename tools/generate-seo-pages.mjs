@@ -10,7 +10,7 @@ const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en
 const today = new Date().toISOString().slice(0, 10);
 const SITE_URL = "https://drivest.uk";
 const ogImage = `${SITE_URL}/assets/drivest-wordmark-preview.png`;
-const ICON_VERSION = "2026-05-14-premium";
+const ICON_VERSION = "2026-05-15-favicon-solid";
 
 const basePageTargets = [
   { page: "home", output: "index.html", canonical: `${SITE_URL}/` },
