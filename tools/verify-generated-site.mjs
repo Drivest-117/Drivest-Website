@@ -49,10 +49,11 @@ const instructorApplyHtml = await readSiteFile("instructor-apply/index.html");
 const downloadHtml = await readSiteFile("download/index.html");
 [
   "Get Drivest for iPhone",
-  "Expected from 15 May 2026",
+  "Drivest is now live on the Apple App Store for iPhone.",
   "/access-request?plan=free-learning",
   "/instructor-apply"
 ].forEach((marker) => assertIncludes(downloadHtml, "download/index.html", marker));
+assertMissing(downloadHtml, "download/index.html", "Expected from 15 May 2026");
 
 const coverageDirectoryHtml = await readSiteFile("driving-test-centres/index.html");
 [

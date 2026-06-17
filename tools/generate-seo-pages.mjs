@@ -199,6 +199,7 @@ ${indent(appHtml, 4)}
 function buildStructuredData(page, canonical, title, description, marketing, centreId = "", overrides = {}) {
   const centre = findCentre(marketing.testCentreCoverage, centreId);
   const seoBrand = seoBrandTitle(marketing);
+  const appStoreUrl = String(marketing.distribution?.appStoreUrl || "").trim();
   const pageType =
     overrides.pageType ||
     (page === "faq"
@@ -258,7 +259,7 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       "@id": `${SITE_URL}/#app`,
       name: marketing.ui.brand,
       applicationCategory: "EducationalApplication",
-      operatingSystem: "iOS, Android",
+      operatingSystem: "iOS",
       description: marketing.seo.description,
       featureList: marketing.press.usp,
       inLanguage: "en-GB",
@@ -270,6 +271,11 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
     data[0].alternateName = seoBrand;
     data[1].alternateName = seoBrand;
     data[3].alternateName = seoBrand;
+  }
+
+  if (appStoreUrl) {
+    data[3].downloadUrl = appStoreUrl;
+    data[3].sameAs = [appStoreUrl];
   }
 
   if (page !== "home") {
@@ -1452,7 +1458,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 - [Homepage](${SITE_URL}/): High-level product positioning and core calls to action.
 - [Features](${SITE_URL}/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
 - [Pricing](${SITE_URL}/pricing): Public pricing plans and bundle structure.
-- [Get Drivest for iPhone](${SITE_URL}/download): Launch-status page and eventual direct App Store route.
+- [Get Drivest for iPhone](${SITE_URL}/download): Direct App Store download page plus supporting learner and instructor routes.
 - [Getting started](${SITE_URL}/start): Role-based onboarding flow for learners and instructors.
 
 ## Learner preparation

@@ -47,7 +47,7 @@
     },
     "download": {
       "title": "Get Drivest for iPhone",
-      "description": "See Drivest's iPhone release status, direct App Store availability, learner access routes, and instructor onboarding options."
+      "description": "Download Drivest on the Apple App Store for iPhone, then explore pricing, route coverage, learner access, and instructor onboarding."
     }
   },
   "ui": {
@@ -71,34 +71,38 @@
       "onArrival": "On arrival"
     }
   },
+  "distribution": {
+    "appStoreUrl": "https://apps.apple.com/gb/app/drivest/id6760791319",
+    "liveShortNote": "Now live on the App Store for iPhone."
+  },
   "hero": {
     "positioningLine": "Theory in 32 languages, live practice routes, and calmer learner driving.",
     "headline": "Prepare for UK theory, lessons, and routes in one learner app.",
     "subhead": "Start with free theory preparation, move into selected-centre practice and instructor bookings, then keep calmer navigation when you are driving independently.",
     "primaryCtas": [
-      "Get the iPhone app",
+      "Download on the App Store",
       "Apply as instructor"
     ],
     "secondaryCtas": [
       "Request learner access today",
       "View practice routes"
     ],
-    "trustLine": "iPhone App Store availability is expected from 15 May 2026. The download link will be added here as soon as Apple makes it available.",
+    "trustLine": "Now live on the Apple App Store for iPhone.",
     "coverageLine": "3,000+ practice routes generated across UK test-centre coverage. Public centre pages only show locations live with more than 2 routes."
   },
   "launchStatus": {
-    "title": "iPhone launch update",
-    "headline": "App Store availability expected from 15 May 2026",
-    "text": "The iPhone build was accepted on 14 May 2026. Until the public App Store URL is available, learners can request access and instructors can apply through the website.",
+    "title": "Now live on the App Store",
+    "headline": "Download Drivest for iPhone",
+    "text": "Drivest is now live on the Apple App Store for iPhone. Download directly from Apple, then keep using the site to explore route coverage, pricing, and instructor information.",
     "pills": [
-      "Build accepted on 14 May 2026",
-      "App Store link planned for 15 May 2026",
-      "Learner and instructor routes already live"
+      "Direct iPhone download now live",
+      "317 live centres and 3,538 routes",
+      "Learner and instructor routes also live on this site"
     ],
-    "primaryCta": "Go to the launch page",
-    "primaryHref": "/download",
-    "secondaryCta": "Request learner access today",
-    "secondaryHref": "/access-request?plan=free-learning"
+    "primaryCta": "Download on the App Store",
+    "primaryHref": "https://apps.apple.com/gb/app/drivest/id6760791319",
+    "secondaryCta": "View practice routes",
+    "secondaryHref": "/driving-test-centres"
   },
   "press": {
     "oneLiner": "Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.",
@@ -931,9 +935,9 @@
   },
   "accessRequestPage": {
     "title": "Start learner access",
-    "intro": "Use this page if you want learner access before the public App Store link is live or if you need a paid route tied to a centre.",
+    "intro": "Use this page if you want learner-access help, a paid route tied to a centre, or support choosing the right Drivest path before or after downloading the app.",
     "highlights": [
-      "Request free theory access before the App Store link is live",
+      "Request free theory access with guided support",
       "Add your centre or nearby area when the route depends on it",
       "Keep the support request clean and structured"
     ],
@@ -949,7 +953,7 @@
     "responseBullets": [
       "This page creates a clean learner-access draft for admin@drivest.uk with the key details already organised",
       "If your email app does not open, copy the request text and send it manually",
-      "The public iPhone App Store link will be added to the site separately once it is live"
+      "If you prefer to self-serve first, Drivest is also live on the Apple App Store for iPhone"
     ],
     "stageOptions": [
       "Future learner",
@@ -1012,27 +1016,35 @@
   },
   "downloadPage": {
     "title": "Get Drivest for iPhone",
-    "intro": "The iPhone build was accepted on 14 May 2026. The public App Store link is expected to go live from 15 May 2026 and will be added to this page as soon as Apple exposes the final URL.",
+    "eyebrow": "iPhone App Store",
+    "intro": "Drivest is now live on the Apple App Store for iPhone. Download directly from Apple, then come back here whenever you want pricing, route coverage, learner-access help, or instructor onboarding details.",
     "highlights": [
-      "Build accepted on 14 May 2026",
-      "Direct App Store link planned for 15 May 2026",
+      "Direct iPhone download now live",
+      "App Store listing live in the UK",
       "Learner and instructor routes already live on this site"
     ],
-    "statusTitle": "Launch status",
+    "primaryCta": "Download on the App Store",
+    "primaryHref": "https://apps.apple.com/gb/app/drivest/id6760791319",
+    "secondaryCta": "Request learner access",
+    "secondaryHref": "/access-request?plan=free-learning",
+    "supportingNote": "Direct iPhone download available now.",
+    "statusTitle": "Download options",
     "statusBullets": [
-      "Today, 14 May 2026: the iPhone build is accepted but the public App Store URL is not available yet.",
-      "From 15 May 2026: this page will carry the direct iPhone download link as soon as Apple makes it available.",
-      "Until then, learners can request access and instructors can apply through the site."
+      "Download Drivest directly from the Apple App Store for iPhone now.",
+      "Use the website for pricing, route coverage, and instructor information before or after install.",
+      "Learner-access and instructor-request routes remain available if you want guided help from the team."
     ],
     "cards": [
       {
         "title": "iPhone App Store",
-        "text": "This is where the direct iPhone download button will appear once the live App Store URL is available.",
-        "meta": "Expected from 15 May 2026"
+        "text": "Use the direct Apple listing to install Drivest on iPhone now.",
+        "meta": "Live now",
+        "cta": "Download on the App Store",
+        "href": "https://apps.apple.com/gb/app/drivest/id6760791319"
       },
       {
-        "title": "Need learner access today?",
-        "text": "Use the learner-access route if you want free theory access now or if you need a paid plan tied to a centre before the App Store link is public.",
+        "title": "Need learner access support?",
+        "text": "Use the learner-access route if you want guided free-theory access, help choosing a plan, or a route tied to a selected centre.",
         "cta": "Request learner access",
         "href": "/access-request?plan=free-learning"
       },

@@ -2,7 +2,7 @@
 
 > Drivest is the integrated platform for learner drivers to study theory, practise local routes, book instructors, and use learner-first navigation to build confidence from first lesson to independent driving.
 
-Last updated: 2026-05-15
+Last updated: 2026-05-17
 
 This file is intended to give AI assistants and agentic tools a concise public-site summary without scraping every HTML page. Use the linked URLs as the canonical source for public claims, pricing, policy, and coverage detail.
 
@@ -21,7 +21,7 @@ This file is intended to give AI assistants and agentic tools a concise public-s
 - [Homepage](https://drivest.uk/): High-level product positioning and core calls to action.
 - [Features](https://drivest.uk/features): Combined overview of theory, practice, navigation, parking, language support, and instructor operations.
 - [Pricing](https://drivest.uk/pricing): Public pricing plans and bundle structure.
-- [Get Drivest for iPhone](https://drivest.uk/download): Launch-status page and eventual direct App Store route.
+- [Get Drivest for iPhone](https://drivest.uk/download): Direct App Store download page plus supporting learner and instructor routes.
 - [Getting started](https://drivest.uk/start): Role-based onboarding flow for learners and instructors.
 
 ## Learner preparation

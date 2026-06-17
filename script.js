@@ -203,7 +203,7 @@ function renderShellStart(m) {
           ${renderPrimaryNavLinks(m)}
         </nav>
         <div class="nav-actions">
-          ${button(m.ui.actions.prepare, downloadHref(), "primary", "header-cta")}
+          ${button(m.ui.actions.prepare, downloadHref(m), "primary", "header-cta")}
           <button
             class="nav-toggle"
             type="button"
@@ -228,7 +228,7 @@ function renderShellStart(m) {
             ${renderPrimaryNavLinks(m)}
           </nav>
           <div class="mobile-menu-cta-row">
-            ${button(m.ui.actions.prepare, downloadHref(), "primary", "mobile-menu-cta")}
+            ${button(m.ui.actions.prepare, downloadHref(m), "primary", "mobile-menu-cta")}
             ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary", "mobile-menu-secondary")}
           </div>
         </div>
@@ -324,7 +324,7 @@ function renderHome(m) {
           <h1>${escapeHtml(m.hero.headline)}</h1>
           <p class="hero-lead">${escapeHtml(m.hero.subhead)}</p>
           <div class="btn-row hero-primary-actions">
-            ${button(m.hero.primaryCtas[0], downloadHref(), "primary")}
+            ${button(m.hero.primaryCtas[0], downloadHref(m), "primary")}
             ${button(m.hero.primaryCtas[1], instructorApplyHref(), "secondary")}
           </div>
           <div class="btn-row hero-secondary-actions">
@@ -342,9 +342,9 @@ function renderHome(m) {
       </div>
     </section>
 
-    ${renderLaunchStatusSection(m.launchStatus)}
+    ${renderLaunchStatusSection(m.launchStatus, m)}
 
-    ${renderHomeStartSplit(m.startPaths)}
+    ${renderHomeStartSplit(m.startPaths, m)}
 
     ${renderLinkCardsSection(m.searchIntentLinks)}
 
@@ -372,7 +372,7 @@ function renderHome(m) {
   `;
 }
 
-function renderLaunchStatusSection(config) {
+function renderLaunchStatusSection(config, m) {
   if (!config?.title) return "";
   return `
     <section class="section reveal">
@@ -382,7 +382,7 @@ function renderLaunchStatusSection(config) {
         <p>${escapeHtml(config.text || "")}</p>
         ${config.pills?.length ? `<div class="pill-row">${renderPills(config.pills)}</div>` : ""}
         <div class="btn-row">
-          ${config.primaryCta ? button(config.primaryCta, config.primaryHref || downloadHref(), "primary") : ""}
+          ${config.primaryCta ? button(config.primaryCta, config.primaryHref || downloadHref(m), "primary") : ""}
           ${config.secondaryCta ? button(config.secondaryCta, config.secondaryHref || learnerAccessHref(), "secondary") : ""}
         </div>
       </div>
@@ -553,15 +553,15 @@ function renderDownload(m) {
     <section class="section reveal feature-hero pricing-hero">
       <div class="feature-hero-grid pricing-hero-grid">
         <div class="pricing-hero-copy">
-          <p class="eyebrow">iPhone launch</p>
+          <p class="eyebrow">${escapeHtml(config.eyebrow || "iPhone App Store")}</p>
           <h1>${escapeHtml(config.title)}</h1>
           <p class="hero-lead">${escapeHtml(config.intro)}</p>
           ${config.highlights?.length ? `<div class="pill-row pricing-pill-row">${renderPills(config.highlights)}</div>` : ""}
           <div class="btn-row feature-hero-actions">
-            ${button("Request learner access", learnerAccessHref(), "primary", "feature-hero-link")}
-            ${button("Apply as instructor", instructorApplyHref(), "secondary", "feature-hero-link")}
+            ${config.primaryCta ? button(config.primaryCta, config.primaryHref || downloadHref(m), "primary", "feature-hero-link") : ""}
+            ${config.secondaryCta ? button(config.secondaryCta, config.secondaryHref || learnerAccessHref(), "secondary", "feature-hero-link") : ""}
           </div>
-          <p class="trust hero-trust-secondary">This page will carry the direct App Store URL once it is available.</p>
+          ${config.supportingNote ? `<p class="trust hero-trust-secondary">${escapeHtml(config.supportingNote)}</p>` : ""}
         </div>
         <div class="pricing-hero-side reveal-item">
           <div class="panel pricing-summary-panel access-request-summary-panel">
@@ -620,7 +620,7 @@ function renderHubPage(pageKey, m) {
   const hub = m.hubPages?.[pageKey];
   if (!hub) return renderHome(m);
   const photo = hubPagePhoto(pageKey);
-  const heroActions = renderHubHeroActions(pageKey);
+  const heroActions = renderHubHeroActions(pageKey, m);
 
   return `
     <section class="section reveal feature-hero">
@@ -660,10 +660,10 @@ function renderHubPage(pageKey, m) {
   `;
 }
 
-function renderHubHeroActions(pageKey) {
+function renderHubHeroActions(pageKey, m) {
   const actions = {
     theory: [
-      button("Get the app", downloadHref(), "primary", "feature-hero-link"),
+      button("Get the app", downloadHref(m), "primary", "feature-hero-link"),
       button("View practice routes", PATHS.centres, "secondary", "feature-hero-link")
     ],
     centres: [
@@ -672,7 +672,7 @@ function renderHubHeroActions(pageKey) {
     ],
     instructors: [
       button("Join as instructor", instructorApplyHref(), "primary", "feature-hero-link"),
-      button("Get the app", downloadHref(), "secondary", "feature-hero-link")
+      button("Get the app", downloadHref(m), "secondary", "feature-hero-link")
     ]
   }[pageKey];
 
@@ -951,8 +951,8 @@ function renderMobileCtaBar(m) {
   return `
     <div class="mobile-cta-bar">
       <div class="container mobile-cta-wrap">
-        <p class="mobile-cta-copy">iPhone App Store link expected from 15 May 2026.</p>
-        ${button(m.ui.actions.prepare, downloadHref(), "primary", "mobile-cta-link")}
+        <p class="mobile-cta-copy">${escapeHtml(appStoreLiveNote(m))}</p>
+        ${button(m.ui.actions.prepare, downloadHref(m), "primary", "mobile-cta-link")}
       </div>
     </div>
   `;
@@ -1535,7 +1535,7 @@ function journeySceneMeta(title) {
   };
 }
 
-function renderHomeStartSplit(config) {
+function renderHomeStartSplit(config, m) {
   if (!config?.paths?.length) return "";
   return `
     <section class="section reveal">
@@ -1568,7 +1568,7 @@ function renderHomeStartSplit(config) {
             <div class="btn-row">
               ${path.id === "instructor"
                 ? button(path.cta || "Apply as instructor", path.href || instructorApplyHref(), "primary")
-                : button("Get the iPhone app", downloadHref(), "primary")}
+                : button(m?.hero?.primaryCtas?.[0] || "Download on the App Store", downloadHref(m), "primary")}
               ${path.id === "instructor"
                 ? button("See instructor start", startHref(path.id), "secondary")
                 : path.cta
@@ -2181,8 +2181,14 @@ function learnerAccessHref(plan = "free-learning") {
   return `${PATHS.accessRequest}?plan=${encodeURIComponent(plan)}`;
 }
 
-function downloadHref() {
-  return PATHS.download;
+function downloadHref(m) {
+  const href = String(m?.distribution?.appStoreUrl || "").trim();
+  return href || PATHS.download;
+}
+
+function appStoreLiveNote(m) {
+  const note = String(m?.distribution?.liveShortNote || "").trim();
+  return note || m?.hero?.trustLine || "Now live on the App Store for iPhone.";
 }
 
 function instructorApplyHref() {
