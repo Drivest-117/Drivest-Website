@@ -317,7 +317,7 @@ function renderPage(currentPage, m) {
 
 function renderHome(m) {
   return `
-    <section class="hero section reveal">
+    <section class="hero section reveal home-hero">
       <div class="hero-grid">
         <div class="hero-copy">
           ${m.hero.positioningLine ? `<p class="eyebrow">${escapeHtml(m.hero.positioningLine)}</p>` : ""}
@@ -342,15 +342,9 @@ function renderHome(m) {
       </div>
     </section>
 
-    ${renderLaunchStatusSection(m.launchStatus, m)}
+    ${renderHomeSignalSection(m)}
 
-    ${renderHomeStartSplit(m.startPaths, m)}
-
-    ${renderLinkCardsSection(m.searchIntentLinks)}
-
-    ${renderAudienceSection(m.audienceTracks)}
-
-    <section class="section reveal">
+    <section class="section reveal home-stage-section">
       <h2>${escapeHtml(m.threeTabs.title)}</h2>
       <div class="grid three-up">
         ${m.threeTabs.tabs
@@ -368,14 +362,22 @@ function renderHome(m) {
       </div>
     </section>
 
-    ${renderLanguageSupportSection(m.languageSupport)}
+    ${renderHomeStartSplit(m.startPaths, m, "home-route-section")}
+
+    ${renderLinkCardsSection(m.searchIntentLinks, "home-intent-section")}
+
+    ${renderAudienceSection(m.audienceTracks, "home-audience-section")}
+
+    ${renderLaunchStatusSection(m.launchStatus, m, "home-launch-section")}
+
+    ${renderLanguageSupportSection(m.languageSupport, "home-language-section")}
   `;
 }
 
-function renderLaunchStatusSection(config, m) {
+function renderLaunchStatusSection(config, m, sectionClass = "") {
   if (!config?.title) return "";
   return `
-    <section class="section reveal">
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <div class="panel reveal-item">
         <p class="panel-title">${escapeHtml(config.title)}</p>
         <h2>${escapeHtml(config.headline || config.title)}</h2>
@@ -385,6 +387,72 @@ function renderLaunchStatusSection(config, m) {
           ${config.primaryCta ? button(config.primaryCta, config.primaryHref || downloadHref(m), "primary") : ""}
           ${config.secondaryCta ? button(config.secondaryCta, config.secondaryHref || learnerAccessHref(), "secondary") : ""}
         </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderHomeSignalSection(m) {
+  const summary = coverageSummary(m);
+  const metrics = [
+    {
+      className: "home-signal-metric-language",
+      value: "32",
+      label: "supported languages",
+      text: "English Peek keeps UK wording visible while learners study in a preferred language."
+    },
+    {
+      className: "home-signal-metric-centres",
+      value: formatNumber(summary?.centres || 340),
+      label: "published centres",
+      text: "Only centres with enough route depth make the public-facing coverage list."
+    },
+    {
+      className: "home-signal-metric-routes",
+      value: formatNumber(summary?.routes || 3000),
+      label: "practice routes",
+      text: "Reconstructed local repetition sits beside calmer navigation and instructor flows."
+    },
+    {
+      className: "home-signal-metric-referrals",
+      value: "4",
+      label: "referral paths",
+      text: "Instructor to learner, instructor to instructor, learner to learner, and learner to instructor."
+    }
+  ];
+
+  return `
+    <section class="section reveal home-signal-section">
+      <div class="home-signal-grid">
+        <article class="home-signal-card home-signal-card-primary reveal-item">
+          <p class="home-signal-kicker">Why this site feels different</p>
+          <h2>${escapeHtml(m.why?.title || "Driving support changes by stage.")}</h2>
+          <p class="home-signal-lead">${escapeHtml(m.press?.oneLiner || m.hero?.subhead || "")}</p>
+          <div class="home-signal-list">
+            ${(m.why?.bullets || [])
+              .slice(0, 3)
+              .map(
+                (bullet, index) => `
+              <div class="home-signal-list-item">
+                <span class="home-signal-list-index">0${index + 1}</span>
+                <p>${escapeHtml(bullet)}</p>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        </article>
+        ${metrics
+          .map(
+            (metric) => `
+          <article class="home-signal-card home-signal-metric ${escapeAttr(metric.className)} reveal-item">
+            <span class="home-signal-value">${escapeHtml(metric.value)}</span>
+            <span class="home-signal-label">${escapeHtml(metric.label)}</span>
+            <p>${escapeHtml(metric.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
       </div>
     </section>
   `;
@@ -888,10 +956,10 @@ function renderHomeModulesSection(config) {
   `;
 }
 
-function renderAudienceSection(config) {
+function renderAudienceSection(config, sectionClass = "") {
   if (!config?.items?.length) return "";
   return `
-    <section class="section reveal">
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <h2>${escapeHtml(config.title)}</h2>
       ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
       <div class="grid two-up">
@@ -966,10 +1034,10 @@ function renderMobileCtaBar(m) {
   `;
 }
 
-function renderLinkCardsSection(config) {
+function renderLinkCardsSection(config, sectionClass = "") {
   if (!config?.items?.length) return "";
   return `
-    <section class="section reveal">
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <h2>${escapeHtml(config.title)}</h2>
       ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
       <div class="grid two-up">
@@ -1508,10 +1576,10 @@ function journeySceneMeta(title) {
   };
 }
 
-function renderHomeStartSplit(config, m) {
+function renderHomeStartSplit(config, m, sectionClass = "") {
   if (!config?.paths?.length) return "";
   return `
-    <section class="section reveal">
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <h2>Choose your route into Drivest</h2>
       <p class="section-intro">${escapeHtml(config.summary?.text || config.intro || "")}</p>
       <div class="grid two-up">
@@ -1744,10 +1812,10 @@ function toDisplayLabel(value) {
     .replace(/\b\w/g, (match) => match.toUpperCase());
 }
 
-function renderLanguageSupportSection(info) {
+function renderLanguageSupportSection(info, sectionClass = "") {
   if (!info?.title) return "";
   return `
-    <section class="section reveal">
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <div class="language-proof panel reveal-item">
         <div class="language-proof-copy">
           <h2>${escapeHtml(info.title)}</h2>

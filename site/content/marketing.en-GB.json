@@ -59,7 +59,7 @@
       "pricing": "Pricing",
       "gettingStarted": "Getting Started",
       "faq": "FAQ",
-      "comingSoon": "Coming soon"
+      "comingSoon": "Still expanding"
     },
     "actions": {
       "prepare": "Get the app",
@@ -176,8 +176,8 @@
           },
           {
             "title": "Hazard Perception",
-            "text": "The home screen already reserves space for Hazard Perception as a visible upcoming module.",
-            "badge": "Coming soon"
+            "text": "The home screen already signposts Hazard Perception while original Drivest practice clips are in preparation.",
+            "badge": "In preparation"
           },
           {
             "title": "Fines and Penalties",
@@ -350,6 +350,10 @@
       "text": "Where instructor tools are enabled, instructors can link existing learners, manage availability preferences, review learner progress, and keep operating records together."
     },
     {
+      "title": "Referral journeys",
+      "text": "Learners and instructors can use role-based referral journeys with eligibility checks, tracked status, anti-fraud controls, and qualification rules."
+    },
+    {
       "title": "Parking companion",
       "text": "Search parking near a destination, review source confidence, and prefer free-first options before you arrive."
     },
@@ -462,7 +466,7 @@
         },
         {
           "title": "Hazard Perception",
-          "text": "Hazard Perception is already visible on the home screen as a coming-soon learning module."
+          "text": "Hazard Perception is already visible on the home screen while original Drivest practice clips are in preparation."
         }
       ]
     },
@@ -485,6 +489,10 @@
         {
           "title": "Road feature prompts",
           "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+        },
+        {
+          "title": "Route issue reporting",
+          "text": "Report closures, stale details, unsafe guidance, or impossible turns so route quality can be reviewed instead of left uncorrected."
         }
       ]
     },
@@ -503,6 +511,10 @@
         {
           "title": "Parking companion",
           "text": "Search parking near the destination, review council and map-source signals, and choose options before arrival."
+        },
+        {
+          "title": "Scan a parking sign",
+          "text": "Use parking-sign scanning for advisory help on restrictions, times, and payment while still treating the physical sign and road markings as authoritative."
         },
         {
           "title": "Arrival cues",
@@ -551,6 +563,10 @@
         {
           "title": "Notifications",
           "text": "Receive updates about lessons, booking activity, and account events instead of relying on manual follow-up."
+        },
+        {
+          "title": "Referral status visibility",
+          "text": "Learners and instructors can track privacy-safe referral activity and qualification progress without exposing another person's private details."
         },
         {
           "title": "Trust controls",
@@ -623,7 +639,11 @@
             },
             {
               "title": "Hazard Perception",
-              "text": "Hazard Perception is already visible on the home screen as a coming-soon part of the wider learning journey."
+              "text": "Hazard Perception is already visible on the home screen while original Drivest practice clips are in preparation."
+            },
+            {
+              "title": "Original Drivest theory practice",
+              "text": "Theory questions are Drivest-created practice content for learning support and should not be presented as DVSA-licensed exam questions unless that is expressly stated."
             }
           ]
         },
@@ -695,6 +715,17 @@
         }
       ],
       "showLanguageSupport": true,
+      "infoSections": [
+        {
+          "title": "Theory source and trust positioning",
+          "text": "Drivest keeps its theory positioning explicit so learners know what is original practice content and what remains official elsewhere.",
+          "bullets": [
+            "Theory questions are Drivest-created practice content for learning support.",
+            "Drivest is not affiliated with DVSA and does not claim DVSA-licensed theory questions unless that is expressly stated.",
+            "English Peek, explanations, and source references are learning support rather than official test authority."
+          ]
+        }
+      ],
       "faq": {
         "title": "Theory preparation questions",
         "intro": "These are the key questions learners usually ask before they move from revision into practice.",
@@ -710,6 +741,10 @@
           {
             "q": "What theory topics are included in the theory hub?",
             "a": "The theory hub links together theory questions, mock tests, Highway Code revision, road signs, fines learning, and the visible Hazard Perception path."
+          },
+          {
+            "q": "Are Drivest theory questions DVSA-licensed?",
+            "a": "No. Drivest theory questions are Drivest-created practice content for learning support. Drivest is independent and does not claim DVSA-licensed theory questions unless that is expressly stated."
           }
         ]
       },
@@ -771,6 +806,10 @@
             {
               "title": "Road feature prompts",
               "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+            },
+            {
+              "title": "Route issue reporting",
+              "text": "Report closures, stale guidance, unsafe instructions, or impossible turns from practice use so route quality can be reviewed."
             },
             {
               "title": "Parking before arrival",
@@ -840,6 +879,16 @@
             "Learners must always follow live road signs, road markings, and traffic laws.",
             "Navigation, route, and parking outputs are advisory only and may be incomplete or delayed."
           ]
+        },
+        {
+          "title": "Route trust and reporting",
+          "text": "Practice pages are designed to expose more than route names alone. Learners should be able to judge route trust signals and report gaps when the data needs review.",
+          "bullets": [
+            "Route trust metadata can include review date, version, difficulty, source class, confidence, and key challenges where available.",
+            "Learners can report closures, stale details, unsafe guidance, impossible turns, and other route issues.",
+            "Missing-centre and request-another-route flows can flag coverage gaps instead of forcing learners to guess.",
+            "Completed practice can feed route usefulness and currentness feedback back into route quality review."
+          ]
         }
       ],
       "faq": {
@@ -857,6 +906,10 @@
           {
             "q": "Why is a centre shown on the public Drivest site?",
             "a": "Public centre pages are shown only when the published dataset has enough route depth to make local practice useful."
+          },
+          {
+            "q": "Can I report a bad or missing route?",
+            "a": "Yes. Practice users can report stale information, closures, unsafe guidance, or impossible turns, and can also flag a missing centre or request another route where coverage is incomplete."
           }
         ]
       },
@@ -922,6 +975,10 @@
             {
               "title": "Track bookings and payment status",
               "text": "Review booking changes, payment updates, and lesson history where those flows are enabled."
+            },
+            {
+              "title": "Share referral journeys",
+              "text": "Invite learners or other instructors through role-based referral flows with tracked status, eligibility checks, and qualification rules."
             }
           ]
         },
@@ -953,6 +1010,26 @@
         }
       ],
       "infoSections": [
+        {
+          "title": "Referral journeys where enabled",
+          "text": "Drivest supports role-based referral paths for learners and instructors, with tracked invite status and conditional reward qualification.",
+          "bullets": [
+            "Instructor to learner",
+            "Instructor to instructor",
+            "Learner to learner",
+            "Learner to instructor",
+            "Referral benefits remain conditional and subject to eligibility, verification, anti-fraud review, and reversal rules."
+          ]
+        },
+        {
+          "title": "Review and trust signals",
+          "text": "Where the review surface is enabled, instructor trust signals are tied to real Drivest activity rather than anonymous public ratings.",
+          "bullets": [
+            "Visible instructor reviews are linked to completed Drivest lessons.",
+            "Instructors can respond to visible reviews.",
+            "Verification, profile, and review visibility can vary by rollout, moderation state, and operational readiness."
+          ]
+        },
         {
           "title": "Booking terms where enabled",
           "text": "Independent instructors deliver the lessons. Where booking features are enabled, fees, payment handling, and cancellation terms are shown before a learner confirms a request.",
@@ -1207,9 +1284,9 @@
         "title": "Hazard perception test preparation",
         "description": "Explore Drivest's broader theory preparation journey, including visible Hazard Perception positioning alongside theory, road signs, Highway Code, and fines learning.",
         "eyebrow": "Theory intent page",
-        "intro": "Hazard Perception is a separate learner intent from theory questions, but it sits inside the same confidence-building journey. Drivest already makes that module visible on the home screen while the broader revision stack is live today.",
+        "intro": "Hazard Perception is a separate learner intent from theory questions, but it sits inside the same confidence-building journey. Drivest already signposts that module on the home screen while original practice clips are in preparation and the broader revision stack is live today.",
         "summaryTitle": "Hazard Perception is part of the wider revision journey",
-        "summaryText": "The website can target hazard-perception demand without pretending the whole product is only one module. Drivest keeps the module visible and connected to the rest of learner preparation.",
+        "summaryText": "The website can target hazard-perception demand without pretending the whole product is only one module. Drivest keeps the module visible while original practice clips are in preparation and the rest of learner preparation is already live.",
         "highlights": [
           "Hazard Perception is visible from the home module surface",
           "Theory, signs, Highway Code, and penalties prep are already live",
@@ -1218,7 +1295,7 @@
         "modules": [
           {
             "title": "Visible module journey",
-            "text": "Hazard Perception is already signposted as a distinct upcoming module in the live product surface."
+            "text": "Hazard Perception is already signposted as a distinct module in the live product surface while original Drivest practice clips are in preparation."
           },
           {
             "title": "Linked revision context",
@@ -1560,6 +1637,10 @@
           "text": "Check parking options near the destination before arrival while still confirming the live signs on street."
         },
         {
+          "title": "Referrals",
+          "text": "Use learner and instructor referral journeys with role-based eligibility, qualification events, and anti-fraud checks."
+        },
+        {
           "title": "Find Instructor",
           "text": "Browse instructor information and availability signals where learner-facing instructor features are enabled."
         },
@@ -1664,6 +1745,10 @@
       "a": "No. Drivest is an independent product and has no affiliation with the Driver and Vehicle Standards Agency or any government authority."
     },
     {
+      "q": "Are Drivest theory questions official DVSA exam questions?",
+      "a": "No. Drivest theory questions are Drivest-created practice content for learning support unless a page expressly states otherwise."
+    },
+    {
       "q": "Are Drivest routes official driving test routes?",
       "a": "No. Routes are reconstructed or generated for learning and practice only and must never be described as official test routes."
     },
@@ -1721,15 +1806,15 @@
     }
   ],
   "comingSoon": {
-    "title": "Coming soon",
+    "title": "Still expanding",
     "sections": [
       {
         "title": "Hazard Perception",
-        "text": "Hazard Perception is already signposted on the home screen and remains a visible upcoming module."
+        "text": "Hazard Perception is already signposted on the home screen while original Drivest practice clips remain in preparation."
       },
       {
-        "title": "Referral tools",
-        "text": "Referral journeys for learners and instructors are being prepared with clear eligibility and anti-fraud controls."
+        "title": "Referral programme expansion",
+        "text": "Core referral journeys for learners and instructors are already in place. Future programme controls and operational tuning will keep evolving."
       },
       {
         "title": "Deeper instructor operations",
