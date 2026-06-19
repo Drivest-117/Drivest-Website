@@ -242,7 +242,7 @@
       },
       {
         "title": "Independent driving instructors",
-        "text": "Browse instructor information, compare availability, request lessons where enabled, or join Instructor Hub.",
+        "text": "Browse instructor information, view stated availability, request lessons where enabled, or join Instructor Hub.",
         "bullets": [
           "Instructor discovery without leaving the app journey",
           "Lesson requests, payments, and cancellations tracked where enabled",
@@ -306,6 +306,92 @@
       "Before lessons: start theory, signs, Highway Code, and fines earlier.",
       "Before test day: repeat routes around a selected centre and add instructor support where enabled.",
       "After passing: new drivers need calmer route choice, parking support, and confidence-building guidance."
+    ]
+  },
+  "connectedJourney": {
+    "eyebrow": "One journey. Connected. Every step.",
+    "title": "Everything learners need works better when it stays connected.",
+    "intro": "Drivest keeps theory prep, selected-centre practice, progress context, navigation support, and instructor flows where enabled on the same learner path.",
+    "asideTitle": "What changes when the journey stays connected",
+    "asideBullets": [
+      "Learners do not lose context between theory, practice, and next steps.",
+      "Progress signals can travel into practice, readiness, and calmer first drives.",
+      "Instructor discovery and lesson flows stay tied to the wider learner journey where enabled."
+    ],
+    "steps": [
+      {
+        "title": "Theory",
+        "stage": "Before lessons",
+        "text": "Start with theory questions, Highway Code, road signs, and fines revision."
+      },
+      {
+        "title": "Instructors",
+        "stage": "When lessons are needed",
+        "text": "Browse participating instructors and view stated availability where enabled."
+      },
+      {
+        "title": "Practice routes",
+        "stage": "Around a selected centre",
+        "text": "Repeat reconstructed mock-practice routes for local familiarity and planning."
+      },
+      {
+        "title": "Confidence",
+        "stage": "Track readiness",
+        "text": "Keep progress, confidence, and next-step signals in one place."
+      },
+      {
+        "title": "Navigation",
+        "stage": "First independent drives",
+        "text": "Use newer-driver guidance, road prompts, and arrival support after lessons."
+      },
+      {
+        "title": "Highway Code",
+        "stage": "Back to the rule when needed",
+        "text": "Re-check the underlying rule inside the same learner journey."
+      }
+    ]
+  },
+  "trustFramework": {
+    "eyebrow": "Trust, not hype",
+    "title": "Clear product boundaries make the public site stronger.",
+    "intro": "Drivest can look more polished without sounding broader than the evidence allows.",
+    "items": [
+      {
+        "title": "Theory content",
+        "text": "Drivest theory questions are Drivest-created practice content for learning support.",
+        "pills": [
+          "Independent product",
+          "No DVSA affiliation claim",
+          "English Peek"
+        ]
+      },
+      {
+        "title": "Practice routes",
+        "text": "Centre pages focus on reconstructed mock-practice routes for local familiarity, not route prediction.",
+        "pills": [
+          "Not official routes",
+          "No real-route prediction",
+          "No pass guarantee"
+        ]
+      },
+      {
+        "title": "Driving support",
+        "text": "Navigation, parking, and sign-scanning outputs are advisory and may rely on third-party data.",
+        "pills": [
+          "Check live signs",
+          "Plan before moving",
+          "Real-world conditions win"
+        ]
+      },
+      {
+        "title": "Instructor flows",
+        "text": "Instructor discovery, availability, booking, and payment claims stay conditional on participating supply and enabled flows.",
+        "pills": [
+          "Where enabled",
+          "Availability varies by area",
+          "Price shown before confirmation"
+        ]
+      }
     ]
   },
   "coreUsps": [
@@ -514,7 +600,7 @@
         },
         {
           "title": "Scan a parking sign",
-          "text": "Use parking-sign scanning for advisory help on restrictions, times, and payment."
+          "text": "Use parking-sign scanning for advisory help on restrictions, times, and payment while parked. Physical signs and road markings stay authoritative."
         },
         {
           "title": "Arrival cues",
@@ -786,6 +872,40 @@
         "title": "Find a centre and build local familiarity",
         "text": "Search centres, repeat reconstructed local routes, and use route-aware prompts before test day."
       },
+      "proofRail": {
+        "eyebrow": "Clear route positioning",
+        "title": "What this page is and is not claiming",
+        "intro": "This page is about structured local practice, not predicting a real test route.",
+        "items": [
+          {
+            "title": "Reconstructed mock-practice",
+            "text": "Use local route repetition to rehearse road features around a selected centre.",
+            "pills": [
+              "Not official DVSA routes",
+              "No real-route prediction",
+              "No pass guarantee"
+            ]
+          },
+          {
+            "title": "Route trust details where shown",
+            "text": "Practice pages can surface source type, review date, version, difficulty, and key challenges when available.",
+            "pills": [
+              "Review date",
+              "Version",
+              "Key challenges"
+            ]
+          },
+          {
+            "title": "Report gaps quickly",
+            "text": "Learners can flag closures, stale guidance, unsafe directions, missing centres, and missing routes for review.",
+            "pills": [
+              "Closures",
+              "Unsafe directions",
+              "Coverage gaps"
+            ]
+          }
+        ]
+      },
       "sections": [
         {
           "title": "What you get around a test centre",
@@ -951,6 +1071,40 @@
         "title": "Availability varies by rollout and area",
         "text": "The public site explains instructor information and Instructor Hub operations without implying the same marketplace depth in every area."
       },
+      "proofRail": {
+        "eyebrow": "Precise public wording",
+        "title": "What instructor pages do and do not promise",
+        "intro": "The public site should stay precise about supply, trust, and payments.",
+        "items": [
+          {
+            "title": "Participating instructors only",
+            "text": "Learners can browse participating instructors and view stated availability where enabled.",
+            "pills": [
+              "Where enabled",
+              "Availability varies by area",
+              "No nationwide depth claim"
+            ]
+          },
+          {
+            "title": "Signals tied to platform activity",
+            "text": "Some profile and review signals reflect Drivest-recorded activity, such as completed lessons on the platform.",
+            "pills": [
+              "Completed lessons where shown",
+              "Moderated visibility",
+              "No DVSA affiliation"
+            ]
+          },
+          {
+            "title": "Total price before commitment",
+            "text": "Where booking features are enabled, charges, payment handling, and booking terms are shown before confirmation.",
+            "pills": [
+              "Charges shown upfront",
+              "Booking terms visible",
+              "Independent instructors deliver lessons"
+            ]
+          }
+        ]
+      },
       "sections": [
         {
           "title": "What instructors can do",
@@ -991,8 +1145,8 @@
               "text": "Discover independent instructor profiles without leaving the app journey."
             },
             {
-              "title": "Compare availability",
-              "text": "Use availability and lesson preferences to narrow down the right fit."
+              "title": "View stated availability",
+              "text": "Use stated availability and lesson preferences to narrow down the right fit."
             },
             {
               "title": "Request lesson slots",

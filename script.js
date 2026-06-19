@@ -344,29 +344,13 @@ function renderHome(m) {
 
     ${renderHomeSignalSection(m)}
 
-    <section class="section reveal home-stage-section">
-      <h2>${escapeHtml(m.threeTabs.title)}</h2>
-      <div class="grid three-up">
-        ${m.threeTabs.tabs
-          .map(
-            (t) => `
-          <article class="card reveal-item">
-            ${renderJourneyScene(t)}
-            <h3 class="tab-title">${renderTabIcon(t.title)}${escapeHtml(t.title)}</h3>
-            <p>${escapeHtml(t.line1)}</p>
-            <p>${escapeHtml(t.line2)}</p>
-          </article>
-        `
-          )
-          .join("")}
-      </div>
-    </section>
+    ${renderJourneySystemSection(m.connectedJourney, "home-journey-section")}
 
     ${renderHomeStartSplit(m.startPaths, m, "home-route-section")}
 
     ${renderLinkCardsSection(m.searchIntentLinks, "home-intent-section")}
 
-    ${renderAudienceSection(m.audienceTracks, "home-audience-section")}
+    ${renderTrustFrameworkSection(m.trustFramework, "home-trust-section")}
 
     ${renderLaunchStatusSection(m.launchStatus, m, "home-launch-section")}
 
@@ -460,12 +444,17 @@ function renderHomeSignalSection(m) {
 
 function renderFeatures(m) {
   const featuresTitle = m.pageSeo?.features?.title || m.ui.nav.features;
+  const featureGroups = (m.featureGroups || []).map((group) => ({
+    ...group,
+    items: (group.items || []).slice(0, 3)
+  }));
   return `
     <section class="section reveal feature-hero">
       <div class="feature-hero-grid">
         <div>
+          ${m.connectedJourney?.eyebrow ? `<p class="eyebrow">${escapeHtml(m.connectedJourney.eyebrow)}</p>` : ""}
           <h1>${escapeHtml(featuresTitle)}</h1>
-          <p>${escapeHtml(m.hero.subhead)}</p>
+          <p>${escapeHtml(m.connectedJourney?.intro || m.hero.subhead)}</p>
         </div>
         <div class="feature-photo">
           ${renderImg(PHOTO_URLS.appNavigationOverview, "Drivest navigation overview screen", {
@@ -477,44 +466,27 @@ function renderFeatures(m) {
       </div>
     </section>
 
-    <section class="section reveal">
-      ${renderFeatureCards(m.coreUsps)}
-    </section>
+    ${renderJourneySystemSection(m.connectedJourney)}
 
     ${renderHomeModulesSection(m.homeModules)}
 
-    ${renderAudienceSection(m.audienceTracks)}
+    <section class="section reveal">
+      <h2>Quick product scan</h2>
+      <p class="section-intro">The feature page stays focused on the surfaces most people need to understand quickly.</p>
+      ${renderFeatureCards((m.coreUsps || []).slice(0, 8))}
+    </section>
 
-    ${renderFeatureGroups(m.featureGroups)}
+    ${renderFeatureGroups(featureGroups)}
 
     ${renderProductProofSection(m.productProof)}
 
-    ${renderLinkCardsSection(m.searchIntentLinks)}
+    ${renderTrustFrameworkSection(m.trustFramework)}
+
+    ${renderSafetySection(m)}
 
     ${renderLanguageSupportSection(m.languageSupport)}
 
-    <section class="section reveal">
-      <h2>${escapeHtml(m.howItWorks.title)}</h2>
-      <div class="grid two-up">
-        ${m.howItWorks.steps
-          .map(
-            (s) => `
-          <article class="card reveal-item">
-            <h3>${escapeHtml(s.title)}</h3>
-            <p>${escapeHtml(s.text)}</p>
-          </article>
-        `
-          )
-          .join("")}
-      </div>
-    </section>
-
-    ${renderInfoSection(m.pricing.marketplace)}
-
-    <section class="section reveal">
-      <h2>${escapeHtml(m.safety.title)}</h2>
-      ${bulletList(m.safety.bullets)}
-    </section>
+    ${renderLinkCardsSection(m.searchIntentLinks)}
   `;
 }
 
@@ -720,6 +692,8 @@ function renderHubPage(pageKey, m) {
       </section>
     ` : ""}
 
+    ${renderTrustFrameworkSection(hub.proofRail, "hub-proof-rail")}
+
     ${(hub.sections || []).map((section) => renderCardGridSection(section)).join("")}
 
     ${pageKey === "centres" ? renderCoverageDirectorySection(m) : ""}
@@ -910,6 +884,83 @@ function renderCardGridSection(section) {
       <h2>${escapeHtml(section.title)}</h2>
       ${section.intro ? `<p class="section-intro">${escapeHtml(section.intro)}</p>` : ""}
       ${renderFeatureCards(section.items)}
+    </section>
+  `;
+}
+
+function renderJourneySystemSection(config, sectionClass = "") {
+  if (!config?.steps?.length) return "";
+  return `
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
+      <div class="connected-journey-panel reveal-item">
+        <div class="connected-journey-grid">
+          <div class="connected-journey-copy">
+            ${config.eyebrow ? `<p class="eyebrow">${escapeHtml(config.eyebrow)}</p>` : ""}
+            <h2>${escapeHtml(config.title)}</h2>
+            ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+            <div class="connected-journey-track">
+              ${config.steps
+                .map(
+                  (step, index) => `
+                <article class="connected-journey-step">
+                  <div class="connected-journey-step-head">
+                    <span class="connected-journey-step-num">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+                    ${step.stage ? `<span class="connected-journey-step-stage">${escapeHtml(step.stage)}</span>` : ""}
+                  </div>
+                  <h3 class="tab-title">${renderFeatureIcon(step.title)}${escapeHtml(step.title)}</h3>
+                  <p>${escapeHtml(step.text)}</p>
+                </article>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+          ${(config.asideTitle || config.asideBullets?.length) ? `
+            <aside class="connected-journey-aside">
+              ${config.asideTitle ? `<p class="panel-title">${escapeHtml(config.asideTitle)}</p>` : ""}
+              <div class="connected-journey-aside-list">
+                ${(config.asideBullets || [])
+                  .map(
+                    (bullet, index) => `
+                  <div class="connected-journey-aside-item">
+                    <span>${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+                    <p>${escapeHtml(bullet)}</p>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+            </aside>
+          ` : ""}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderTrustFrameworkSection(config, sectionClass = "") {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
+      ${config.eyebrow ? `<p class="eyebrow">${escapeHtml(config.eyebrow)}</p>` : ""}
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="trust-framework-grid">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="card reveal-item trust-framework-card">
+            <div class="trust-framework-head">
+              ${renderFeatureIcon(item.title)}
+              <h3>${escapeHtml(item.title)}</h3>
+            </div>
+            <p>${escapeHtml(item.text)}</p>
+            ${item.pills?.length ? `<div class="pill-row trust-framework-pills">${renderPills(item.pills)}</div>` : ""}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
     </section>
   `;
 }

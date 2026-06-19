@@ -2067,6 +2067,163 @@ li {
   display: block;
 }
 
+.connected-journey-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(35, 55, 96, 0.12), transparent 26%),
+    linear-gradient(135deg, rgba(255, 253, 250, 0.98), rgba(245, 238, 230, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.connected-journey-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.connected-journey-copy > h2 {
+  margin-bottom: 12px;
+}
+
+.connected-journey-copy > .section-intro {
+  max-width: 760px;
+}
+
+.connected-journey-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.connected-journey-step {
+  border: 1px solid rgba(34, 43, 60, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 14px 28px rgba(17, 24, 39, 0.06);
+}
+
+.connected-journey-step h3 {
+  margin: 0 0 10px;
+}
+
+.connected-journey-step p {
+  margin-bottom: 0;
+}
+
+.connected-journey-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.connected-journey-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(255, 106, 26, 0.12);
+  color: var(--brand-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.connected-journey-step-stage {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(24, 35, 58, 0.08);
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.connected-journey-aside {
+  border: 1px solid rgba(24, 35, 58, 0.1);
+  border-radius: 22px;
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 242, 235, 0.96));
+}
+
+.connected-journey-aside-list {
+  display: grid;
+  gap: 12px;
+}
+
+.connected-journey-aside-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.connected-journey-aside-item span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 106, 26, 0.12);
+  color: var(--brand-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.connected-journey-aside-item p {
+  margin: 0;
+}
+
+.trust-framework-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.trust-framework-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 245, 0.96), rgba(255, 255, 255, 1)),
+    #fff;
+}
+
+.trust-framework-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-framework-head h3 {
+  margin: 0;
+}
+
+.trust-framework-card p {
+  margin: 0;
+}
+
+.trust-framework-pills {
+  margin-top: auto;
+}
+
 .faq-item summary {
   cursor: pointer;
   color: var(--ink-soft);
@@ -2656,6 +2813,14 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .connected-journey-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-framework-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .hero-showcase-grid {
     grid-template-columns: 1fr;
   }
@@ -2758,6 +2923,10 @@ small {
     padding: 20px;
   }
 
+  .connected-journey-panel {
+    padding: 20px;
+  }
+
   .feature-hero-grid {
     gap: 14px;
   }
@@ -2848,6 +3017,17 @@ small {
   .hero-proof-grid,
   .pricing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .connected-journey-grid,
+  .connected-journey-track,
+  .trust-framework-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connected-journey-step-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .mini-photo-row,
