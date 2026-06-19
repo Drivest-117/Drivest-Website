@@ -17,23 +17,8 @@
       "permanent": true
     },
     {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/features.html",
-      "destination": "/features",
-      "permanent": true
-    },
-    {
       "source": "/features/index.html",
       "destination": "/features",
-      "permanent": true
-    },
-    {
-      "source": "/pricing.html",
-      "destination": "/pricing",
       "permanent": true
     },
     {
@@ -42,23 +27,13 @@
       "permanent": true
     },
     {
+      "source": "/download/index.html",
+      "destination": "/download",
+      "permanent": true
+    },
+    {
       "source": "/start/index.html",
       "destination": "/start",
-      "permanent": true
-    },
-    {
-      "source": "/how-it-works",
-      "destination": "/start",
-      "permanent": true
-    },
-    {
-      "source": "/how-it-works/index.html",
-      "destination": "/start",
-      "permanent": true
-    },
-    {
-      "source": "/faq.html",
-      "destination": "/faq",
       "permanent": true
     },
     {
@@ -82,12 +57,112 @@
       "permanent": true
     },
     {
-      "source": "/terms.html",
-      "destination": "/terms",
+      "source": "/contact/index.html",
+      "destination": "/contact",
       "permanent": true
     },
     {
-      "source": "/terms/index.html",
+      "source": "/access-request/index.html",
+      "destination": "/access-request",
+      "permanent": true
+    },
+    {
+      "source": "/instructor-apply/index.html",
+      "destination": "/instructor-apply",
+      "permanent": true
+    },
+    {
+      "source": "/mock-theory-test/index.html",
+      "destination": "/mock-theory-test",
+      "permanent": true
+    },
+    {
+      "source": "/hazard-perception-test/index.html",
+      "destination": "/hazard-perception-test",
+      "permanent": true
+    },
+    {
+      "source": "/road-signs-test/index.html",
+      "destination": "/road-signs-test",
+      "permanent": true
+    },
+    {
+      "source": "/highway-code-test/index.html",
+      "destination": "/highway-code-test",
+      "permanent": true
+    },
+    {
+      "source": "/driving-theory-test-in-urdu/index.html",
+      "destination": "/driving-theory-test-in-urdu",
+      "permanent": true
+    },
+    {
+      "source": "/driving-theory-test-in-arabic/index.html",
+      "destination": "/driving-theory-test-in-arabic",
+      "permanent": true
+    },
+    {
+      "source": "/driving-theory-test-in-welsh/index.html",
+      "destination": "/driving-theory-test-in-welsh",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/london/index.html",
+      "destination": "/driving-test-centres/london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/manchester/index.html",
+      "destination": "/driving-test-centres/manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham/index.html",
+      "destination": "/driving-test-centres/birmingham",
+      "permanent": true
+    },
+    {
+      "source": "/features.html",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/download.html",
+      "destination": "/download",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/access-request.html",
+      "destination": "/access-request",
+      "permanent": true
+    },
+    {
+      "source": "/instructor-apply.html",
+      "destination": "/instructor-apply",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/index.html",
+      "destination": "/start",
+      "permanent": true
+    },
+    {
+      "source": "/faq.html",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
       "destination": "/terms",
       "permanent": true
     },
@@ -97,13 +172,1333 @@
       "permanent": true
     },
     {
-      "source": "/privacy/index.html",
-      "destination": "/privacy",
+      "source": "/driving-test-centres/aberdeen_north",
+      "destination": "/driving-test-centres/aberdeen-north",
       "permanent": true
     },
     {
-      "source": "/coming-soon.html",
-      "destination": "/",
+      "source": "/driving-test-centres/aberdeen_north/index.html",
+      "destination": "/driving-test-centres/aberdeen-north",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/aberdeen_south_cove",
+      "destination": "/driving-test-centres/aberdeen-south-cove",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/aberdeen_south_cove/index.html",
+      "destination": "/driving-test-centres/aberdeen-south-cove",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/aberystwyth_park_avenue",
+      "destination": "/driving-test-centres/aberystwyth-park-avenue",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/aberystwyth_park_avenue/index.html",
+      "destination": "/driving-test-centres/aberystwyth-park-avenue",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/ashford_middx",
+      "destination": "/driving-test-centres/ashford-middx",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/ashford_middx/index.html",
+      "destination": "/driving-test-centres/ashford-middx",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/ashford_kent",
+      "destination": "/driving-test-centres/ashford-kent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/ashford_kent/index.html",
+      "destination": "/driving-test-centres/ashford-kent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/atherton_mptc",
+      "destination": "/driving-test-centres/atherton-mptc",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/atherton_mptc/index.html",
+      "destination": "/driving-test-centres/atherton-mptc",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking_tanner_st",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking_tanner_st/index.html",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barnet_london",
+      "destination": "/driving-test-centres/barnet-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barnet_london/index.html",
+      "destination": "/driving-test-centres/barnet-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barrow_in_furness",
+      "destination": "/driving-test-centres/barrow-in-furness",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barrow_in_furness/index.html",
+      "destination": "/driving-test-centres/barrow-in-furness",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/basildon_mptc",
+      "destination": "/driving-test-centres/basildon-mptc",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/basildon_mptc/index.html",
+      "destination": "/driving-test-centres/basildon-mptc",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/belvedere_london",
+      "destination": "/driving-test-centres/belvedere-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/belvedere_london/index.html",
+      "destination": "/driving-test-centres/belvedere-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/benbecula_island",
+      "destination": "/driving-test-centres/benbecula-island",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/benbecula_island/index.html",
+      "destination": "/driving-test-centres/benbecula-island",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/berwick_on_tweed",
+      "destination": "/driving-test-centres/berwick-on-tweed",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/berwick_on_tweed/index.html",
+      "destination": "/driving-test-centres/berwick-on-tweed",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_garretts_green",
+      "destination": "/driving-test-centres/birmingham-garretts-green",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_garretts_green/index.html",
+      "destination": "/driving-test-centres/birmingham-garretts-green",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_kings_heath",
+      "destination": "/driving-test-centres/birmingham-kings-heath",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_kings_heath/index.html",
+      "destination": "/driving-test-centres/birmingham-kings-heath",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_kingstanding",
+      "destination": "/driving-test-centres/birmingham-kingstanding",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_kingstanding/index.html",
+      "destination": "/driving-test-centres/birmingham-kingstanding",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_shirley",
+      "destination": "/driving-test-centres/birmingham-shirley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_shirley/index.html",
+      "destination": "/driving-test-centres/birmingham-shirley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_south_yardley",
+      "destination": "/driving-test-centres/birmingham-south-yardley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_south_yardley/index.html",
+      "destination": "/driving-test-centres/birmingham-south-yardley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_sutton_coldfield",
+      "destination": "/driving-test-centres/birmingham-sutton-coldfield",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/birmingham_sutton_coldfield/index.html",
+      "destination": "/driving-test-centres/birmingham-sutton-coldfield",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bishops_stortford",
+      "destination": "/driving-test-centres/bishops-stortford",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bishops_stortford/index.html",
+      "destination": "/driving-test-centres/bishops-stortford",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/blackburn_with_darwen",
+      "destination": "/driving-test-centres/blackburn-with-darwen",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/blackburn_with_darwen/index.html",
+      "destination": "/driving-test-centres/blackburn-with-darwen",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bolton_manchester",
+      "destination": "/driving-test-centres/bolton-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bolton_manchester/index.html",
+      "destination": "/driving-test-centres/bolton-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/borehamwood_london",
+      "destination": "/driving-test-centres/borehamwood-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/borehamwood_london/index.html",
+      "destination": "/driving-test-centres/borehamwood-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bradford_heaton",
+      "destination": "/driving-test-centres/bradford-heaton",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bradford_heaton/index.html",
+      "destination": "/driving-test-centres/bradford-heaton",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bradford_thornbury",
+      "destination": "/driving-test-centres/bradford-thornbury",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bradford_thornbury/index.html",
+      "destination": "/driving-test-centres/bradford-thornbury",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bredbury_manchester",
+      "destination": "/driving-test-centres/bredbury-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bredbury_manchester/index.html",
+      "destination": "/driving-test-centres/bredbury-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/brentwood_london",
+      "destination": "/driving-test-centres/brentwood-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/brentwood_london/index.html",
+      "destination": "/driving-test-centres/brentwood-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_avonmouth",
+      "destination": "/driving-test-centres/bristol-avonmouth",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_avonmouth/index.html",
+      "destination": "/driving-test-centres/bristol-avonmouth",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_kingswood",
+      "destination": "/driving-test-centres/bristol-kingswood",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_kingswood/index.html",
+      "destination": "/driving-test-centres/bristol-kingswood",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_brislington",
+      "destination": "/driving-test-centres/bristol-brislington",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bristol_brislington/index.html",
+      "destination": "/driving-test-centres/bristol-brislington",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/brodick_isle_of_arran",
+      "destination": "/driving-test-centres/brodick-isle-of-arran",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/brodick_isle_of_arran/index.html",
+      "destination": "/driving-test-centres/brodick-isle-of-arran",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bromley_london",
+      "destination": "/driving-test-centres/bromley-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bromley_london/index.html",
+      "destination": "/driving-test-centres/bromley-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/burgess_hill",
+      "destination": "/driving-test-centres/burgess-hill",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/burgess_hill/index.html",
+      "destination": "/driving-test-centres/burgess-hill",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/burton_on_trent",
+      "destination": "/driving-test-centres/burton-on-trent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/burton_on_trent/index.html",
+      "destination": "/driving-test-centres/burton-on-trent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bury_manchester",
+      "destination": "/driving-test-centres/bury-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bury_manchester/index.html",
+      "destination": "/driving-test-centres/bury-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bury_st_edmunds",
+      "destination": "/driving-test-centres/bury-st-edmunds",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/bury_st_edmunds/index.html",
+      "destination": "/driving-test-centres/bury-st-edmunds",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cambridge_cowley_road",
+      "destination": "/driving-test-centres/cambridge-cowley-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cambridge_cowley_road/index.html",
+      "destination": "/driving-test-centres/cambridge-cowley-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cardiff_llanishen",
+      "destination": "/driving-test-centres/cardiff-llanishen",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cardiff_llanishen/index.html",
+      "destination": "/driving-test-centres/cardiff-llanishen",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/castle_douglas",
+      "destination": "/driving-test-centres/castle-douglas",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/castle_douglas/index.html",
+      "destination": "/driving-test-centres/castle-douglas",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cheetham_hill_manchester",
+      "destination": "/driving-test-centres/cheetham-hill-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/cheetham_hill_manchester/index.html",
+      "destination": "/driving-test-centres/cheetham-hill-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/chertsey_london",
+      "destination": "/driving-test-centres/chertsey-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/chertsey_london/index.html",
+      "destination": "/driving-test-centres/chertsey-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/chingford_london",
+      "destination": "/driving-test-centres/chingford-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/chingford_london/index.html",
+      "destination": "/driving-test-centres/chingford-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/clacton_on_sea",
+      "destination": "/driving-test-centres/clacton-on-sea",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/clacton_on_sea/index.html",
+      "destination": "/driving-test-centres/clacton-on-sea",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/derby_alvaston",
+      "destination": "/driving-test-centres/derby-alvaston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/derby_alvaston/index.html",
+      "destination": "/driving-test-centres/derby-alvaston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/dunfermline_vine",
+      "destination": "/driving-test-centres/dunfermline-vine",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/dunfermline_vine/index.html",
+      "destination": "/driving-test-centres/dunfermline-vine",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/east_kilbride",
+      "destination": "/driving-test-centres/east-kilbride",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/east_kilbride/index.html",
+      "destination": "/driving-test-centres/east-kilbride",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/edinburgh_musselburgh",
+      "destination": "/driving-test-centres/edinburgh-musselburgh",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/edinburgh_musselburgh/index.html",
+      "destination": "/driving-test-centres/edinburgh-musselburgh",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/edinburgh_currie",
+      "destination": "/driving-test-centres/edinburgh-currie",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/edinburgh_currie/index.html",
+      "destination": "/driving-test-centres/edinburgh-currie",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield_innova_business_park",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield_innova_business_park/index.html",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/erith_london",
+      "destination": "/driving-test-centres/erith-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/erith_london/index.html",
+      "destination": "/driving-test-centres/erith-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/fort_william",
+      "destination": "/driving-test-centres/fort-william",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/fort_william/index.html",
+      "destination": "/driving-test-centres/fort-william",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/garston_liverpool",
+      "destination": "/driving-test-centres/garston-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/garston_liverpool/index.html",
+      "destination": "/driving-test-centres/garston-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_anniesland",
+      "destination": "/driving-test-centres/glasgow-anniesland",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_anniesland/index.html",
+      "destination": "/driving-test-centres/glasgow-anniesland",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_baillieston",
+      "destination": "/driving-test-centres/glasgow-baillieston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_baillieston/index.html",
+      "destination": "/driving-test-centres/glasgow-baillieston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_shieldhall",
+      "destination": "/driving-test-centres/glasgow-shieldhall",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/glasgow_shieldhall/index.html",
+      "destination": "/driving-test-centres/glasgow-shieldhall",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/goodmayes_london",
+      "destination": "/driving-test-centres/goodmayes-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/goodmayes_london/index.html",
+      "destination": "/driving-test-centres/goodmayes-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/grantham_somerby",
+      "destination": "/driving-test-centres/grantham-somerby",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/grantham_somerby/index.html",
+      "destination": "/driving-test-centres/grantham-somerby",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/greenford_london",
+      "destination": "/driving-test-centres/greenford-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/greenford_london/index.html",
+      "destination": "/driving-test-centres/greenford-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/greenford_horsenden_lane",
+      "destination": "/driving-test-centres/greenford-horsenden-lane",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/greenford_horsenden_lane/index.html",
+      "destination": "/driving-test-centres/greenford-horsenden-lane",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/grimsby_coldwater",
+      "destination": "/driving-test-centres/grimsby-coldwater",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/grimsby_coldwater/index.html",
+      "destination": "/driving-test-centres/grimsby-coldwater",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hastings_ore",
+      "destination": "/driving-test-centres/hastings-ore",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hastings_ore/index.html",
+      "destination": "/driving-test-centres/hastings-ore",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hendon_london",
+      "destination": "/driving-test-centres/hendon-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hendon_london/index.html",
+      "destination": "/driving-test-centres/hendon-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/herne_bay",
+      "destination": "/driving-test-centres/herne-bay",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/herne_bay/index.html",
+      "destination": "/driving-test-centres/herne-bay",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/high_wycombe",
+      "destination": "/driving-test-centres/high-wycombe",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/high_wycombe/index.html",
+      "destination": "/driving-test-centres/high-wycombe",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hither_green_london",
+      "destination": "/driving-test-centres/hither-green-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hither_green_london/index.html",
+      "destination": "/driving-test-centres/hither-green-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hornchurch_london",
+      "destination": "/driving-test-centres/hornchurch-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hornchurch_london/index.html",
+      "destination": "/driving-test-centres/hornchurch-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hyde_manchester",
+      "destination": "/driving-test-centres/hyde-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/hyde_manchester/index.html",
+      "destination": "/driving-test-centres/hyde-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isle_of_mull",
+      "destination": "/driving-test-centres/isle-of-mull",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isle_of_mull/index.html",
+      "destination": "/driving-test-centres/isle-of-mull",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isle_of_skye_broadford",
+      "destination": "/driving-test-centres/isle-of-skye-broadford",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isle_of_skye_broadford/index.html",
+      "destination": "/driving-test-centres/isle-of-skye-broadford",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth_fleming_way",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth_fleming_way/index.html",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kendal_oxenholme_road",
+      "destination": "/driving-test-centres/kendal-oxenholme-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kendal_oxenholme_road/index.html",
+      "destination": "/driving-test-centres/kendal-oxenholme-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kings_lynn",
+      "destination": "/driving-test-centres/kings-lynn",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kings_lynn/index.html",
+      "destination": "/driving-test-centres/kings-lynn",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kyle_of_lochalsh",
+      "destination": "/driving-test-centres/kyle-of-lochalsh",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kyle_of_lochalsh/index.html",
+      "destination": "/driving-test-centres/kyle-of-lochalsh",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/lee_on_the_solent",
+      "destination": "/driving-test-centres/lee-on-the-solent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/lee_on_the_solent/index.html",
+      "destination": "/driving-test-centres/lee-on-the-solent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_cannock_st",
+      "destination": "/driving-test-centres/leicester-cannock-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_cannock_st/index.html",
+      "destination": "/driving-test-centres/leicester-cannock-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_cannock_street",
+      "destination": "/driving-test-centres/leicester-cannock-street",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_cannock_street/index.html",
+      "destination": "/driving-test-centres/leicester-cannock-street",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_wigston",
+      "destination": "/driving-test-centres/leicester-wigston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leicester_wigston/index.html",
+      "destination": "/driving-test-centres/leicester-wigston",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leighton_buzzard_stanbridge_road",
+      "destination": "/driving-test-centres/leighton-buzzard-stanbridge-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/leighton_buzzard_stanbridge_road/index.html",
+      "destination": "/driving-test-centres/leighton-buzzard-stanbridge-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/loughton_london",
+      "destination": "/driving-test-centres/loughton-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/loughton_london/index.html",
+      "destination": "/driving-test-centres/loughton-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/lowestoft_mobbs_way",
+      "destination": "/driving-test-centres/lowestoft-mobbs-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/lowestoft_mobbs_way/index.html",
+      "destination": "/driving-test-centres/lowestoft-mobbs-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/manchester_west_didsbury",
+      "destination": "/driving-test-centres/manchester-west-didsbury",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/manchester_west_didsbury/index.html",
+      "destination": "/driving-test-centres/manchester-west-didsbury",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/melton_mowbray",
+      "destination": "/driving-test-centres/melton-mowbray",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/melton_mowbray/index.html",
+      "destination": "/driving-test-centres/melton-mowbray",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/merthyr_tydfil",
+      "destination": "/driving-test-centres/merthyr-tydfil",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/merthyr_tydfil/index.html",
+      "destination": "/driving-test-centres/merthyr-tydfil",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/mill_hill_london",
+      "destination": "/driving-test-centres/mill-hill-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/mill_hill_london/index.html",
+      "destination": "/driving-test-centres/mill-hill-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/milton_keynes",
+      "destination": "/driving-test-centres/milton-keynes",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/milton_keynes/index.html",
+      "destination": "/driving-test-centres/milton-keynes",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/mitcham_london",
+      "destination": "/driving-test-centres/mitcham-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/mitcham_london/index.html",
+      "destination": "/driving-test-centres/mitcham-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/morden_london",
+      "destination": "/driving-test-centres/morden-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/morden_london/index.html",
+      "destination": "/driving-test-centres/morden-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newbury_hambridge_lane",
+      "destination": "/driving-test-centres/newbury-hambridge-lane",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newbury_hambridge_lane/index.html",
+      "destination": "/driving-test-centres/newbury-hambridge-lane",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newcastle_upon_tyne",
+      "destination": "/driving-test-centres/newcastle-upon-tyne",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newcastle_upon_tyne/index.html",
+      "destination": "/driving-test-centres/newcastle-upon-tyne",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newport_isle_of_wight",
+      "destination": "/driving-test-centres/newport-isle-of-wight",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newport_isle_of_wight/index.html",
+      "destination": "/driving-test-centres/newport-isle-of-wight",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newport_gwent",
+      "destination": "/driving-test-centres/newport-gwent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newport_gwent/index.html",
+      "destination": "/driving-test-centres/newport-gwent",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newton_abbot",
+      "destination": "/driving-test-centres/newton-abbot",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newton_abbot/index.html",
+      "destination": "/driving-test-centres/newton-abbot",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newton_stewart",
+      "destination": "/driving-test-centres/newton-stewart",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/newton_stewart/index.html",
+      "destination": "/driving-test-centres/newton-stewart",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/norwich_jupiter_road",
+      "destination": "/driving-test-centres/norwich-jupiter-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/norwich_jupiter_road/index.html",
+      "destination": "/driving-test-centres/norwich-jupiter-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/nottingham_chilwell",
+      "destination": "/driving-test-centres/nottingham-chilwell",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/nottingham_chilwell/index.html",
+      "destination": "/driving-test-centres/nottingham-chilwell",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/nottingham_colwick",
+      "destination": "/driving-test-centres/nottingham-colwick",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/nottingham_colwick/index.html",
+      "destination": "/driving-test-centres/nottingham-colwick",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/oxford_cowley",
+      "destination": "/driving-test-centres/oxford-cowley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/oxford_cowley/index.html",
+      "destination": "/driving-test-centres/oxford-cowley",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/pembroke_dock",
+      "destination": "/driving-test-centres/pembroke-dock",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/pembroke_dock/index.html",
+      "destination": "/driving-test-centres/pembroke-dock",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/perth_arran_road",
+      "destination": "/driving-test-centres/perth-arran-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/perth_arran_road/index.html",
+      "destination": "/driving-test-centres/perth-arran-road",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/pinner_london",
+      "destination": "/driving-test-centres/pinner-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/pinner_london/index.html",
+      "destination": "/driving-test-centres/pinner-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/redhill_aerodrome",
+      "destination": "/driving-test-centres/redhill-aerodrome",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/redhill_aerodrome/index.html",
+      "destination": "/driving-test-centres/redhill-aerodrome",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/rochdale_manchester",
+      "destination": "/driving-test-centres/rochdale-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/rochdale_manchester/index.html",
+      "destination": "/driving-test-centres/rochdale-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sale_manchester",
+      "destination": "/driving-test-centres/sale-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sale_manchester/index.html",
+      "destination": "/driving-test-centres/sale-manchester",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sheffield_middlewood",
+      "destination": "/driving-test-centres/sheffield-middlewood",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sheffield_middlewood/index.html",
+      "destination": "/driving-test-centres/sheffield-middlewood",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sheffield_handsworth",
+      "destination": "/driving-test-centres/sheffield-handsworth",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sheffield_handsworth/index.html",
+      "destination": "/driving-test-centres/sheffield-handsworth",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sidcup_london",
+      "destination": "/driving-test-centres/sidcup-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/sidcup_london/index.html",
+      "destination": "/driving-test-centres/sidcup-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/slough_london",
+      "destination": "/driving-test-centres/slough-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/slough_london/index.html",
+      "destination": "/driving-test-centres/slough-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/south_uist_island",
+      "destination": "/driving-test-centres/south-uist-island",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/south_uist_island/index.html",
+      "destination": "/driving-test-centres/south-uist-island",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southall_london",
+      "destination": "/driving-test-centres/southall-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southall_london/index.html",
+      "destination": "/driving-test-centres/southall-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southampton_maybush",
+      "destination": "/driving-test-centres/southampton-maybush",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southampton_maybush/index.html",
+      "destination": "/driving-test-centres/southampton-maybush",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southend_on_sea",
+      "destination": "/driving-test-centres/southend-on-sea",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southend_on_sea/index.html",
+      "destination": "/driving-test-centres/southend-on-sea",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southport_liverpool",
+      "destination": "/driving-test-centres/southport-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/southport_liverpool/index.html",
+      "destination": "/driving-test-centres/southport-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/speke_liverpool",
+      "destination": "/driving-test-centres/speke-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/speke_liverpool/index.html",
+      "destination": "/driving-test-centres/speke-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/st_albans",
+      "destination": "/driving-test-centres/st-albans",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/st_albans/index.html",
+      "destination": "/driving-test-centres/st-albans",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/st_helens_liverpool",
+      "destination": "/driving-test-centres/st-helens-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/st_helens_liverpool/index.html",
+      "destination": "/driving-test-centres/st-helens-liverpool",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/stoke_on_trent_newcastle_under_lyme",
+      "destination": "/driving-test-centres/stoke-on-trent-newcastle-under-lyme",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/stoke_on_trent_newcastle_under_lyme/index.html",
+      "destination": "/driving-test-centres/stoke-on-trent-newcastle-under-lyme",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/tolworth_london",
+      "destination": "/driving-test-centres/tolworth-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/tolworth_london/index.html",
+      "destination": "/driving-test-centres/tolworth-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/tunbridge_wells",
+      "destination": "/driving-test-centres/tunbridge-wells",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/tunbridge_wells/index.html",
+      "destination": "/driving-test-centres/tunbridge-wells",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/uxbridge_london",
+      "destination": "/driving-test-centres/uxbridge-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/uxbridge_london/index.html",
+      "destination": "/driving-test-centres/uxbridge-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/wanstead_london",
+      "destination": "/driving-test-centres/wanstead-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/wanstead_london/index.html",
+      "destination": "/driving-test-centres/wanstead-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/warwick_wedgenock_house",
+      "destination": "/driving-test-centres/warwick-wedgenock-house",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/warwick_wedgenock_house/index.html",
+      "destination": "/driving-test-centres/warwick-wedgenock-house",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/west_bromwich",
+      "destination": "/driving-test-centres/west-bromwich",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/west_bromwich/index.html",
+      "destination": "/driving-test-centres/west-bromwich",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/west_wickham_london",
+      "destination": "/driving-test-centres/west-wickham-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/west_wickham_london/index.html",
+      "destination": "/driving-test-centres/west-wickham-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/weston_super_mare",
+      "destination": "/driving-test-centres/weston-super-mare",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/weston_super_mare/index.html",
+      "destination": "/driving-test-centres/weston-super-mare",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/wood_green_london",
+      "destination": "/driving-test-centres/wood-green-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/wood_green_london/index.html",
+      "destination": "/driving-test-centres/wood-green-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking_tanner_street",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking_tanner_street/index.html",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking-tanner-street",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/barking-tanner-street/index.html",
+      "destination": "/driving-test-centres/barking-tanner-st",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield_london",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield_london/index.html",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield-london",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/enfield-london/index.html",
+      "destination": "/driving-test-centres/enfield-innova-business-park",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth_london",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth_london/index.html",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth-london",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/isleworth-london/index.html",
+      "destination": "/driving-test-centres/isleworth-fleming-way",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kingston_london",
+      "destination": "/driving-test-centres/tolworth-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kingston_london/index.html",
+      "destination": "/driving-test-centres/tolworth-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kingston-london",
+      "destination": "/driving-test-centres/tolworth-london",
+      "permanent": true
+    },
+    {
+      "source": "/driving-test-centres/kingston-london/index.html",
+      "destination": "/driving-test-centres/tolworth-london",
       "permanent": true
     }
   ]

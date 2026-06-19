@@ -1,7 +1,7 @@
 {
   "name": "Drivest",
   "short_name": "Drivest",
-  "description": "Drivest UK helps learners prepare in 32 languages with English Peek, local practice routes, instructor bookings, and calmer navigation across the UK.",
+  "description": "Drivest UK helps learners prepare for the UK theory test in 32 supported languages, practise around a chosen test centre, and build calmer driving confidence from lessons to first independent journeys.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f3f4f8",

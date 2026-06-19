@@ -112,7 +112,8 @@ async function build() {
     writeSiteFile("llms-full.txt", renderLlmsFull(marketing, coverage)),
     writeSiteFile("sitemap.xml", renderSitemap(sitemapUrls)),
     writeSiteFile("manifest.webmanifest", renderManifest(marketing)),
-    writeSiteFile("404.html", render404Page(scriptSource, marketing, coverage))
+    writeSiteFile("404.html", render404Page(scriptSource, marketing, coverage)),
+    writeSiteFile("vercel.json", renderVercelConfig({ customTargets, redirectTargets }))
   ]);
 }
 
@@ -200,6 +201,16 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
   const centre = findCentre(marketing.testCentreCoverage, centreId);
   const seoBrand = seoBrandTitle(marketing);
   const appStoreUrl = String(marketing.distribution?.appStoreUrl || "").trim();
+  const hubFaqItems = ["theory", "centres", "instructors"].includes(page)
+    ? marketing.hubPages?.[page]?.faq?.items
+    : null;
+  const faqItems =
+    overrides.faqItems ||
+    (page === "faq"
+      ? marketing.faq
+      : page === "pricing"
+        ? marketing.pricing?.faq?.items
+        : hubFaqItems);
   const pageType =
     overrides.pageType ||
     (page === "faq"
@@ -323,19 +334,8 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
     });
   }
 
-  if (page === "faq") {
-    data.push({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: marketing.faq.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.a
-        }
-      }))
-    });
+  if (faqItems?.length) {
+    data.push(buildFaqSchema(faqItems));
   }
 
   if (page === "pricing") {
@@ -360,7 +360,7 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
       "@context": "https://schema.org",
       "@type": "Dataset",
       name: "Drivest covered driving test centres",
-      description: `Driving test centres currently live in Drivest with more than ${marketing.testCentreCoverage.filter?.routeCountGreaterThan || 2} routes.`,
+      description: `Driving test centres included in Drivest's public coverage dataset with more than ${marketing.testCentreCoverage.filter?.routeCountGreaterThan || 2} routes.`,
       creator: { "@id": `${SITE_URL}/#organization` },
       includedInDataCatalog: { "@id": `${SITE_URL}/#website` },
       measurementTechnique: "Route corpus filter: publish only centres with more than 2 routes and exclude temporary, duplicate, and broken variants",
@@ -405,7 +405,7 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
     data.push({
       "@context": "https://schema.org",
       "@type": "Dataset",
-      name: `Drivest practice routes for ${centre.name}`,
+      name: `Drivest local practice coverage for ${centre.name}`,
       description,
       creator: { "@id": `${SITE_URL}/#organization` },
       includedInDataCatalog: { "@id": `${SITE_URL}/#website` },
@@ -417,19 +417,24 @@ function buildStructuredData(page, canonical, title, description, marketing, cen
         contentUrl: canonical
       }
     });
-    data.push({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: `${centre.name} sample practice routes`,
-      itemListElement: (centre.sampleRoutes || []).map((route, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: `${route.name} (${route.distanceKm} km, ${route.durationMinutes} minutes)`
-      }))
-    });
   }
 
   return data;
+}
+
+function buildFaqSchema(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a
+      }
+    }))
+  };
 }
 
 function buildCustomPageTargets(marketing, coverage) {
@@ -627,8 +632,8 @@ function renderContactPage(config, renderer, marketing, coverage) {
     ${renderer.renderInfoSection({
       title: "Public route-coverage freshness",
       text: generatedAt
-        ? `The current public route-coverage file used by this website was generated on ${generatedAt}. Refresh the site pages when the route corpus changes so coverage claims stay current.`
-        : "Refresh the site pages whenever the route corpus changes so coverage claims stay current.",
+        ? `The published route-coverage file used by this website was generated on ${generatedAt}. Refresh the site pages when the route corpus changes so coverage claims stay aligned with the latest export.`
+        : "Refresh the site pages whenever the route corpus changes so coverage claims stay aligned with the latest export.",
       bullets: [
         "Only centres with more than 2 routes are visible in the public directory",
         "Duplicate, temporary, backup, and broken variants are excluded from the public layer",
@@ -648,7 +653,7 @@ function renderContactPage(config, renderer, marketing, coverage) {
         },
         {
           title: "Driving test centre practice",
-          text: "Browse live centre coverage and move into the exact selected-centre page you need.",
+          text: "Browse the published centre coverage dataset and move into the exact selected-centre page you need.",
           href: "/driving-test-centres",
           cta: "View centres"
         },
@@ -838,7 +843,7 @@ function renderAccessRequestPage(config, renderer, marketing) {
           cta: "Compare pricing"
         },
         {
-          title: "Browse live centres",
+          title: "Browse covered centres",
           text: "Pick the exact centre you want before requesting practice or bundle access.",
           href: "/driving-test-centres",
           cta: "View centres"
@@ -1083,6 +1088,8 @@ function renderTheoryIntentPage(config, renderer, marketing) {
       ${renderer.renderFeatureCards(config.modules || [])}
     </section>
 
+    ${(marketing.hubPages?.theory?.linkSections || []).map((section) => renderer.renderLinkCardsSection(section)).join("")}
+
     ${renderer.renderLanguageSupportSection(marketing.languageSupport)}
 
     ${renderer.renderLinkCardsSection(marketing.hubPages?.theory?.related)}
@@ -1125,7 +1132,7 @@ function renderCentreRegionPage(config, renderer, marketing, coverage) {
         <p class="panel-title">Why this regional hub exists</p>
         <p>${escapeHtml(config.intro)}</p>
         ${renderer.bulletList(config.highlights)}
-        ${generatedAt ? `<p class="coverage-summary-note">Current public coverage file generated: ${escapeHtml(generatedAt)}.</p>` : ""}
+        ${generatedAt ? `<p class="coverage-summary-note">Coverage file generated: ${escapeHtml(generatedAt)}.</p>` : ""}
       </div>
     </section>
 
@@ -1134,28 +1141,28 @@ function renderCentreRegionPage(config, renderer, marketing, coverage) {
         <article class="card reveal-item">
           <p class="panel-title">Centres listed</p>
           <p class="coverage-stat-value">${escapeHtml(renderer.formatNumber(summary.centres))}</p>
-          <p>Only centres currently visible in this regional public layer are counted.</p>
+          <p>Only centres included in this regional published dataset are counted.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Routes represented</p>
           <p class="coverage-stat-value">${escapeHtml(renderer.formatNumber(summary.routes))}</p>
-          <p>These are the current public routes attached to the region's centre pages.</p>
+          <p>These are the published routes attached to the region's centre pages.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Average route length</p>
           <p class="coverage-stat-value">${escapeHtml(renderer.formatMetricValue(summary.averageDistanceKm, 1))} km</p>
-          <p>Average distance across the region's current public route set.</p>
+          <p>Average distance across the region's published route set.</p>
         </article>
         <article class="card reveal-item">
           <p class="panel-title">Average guided time</p>
           <p class="coverage-stat-value">${escapeHtml(renderer.formatMetricValue(summary.averageDurationMinutes, 1))} min</p>
-          <p>Average guided duration across the current public route set.</p>
+          <p>Average guided duration across the region's published route set.</p>
         </article>
       </div>
     </section>
 
     <section class="section reveal">
-      <h2>Centres currently live in this regional hub</h2>
+      <h2>Centres included in this regional hub</h2>
       <div class="grid three-up">
         ${centres
           .map(
@@ -1175,7 +1182,7 @@ function renderCentreRegionPage(config, renderer, marketing, coverage) {
     <section class="section reveal">
       <div class="grid two-up">
         <article class="card reveal-item">
-          <h2>Most repeated roads across the current public set</h2>
+          <h2>Most repeated roads across the published route set</h2>
           <div class="tag-cloud">
             ${topRoads.map((road) => `<span class="pill">${escapeHtml(road.name)} (${escapeHtml(renderer.formatNumber(road.count))})</span>`).join("")}
           </div>
@@ -1199,7 +1206,7 @@ function renderCentreRegionPage(config, renderer, marketing, coverage) {
       title: "Important route positioning",
       text: "Regional hub pages still follow the same legal positioning as centre-detail pages.",
       bullets: [
-        "Routes are reconstructed or generated for learning support and are not official DVSA routes.",
+        "Routes are reconstructed or generated for learning support and are not official driving test routes.",
         "Learners must always follow live road signs, markings, instructions, and traffic law.",
         "Navigation, route, and parking outputs remain advisory only and can be incomplete or delayed."
       ]
@@ -1217,7 +1224,7 @@ function render404Page(scriptSource, marketing, coverage) {
         <div>
           <p class="eyebrow">404</p>
           <h1>That page is not available on the public Drivest site.</h1>
-          <p>Use one of the main learner or instructor routes below to get back into the current public site structure.</p>
+          <p>Use one of the main learner or instructor routes below to get back into the published site structure.</p>
           <div class="btn-row">
             ${renderer.button("Get the app", "/download", "primary")}
             ${renderer.button("Go to homepage", "/", "secondary")}
@@ -1238,7 +1245,7 @@ function render404Page(scriptSource, marketing, coverage) {
       items: [
         {
           title: "Driving test centres",
-          text: "Browse the current live centre directory and move into the exact centre page you need.",
+          text: "Browse the published centre directory and move into the exact centre page you need.",
           href: "/driving-test-centres",
           cta: "View centres"
         },
@@ -1378,6 +1385,84 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 }
 
+function renderVercelConfig({ customTargets, redirectTargets }) {
+  const redirects = [];
+  const seen = new Set();
+  const addRedirect = (entry) => {
+    const key = JSON.stringify({
+      source: entry.source,
+      destination: entry.destination,
+      permanent: entry.permanent,
+      has: entry.has || null
+    });
+    if (seen.has(key)) return;
+    seen.add(key);
+    redirects.push(entry);
+  };
+
+  addRedirect({
+    source: "/:path*",
+    has: [
+      {
+        type: "host",
+        value: "www.drivest.uk"
+      }
+    ],
+    destination: "https://drivest.uk/:path*",
+    permanent: true
+  });
+
+  for (const target of basePageTargets.filter((item) => item.output !== "index.html")) {
+    addRedirect({
+      source: outputToRoutePath(target.output),
+      destination: canonicalPath(target.canonical),
+      permanent: true
+    });
+  }
+
+  for (const target of customTargets) {
+    addRedirect({
+      source: outputToRoutePath(target.output),
+      destination: canonicalPath(target.canonical),
+      permanent: true
+    });
+  }
+
+  for (const target of baseRedirectTargets) {
+    addRedirect({
+      source: outputToRoutePath(target.output),
+      destination: target.destination,
+      permanent: true
+    });
+  }
+
+  for (const target of redirectTargets.filter((item) => String(item.output).replace(/\\/g, "/").startsWith("driving-test-centres/"))) {
+    addRedirect({
+      source: outputToDirectoryPath(target.output),
+      destination: target.destination,
+      permanent: true
+    });
+    addRedirect({
+      source: outputToRoutePath(target.output),
+      destination: target.destination,
+      permanent: true
+    });
+  }
+
+  return `${JSON.stringify(
+    {
+      $schema: "https://openapi.vercel.sh/vercel.json",
+      framework: null,
+      installCommand: "",
+      buildCommand: "",
+      outputDirectory: ".",
+      redirects
+    },
+    null,
+    2
+  )}\n`;
+}
+
 function renderLlms(marketing, coverage) {
   const summary = coverage?.summary || {};
   const coverageDate = coverageGeneratedAtLabel(coverage) || today;
@@ -1386,7 +1471,7 @@ function renderLlms(marketing, coverage) {
 
 > ${marketing.press.oneLiner}
 
-Drivest is a public UK learner-driver platform site. Canonical public content is published at ${SITE_URL}/. Practice routes are reconstructed or generated for learning only and are not official DVSA routes. Public coverage currently includes ${summary.centres || "UK"} test centres and ${summary.routes || "a broad set of"} practice routes. Coverage data shown on the site reflects the current corpus generated on ${coverageDate}.
+Drivest is a public UK learner-driver platform site. Canonical public content is published at ${SITE_URL}/. Practice routes are reconstructed or generated for learning only and are not official driving test routes. Public coverage in this export includes ${summary.centres || "UK"} test centres and ${summary.routes || "a broad set of"} practice routes. Coverage data shown on the site was generated on ${coverageDate}.
 
 ## Core pages
 
@@ -1567,6 +1652,22 @@ function normaliseUrlPath(urlPath) {
   return clean === "/" ? "" : clean;
 }
 
+function outputToRoutePath(output) {
+  return `/${String(output || "").replace(/\\/g, "/")}`;
+}
+
+function outputToDirectoryPath(output) {
+  return `/${String(output || "")
+    .replace(/\\/g, "/")
+    .replace(/\/index\.html$/i, "")
+    .replace(/^\/?/, "")}`;
+}
+
+function canonicalPath(canonical) {
+  const url = new URL(canonical);
+  return normaliseUrlPath(url.pathname) || "/";
+}
+
 function hyphenatePathSegment(value) {
   return String(value || "")
     .trim()
@@ -1662,7 +1763,7 @@ function buildCentreRegionMetaDescription(config, coverage) {
   const summary = summariseCentreList(centres);
   if (!summary.centres || !summary.routes) return config.description;
   const label = centreRegionLabel(config);
-  return `Browse ${formatInteger(summary.centres)} ${label} driving test centres currently live in Drivest, covering ${formatInteger(summary.routes)} practice routes with centre-by-centre route counts, average route lengths, and guided durations.`;
+  return `Browse ${formatInteger(summary.centres)} ${label} driving test centres in Drivest's public coverage dataset, covering ${formatInteger(summary.routes)} practice routes with centre-by-centre route counts, average route lengths, and guided durations.`;
 }
 
 function centreRegionLabel(config) {

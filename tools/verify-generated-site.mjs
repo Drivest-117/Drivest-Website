@@ -106,6 +106,35 @@ for (const alias of coverage.aliases || []) {
   }
 }
 
+let vercelConfig = null;
+try {
+  vercelConfig = JSON.parse(await readSiteFile("vercel.json"));
+} catch (error) {
+  failures.push(`vercel.json is missing or invalid JSON: ${error.message}`);
+}
+
+if (vercelConfig?.redirects) {
+  for (const alias of coverage.aliases || []) {
+    const canonical = centreMap.get(alias.canonicalId);
+    if (!canonical) continue;
+
+    const destination = canonical.url || `/driving-test-centres/${canonical.id}`;
+    const expectedSources = new Set([
+      `/driving-test-centres/${alias.id}`,
+      `/driving-test-centres/${hyphenatePathSegment(alias.id)}`
+    ]);
+
+    for (const source of expectedSources) {
+      const match = vercelConfig.redirects.find(
+        (entry) => entry.source === source && entry.destination === destination && entry.permanent === true
+      );
+      if (!match) {
+        failures.push(`vercel.json is missing permanent redirect ${source} -> ${destination}.`);
+      }
+    }
+  }
+}
+
 const llmsIndex = await readSiteFile("llms.txt");
 assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/download");
 assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/access-request");
