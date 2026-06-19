@@ -1,6 +1,6 @@
 # DrivestWeb Master
 
-Last updated: 12 May 2026
+Last updated: 19 June 2026
 
 ## Purpose
 
@@ -40,6 +40,7 @@ As of 12 May 2026, this repository contains website updates that include:
 - screenshot-backed product proof pulled from the live app UI
 - a mobile proof carousel path for feature screenshots and tighter proof copy hierarchy
 - stronger homepage hero and pricing hierarchy for product and plan comparison sections
+- leaner marketing copy across homepage, features, centres, and instructors without changing the core SEO or legal positioning
 - a lighter `site-runtime.js` client bundle for pre-rendered pages
 - searchable and filterable live driving-test-centre directory controls
 - intrinsic image dimensions and higher-priority hero image loading across generated pages

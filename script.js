@@ -399,25 +399,25 @@ function renderHomeSignalSection(m) {
       className: "home-signal-metric-language",
       value: "32",
       label: "supported languages",
-      text: "English Peek keeps UK wording visible while learners study in a preferred language."
+      text: "English Peek keeps the UK wording visible."
     },
     {
       className: "home-signal-metric-centres",
       value: formatNumber(summary?.centres || 340),
       label: "published centres",
-      text: "Only centres with enough route depth make the public-facing coverage list."
+      text: "Only centres with enough route depth appear publicly."
     },
     {
       className: "home-signal-metric-routes",
       value: formatNumber(summary?.routes || 3000),
       label: "practice routes",
-      text: "Reconstructed local repetition sits beside calmer navigation and instructor flows."
+      text: "Local route practice sits beside navigation and instructor flows."
     },
     {
       className: "home-signal-metric-referrals",
       value: "4",
       label: "referral paths",
-      text: "Instructor to learner, instructor to instructor, learner to learner, and learner to instructor."
+      text: "Four referral paths for learners and instructors."
     }
   ];
 
@@ -1137,12 +1137,12 @@ function renderHeroShowcase(m) {
           <article class="hero-story-card">
             <span class="hero-story-tag">Before lessons</span>
             <h3>Start earlier with theory preparation</h3>
-            <p>Future learners can begin theory, Highway Code, traffic signs, and fines preparation before practical lessons begin.</p>
+            <p>Future learners can begin theory, Highway Code, road signs, and fines before lessons.</p>
           </article>
           <article class="hero-story-card hero-story-card-accent">
             <span class="hero-story-tag">When learning moves on road</span>
             <h3>Turn preparation into centre practice and calmer first drives</h3>
-            <p>Practice routes, instructor support where enabled, parking help, and calmer driving guidance become the next layer of support.</p>
+            <p>Practice routes, instructor support where enabled, parking help, and calmer guidance become the next layer.</p>
           </article>
           <div class="hero-legal-note">
             <span class="hero-legal-dot" aria-hidden="true"></span>
@@ -1454,7 +1454,7 @@ function renderShowcaseStat(value, label) {
 
 function renderHeroProofGrid(m) {
   const summary = coverageSummary(m);
-  const thresholdText = summary ? `Only centres with enough published route depth to make practice useful are shown here.` : m.hero.coverageLine || "";
+  const thresholdText = summary ? `Only centres with enough route depth to make practice useful are shown.` : m.hero.coverageLine || "";
   const coverageHeadline = summary
     ? `${formatNumber(summary.centres)} published centres, ${formatNumber(summary.routes)} routes`
     : coverageLineText(m);

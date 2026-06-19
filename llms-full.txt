@@ -1,6 +1,6 @@
 # Drivest
 
-> Drivest is an independent UK learner-driver platform for multilingual theory preparation, selected-centre practice routes, instructor workflows where enabled, and calmer support for first independent drives.
+> Drivest is an independent UK learner-driver platform for multilingual theory prep, selected-centre practice routes, instructor workflows where enabled, and calmer first drives.
 
 Last updated: 2026-06-19
 

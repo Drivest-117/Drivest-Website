@@ -78,7 +78,7 @@
   "hero": {
     "positioningLine": "Theory in 32 supported languages, selected-centre practice, and calmer first drives.",
     "headline": "Prepare for UK theory and test-centre practice in one learner app.",
-    "subhead": "Start with free theory preparation, move into selected-centre practice around your chosen test centre, and keep calmer driving support for first independent journeys.",
+    "subhead": "Start free with theory prep, move into selected-centre practice, then keep calmer support for first independent drives.",
     "primaryCtas": [
       "Download on the App Store",
       "Apply as instructor"
@@ -93,7 +93,7 @@
   "launchStatus": {
     "title": "Now live on the App Store",
     "headline": "Download Drivest for iPhone",
-    "text": "Drivest is now live on the Apple App Store for iPhone. Download directly from Apple, then keep using the site to explore route coverage, pricing, and instructor information.",
+    "text": "Drivest is live on the Apple App Store for iPhone. Download it, then use this site for route coverage, pricing, and instructor information.",
     "pills": [
       "Direct iPhone download now live",
       "Public test-centre coverage available on this site",
@@ -105,7 +105,7 @@
     "secondaryHref": "/driving-test-centres"
   },
   "press": {
-    "oneLiner": "Drivest is an independent UK learner-driver platform for multilingual theory preparation, selected-centre practice routes, instructor workflows where enabled, and calmer support for first independent drives.",
+    "oneLiner": "Drivest is an independent UK learner-driver platform for multilingual theory prep, selected-centre practice routes, instructor workflows where enabled, and calmer first drives.",
     "usp": [
       "Future learner preparation",
       "Theory in 32 supported languages",
@@ -119,27 +119,27 @@
     "tabs": [
       {
         "title": "Theory",
-        "line1": "Theory, Highway Code, Traffic Signs, and Fines and Penalties learning for future learners and current learners.",
-        "line2": "Study in 32 supported languages and use English Peek to see the same question in English."
+        "line1": "Theory, Highway Code, road signs, and fines learning for future and current learners.",
+        "line2": "Study in 32 supported languages and use English Peek on the same question."
       },
       {
         "title": "Practice",
-        "line1": "Reconstructed practice routes that start from your selected test centre.",
-        "line2": "Off-route alerts, offline packs, and repetition designed for the stage when practical lessons begin."
+        "line1": "Reconstructed practice routes start from your selected test centre.",
+        "line2": "Use off-route alerts, offline packs, and repetition once lessons begin."
       },
       {
         "title": "Navigation",
-        "line1": "Low-stress driving support, road feature prompts, and parking help.",
-        "line2": "Built for learners moving forward and for calmer new-driver journeys after passing."
+        "line1": "Low-stress guidance, road prompts, and parking help.",
+        "line2": "Built for calmer first drives after passing."
       }
     ]
   },
   "homeModules": {
     "title": "What users see on the app home screen",
-    "intro": "The current home screen is organised around the learner stage, current driving mode, confidence, and direct access to the modules people use most.",
+    "intro": "The home screen is organised around learner stage, current mode, confidence, and quick access to key modules.",
     "summary": {
       "title": "Mode-aware home card",
-      "text": "The home card surfaces the current stage, active mode, confidence score, and a continue-where-you-left-off action so users can resume quickly."
+      "text": "The home card shows stage, mode, confidence, and a quick resume action."
     },
     "groups": [
       {
@@ -147,19 +147,19 @@
         "items": [
           {
             "title": "Theory",
-            "text": "Theory revision remains a first-row home screen module with mastery tracking, topic quizzes, mock tests, bookmarks, and wrong-answer review."
+            "text": "Theory stays in the first row with mastery, quizzes, mock tests, bookmarks, and wrong-answer review."
           },
           {
             "title": "Practice",
-            "text": "Selected-centre practice routes stay visible as a main module with searchable test-centre access."
+            "text": "Selected-centre practice stays visible with searchable test-centre access."
           },
           {
             "title": "Navigation",
-            "text": "Navigation is available directly from the home screen with low-stress routing and leave-now or timed trip setup."
+            "text": "Navigation is available from home with low-stress routing and timed trip setup."
           },
           {
             "title": "Find Instructor",
-            "text": "Instructor discovery is a visible primary module, not a buried marketplace extra, and it connects into bookings and availability."
+            "text": "Instructor discovery is a main module and links into availability and bookings where enabled."
           }
         ]
       },
@@ -181,7 +181,7 @@
           },
           {
             "title": "Fines and Penalties",
-            "text": "Penalty-focused learning is part of the visible explore module set with its own quiz flow."
+            "text": "Penalty learning stays visible with its own quiz flow."
           }
         ]
       }
@@ -189,38 +189,38 @@
   },
   "audienceTracks": {
     "title": "Built for learners and instructors",
-    "intro": "Drivest helps future learners start earlier, helps current learners stay clear, and gives independent instructors a cleaner place to handle enquiries and linked-learner context where marketplace features are enabled.",
+    "intro": "Drivest helps future learners start earlier, current learners stay clear, and instructors manage enquiries and linked learners where enabled.",
     "items": [
       {
         "title": "For future learners and learners",
-        "text": "Start before lessons, keep theory simple, and move into local practice and driving support at the right stage.",
+        "text": "Start before lessons, then move into local practice and calmer support at the right stage.",
         "bullets": [
-          "Begin theory, signs, Highway Code, and fines preparation early before practical lessons start",
+          "Start theory, signs, Highway Code, and fines before lessons",
           "Choose your stage and preferred language during onboarding",
-          "Study theory content with mastery flow, topic quizzes, mock tests, and English Peek when needed",
+          "Use mastery, quizzes, mock tests, and English Peek",
           "Request instructor support where learner-facing marketplace features are enabled",
-          "Review analytics, confidence, resume state, and next-step recommendations"
+          "Review progress, confidence, and next steps"
         ]
       },
       {
         "title": "For instructors",
-        "text": "Set up instructor information, availability preferences where enabled, and linked learner context without heavy admin.",
+        "text": "Set up instructor information, availability, and linked learner context without heavy admin.",
         "bullets": [
-          "Create a public profile and set availability preferences where listing is enabled",
-          "Handle lesson requests and booking or payment updates where those flows are enabled",
+          "Create a public profile and set availability where listing is enabled",
+          "Handle lesson requests and booking updates where enabled",
           "Link learners and review progress from Instructor Hub where enabled",
-          "Work with booking updates, learner context, and dispute records in one place"
+          "Keep booking updates and learner context in one place"
         ]
       }
     ]
   },
   "searchIntentLinks": {
     "title": "Go straight to what you need",
-    "intro": "Choose the part of Drivest that matches your next step.",
+    "intro": "Choose the Drivest page that matches your next step.",
     "items": [
       {
         "title": "Theory test preparation",
-        "text": "Study theory questions, Highway Code, traffic signs, and fines in 32 supported languages with English Peek on the same question.",
+        "text": "Study theory, Highway Code, road signs, and fines in 32 supported languages with English Peek.",
         "bullets": [
           "Start before practical lessons begin",
           "Revise theory, signs, and Highway Code in one flow",
@@ -231,7 +231,7 @@
       },
       {
         "title": "Driving test centres and practice routes",
-        "text": "Choose a selected test centre and repeat reconstructed practice routes with off-route alerts, offline packs, and road feature prompts.",
+        "text": "Choose a selected test centre and repeat reconstructed practice routes with alerts, offline packs, and road prompts.",
         "bullets": [
           "UK test centres with enough published route depth to make local practice useful",
           "Reconstructed routes for learning, not official driving test routes",
@@ -242,10 +242,10 @@
       },
       {
         "title": "Independent driving instructors",
-        "text": "Browse instructor information, compare availability where shown, request lessons where enabled, or join Instructor Hub if you teach independently.",
+        "text": "Browse instructor information, compare availability, request lessons where enabled, or join Instructor Hub.",
         "bullets": [
           "Instructor discovery without leaving the app journey",
-          "Lesson requests, payments, and cancellations tracked in app where enabled",
+          "Lesson requests, payments, and cancellations tracked where enabled",
           "Linked learner context for instructors where enabled"
         ],
         "href": "/driving-instructors",
@@ -253,7 +253,7 @@
       },
       {
         "title": "How Drivest works",
-        "text": "See the learner and instructor routes, stage setup, and next steps before choosing the right plan.",
+        "text": "See learner and instructor routes, stage setup, and next steps before choosing a plan.",
         "bullets": [
           "Role-based onboarding for learners and instructors",
           "Stage-aware routes into theory, practice, and bookings",
@@ -266,21 +266,21 @@
   },
   "startPaths": {
     "title": "Choose your route into Drivest",
-    "intro": "Learners and instructors start differently. Drivest gives learners a simple path into theory and practice, while instructors get a separate setup for profiles, availability preferences, booking flows where enabled, and Instructor Hub.",
+    "intro": "Learners and instructors start differently. Learners go into theory and practice; instructors get setup for profiles, availability, bookings, and Instructor Hub where enabled.",
     "summary": {
       "title": "Two clear starting routes",
-      "text": "Learners can start in the right language and stage. Instructors can set up a public profile, availability, and learner management without extra admin first."
+      "text": "Learners can start in the right language and stage. Instructors can set up a profile, availability, and learner management without extra admin."
     },
     "paths": [
       {
         "id": "learner",
         "title": "Start as a learner",
-        "text": "Start with theory, signs, Highway Code, and mock tests, then move into practice routes, instructor support where enabled, and calmer driving help when you need them.",
+        "text": "Start with theory, signs, Highway Code, and mock tests, then move into practice routes and calmer driving help.",
         "bullets": [
           "Choose your stage and preferred language in a few steps.",
-          "Use English Peek whenever you want to compare the same theory question in English.",
-          "Move from theory into practice routes and instructor search where enabled as your confidence grows.",
-          "Keep bookings, progress, and next-step guidance in one app."
+          "Use English Peek whenever you want the English wording.",
+          "Move from theory into practice routes and instructor search where enabled.",
+          "Keep bookings, progress, and next steps in one app."
         ],
         "cta": "Request learner access",
         "href": "/access-request?plan=free-learning"
@@ -288,11 +288,11 @@
       {
         "id": "instructor",
         "title": "Join as instructor",
-        "text": "Use the instructor route when you want to set up instructor information, onboarding steps, availability preferences, and Instructor Hub tools where enabled.",
+        "text": "Use the instructor route to set up instructor information, availability, and Instructor Hub tools where enabled.",
         "bullets": [
-          "Create your instructor profile and review any onboarding requirements before listing becomes available.",
-          "Set your area, availability preferences, and lesson preferences where listing is enabled.",
-          "Handle lesson requests and track booking or payment updates where those flows are enabled.",
+          "Create your profile and review onboarding requirements.",
+          "Set your area and availability where listing is enabled.",
+          "Handle lesson requests and booking updates where enabled.",
           "Link learners and review progress inside Instructor Hub where enabled."
         ],
         "cta": "Apply as instructor",
@@ -303,35 +303,35 @@
   "why": {
     "title": "Driving support changes by stage.",
     "bullets": [
-      "Before lessons: future learner drivers can start theory, signs, Highway Code, and fines revision early in a format they can actually understand.",
-      "Before test day: practical learners need repetition around a selected centre, clearer coaching context, and instructor options where enabled.",
+      "Before lessons: start theory, signs, Highway Code, and fines earlier.",
+      "Before test day: repeat routes around a selected centre and add instructor support where enabled.",
       "After passing: new drivers need calmer route choice, parking support, and confidence-building guidance."
     ]
   },
   "coreUsps": [
     {
       "title": "Future learner preparation",
-      "text": "Drivest is not only for people already taking lessons. It supports early theory, signs, Highway Code, and fines preparation before practical driving begins."
+      "text": "Drivest supports early theory, signs, Highway Code, and fines prep before practical driving begins."
     },
     {
       "title": "Theory in 32 languages with English Peek",
-      "text": "Learners can study theory in a preferred language, then use English Peek to compare the same question in English before moving on."
+      "text": "Study theory in a preferred language, then use English Peek on the same question."
     },
     {
       "title": "Learn beyond theory",
-      "text": "Drivest now covers Theory, Highway Code, Traffic Signs, and Fines and Penalties study flows instead of a single revision surface."
+      "text": "Drivest covers Theory, Highway Code, Traffic Signs, and Fines instead of one revision tab."
     },
     {
       "title": "Practice routes by centre",
-      "text": "Choose a selected test centre, repeat reconstructed practice routes, receive off-route alerts, and keep offline support where available."
+      "text": "Choose a selected test centre, repeat reconstructed routes, and keep alerts and offline support."
     },
     {
       "title": "New-driver navigation",
-      "text": "Use low-stress route choice, road feature prompts, voice modes, and calmer destination guidance once you move beyond lessons."
+      "text": "Use low-stress route choice, road prompts, voice modes, and calmer guidance after lessons."
     },
     {
       "title": "Mode-aware home screen",
-      "text": "The app home screen surfaces learner stage, current mode, confidence score, and resume flow before users pick a module."
+      "text": "The home screen shows learner stage, current mode, confidence, and resume flow."
     },
     {
       "title": "Instructor discovery where enabled",
@@ -339,27 +339,27 @@
     },
     {
       "title": "Lesson requests and payment visibility",
-      "text": "Track lesson requests, booking states, cancellations, refunds, and payment status where booking features are enabled."
+      "text": "Track lesson requests, bookings, cancellations, refunds, and payment status where enabled."
     },
     {
       "title": "Analytics and readiness tracking",
-      "text": "See theory progress, signs accuracy, route completion, confidence trends, and recommended next steps from real usage."
+      "text": "See theory progress, signs accuracy, route completion, confidence, and next steps."
     },
     {
       "title": "Instructor Hub and linked learners",
-      "text": "Where instructor tools are enabled, instructors can link existing learners, manage availability preferences, review learner progress, and keep operating records together."
+      "text": "Where instructor tools are enabled, instructors can link learners, manage availability, and review progress."
     },
     {
       "title": "Referral journeys",
-      "text": "Learners and instructors can use role-based referral journeys with eligibility checks, tracked status, anti-fraud controls, and qualification rules."
+      "text": "Learners and instructors can use role-based referral journeys with tracked status and qualification rules."
     },
     {
       "title": "Parking companion",
-      "text": "Search parking near a destination, review source confidence, and prefer free-first options before you arrive."
+      "text": "Search parking near a destination, review source confidence, and prefer free-first options."
     },
     {
       "title": "Notifications and trust controls",
-      "text": "Receive booking and activity updates, restore or manage subscriptions, and review module-specific legal guidance when needed."
+      "text": "Receive updates, manage subscriptions, and review module-specific legal guidance when needed."
     },
     {
       "title": "UK-wide coverage",
@@ -368,7 +368,7 @@
   ],
   "languageSupport": {
     "title": "32 supported languages with English Peek",
-    "text": "Study in the language you understand best, then open English Peek to compare the same question in English when you need more confidence.",
+    "text": "Study in the language you understand best, then open English Peek when you want the English wording.",
     "pills": [
       "Arabic",
       "Welsh",
@@ -383,7 +383,7 @@
   },
   "productProof": {
     "title": "Real product workflows already visible in Drivest",
-    "intro": "These screens show current product workflows already visible in the app across learning, practice, navigation, parking, and instructor operations.",
+    "intro": "These screens show current product workflows already visible in the app.",
     "items": [
       {
         "badge": "Theory",
@@ -438,27 +438,27 @@
   "featureGroups": [
     {
       "title": "Learn",
-      "intro": "The learning side of Drivest supports early preparation before practical lessons and continues beyond a single theory tab.",
+      "intro": "Drivest supports early preparation before practical lessons and beyond a single theory tab.",
       "items": [
         {
           "title": "Theory in 32 languages",
-          "text": "Study theory questions in a preferred language and cross-check the English version of the same question when needed."
+          "text": "Study theory in a preferred language and cross-check the same question in English."
         },
         {
           "title": "Highway Code study",
-          "text": "Review Highway Code guidance inside the app as revision support for learner journeys."
+          "text": "Review Highway Code guidance inside the app."
         },
         {
           "title": "Traffic Signs revision",
-          "text": "Use Traffic Signs and Know Your Signs content to reinforce sign meaning and road-reading confidence."
+          "text": "Use Traffic Signs content to build sign meaning and road-reading confidence."
         },
         {
           "title": "Fines and Penalties learning",
-          "text": "Work through educational content that explains penalties, mistakes, and the rules behind them."
+          "text": "Work through penalty content that explains mistakes and the rules behind them."
         },
         {
           "title": "Topic quizzes and mock tests",
-          "text": "Move from short focused quizzes into mock-test mode inside the same theory journey instead of leaving the app flow."
+          "text": "Move from short quizzes into mock tests without leaving the same theory journey."
         },
         {
           "title": "Bookmarks and wrong-answer review",
@@ -476,23 +476,23 @@
       "items": [
         {
           "title": "Selected-centre routes",
-          "text": "Pick a selected centre and practise reconstructed routes that help structure repetition and local familiarity."
+          "text": "Pick a selected centre and practise reconstructed routes for repetition and local familiarity."
         },
         {
           "title": "Off-route detection",
-          "text": "Drivest can detect when a learner leaves the route and clear the state once the route is rejoined."
+          "text": "Know when a learner leaves the route and clear the alert when they rejoin."
         },
         {
           "title": "Offline support",
-          "text": "Download route and hazard packs to keep core practice working when connectivity is weak."
+          "text": "Download route and hazard packs when connectivity is weak."
         },
         {
           "title": "Road feature prompts",
-          "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+          "text": "Receive advisory prompts around roundabouts, lights, crossings, school areas, and similar features."
         },
         {
           "title": "Route issue reporting",
-          "text": "Report closures, stale details, unsafe guidance, or impossible turns so route quality can be reviewed instead of left uncorrected."
+          "text": "Report closures, stale details, unsafe guidance, or impossible turns for review."
         }
       ]
     },
@@ -502,75 +502,75 @@
       "items": [
         {
           "title": "Low-stress route choice",
-          "text": "Where alternatives exist, Drivest can prefer calmer navigation options for lower-confidence drivers, with a visible low-stress routing toggle in trip setup."
+          "text": "Where alternatives exist, Drivest can prefer calmer routes with a visible low-stress toggle."
         },
         {
           "title": "Voice modes",
-          "text": "Switch between voice guidance, alerts-only behaviour, or quieter driving support depending on context."
+          "text": "Switch between voice guidance, alerts-only behaviour, or quieter support."
         },
         {
           "title": "Parking companion",
-          "text": "Search parking near the destination, review council and map-source signals, and choose options before arrival."
+          "text": "Search parking near the destination, review source signals, and choose options before arrival."
         },
         {
           "title": "Scan a parking sign",
-          "text": "Use parking-sign scanning for advisory help on restrictions, times, and payment while still treating the physical sign and road markings as authoritative."
+          "text": "Use parking-sign scanning for advisory help on restrictions, times, and payment."
         },
         {
           "title": "Arrival cues",
-          "text": "Use destination-led parking and arrival reminders while still checking local signage before leaving the vehicle."
+          "text": "Use destination-led parking and arrival reminders while still checking local signage."
         }
       ]
     },
     {
       "title": "Book and teach",
-      "intro": "Instructor features can support discovery, lesson requests, and linked-learner context where this part of the marketplace is enabled.",
+      "intro": "Instructor features support discovery, lesson requests, and linked-learner context where enabled.",
       "items": [
         {
           "title": "Instructor information",
-          "text": "Browse instructor profiles and availability signals instead of relying on off-platform coordination alone."
+          "text": "Browse instructor profiles and availability instead of relying on off-platform coordination."
         },
         {
           "title": "Instructor Hub",
-          "text": "Where instructor tools are enabled, independent instructors can manage linked learners, booking operations, availability preferences, and readiness views."
+          "text": "Where enabled, instructors can manage linked learners, booking operations, availability, and readiness."
         },
         {
           "title": "Availability publishing",
-          "text": "Where listing features are enabled, instructors can publish dated lesson slots with duration controls instead of manually negotiating every booking."
+          "text": "Where listing is enabled, instructors can publish dated lesson slots with duration controls."
         },
         {
           "title": "Bookings and cancellations",
-          "text": "Lesson requests, accepted bookings, reschedules, cancellations, and refund outcomes can be tracked in app where enabled."
+          "text": "Track requests, accepted bookings, reschedules, cancellations, and refunds where enabled."
         },
         {
           "title": "Secure lesson payments",
-          "text": "Eligible lesson requests can use secure payment processing with payment-state visibility and backend reconciliation."
+          "text": "Eligible lesson requests can use secure payments with payment-state visibility."
         }
       ]
     },
     {
       "title": "Track progress",
-      "intro": "Progress, trust, and operational visibility are now part of the product surface.",
+      "intro": "Progress, trust, and operational visibility are part of the product surface.",
       "items": [
         {
           "title": "Learner analytics",
-          "text": "See progress across theory, Highway Code, signs, route completion, and recommendations for what to work on next."
+          "text": "See progress across theory, Highway Code, signs, route completion, and next steps."
         },
         {
           "title": "Linked learner insights",
-          "text": "Instructors can review learner confidence, readiness, and coaching context from linked profiles."
+          "text": "Instructors can review learner confidence, readiness, and coaching context."
         },
         {
           "title": "Notifications",
-          "text": "Receive updates about lessons, booking activity, and account events instead of relying on manual follow-up."
+          "text": "Receive updates about lessons, booking activity, and account events."
         },
         {
           "title": "Referral status visibility",
-          "text": "Learners and instructors can track privacy-safe referral activity and qualification progress without exposing another person's private details."
+          "text": "Track privacy-safe referral activity and qualification progress."
         },
         {
           "title": "Trust controls",
-          "text": "Legal acknowledgements, privacy choices, and module-specific safety guidance are available where they matter."
+          "text": "Legal acknowledgements, privacy choices, and safety guidance appear where they matter."
         }
       ]
     }
@@ -781,57 +781,57 @@
     },
     "centres": {
       "title": "Driving test centres and local practice routes",
-      "intro": "Choose a centre, practise nearby routes, and repeat the road types that usually catch learners out. Drivest routes are reconstructed for learning support only.",
+      "intro": "Choose a centre, repeat nearby routes, and rehearse the road types that usually catch learners out. Routes are reconstructed for learning support only.",
       "summary": {
         "title": "Find a centre and build local familiarity",
-        "text": "Search centres, repeat reconstructed local routes, and use route-aware prompts to make nearby roads feel more familiar before test day."
+        "text": "Search centres, repeat reconstructed local routes, and use route-aware prompts before test day."
       },
       "sections": [
         {
           "title": "What you get around a test centre",
-          "intro": "This is about helping you repeat the local roads and decisions around your centre.",
+          "intro": "Repeat the local roads and decisions around your centre.",
           "items": [
             {
               "title": "Selected-centre routes",
-              "text": "Pick a selected centre and practise reconstructed routes that structure repetition around that area."
+              "text": "Pick a selected centre and practise reconstructed routes around that area."
             },
             {
               "title": "Off-route alerts",
-              "text": "Know when a learner leaves the planned route and clear the alert once the route is rejoined."
+              "text": "Know when a learner leaves the planned route and clear the alert when they rejoin."
             },
             {
               "title": "Offline packs",
-              "text": "Download route and hazard packs to keep core practice working when signal quality drops."
+              "text": "Download route and hazard packs when signal quality drops."
             },
             {
               "title": "Road feature prompts",
-              "text": "Receive advisory prompts around roundabouts, traffic lights, crossings, school areas, and similar mapped features."
+              "text": "Receive advisory prompts around roundabouts, lights, crossings, school areas, and similar features."
             },
             {
               "title": "Route issue reporting",
-              "text": "Report closures, stale guidance, unsafe instructions, or impossible turns from practice use so route quality can be reviewed."
+              "text": "Report closures, stale guidance, unsafe instructions, or impossible turns for review."
             },
             {
               "title": "Parking before arrival",
-              "text": "Check nearby parking options, destination flow, and arrival cues while still confirming the live restrictions on street."
+              "text": "Check nearby parking, destination flow, and arrival cues while still confirming live restrictions."
             },
             {
               "title": "Coverage across the UK",
-              "text": "Public coverage focuses on centres with enough published route depth to make local practice worthwhile."
+              "text": "Public coverage focuses on centres with enough route depth to make local practice worthwhile."
             }
           ]
         },
         {
           "title": "What learners can rehearse before test day",
-          "intro": "The aim is simple: repeat the road patterns that usually make learners hesitate.",
+          "intro": "Repeat the road patterns that usually make learners hesitate.",
           "items": [
             {
               "title": "Roundabouts and lane choice",
-              "text": "Repeat the lane decisions and observation patterns that usually unsettle lower-confidence learners."
+              "text": "Repeat the lane decisions and observation patterns that often unsettle lower-confidence learners."
             },
             {
               "title": "Traffic lights and crossings",
-              "text": "Use route-aware prompts to reinforce spacing, planning, and observation around busy junction types."
+              "text": "Use route-aware prompts to reinforce spacing, planning, and observation around busy junctions."
             },
             {
               "title": "Residential roads and school areas",
@@ -839,7 +839,7 @@
             },
             {
               "title": "Route repetition with feedback context",
-              "text": "Combine repeated local practice with confidence history and broader progress tracking inside the same app."
+              "text": "Combine repeated local practice with confidence history and progress tracking in the same app."
             }
           ]
         }
@@ -851,7 +851,7 @@
           "items": [
             {
               "title": "London centres",
-              "text": "Compare the London centres included in Drivest's published coverage dataset before you move into a single centre page.",
+              "text": "Compare the London centres in Drivest's published coverage dataset before opening a single centre page.",
               "href": "/driving-test-centres/london",
               "cta": "View London hubs"
             },
@@ -863,7 +863,7 @@
             },
             {
               "title": "Birmingham centres",
-              "text": "Use the Birmingham hub when you want a city-level entry point before going to a centre page.",
+              "text": "Use the Birmingham hub when you want a city-level entry point before a centre page.",
               "href": "/driving-test-centres/birmingham",
               "cta": "View Birmingham hubs"
             }
@@ -873,7 +873,7 @@
       "infoSections": [
         {
           "title": "Important route positioning",
-          "text": "Drivest avoids the misleading claims that often appear around route content. Practice routes are reconstructed for learning support only.",
+          "text": "Practice routes are reconstructed for learning support only.",
           "bullets": [
             "Routes are reconstructed or generated for learning and are not official driving test routes.",
             "Learners must always follow live road signs, road markings, and traffic laws.",
@@ -882,12 +882,12 @@
         },
         {
           "title": "Route trust and reporting",
-          "text": "Practice pages are designed to expose more than route names alone. Learners should be able to judge route trust signals and report gaps when the data needs review.",
+          "text": "Practice pages expose route trust signals and let learners report gaps when data needs review.",
           "bullets": [
-            "Route trust metadata can include review date, version, difficulty, source class, confidence, and key challenges where available.",
+            "Route trust metadata can include review date, version, difficulty, source class, confidence, and key challenges.",
             "Learners can report closures, stale details, unsafe guidance, impossible turns, and other route issues.",
-            "Missing-centre and request-another-route flows can flag coverage gaps instead of forcing learners to guess.",
-            "Completed practice can feed route usefulness and currentness feedback back into route quality review."
+            "Missing-centre and request-another-route flows can flag coverage gaps.",
+            "Completed practice can feed usefulness and currentness feedback into route review."
           ]
         }
       ],
@@ -946,15 +946,15 @@
     },
     "instructors": {
       "title": "Independent driving instructors and Instructor Hub",
-      "intro": "Drivest supports instructor discovery, lesson-request flows, and Instructor Hub operations where this part of the product is enabled.",
+      "intro": "Drivest supports instructor discovery, lesson requests, and Instructor Hub operations where enabled.",
       "summary": {
         "title": "Availability varies by rollout and area",
-        "text": "The public site explains instructor information, lesson-request flows, and Instructor Hub operations without implying the same marketplace depth in every area."
+        "text": "The public site explains instructor information and Instructor Hub operations without implying the same marketplace depth in every area."
       },
       "sections": [
         {
           "title": "What instructors can do",
-          "intro": "Instructors need more than a lead form. They need visibility, slot control, and clean follow-up.",
+          "intro": "Instructors need visibility, slot control, and clean follow-up.",
           "items": [
             {
               "title": "Create a profile learners can browse",
@@ -962,29 +962,29 @@
             },
             {
               "title": "Set area, slots, and lesson preferences",
-              "text": "Publish your coverage area and availability preferences where listing features are enabled so learners can see if you are a fit."
+              "text": "Publish your coverage area and availability where listing features are enabled."
             },
             {
               "title": "Receive lesson requests in app",
-              "text": "Turn visibility into lesson requests where that flow is enabled without relying on scattered chats."
+              "text": "Turn visibility into lesson requests where that flow is enabled."
             },
             {
               "title": "Link learners in Instructor Hub",
-              "text": "Keep learner context, progress, and readiness in one place where instructor tools are enabled."
+              "text": "Keep learner context, progress, and readiness in one place."
             },
             {
               "title": "Track bookings and payment status",
-              "text": "Review booking changes, payment updates, and lesson history where those flows are enabled."
+              "text": "Review booking changes, payment updates, and lesson history where enabled."
             },
             {
               "title": "Share referral journeys",
-              "text": "Invite learners or other instructors through role-based referral flows with tracked status, eligibility checks, and qualification rules."
+              "text": "Invite learners or other instructors through role-based referral flows."
             }
           ]
         },
         {
           "title": "What learners can do",
-          "intro": "Where learner-facing instructor search is enabled, learners can explore and request lessons without leaving the same app journey they use for theory and practice.",
+          "intro": "Where instructor search is enabled, learners can explore and request lessons without leaving the same app journey.",
           "items": [
             {
               "title": "Browse instructor information",
@@ -992,11 +992,11 @@
             },
             {
               "title": "Compare availability",
-              "text": "Use visible availability and lesson preferences to narrow down the right fit."
+              "text": "Use availability and lesson preferences to narrow down the right fit."
             },
             {
               "title": "Request lesson slots",
-              "text": "Turn discovery into a lesson request inside the same platform."
+              "text": "Turn discovery into a lesson request in the same platform."
             },
             {
               "title": "Track booking changes",
@@ -1004,7 +1004,7 @@
             },
             {
               "title": "Keep progress in context",
-              "text": "Learners and instructors can keep coaching context connected to the rest of the journey."
+              "text": "Keep coaching context connected to the rest of the journey."
             }
           ]
         }
@@ -1012,7 +1012,7 @@
       "infoSections": [
         {
           "title": "Referral journeys where enabled",
-          "text": "Drivest supports role-based referral paths for learners and instructors, with tracked invite status and conditional reward qualification.",
+          "text": "Drivest supports role-based referral paths for learners and instructors.",
           "bullets": [
             "Instructor to learner",
             "Instructor to instructor",
@@ -1023,16 +1023,16 @@
         },
         {
           "title": "Review and trust signals",
-          "text": "Where the review surface is enabled, instructor trust signals are tied to real Drivest activity rather than anonymous public ratings.",
+          "text": "Where enabled, instructor trust signals are tied to real Drivest activity rather than anonymous public ratings.",
           "bullets": [
             "Visible instructor reviews are linked to completed Drivest lessons.",
             "Instructors can respond to visible reviews.",
-            "Verification, profile, and review visibility can vary by rollout, moderation state, and operational readiness."
+            "Verification, profile, and review visibility can vary by rollout, moderation state, and readiness."
           ]
         },
         {
           "title": "Booking terms where enabled",
-          "text": "Independent instructors deliver the lessons. Where booking features are enabled, fees, payment handling, and cancellation terms are shown before a learner confirms a request.",
+          "text": "Independent instructors deliver the lessons. Where booking features are enabled, fees, payment handling, and cancellation terms are shown before confirmation.",
           "bullets": [
             "Booking-specific terms are shown before confirmation",
             "Any fees, payment timing, and cancellation handling are disclosed in the relevant flow",
@@ -1041,7 +1041,7 @@
         },
         {
           "title": "Availability and positioning",
-          "text": "Instructor pages should stay neutral about local depth and availability unless the product can prove it in that area.",
+          "text": "Instructor pages should stay neutral about local depth and availability unless the product can prove it.",
           "bullets": [
             "Marketplace depth and lesson availability can vary by location and rollout stage",
             "Lesson-request flows and payments should be described as where enabled",
