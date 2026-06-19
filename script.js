@@ -348,7 +348,7 @@ function renderHome(m) {
 
     ${renderHomeStartSplit(m.startPaths, m, "home-route-section")}
 
-    ${renderLinkCardsSection(m.searchIntentLinks, "home-intent-section")}
+    ${renderHomeIntentDoorsSection(m.searchIntentLinks, "home-intent-section")}
 
     ${renderTrustFrameworkSection(m.trustFramework, "home-trust-section")}
 
@@ -450,19 +450,26 @@ function renderFeatures(m) {
   }));
   return `
     <section class="section reveal feature-hero">
-      <div class="feature-hero-grid">
-        <div>
+      <div class="feature-hero-grid feature-hero-grid-showcase">
+        <div class="feature-hero-copy">
           ${m.connectedJourney?.eyebrow ? `<p class="eyebrow">${escapeHtml(m.connectedJourney.eyebrow)}</p>` : ""}
           <h1>${escapeHtml(featuresTitle)}</h1>
-          <p>${escapeHtml(m.connectedJourney?.intro || m.hero.subhead)}</p>
+          <p class="hero-lead">${escapeHtml(m.connectedJourney?.intro || m.hero.subhead)}</p>
+          <div class="pill-row">
+            ${renderPills([
+              "Theory prep",
+              "Selected-centre practice",
+              "Calmer first drives",
+              "Instructor flows where enabled"
+            ])}
+          </div>
+          <div class="btn-row feature-hero-actions">
+            ${button(m.hero.primaryCtas?.[0] || "Download on the App Store", downloadHref(m), "primary", "feature-hero-link")}
+            ${button("View test-centre practice", PATHS.centres, "secondary", "feature-hero-link")}
+          </div>
+          ${renderHeroProofGrid(m)}
         </div>
-        <div class="feature-photo">
-          ${renderImg(PHOTO_URLS.appNavigationOverview, "Drivest navigation overview screen", {
-            loading: "eager",
-            fetchPriority: "high",
-            sizes: "(max-width: 980px) 92vw, 420px"
-          })}
-        </div>
+        ${renderFeatureHeroVisual(m)}
       </div>
     </section>
 
@@ -888,6 +895,35 @@ function renderCardGridSection(section) {
   `;
 }
 
+function renderFeatureHeroVisual(m) {
+  const summary = coverageSummary(m);
+  return `
+    <div class="feature-hero-showcase reveal-item">
+      <div class="feature-hero-stat-strip">
+        ${renderShowcaseStat("32", "languages")}
+        ${renderShowcaseStat(formatNumber(summary?.centres || 340), "centres")}
+        ${renderShowcaseStat(formatNumber(summary?.routes || 3000), "routes")}
+      </div>
+      <div class="feature-hero-phone-pair">
+        ${renderPhoneShot(
+          PHOTO_URLS.appHomeLearner,
+          "Drivest learner home screen.",
+          "Mode-aware learner home",
+          "phone-shot-hero feature-hero-phone",
+          "eager"
+        )}
+        ${renderPhoneShot(
+          PHOTO_URLS.appNavigationOverview,
+          "Drivest navigation overview screen.",
+          "Navigation and parking support",
+          "phone-shot-hero feature-hero-phone feature-hero-phone-offset",
+          "eager"
+        )}
+      </div>
+    </div>
+  `;
+}
+
 function renderJourneySystemSection(config, sectionClass = "") {
   if (!config?.steps?.length) return "";
   return `
@@ -969,39 +1005,54 @@ function renderHomeModulesSection(config) {
   if (!config?.groups?.length) return "";
   return `
     <section class="section reveal">
-      <h2>${escapeHtml(config.title)}</h2>
-      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
-      ${config.summary ? `
-        <div class="panel reveal-item">
-          <p class="panel-title">${escapeHtml(config.summary.title)}</p>
-          <p>${escapeHtml(config.summary.text)}</p>
-        </div>
-      ` : ""}
-      <div class="grid two-up">
-        ${config.groups
-          .map(
-            (group) => `
-          <article class="card reveal-item">
-            <h3>${escapeHtml(group.title)}</h3>
-            <div class="grid two-up compact-grid">
-              ${(group.items || [])
+      <div class="home-modules-showcase panel reveal-item">
+        <div class="home-modules-showcase-grid">
+          <div class="home-modules-phone">
+            ${renderPhoneShot(
+              PHOTO_URLS.appHomeLearner,
+              "Drivest learner home screen showing theory, practice, navigation, and instructor modules.",
+              "Learner home screen",
+              "phone-shot-proof home-modules-phone-shot"
+            )}
+          </div>
+          <div class="home-modules-copy">
+            <p class="eyebrow">Mode-aware home</p>
+            <h2>${escapeHtml(config.title)}</h2>
+            ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+            ${config.summary ? `
+              <div class="home-modules-summary">
+                <p class="panel-title">${escapeHtml(config.summary.title)}</p>
+                <p>${escapeHtml(config.summary.text)}</p>
+              </div>
+            ` : ""}
+            <div class="home-modules-columns">
+              ${config.groups
                 .map(
-                  (item) => `
-                <div class="module-tile">
-                  <div class="module-tile-head">
-                    <span class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</span>
-                    ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
+                  (group) => `
+                <article class="home-modules-column">
+                  <p class="panel-title">${escapeHtml(group.title)}</p>
+                  <div class="home-modules-list">
+                    ${(group.items || [])
+                      .map(
+                        (item) => `
+                      <div class="module-tile">
+                        <div class="module-tile-head">
+                          <span class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</span>
+                          ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
+                        </div>
+                        <p>${escapeHtml(item.text)}</p>
+                      </div>
+                    `
+                      )
+                      .join("")}
                   </div>
-                  <p>${escapeHtml(item.text)}</p>
-                </div>
+                </article>
               `
                 )
                 .join("")}
             </div>
-          </article>
-        `
-          )
-          .join("")}
+          </div>
+        </div>
       </div>
     </section>
   `;
@@ -1061,16 +1112,121 @@ function renderStartPathsSection(config) {
 function renderFeatureGroups(groups) {
   if (!groups?.length) return "";
   return groups
-    .map(
-      (group) => `
-    <section class="section reveal">
-      <h2>${escapeHtml(group.title)}</h2>
-      ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
-      ${renderFeatureCards(group.items || [])}
-    </section>
-  `
-    )
+    .map((group, index) => renderFeatureShowcaseSection(group, index))
     .join("");
+}
+
+function featureGroupVisualMeta(title) {
+  const t = String(title || "").toLowerCase();
+  if (t.includes("learn")) {
+    return {
+      image: PHOTO_URLS.appTheoryMastery,
+      alt: "Drivest theory mastery screen.",
+      caption: "Theory mastery and revision flow",
+      eyebrow: "Before lessons"
+    };
+  }
+  if (t.includes("pract")) {
+    return {
+      image: PHOTO_URLS.appPracticeCentres,
+      alt: "Drivest practice centres screen.",
+      caption: "Selected-centre route entry point",
+      eyebrow: "Around the test centre"
+    };
+  }
+  if (t.includes("navigate")) {
+    return {
+      image: PHOTO_URLS.appNavigationOverview,
+      alt: "Drivest navigation overview screen.",
+      caption: "Navigation, prompts, and parking support",
+      eyebrow: "First independent drives"
+    };
+  }
+  if (t.includes("book") || t.includes("teach")) {
+    return {
+      image: PHOTO_URLS.appInstructorHub,
+      alt: "Drivest Instructor Hub screen.",
+      caption: "Instructor Hub and booking operations",
+      eyebrow: "Where instructor flows are enabled"
+    };
+  }
+  return {
+    image: PHOTO_URLS.appHomeLearner,
+    alt: "Drivest learner home screen.",
+    caption: "Progress, confidence, and next steps",
+    eyebrow: "Signals that stay connected"
+  };
+}
+
+function renderFeatureShowcaseSection(group, index) {
+  const meta = featureGroupVisualMeta(group.title);
+  const reverseClass = index % 2 ? " feature-showcase-reverse" : "";
+  return `
+    <section class="section reveal feature-showcase-section">
+      <div class="feature-showcase${reverseClass}">
+        <div class="feature-showcase-copy reveal-item">
+          ${meta.eyebrow ? `<p class="eyebrow">${escapeHtml(meta.eyebrow)}</p>` : ""}
+          <h2>${escapeHtml(group.title)}</h2>
+          ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
+          <div class="feature-showcase-points">
+            ${(group.items || [])
+              .map(
+                (item) => `
+              <article class="feature-showcase-point">
+                <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.text)}</p>
+              </article>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+        <div class="feature-showcase-visual reveal-item">
+          ${renderPhoneShot(meta.image, meta.alt, meta.caption, "phone-shot-proof feature-showcase-phone")}
+          <div class="feature-showcase-tags">
+            ${(group.items || [])
+              .map((item) => `<span class="pill">${escapeHtml(item.title)}</span>`)
+              .join("")}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderHomeIntentDoorsSection(config, sectionClass = "") {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
+      <h2>${escapeHtml(config.title)}</h2>
+      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <div class="intent-door-grid">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="intent-door card reveal-item">
+            <div class="intent-door-top">
+              <span class="intent-door-kicker">${escapeHtml(item.cta || "Explore")}</span>
+              ${renderFeatureIcon(item.title)}
+            </div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.text)}</p>
+            ${(item.bullets || []).length ? `
+              <div class="intent-door-bullets">
+                ${(item.bullets || [])
+                  .slice(0, 2)
+                  .map((bullet) => `<span>${escapeHtml(bullet)}</span>`)
+                  .join("")}
+              </div>
+            ` : ""}
+            ${item.cta ? `<div class="btn-row">${button(item.cta, item.href || PATHS.home, "secondary")}</div>` : ""}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
 }
 
 function renderMobileCtaBar(m) {

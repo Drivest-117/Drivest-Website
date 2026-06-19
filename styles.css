@@ -2067,6 +2067,258 @@ li {
   display: block;
 }
 
+.feature-hero-grid-showcase {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  align-items: start;
+}
+
+.feature-hero-copy {
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.feature-hero-showcase {
+  display: grid;
+  gap: 14px;
+  align-self: start;
+}
+
+.feature-hero-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.feature-hero-stat-strip .hero-stat-card {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 249, 0.96), rgba(249, 242, 234, 0.96)),
+    #fff;
+}
+
+.feature-hero-phone-pair {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 18px;
+  min-height: 300px;
+}
+
+.feature-hero-phone {
+  max-width: 180px;
+}
+
+.feature-hero-phone-offset {
+  transform: translateY(34px);
+}
+
+.home-modules-showcase {
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(245, 237, 227, 0.96));
+}
+
+.home-modules-showcase-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.home-modules-phone {
+  display: flex;
+  justify-content: center;
+}
+
+.home-modules-phone-shot {
+  max-width: 240px;
+}
+
+.home-modules-copy > h2 {
+  margin-bottom: 12px;
+}
+
+.home-modules-summary {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.home-modules-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.home-modules-column {
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.home-modules-list {
+  display: grid;
+  gap: 10px;
+}
+
+.intent-door-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.intent-door {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.15), transparent 30%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(246, 238, 228, 0.96));
+}
+
+.intent-door:nth-child(2) {
+  background:
+    radial-gradient(circle at top right, rgba(84, 165, 255, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(252, 253, 255, 0.96), rgba(239, 245, 252, 0.96));
+}
+
+.intent-door:nth-child(3) {
+  background:
+    radial-gradient(circle at top right, rgba(255, 187, 122, 0.18), transparent 32%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(247, 239, 231, 0.96));
+}
+
+.intent-door:nth-child(4) {
+  background:
+    radial-gradient(circle at top right, rgba(169, 145, 255, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(252, 250, 255, 0.96), rgba(244, 239, 251, 0.96));
+}
+
+.intent-door-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.intent-door-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 106, 26, 0.1);
+  color: var(--brand-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.intent-door h3 {
+  margin: 0;
+}
+
+.intent-door p {
+  margin: 0;
+}
+
+.intent-door-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.intent-door-bullets span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.intent-door .btn-row {
+  margin-top: auto;
+}
+
+.feature-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(300px, 0.98fr);
+  gap: 22px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.13), transparent 28%),
+    linear-gradient(180deg, rgba(255, 253, 249, 0.98), rgba(245, 237, 227, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.feature-showcase-reverse .feature-showcase-copy {
+  order: 2;
+}
+
+.feature-showcase-reverse .feature-showcase-visual {
+  order: 1;
+}
+
+.feature-showcase-copy {
+  min-width: 0;
+}
+
+.feature-showcase-copy > h2 {
+  margin-bottom: 12px;
+}
+
+.feature-showcase-points {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.feature-showcase-point {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.feature-showcase-point h3 {
+  margin: 0 0 8px;
+}
+
+.feature-showcase-point p {
+  margin: 0;
+}
+
+.feature-showcase-visual {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.feature-showcase-phone {
+  max-width: 250px;
+}
+
+.feature-showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 360px;
+}
+
 .connected-journey-panel {
   position: relative;
   overflow: hidden;
@@ -2817,12 +3069,32 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .feature-hero-grid-showcase,
+  .home-modules-showcase-grid,
+  .feature-showcase {
+    grid-template-columns: 1fr;
+  }
+
   .trust-framework-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .hero-showcase-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-hero-phone-pair {
+    justify-content: flex-start;
+    min-height: 0;
+  }
+
+  .feature-hero-phone-offset {
+    transform: translateY(18px);
+  }
+
+  .home-modules-columns,
+  .intent-door-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero-phone-cluster {
@@ -3023,6 +3295,32 @@ small {
   .connected-journey-track,
   .trust-framework-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-hero-stat-strip,
+  .home-modules-columns,
+  .intent-door-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-hero-phone-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+
+  .feature-hero-phone,
+  .feature-showcase-phone,
+  .home-modules-phone-shot {
+    max-width: none;
+  }
+
+  .feature-hero-phone-offset {
+    transform: none;
+  }
+
+  .feature-showcase {
+    padding: 20px;
   }
 
   .connected-journey-step-head {
