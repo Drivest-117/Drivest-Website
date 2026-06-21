@@ -444,6 +444,8 @@ function renderHomeSignalSection(m) {
 
 function renderFeatures(m) {
   const featuresTitle = m.pageSeo?.features?.title || m.ui.nav.features;
+  const featureHeroTitle = m.connectedJourney?.heroTitle || featuresTitle;
+  const featureHeroLead = m.connectedJourney?.heroLead || m.connectedJourney?.intro || m.hero.subhead;
   const featureGroups = (m.featureGroups || []).map((group) => ({
     ...group,
     items: (group.items || []).slice(0, 3)
@@ -453,21 +455,19 @@ function renderFeatures(m) {
       <div class="feature-hero-grid feature-hero-grid-showcase">
         <div class="feature-hero-copy">
           ${m.connectedJourney?.eyebrow ? `<p class="eyebrow">${escapeHtml(m.connectedJourney.eyebrow)}</p>` : ""}
-          <h1>${escapeHtml(featuresTitle)}</h1>
-          <p class="hero-lead">${escapeHtml(m.connectedJourney?.intro || m.hero.subhead)}</p>
+          <h1>${escapeHtml(featureHeroTitle)}</h1>
+          <p class="hero-lead">${escapeHtml(featureHeroLead)}</p>
           <div class="pill-row">
             ${renderPills([
               "Theory prep",
               "Selected-centre practice",
-              "Calmer first drives",
-              "Instructor flows where enabled"
+              "Calmer first drives"
             ])}
           </div>
           <div class="btn-row feature-hero-actions">
             ${button(m.hero.primaryCtas?.[0] || "Download on the App Store", downloadHref(m), "primary", "feature-hero-link")}
             ${button("View test-centre practice", PATHS.centres, "secondary", "feature-hero-link")}
           </div>
-          ${renderHeroProofGrid(m)}
         </div>
         ${renderFeatureHeroVisual(m)}
       </div>
@@ -904,21 +904,35 @@ function renderFeatureHeroVisual(m) {
         ${renderShowcaseStat(formatNumber(summary?.centres || 340), "centres")}
         ${renderShowcaseStat(formatNumber(summary?.routes || 3000), "routes")}
       </div>
-      <div class="feature-hero-phone-pair">
-        ${renderPhoneShot(
-          PHOTO_URLS.appHomeLearner,
-          "Drivest learner home screen.",
-          "Mode-aware learner home",
-          "phone-shot-hero feature-hero-phone",
-          "eager"
-        )}
-        ${renderPhoneShot(
-          PHOTO_URLS.appNavigationOverview,
-          "Drivest navigation overview screen.",
-          "Navigation and parking support",
-          "phone-shot-hero feature-hero-phone feature-hero-phone-offset",
-          "eager"
-        )}
+      <div class="feature-hero-stage">
+        <div class="feature-hero-main-shot">
+          ${renderPhoneShot(
+            PHOTO_URLS.appHomeLearner,
+            "Drivest learner home screen.",
+            "Mode-aware learner home",
+            "phone-shot-hero feature-hero-phone-main",
+            "eager"
+          )}
+        </div>
+        <article class="feature-hero-detail-card">
+          <p class="panel-title">Calmer first drives</p>
+          <h3>Navigation, prompts, and arrival support</h3>
+          <p>Keep newer-driver guidance, road prompts, and destination support visible without leaving the same learner journey.</p>
+          <div class="feature-hero-detail-screen">
+            ${renderImg(PHOTO_URLS.appNavigationOverview, "Drivest navigation overview screen.", {
+              loading: "eager",
+              fetchPriority: "high",
+              sizes: "(max-width: 980px) 92vw, 320px"
+            })}
+          </div>
+          <div class="pill-row feature-hero-detail-pills">
+            ${renderPills([
+              "Low-stress guidance",
+              "Road prompts",
+              "Parking support"
+            ])}
+          </div>
+        </article>
       </div>
     </div>
   `;

@@ -474,6 +474,8 @@ body.nav-open {
 
 .phone-shot-frame img {
   width: 100%;
+  height: auto;
+  object-fit: contain;
   display: block;
   border-radius: 28px;
 }
@@ -2068,18 +2070,39 @@ li {
 }
 
 .feature-hero-grid-showcase {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
   align-items: start;
 }
 
 .feature-hero-copy {
+  display: grid;
+  gap: 14px;
   min-width: 0;
   padding-top: 8px;
 }
 
+.feature-hero-copy h1,
+.feature-hero-copy .hero-lead,
+.feature-hero-copy .pill-row {
+  margin: 0;
+}
+
+.feature-hero-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(30px, 3.7vw, 42px);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.feature-hero-copy .hero-lead {
+  max-width: 34ch;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
 .feature-hero-showcase {
   display: grid;
-  gap: 14px;
+  gap: 12px;
   align-self: start;
 }
 
@@ -2095,20 +2118,74 @@ li {
     #fff;
 }
 
-.feature-hero-phone-pair {
+.feature-hero-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(220px, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.feature-hero-main-shot {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: 18px;
-  min-height: 300px;
+  justify-content: center;
+  align-items: center;
 }
 
-.feature-hero-phone {
-  max-width: 180px;
+.feature-hero-phone-main {
+  max-width: 184px;
 }
 
-.feature-hero-phone-offset {
-  transform: translateY(34px);
+.feature-hero-detail-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 26, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 239, 229, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.feature-hero-detail-card h3 {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 21px;
+  line-height: 1.12;
+}
+
+.feature-hero-detail-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.feature-hero-detail-screen {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 27, 39, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 8px;
+}
+
+.feature-hero-detail-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.feature-hero-detail-pills {
+  margin-top: 0;
+}
+
+.feature-hero-detail-pills .pill {
+  font-size: 11px;
+ }
+
+.feature-hero-actions {
+  margin-top: 2px;
 }
 
 .home-modules-showcase {
@@ -3083,13 +3160,8 @@ small {
     grid-template-columns: 1fr;
   }
 
-  .feature-hero-phone-pair {
-    justify-content: flex-start;
-    min-height: 0;
-  }
-
-  .feature-hero-phone-offset {
-    transform: translateY(18px);
+  .feature-hero-stage {
+    grid-template-columns: minmax(0, 0.68fr) minmax(220px, 1fr);
   }
 
   .home-modules-columns,
@@ -3303,20 +3375,20 @@ small {
     grid-template-columns: 1fr;
   }
 
-  .feature-hero-phone-pair {
+  .feature-hero-stage {
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: stretch;
   }
 
-  .feature-hero-phone,
-  .feature-showcase-phone,
-  .home-modules-phone-shot {
+  .feature-hero-copy h1,
+  .feature-hero-copy .hero-lead {
     max-width: none;
   }
 
-  .feature-hero-phone-offset {
-    transform: none;
+  .feature-hero-phone-main,
+  .feature-showcase-phone,
+  .home-modules-phone-shot {
+    max-width: none;
   }
 
   .feature-showcase {
