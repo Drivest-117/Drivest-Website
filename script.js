@@ -117,8 +117,10 @@ function finalizePageChrome() {
   const yearNode = document.getElementById("year");
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
   setupAnimations();
+  setupFeatureShowcases();
   setupProofCarousels();
   setActiveNav();
+  setupBackNav();
   setupMobileNav();
 }
 
@@ -235,6 +237,7 @@ function renderShellStart(m) {
       </div>
     </header>
     <main class="container main-content">
+      ${renderPageNavRail(m)}
   `;
 }
 
@@ -249,6 +252,20 @@ function renderShellEnd(m) {
       if ([PATHS.features, PATHS.pricing, PATHS.start, PATHS.faq].includes(link.href)) return false;
       return all.findIndex((candidate) => candidate.href === link.href) === index;
     });
+  const footerLinkMap = new Map(footerExtras.map((link) => [link.href, link.label]));
+  const primaryLinks = [
+    { href: PATHS.features, label: m.ui.nav.features },
+    { href: PATHS.centres, label: m.ui.nav.testCentres || "Test Centres" },
+    { href: PATHS.instructors, label: m.ui.nav.instructors || "Instructors" },
+    { href: PATHS.pricing, label: m.ui.nav.pricing },
+    { href: PATHS.faq, label: m.ui.nav.faq },
+    { href: PATHS.download, label: footerLinkMap.get(PATHS.download) || m.ui.actions.prepare || "Get the app" }
+  ];
+  const utilityLinks = [
+    { href: PATHS.contact, label: footerLinkMap.get(PATHS.contact) || "Contact" },
+    { href: PATHS.privacy, label: footerLinkMap.get(PATHS.privacy) || "Privacy policy" },
+    { href: PATHS.terms, label: footerLinkMap.get(PATHS.terms) || "Terms and conditions" }
+  ];
   return `
     </main>
     ${renderMobileCtaBar(m)}
@@ -260,34 +277,72 @@ function renderShellEnd(m) {
             sizes: "178px"
           })}
           <p class="footer-summary">${escapeHtml(coverageLineText(m))}</p>
+          <div class="footer-purpose-row">
+            ${m.threeTabs.tabs.map((t) => `<span class="footer-purpose-pill">${escapeHtml(t.title)}</span>`).join("")}
+          </div>
           <p class="footer-muted">${escapeHtml(m.hero.trustLine)}</p>
           <p class="footer-contact"><a href="mailto:${escapeAttr(supportEmail)}">${escapeHtml(m.footer.contact)}</a></p>
           <small>&copy; <span id="year"></span> ${escapeHtml(m.ui.brand)}</small>
         </div>
-        <div class="footer-col">
+        <div class="footer-col footer-nav-col">
           <h4>Explore</h4>
-          <div class="footer-links">
-            <a href="${PATHS.features}">${escapeHtml(m.ui.nav.features)}</a>
-            <a href="${PATHS.pricing}">${escapeHtml(m.ui.nav.pricing)}</a>
-            <a href="${PATHS.start}">${escapeHtml(m.ui.nav.gettingStarted)}</a>
-            <a href="${PATHS.faq}">${escapeHtml(m.ui.nav.faq)}</a>
-            ${footerExtras
-              .map((link) => {
-                const external = link.href.startsWith("http") || link.href.startsWith("mailto:");
-                const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
-                return `<a href="${escapeAttr(link.href)}"${attrs}>${escapeHtml(link.label)}</a>`;
-              })
+          <div class="footer-link-grid">
+            ${primaryLinks
+              .map(
+                (link) => `
+              <a class="footer-link-tile" href="${escapeAttr(link.href)}">
+                <span>${escapeHtml(link.label)}</span>
+              </a>
+            `
+              )
               .join("")}
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Built for drivers</h4>
-          <ul class="footer-list">
-            ${m.threeTabs.tabs.map((t) => `<li>${escapeHtml(t.title)}: ${escapeHtml(t.line1)}</li>`).join("")}
-          </ul>
+        <div class="footer-col footer-support-col">
+          <h4>Support and legal</h4>
+          <p class="footer-support-copy">Use the support inbox for product, privacy, and published coverage questions.</p>
+          <div class="footer-utility-links">
+            ${utilityLinks.map((link) => `<a href="${escapeAttr(link.href)}">${escapeHtml(link.label)}</a>`).join("")}
+          </div>
         </div>
       </div>
     </footer>
+  `;
+}
+
+function renderPageNavRail(m, currentPage = page, centreId = document.body.dataset.centreId) {
+  const nav = pageNavConfig(currentPage, m, centreId);
+  const crumbs = (nav.trail || [])
+    .map((item, index, all) => {
+      const last = index === all.length - 1;
+      const label = escapeHtml(item.label);
+      const node =
+        item.href && !last
+          ? `<a href="${escapeAttr(item.href)}">${label}</a>`
+          : `<span${last ? ' class="page-breadcrumb-current" aria-current="page"' : ""}>${label}</span>`;
+      if (last) return node;
+      return `${node}<span class="page-breadcrumb-separator" aria-hidden="true">/</span>`;
+    })
+    .join("");
+
+  return `
+    <div class="page-nav-rail reveal-item" aria-label="Page navigation">
+      <a
+        class="page-nav-back is-disabled"
+        href="${escapeAttr(nav.fallbackHref)}"
+        data-nav-back
+        aria-label="Go back"
+        aria-disabled="true"
+        tabindex="-1"
+      >
+        <span class="page-nav-back-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/><path d="M9 12h10"/></svg>
+        </span>
+      </a>
+      <nav class="page-breadcrumb" aria-label="Breadcrumb">
+        ${crumbs}
+      </nav>
+    </div>
   `;
 }
 
@@ -340,21 +395,14 @@ function renderHome(m) {
         </div>
         <div class="hero-visual reveal-item">${renderHeroShowcase(m)}</div>
       </div>
+      <div class="hero-stat-strip reveal-item">
+        ${renderHomeSignalMetricCards(m)}
+      </div>
     </section>
-
-    ${renderHomeSignalSection(m)}
-
-    ${renderJourneySystemSection(m.connectedJourney, "home-journey-section")}
 
     ${renderHomeStartSplit(m.startPaths, m, "home-route-section")}
 
     ${renderHomeIntentDoorsSection(m.searchIntentLinks, "home-intent-section")}
-
-    ${renderTrustFrameworkSection(m.trustFramework, "home-trust-section")}
-
-    ${renderLaunchStatusSection(m.launchStatus, m, "home-launch-section")}
-
-    ${renderLanguageSupportSection(m.languageSupport, "home-language-section")}
   `;
 }
 
@@ -376,9 +424,9 @@ function renderLaunchStatusSection(config, m, sectionClass = "") {
   `;
 }
 
-function renderHomeSignalSection(m) {
+function homeSignalMetrics(m) {
   const summary = coverageSummary(m);
-  const metrics = [
+  return [
     {
       className: "home-signal-metric-language",
       value: "32",
@@ -404,96 +452,33 @@ function renderHomeSignalSection(m) {
       text: "Four referral paths for learners and instructors."
     }
   ];
+}
 
-  return `
-    <section class="section reveal home-signal-section">
-      <div class="home-signal-grid">
-        <article class="home-signal-card home-signal-card-primary reveal-item">
-          <p class="home-signal-kicker">Why this site feels different</p>
-          <h2>${escapeHtml(m.why?.title || "Driving support changes by stage.")}</h2>
-          <p class="home-signal-lead">${escapeHtml(m.press?.oneLiner || m.hero?.subhead || "")}</p>
-          <div class="home-signal-list">
-            ${(m.why?.bullets || [])
-              .slice(0, 3)
-              .map(
-                (bullet, index) => `
-              <div class="home-signal-list-item">
-                <span class="home-signal-list-index">0${index + 1}</span>
-                <p>${escapeHtml(bullet)}</p>
-              </div>
-            `
-              )
-              .join("")}
-          </div>
+function renderHomeSignalMetricCards(m) {
+  return homeSignalMetrics(m)
+    .map(
+      (metric) => `
+        <article class="home-signal-card home-signal-metric ${escapeAttr(metric.className)}">
+          <span class="home-signal-value">${escapeHtml(metric.value)}</span>
+          <span class="home-signal-label">${escapeHtml(metric.label)}</span>
+          <p>${escapeHtml(metric.text)}</p>
         </article>
-        ${metrics
-          .map(
-            (metric) => `
-          <article class="home-signal-card home-signal-metric ${escapeAttr(metric.className)} reveal-item">
-            <span class="home-signal-value">${escapeHtml(metric.value)}</span>
-            <span class="home-signal-label">${escapeHtml(metric.label)}</span>
-            <p>${escapeHtml(metric.text)}</p>
-          </article>
-        `
-          )
-          .join("")}
-      </div>
-    </section>
-  `;
+      `
+    )
+    .join("");
 }
 
 function renderFeatures(m) {
-  const featuresTitle = m.pageSeo?.features?.title || m.ui.nav.features;
-  const featureHeroTitle = m.connectedJourney?.heroTitle || featuresTitle;
-  const featureHeroLead = m.connectedJourney?.heroLead || m.connectedJourney?.intro || m.hero.subhead;
-  const featureGroups = (m.featureGroups || []).map((group) => ({
+  const featureGroups = (m.featureGroups || [])
+    .slice(0, 4)
+    .map((group) => ({
     ...group,
     items: (group.items || []).slice(0, 3)
   }));
   return `
-    <section class="section reveal feature-hero">
-      <div class="feature-hero-grid feature-hero-grid-showcase">
-        <div class="feature-hero-copy">
-          ${m.connectedJourney?.eyebrow ? `<p class="eyebrow">${escapeHtml(m.connectedJourney.eyebrow)}</p>` : ""}
-          <h1>${escapeHtml(featureHeroTitle)}</h1>
-          <p class="hero-lead">${escapeHtml(featureHeroLead)}</p>
-          <div class="pill-row">
-            ${renderPills([
-              "Theory prep",
-              "Selected-centre practice",
-              "Calmer first drives"
-            ])}
-          </div>
-          <div class="btn-row feature-hero-actions">
-            ${button(m.hero.primaryCtas?.[0] || "Download on the App Store", downloadHref(m), "primary", "feature-hero-link")}
-            ${button("View test-centre practice", PATHS.centres, "secondary", "feature-hero-link")}
-          </div>
-        </div>
-        ${renderFeatureHeroVisual(m)}
-      </div>
-    </section>
-
-    ${renderJourneySystemSection(m.connectedJourney)}
-
-    ${renderHomeModulesSection(m.homeModules)}
-
-    <section class="section reveal">
-      <h2>Quick product scan</h2>
-      <p class="section-intro">The feature page stays focused on the surfaces most people need to understand quickly.</p>
-      ${renderFeatureCards((m.coreUsps || []).slice(0, 8))}
-    </section>
-
     ${renderFeatureGroups(featureGroups)}
 
     ${renderProductProofSection(m.productProof)}
-
-    ${renderTrustFrameworkSection(m.trustFramework)}
-
-    ${renderSafetySection(m)}
-
-    ${renderLanguageSupportSection(m.languageSupport)}
-
-    ${renderLinkCardsSection(m.searchIntentLinks)}
   `;
 }
 
@@ -543,58 +528,124 @@ function renderPricing(m) {
   const pricingTitle = m.pageSeo?.pricing?.title || m.pricing.title;
   return `
     <section class="section reveal feature-hero pricing-hero">
-      <div class="feature-hero-grid pricing-hero-grid">
+      <div class="pricing-hero-layout">
         <div class="pricing-hero-copy">
-          <p class="eyebrow">Free first, upgrade by stage</p>
+          <p class="eyebrow">Simple plans by stage</p>
           <h1>${escapeHtml(pricingTitle)}</h1>
           <p class="hero-lead">${escapeHtml(m.pricing.intro || m.pricing.disclaimer)}</p>
           ${m.pricing.comparePills?.length ? `<div class="pill-row pricing-pill-row">${renderPills(m.pricing.comparePills)}</div>` : ""}
-          <p class="trust hero-trust-secondary">${escapeHtml(m.pricing.disclaimer)}</p>
         </div>
-        <div class="pricing-hero-side reveal-item">
-          ${renderPricingSummaryPanel(m.pricing)}
-        </div>
+        ${renderPricingHeroGuide(m.pricing)}
       </div>
+      ${renderPricingHeroPlanRail(m.pricing)}
     </section>
 
-    <section class="section reveal">
+    <section id="pricing-plans" class="section reveal">
       <div class="pricing-grid">
-        ${m.pricing.plans
-          .map(
-            (p) => `
-          <article class="card reveal-item price-card${p.featured ? " price-card-featured" : ""}">
-            <div class="price-card-top">
-              <div>
-                ${p.tag ? `<p class="price-plan-tag">${escapeHtml(p.tag)}</p>` : ""}
-                <h3>${escapeHtml(p.name)}</h3>
-              </div>
-              ${p.featured ? `<span class="price-featured-chip">Recommended</span>` : ""}
-            </div>
-            <p class="price">${escapeHtml(p.price)}</p>
-            ${p.billing ? `<p class="price-billing">${escapeHtml(p.billing)}</p>` : ""}
-            ${p.summary ? `<p class="price-summary">${escapeHtml(p.summary)}</p>` : ""}
-            ${p.subLine ? `<p class="price-subline">${escapeHtml(p.subLine)}</p>` : ""}
-            ${bulletList(p.bullets)}
-            <div class="btn-row price-card-actions">
-              ${button(p.cta, p.href || startHref("learner"), "primary")}
-              ${p.secondaryCta ? button(p.secondaryCta, p.secondaryHref || PATHS.features, "secondary") : ""}
-            </div>
-          </article>
-        `
-          )
-          .join("")}
+        ${m.pricing.plans.map((plan) => renderPricingPlanCard(plan)).join("")}
       </div>
-      <p class="note">${escapeHtml(m.pricing.disclaimer)}</p>
     </section>
 
-    ${renderInfoSection(m.pricing.marketplace)}
-
-    ${(m.pricing.linkSections || []).map((section) => renderLinkCardsSection(section)).join("")}
-
-    ${renderPricingAppGallery(m.pricing.appGallery)}
+    ${renderPricingEssentials(m.pricing.essentials)}
 
     ${renderFaqSection(m.pricing.faq)}
   `;
+}
+
+function renderPricingHeroGuide(pricing) {
+  const plans = pricing?.plans || [];
+  const guideRows = [
+    {
+      step: "01",
+      label: plans[0]?.moment || "Before lessons",
+      title: "Stay free while theory matters most",
+      text: "Use Free Learning for theory and onboarding before route practice becomes necessary."
+    },
+    {
+      step: "02",
+      label: plans[1]?.moment || "During lessons",
+      title: "Add practice only when you need it",
+      text: "Selected-Centre Practice is the monthly option when you want repetition around one chosen centre."
+    },
+    {
+      step: "03",
+      label: plans[2]?.moment || "After the test",
+      title: "Move into yearly support later",
+      text: "Navigation is the yearly plan, while the bundle is for the short period where practice and support overlap."
+    }
+  ];
+
+  return `
+    <aside class="panel pricing-summary-panel pricing-hero-guide reveal-item">
+      <div class="pricing-hero-guide-head">
+        <p class="panel-title">Choose the closest fit</p>
+        <p class="pricing-hero-guide-intro">You do not need everything at once. Pick the stage you are actually in.</p>
+      </div>
+      <div class="pricing-hero-guide-grid">
+        ${guideRows
+        .map(
+          (item) => `
+        <article class="pricing-hero-guide-row">
+          <span class="pricing-hero-guide-step">${escapeHtml(item.step)}</span>
+          <div class="pricing-hero-guide-copy">
+            <p class="pricing-hero-guide-label">${escapeHtml(item.label)}</p>
+            <strong>${escapeHtml(item.title)}</strong>
+            <p>${escapeHtml(item.text)}</p>
+          </div>
+        </article>
+      `
+        )
+        .join("")}
+      </div>
+      <div class="btn-row pricing-hero-actions">
+        ${button("Start free", plans[0]?.href || startHref("learner"), "primary", "pricing-hero-link")}
+        ${button("Compare plans", "#pricing-plans", "secondary", "pricing-hero-link")}
+      </div>
+    </aside>
+  `;
+}
+
+function renderPricingHeroPlanRail(pricing) {
+  const plans = pricing?.plans || [];
+  if (!plans.length) return "";
+  return `
+    <div class="pricing-hero-plan-rail">
+      ${plans.map((plan, index) => renderPricingHeroPlanCard(plan, index)).join("")}
+    </div>
+  `;
+}
+
+function renderPricingHeroPlanCard(plan, index = 0) {
+  const highlights = (plan.highlights?.length ? plan.highlights : [plan.billing]).filter(Boolean).slice(0, 2);
+  return `
+    <article class="pricing-hero-plan-card pricing-hero-plan-card-tone-${escapeAttr(String((index % 4) + 1))}${plan.featured ? " pricing-hero-plan-card-featured" : ""}">
+      <div class="pricing-hero-plan-head">
+        <div class="pricing-hero-plan-stage">
+          <span class="pricing-hero-plan-step">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+          ${plan.moment ? `<p class="pricing-hero-plan-kicker">${escapeHtml(plan.moment)}</p>` : ""}
+        </div>
+        ${plan.featured ? `<span class="pricing-hero-plan-featured">Best value</span>` : ""}
+      </div>
+      <div class="pricing-hero-plan-top">
+        <div class="pricing-hero-plan-title">
+          ${renderPricingPlanIcon(plan)}
+          <h3>${escapeHtml(plan.name)}</h3>
+        </div>
+        <span class="pricing-hero-plan-price">${escapeHtml(plan.price)}</span>
+      </div>
+      <p class="pricing-hero-plan-summary">${escapeHtml(plan.summary || plan.subLine || "")}</p>
+      ${highlights.length ? `<div class="pricing-hero-plan-points">${highlights.map((item) => `<div class="pricing-hero-plan-point"><span class="pricing-hero-plan-point-dot" aria-hidden="true"></span><span>${escapeHtml(item)}</span></div>`).join("")}</div>` : ""}
+    </article>
+  `;
+}
+
+function renderPricingPlanIcon(plan) {
+  const title = String(plan?.name || "").toLowerCase();
+  if (title.includes("free") || title.includes("learning")) return iconBadge("book");
+  if (title.includes("practice") || title.includes("centre")) return iconBadge("route");
+  if (title.includes("navigation")) return iconBadge("nav");
+  if (title.includes("bundle")) return iconBadge("spark");
+  return iconBadge("card");
 }
 
 function renderDownload(m) {
@@ -644,24 +695,180 @@ function renderDownload(m) {
 
 function renderFaq(m) {
   const faqTitle = m.pageSeo?.faq?.title || m.faqHeader?.title || m.ui.nav.faq;
-  const faqMeta = m.faqHeader
-    ? `<p class="doc-meta">${escapeHtml(m.faqHeader.app)}<br />${escapeHtml(m.faqHeader.version)}<br />${escapeHtml(m.faqHeader.updated)}</p>`
-    : "";
+  const faqConfig = m.faqPage || {};
+  const groups = faqGroupsForPage(m);
+  const metaText = [m.faqHeader?.app, m.faqHeader?.version, m.faqHeader?.updated].filter(Boolean).join(" | ");
   return `
-    <section class="section reveal">
-      <h1>${escapeHtml(faqTitle)}</h1>
-      ${faqMeta}
-      <div class="faq-list">
-        ${m.faq
+    <section class="section reveal feature-hero faq-hero">
+      <div class="faq-hero-grid">
+        <div class="faq-hero-copy">
+          <p class="eyebrow">${escapeHtml(faqConfig.eyebrow || "Common questions")}</p>
+          <h1>${escapeHtml(faqTitle)}</h1>
+          <p class="hero-lead">${escapeHtml(faqConfig.intro || "Use the grouped answers below to find the main product, pricing, instructor, route, and privacy details quickly.")}</p>
+          ${faqConfig.pills?.length ? `<div class="pill-row faq-pill-row">${renderPills(faqConfig.pills)}</div>` : ""}
+        </div>
+        <aside class="panel faq-hero-panel reveal-item">
+          <p class="panel-title">${escapeHtml(faqConfig.jumpTitle || "Browse by topic")}</p>
+          <div class="faq-topic-jump-grid">
+            ${groups.map((group) => renderFaqTopicJump(group)).join("")}
+          </div>
+          ${metaText ? `<p class="faq-hero-meta">${escapeHtml(metaText)}</p>` : ""}
+        </aside>
+      </div>
+    </section>
+
+    ${groups
+      .map(
+        (group, index) => `
+      <section id="${escapeAttr(group.id)}" class="section reveal faq-topic-section">
+        <div class="faq-topic-header">
+          <div class="faq-topic-icon">${iconBadge(group.icon || "spark")}</div>
+          <div class="faq-topic-header-copy">
+            <h2>${escapeHtml(group.title)}</h2>
+            ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
+          </div>
+          <span class="faq-topic-count">${escapeHtml(formatNumber(group.items.length))} answers</span>
+        </div>
+        <div class="faq-topic-list">
+          ${group.items
           .map(
-            (it) => `
-          <article class="faq-item reveal-item">
-            <h2>${escapeHtml(it.q)}</h2>
-            <p>${escapeHtml(it.a)}</p>
-          </article>
+            (it, itemIndex) => `
+          <details class="faq-item faq-page-item reveal-item"${index === 0 && itemIndex === 0 ? " open" : ""}>
+            <summary>
+              <span class="faq-question">${escapeHtml(it.q)}</span>
+              <span class="faq-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>${escapeHtml(it.a)}</p>
+            </div>
+          </details>
         `
           )
           .join("")}
+        </div>
+      </section>
+    `
+      )
+      .join("")}
+
+    ${renderFaqSupportPanel(faqConfig.support)}
+  `;
+}
+
+function faqGroupsForPage(m) {
+  const allItems = m.faq || [];
+  const itemsByQuestion = new Map(allItems.map((item) => [item.q, item]));
+  const groups = (m.faqPage?.groups?.length ? m.faqPage.groups : defaultFaqPageGroups())
+    .map((group) => ({
+      ...group,
+      items: (group.questions || []).map((question) => itemsByQuestion.get(question)).filter(Boolean)
+    }))
+    .filter((group) => group.items.length);
+
+  const usedQuestions = new Set(groups.flatMap((group) => group.items.map((item) => item.q)));
+  const leftovers = allItems.filter((item) => !usedQuestions.has(item.q));
+  if (leftovers.length) {
+    groups.push({
+      id: "more-answers",
+      title: "More answers",
+      intro: "Additional answers that do not fit the main topic groups yet.",
+      icon: "spark",
+      items: leftovers
+    });
+  }
+
+  return groups;
+}
+
+function defaultFaqPageGroups() {
+  return [
+    {
+      id: "product-learning",
+      title: "Product and learning",
+      intro: "What Drivest is, who it is for, and how theory support is positioned.",
+      icon: "book",
+      questions: [
+        "What does Drivest provide?",
+        "Is Drivest only for people already taking lessons?",
+        "Is Drivest affiliated with DVSA?",
+        "Are Drivest theory questions official DVSA exam questions?",
+        "Can I study in another language and still check the English question?"
+      ]
+    },
+    {
+      id: "routes-driving-support",
+      title: "Routes and driving support",
+      intro: "What practice routes are for, and where live road authority still overrides the app.",
+      icon: "route",
+      questions: [
+        "Are Drivest routes official driving test routes?",
+        "Can I rely on Drivest as the final authority while driving?",
+        "Does Drivest guarantee parking legality or availability?"
+      ]
+    },
+    {
+      id: "pricing-subscriptions",
+      title: "Pricing and subscriptions",
+      intro: "The main commercial answers about plans, bundled access, and route entitlements.",
+      icon: "card",
+      questions: [
+        "What subscription plans does Drivest offer?",
+        "Do practice routes last for the full bundled annual subscription period?"
+      ]
+    },
+    {
+      id: "instructors-bookings",
+      title: "Instructors and bookings",
+      intro: "How instructor discovery, lesson requests, and trust boundaries work where those flows are enabled.",
+      icon: "people",
+      questions: [
+        "How do lesson bookings work?",
+        "What is the lesson cancellation policy?",
+        "Does Drivest verify instructors?"
+      ]
+    },
+    {
+      id: "privacy-account-requests",
+      title: "Privacy and account requests",
+      intro: "What Drivest processes, how location is used, and how users can raise data or dispute requests.",
+      icon: "shield",
+      questions: [
+        "What data does Drivest collect?",
+        "Does Drivest track my location all the time?",
+        "Does Drivest sell my data?",
+        "How do disputes work?",
+        "How do I request access to or deletion of my data?"
+      ]
+    }
+  ];
+}
+
+function renderFaqTopicJump(group) {
+  return `
+    <a class="faq-topic-jump" href="#${escapeAttr(group.id)}">
+      <span class="faq-topic-jump-icon">${iconBadge(group.icon || "spark")}</span>
+      <span class="faq-topic-jump-copy">
+        <strong>${escapeHtml(group.title)}</strong>
+        ${group.intro ? `<span>${escapeHtml(group.intro)}</span>` : ""}
+      </span>
+      <span class="faq-topic-jump-count">${escapeHtml(formatNumber(group.items.length))}</span>
+    </a>
+  `;
+}
+
+function renderFaqSupportPanel(config) {
+  if (!config?.title) return "";
+  return `
+    <section class="section reveal">
+      <div class="panel faq-support-panel reveal-item">
+        <div>
+          <h2>${escapeHtml(config.title)}</h2>
+          ${config.text ? `<p class="section-intro">${escapeHtml(config.text)}</p>` : ""}
+        </div>
+        <div class="btn-row faq-support-actions">
+          ${config.primaryCta ? button(config.primaryCta, config.primaryHref || PATHS.contact, "primary") : ""}
+          ${config.secondaryCta ? button(config.secondaryCta, config.secondaryHref || PATHS.privacy, "secondary") : ""}
+        </div>
       </div>
     </section>
   `;
@@ -672,6 +879,35 @@ function renderHubPage(pageKey, m) {
   if (!hub) return renderHome(m);
   const photo = hubPagePhoto(pageKey);
   const heroActions = renderHubHeroActions(pageKey, m);
+  const summaryMarkup = hub.summary ? `
+      <section class="section reveal">
+        <div class="panel reveal-item">
+          <p class="panel-title">${escapeHtml(hub.summary.title)}</p>
+          <p>${escapeHtml(hub.summary.text)}</p>
+        </div>
+      </section>
+    ` : "";
+  const proofMarkup = renderTrustFrameworkSection(hub.proofRail, "hub-proof-rail");
+  const sectionsMarkup = (hub.sections || []).map((section) => renderCardGridSection(section)).join("");
+  const coverageMarkup = pageKey === "centres" ? renderCoverageDirectorySection(m) : "";
+  const linkSectionsMarkup = (hub.linkSections || []).map((section) => renderLinkCardsSection(section)).join("");
+  const languageMarkup = hub.showLanguageSupport ? renderLanguageSupportSection(m.languageSupport) : "";
+  const infoMarkup = (hub.infoSections || []).map((section) => renderInfoSection(section)).join("");
+  const faqMarkup = renderFaqSection(hub.faq);
+  const relatedMarkup = renderLinkCardsSection(hub.related);
+
+  if (pageKey === "instructors") {
+    return renderInstructorHubPage(m, hub);
+  }
+
+  if (pageKey === "centres") {
+    return `
+      ${coverageMarkup}
+      ${renderCentreHubShortcutsSection()}
+      ${renderCentreDirectoryUseSection()}
+      ${faqMarkup}
+    `;
+  }
 
   return `
     <section class="section reveal feature-hero">
@@ -690,30 +926,15 @@ function renderHubPage(pageKey, m) {
       </div>
     </section>
 
-    ${hub.summary ? `
-      <section class="section reveal">
-        <div class="panel reveal-item">
-          <p class="panel-title">${escapeHtml(hub.summary.title)}</p>
-          <p>${escapeHtml(hub.summary.text)}</p>
-        </div>
-      </section>
-    ` : ""}
-
-    ${renderTrustFrameworkSection(hub.proofRail, "hub-proof-rail")}
-
-    ${(hub.sections || []).map((section) => renderCardGridSection(section)).join("")}
-
-    ${pageKey === "centres" ? renderCoverageDirectorySection(m) : ""}
-
-    ${(hub.linkSections || []).map((section) => renderLinkCardsSection(section)).join("")}
-
-    ${hub.showLanguageSupport ? renderLanguageSupportSection(m.languageSupport) : ""}
-
-    ${(hub.infoSections || []).map((section) => renderInfoSection(section)).join("")}
-
-    ${renderFaqSection(hub.faq)}
-
-    ${renderLinkCardsSection(hub.related)}
+    ${summaryMarkup}
+    ${proofMarkup}
+    ${sectionsMarkup}
+    ${coverageMarkup}
+    ${linkSectionsMarkup}
+    ${languageMarkup}
+    ${infoMarkup}
+    ${faqMarkup}
+    ${relatedMarkup}
   `;
 }
 
@@ -766,7 +987,11 @@ function renderProofCarousel(items, config) {
     trackClass,
     cardClass,
     phoneClass,
-    copyClass
+    copyClass,
+    visualClass = "",
+    captionMode = "figure",
+    captionClass = "",
+    captionLabel = "Screen focus"
   } = config;
   const total = items.length;
 
@@ -777,10 +1002,23 @@ function renderProofCarousel(items, config) {
           .map(
             (item, index) => `
           <article class="card reveal-item ${escapeAttr(cardClass)}" data-carousel-slide aria-label="${escapeAttr(`${label} ${index + 1} of ${total}`)}">
-            ${renderPhoneShot(item.image, item.alt, item.caption || "", `phone-shot-proof ${phoneClass}`)}
+            <div${visualClass ? ` class="${escapeAttr(visualClass)}"` : ""}>
+              ${renderPhoneShot(
+                item.image,
+                item.alt,
+                captionMode === "figure" ? item.caption || "" : "",
+                `phone-shot-proof ${phoneClass}`
+              )}
+            </div>
             <div class="${escapeAttr(copyClass)}">
               ${item.badge ? `<span class="tile-badge">${escapeHtml(item.badge)}</span>` : ""}
               <h3>${escapeHtml(item.title)}</h3>
+              ${captionMode === "copy" && item.caption ? `
+                <div class="${escapeAttr(captionClass)}">
+                  <span>${escapeHtml(captionLabel)}</span>
+                  <p>${escapeHtml(item.caption)}</p>
+                </div>
+              ` : ""}
               <p>${escapeHtml(item.text)}</p>
             </div>
           </article>
@@ -841,7 +1079,11 @@ function renderProductProofSection(config) {
         trackClass: "product-proof-grid",
         cardClass: "product-proof-card",
         phoneClass: "product-proof-phone",
-        copyClass: "product-proof-copy"
+        copyClass: "product-proof-copy",
+        visualClass: "product-proof-visual",
+        captionMode: "copy",
+        captionClass: "product-proof-summary",
+        captionLabel: "Screen focus"
       })}
     </section>
   `;
@@ -886,11 +1128,23 @@ function renderSafetySection(m) {
 
 function renderCardGridSection(section) {
   if (!section?.items?.length) return "";
+  const layoutClass = section.layout || "three-up";
   return `
     <section class="section reveal">
       <h2>${escapeHtml(section.title)}</h2>
       ${section.intro ? `<p class="section-intro">${escapeHtml(section.intro)}</p>` : ""}
-      ${renderFeatureCards(section.items)}
+      <div class="grid ${escapeAttr(layoutClass)}">
+        ${section.items
+          .map(
+            (it) => `
+          <article class="card reveal-item">
+            <h3 class="tab-title">${renderFeatureIcon(it.title)}${escapeHtml(it.title)}</h3>
+            <p>${escapeHtml(it.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
     </section>
   `;
 }
@@ -1175,32 +1429,41 @@ function featureGroupVisualMeta(title) {
 function renderFeatureShowcaseSection(group, index) {
   const meta = featureGroupVisualMeta(group.title);
   const reverseClass = index % 2 ? " feature-showcase-reverse" : "";
+  const pointCount = Math.max((group.items || []).length, 1);
   return `
-    <section class="section reveal feature-showcase-section">
+    <section class="section reveal feature-showcase-section" data-feature-scene style="--scene-points:${pointCount};">
       <div class="feature-showcase${reverseClass}">
-        <div class="feature-showcase-copy reveal-item">
-          ${meta.eyebrow ? `<p class="eyebrow">${escapeHtml(meta.eyebrow)}</p>` : ""}
-          <h2>${escapeHtml(group.title)}</h2>
-          ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
-          <div class="feature-showcase-points">
-            ${(group.items || [])
-              .map(
-                (item) => `
-              <article class="feature-showcase-point">
-                <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.text)}</p>
-              </article>
-            `
-              )
-              .join("")}
+        <div class="feature-showcase-sticky">
+          <div class="feature-showcase-copy reveal-item">
+            ${meta.eyebrow ? `<p class="eyebrow">${escapeHtml(meta.eyebrow)}</p>` : ""}
+            <h2>${escapeHtml(group.title)}</h2>
+            ${group.intro ? `<p class="section-intro">${escapeHtml(group.intro)}</p>` : ""}
+            <div class="feature-showcase-progress" aria-hidden="true">
+              <span></span>
+            </div>
+            <div class="feature-showcase-points">
+              ${(group.items || [])
+                .map(
+                  (item, itemIndex) => `
+                <article class="feature-showcase-point" data-scene-point data-scene-index="${itemIndex}">
+                  <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
+                  <p>${escapeHtml(item.text)}</p>
+                </article>
+              `
+                )
+                .join("")}
+            </div>
           </div>
-        </div>
-        <div class="feature-showcase-visual reveal-item">
-          ${renderPhoneShot(meta.image, meta.alt, meta.caption, "phone-shot-proof feature-showcase-phone")}
-          <div class="feature-showcase-tags">
-            ${(group.items || [])
-              .map((item) => `<span class="pill">${escapeHtml(item.title)}</span>`)
-              .join("")}
+          <div class="feature-showcase-visual reveal-item">
+            ${renderPhoneShot(meta.image, meta.alt, meta.caption, "phone-shot-proof feature-showcase-phone")}
+            <div class="feature-showcase-tags">
+              ${(group.items || [])
+                .map(
+                  (item, itemIndex) =>
+                    `<span class="pill" data-scene-tag data-scene-index="${itemIndex}">${escapeHtml(item.title)}</span>`
+                )
+                .join("")}
+            </div>
           </div>
         </div>
       </div>
@@ -1257,11 +1520,12 @@ function renderMobileCtaBar(m) {
 
 function renderLinkCardsSection(config, sectionClass = "") {
   if (!config?.items?.length) return "";
+  const layoutClass = config.layout || "two-up";
   return `
     <section class="section reveal${sectionClass ? ` ${escapeAttr(sectionClass)}` : ""}">
       <h2>${escapeHtml(config.title)}</h2>
       ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
-      <div class="grid two-up">
+      <div class="grid ${escapeAttr(layoutClass)}">
         ${config.items
           .map(
             (item) => `
@@ -1301,6 +1565,73 @@ function renderFaqSection(config) {
   `;
 }
 
+function renderPricingPlanCard(plan) {
+  const highlights = plan.highlights?.length ? plan.highlights : plan.bullets;
+  return `
+    <article class="card reveal-item price-card${plan.featured ? " price-card-featured" : ""}">
+      <div class="price-card-top">
+        <div>
+          ${plan.tag ? `<p class="price-plan-tag">${escapeHtml(plan.tag)}</p>` : ""}
+          <h3>${escapeHtml(plan.name)}</h3>
+        </div>
+        ${plan.featured ? `<span class="price-featured-chip">Recommended</span>` : ""}
+      </div>
+      ${plan.moment ? `<p class="price-stage">${escapeHtml(plan.moment)}</p>` : ""}
+      <p class="price">${escapeHtml(plan.price)}</p>
+      ${plan.billing ? `<p class="price-billing">${escapeHtml(plan.billing)}</p>` : ""}
+      ${plan.summary ? `<p class="price-summary">${escapeHtml(plan.summary)}</p>` : ""}
+      ${renderPricingHighlights(highlights)}
+      <div class="btn-row price-card-actions">
+        ${button(plan.cta, plan.href || startHref("learner"), "primary")}
+        ${plan.secondaryCta ? button(plan.secondaryCta, plan.secondaryHref || PATHS.features, "secondary") : ""}
+      </div>
+    </article>
+  `;
+}
+
+function renderPricingHighlights(items) {
+  if (!items?.length) return "";
+  return `
+    <div class="price-highlight-list">
+      ${items
+        .slice(0, 3)
+        .map(
+          (item) => `
+        <div class="price-highlight">
+          <span class="price-highlight-check" aria-hidden="true">+</span>
+          <span>${escapeHtml(item)}</span>
+        </div>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderPricingEssentials(config) {
+  if (!config?.items?.length) return "";
+  return `
+    <section class="section reveal pricing-essentials-section">
+      <div class="pricing-essentials-copy">
+        <h2>${escapeHtml(config.title)}</h2>
+        ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      </div>
+      <div class="pricing-essentials-grid">
+        ${config.items
+          .map(
+            (item) => `
+          <article class="card reveal-item pricing-essential-card">
+            <h3 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.text)}</p>
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderPricingAppGallery(config) {
   if (!config?.items?.length) return "";
   return `
@@ -1327,14 +1658,8 @@ function renderPricingAppGallery(config) {
 }
 
 function renderHeroShowcase(m) {
-  const summary = coverageSummary(m);
   return `
     <div class="hero-showcase">
-      <div class="hero-stat-strip">
-        ${renderShowcaseStat("32", "languages")}
-        ${renderShowcaseStat(formatNumber(summary?.centres || 340), "test centres")}
-        ${renderShowcaseStat(formatNumber(summary?.routes || 3000), "practice routes")}
-      </div>
       <div class="hero-showcase-grid">
         <div class="hero-phone-cluster">
           ${renderPhoneShot(
@@ -1380,139 +1705,171 @@ function renderCoverageDirectorySection(m) {
   const coverage = m.testCentreCoverage;
   const summary = coverageSummary(m);
   const groups = coverageGroups(coverage);
-  const topCentres = coverageTopCentres(coverage, 12);
-  const aliasCount = Number(coverage?.summary?.aliasCount) || 0;
-  const excludedCount = Number(coverage?.summary?.excludedCount) || 0;
   const generatedAtText = coverageGeneratedAtText(coverage);
-  const aliasText = `${formatNumber(aliasCount)} duplicate centre page${aliasCount === 1 ? " is" : "s are"} hidden behind the clean public list.`;
   if (!config || !summary || !groups.length) return "";
 
   return `
     <section class="section reveal">
-      <h2>${escapeHtml(config.title)}</h2>
-      ${config.intro ? `<p class="section-intro">${escapeHtml(config.intro)}</p>` : ""}
+      <p class="panel-title">Public coverage snapshot</p>
+      <p class="section-intro">Use the finder first, browse the live directory directly below it, and use the city hubs later when you want to compare nearby centres.</p>
       <div class="coverage-stat-grid">
-        <article class="card reveal-item">
+        <article class="card reveal-item coverage-stat-card">
           <p class="panel-title">Centres listed</p>
           <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.centres))}</p>
-          <p>We only list centres once the published dataset has enough route depth to make practice useful.</p>
+          <p class="coverage-stat-caption">Published with enough route depth to make local practice useful.</p>
         </article>
-        <article class="card reveal-item">
+        <article class="card reveal-item coverage-stat-card">
           <p class="panel-title">Routes represented</p>
           <p class="coverage-stat-value">${escapeHtml(formatNumber(summary.routes))}</p>
-          <p>These are the published practice routes attached to the centres shown in this directory.</p>
+          <p class="coverage-stat-caption">Attached to the centres shown in this public directory.</p>
         </article>
-        <article class="card reveal-item">
+        <article class="card reveal-item coverage-stat-card">
           <p class="panel-title">Average route length</p>
           <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDistanceKm, 1))} km</p>
-          <p>Typical route length across the centres included here.</p>
+          <p class="coverage-stat-caption">Typical route length across the covered centres listed here.</p>
         </article>
-        <article class="card reveal-item">
+        <article class="card reveal-item coverage-stat-card">
           <p class="panel-title">Average guided time</p>
           <p class="coverage-stat-value">${escapeHtml(formatMetricValue(summary.averageDurationMinutes, 1))} min</p>
-          <p>Typical guided drive time across the centres included here.</p>
+          <p class="coverage-stat-caption">Typical guided drive time in the public coverage set.</p>
         </article>
       </div>
-      <div class="panel reveal-item">
-        <p class="panel-title">${escapeHtml(config.summaryTitle)}</p>
-        <p>${escapeHtml(config.summaryText)}</p>
-        <p class="coverage-summary-note">${escapeHtml(formatNumber(excludedCount))} temporary, thin, or broken centre variants are hidden from the public list, and ${escapeHtml(aliasText)}</p>
-        ${generatedAtText ? `<p class="coverage-summary-note">Coverage file generated: ${escapeHtml(generatedAtText)}.</p>` : ""}
-        ${config.note ? `<p class="coverage-summary-note">${escapeHtml(config.note)}</p>` : ""}
-      </div>
     </section>
 
-    <section id="centre-directory" class="section reveal">
-      <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
-        <div class="coverage-filter-head">
-          <div>
-            <p class="panel-title">Find a centre near you</p>
-            <p>Search by centre, town, or area, then use the route filter when you want centres with broader local practice coverage.</p>
-          </div>
-          ${generatedAtText ? `<p class="coverage-generated-at">Coverage file generated: ${escapeHtml(generatedAtText)}</p>` : ""}
-        </div>
-        <div class="coverage-filter-grid">
-          <label class="coverage-field">
-            <span>Search centre name</span>
-            <input
-              type="search"
-              class="coverage-control"
-              placeholder="Search by centre, city, or area"
-              autocomplete="off"
-              data-coverage-search
-            />
-          </label>
-          <label class="coverage-field">
-            <span>Minimum routes</span>
-            <select class="coverage-control" data-coverage-min-routes>
-              <option value="0">Any published centre</option>
-              <option value="5">5 or more routes</option>
-              <option value="10">10 or more routes</option>
-              <option value="15">15 routes only</option>
-            </select>
-          </label>
-        </div>
-        <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
-          Showing all ${escapeHtml(formatNumber(summary.centres))} published centres across ${escapeHtml(formatNumber(groups.length))} letter groups.
-        </p>
-      </div>
-    </section>
-
-    <section class="section reveal">
-      <h2>${escapeHtml(config.topCentresTitle)}</h2>
-      <div class="grid three-up">
-        ${topCentres
-          .map(
-            (centre) => `
-          <article class="card reveal-item">
-            <h3><a class="centre-link" href="${escapeAttr(centreHref(centre))}">${escapeHtml(centre.name)}</a></h3>
-            <p class="coverage-route-count">${escapeHtml(formatNumber(centre.routeCount))} routes</p>
-            <p>Average route: ${escapeHtml(formatMetricValue(centre.averageDistanceKm, 1))} km over ${escapeHtml(formatMetricValue(centre.averageDurationMinutes, 1))} minutes.</p>
-            <a class="text-link" href="${escapeAttr(centreHref(centre))}">View centre practice page</a>
-          </article>
-        `
-          )
-          .join("")}
-      </div>
-    </section>
-
-    <section class="section reveal">
-      <h2>${escapeHtml(config.directoryTitle)}</h2>
-      <div class="coverage-letter-grid">
-        ${groups
-          .map(
-            (group) => `
-          <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="${escapeAttr(group.letter)}">
-            <div class="coverage-letter-head">
-              <h3>${escapeHtml(group.letter)}</h3>
-              <span class="tile-badge"><span data-coverage-group-count>${escapeHtml(formatNumber(group.centres.length))}</span> centres</span>
+    <section id="centre-directory" class="section reveal coverage-directory-section">
+      <div class="coverage-directory-shell coverage-directory-shell-solo">
+        <div class="panel reveal-item coverage-filter-panel" data-coverage-directory>
+          <div class="coverage-filter-head">
+            <div class="coverage-filter-copy">
+              <h2>Find a covered centre</h2>
+              <p class="section-intro">Search here first, then browse matching centres in the same finder below.</p>
             </div>
-            <ul class="coverage-centre-list">
-              ${group.centres
+            ${generatedAtText ? `<p class="coverage-generated-pill">Updated ${escapeHtml(generatedAtText)}</p>` : ""}
+          </div>
+          <div class="coverage-filter-grid">
+            <label class="coverage-field coverage-field-search">
+              <span>Centre or town</span>
+              <input
+                type="search"
+                class="coverage-control"
+                placeholder="Search by centre, city, or area"
+                autocomplete="off"
+                data-coverage-search
+              />
+            </label>
+            <label class="coverage-field coverage-field-routes">
+              <span>Minimum routes</span>
+              <select class="coverage-control" data-coverage-min-routes>
+                <option value="0">Any depth</option>
+                <option value="5">5 or more</option>
+                <option value="10">10 or more</option>
+                <option value="15">15 only</option>
+              </select>
+            </label>
+            <button type="button" class="btn btn-secondary coverage-reset-btn" data-coverage-reset>Reset</button>
+          </div>
+          <div class="coverage-filter-footer">
+            <p class="coverage-filter-status" aria-live="polite" data-coverage-status>
+              Showing all ${escapeHtml(formatNumber(summary.centres))} covered centres across ${escapeHtml(formatNumber(groups.length))} letter groups.
+            </p>
+          </div>
+          <div class="coverage-results-block">
+            <div class="coverage-results-head">
+              <p class="panel-title">Browse results</p>
+              <p class="coverage-results-copy">Use the letter rail to switch between matching groups without leaving the finder.</p>
+            </div>
+            <div class="coverage-letter-grid">
+              ${groups
                 .map(
-                  (centre) => `
-                <li
-                  class="coverage-centre-item"
-                  data-coverage-item
-                  data-centre-name="${escapeAttr(String(centre.name || "").toLowerCase())}"
-                  data-centre-routes="${escapeAttr(String(Number(centre.routeCount) || 0))}"
-                >
-                  <a class="coverage-centre-link" href="${escapeAttr(centreHref(centre))}">
-                    <span>${escapeHtml(centre.name)}</span>
-                    <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
-                  </a>
-                </li>
+                  (group) => `
+                <article class="card reveal-item coverage-letter-card" data-coverage-group data-coverage-letter="${escapeAttr(group.letter)}">
+                  <div class="coverage-letter-head">
+                    <h3>${escapeHtml(group.letter)}</h3>
+                    <span class="tile-badge"><span data-coverage-group-count>${escapeHtml(formatNumber(group.centres.length))}</span> centres</span>
+                  </div>
+                  <ul class="coverage-centre-list">
+                    ${group.centres
+                      .map(
+                        (centre) => `
+                      <li
+                        class="coverage-centre-item"
+                        data-coverage-item
+                        data-centre-name="${escapeAttr(String(centre.name || "").toLowerCase())}"
+                        data-centre-routes="${escapeAttr(String(Number(centre.routeCount) || 0))}"
+                      >
+                        <a class="coverage-centre-link" href="${escapeAttr(centreHref(centre))}">
+                          <span>${escapeHtml(centre.name)}</span>
+                          <strong>${escapeHtml(formatNumber(centre.routeCount))}</strong>
+                        </a>
+                      </li>
+                    `
+                      )
+                      .join("")}
+                  </ul>
+                </article>
               `
                 )
                 .join("")}
-            </ul>
-          </article>
-        `
-          )
-          .join("")}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `;
+}
+
+function renderCentreHubShortcutsSection() {
+  return renderLinkCardsSection({
+    title: "Major city hub shortcuts",
+    intro: "If you are comparing nearby centres in the biggest metro areas, use the city pages as a faster shortlist.",
+    layout: "three-up compact-grid",
+    items: [
+      {
+        title: "London hub",
+        text: "Compare the London centres in the published coverage set before opening one route page.",
+        href: "/driving-test-centres/london",
+        cta: "Open London hub"
+      },
+      {
+        title: "Manchester hub",
+        text: "Use the Manchester hub to compare route depth before committing to a centre page.",
+        href: "/driving-test-centres/manchester",
+        cta: "Open Manchester hub"
+      },
+      {
+        title: "Birmingham hub",
+        text: "Use the Birmingham hub when you want a city-level shortlist before opening a centre page.",
+        href: "/driving-test-centres/birmingham",
+        cta: "Open Birmingham hub"
+      }
+    ]
+  });
+}
+
+function renderCentreDirectoryUseSection() {
+  return renderLinkCardsSection({
+    title: "Use the directory well",
+    intro: "Once you have a few centres in mind, use the route pages for comparison, repetition, and cleaner issue reporting.",
+    layout: "two-up compact-grid",
+    items: [
+      {
+        title: "Compare nearby centres",
+        text: "Check route depth around nearby towns before you commit to one centre page for practice."
+      },
+      {
+        title: "Repeat the local area",
+        text: "Use reconstructed routes around the selected centre to build familiarity with that exact area."
+      },
+      {
+        title: "Target hesitation points",
+        text: "Use the route pages to rehearse roundabouts, lights, crossings, school areas, and other common stress points."
+      },
+      {
+        title: "Report issues quickly",
+        text: "Flag closures, stale guidance, unsafe instructions, or missing route coverage when something needs review."
+      }
+    ]
+  });
 }
 
 function renderCentreDetailPage(m, centre) {
@@ -1700,17 +2057,19 @@ function renderPricingSummaryPanel(pricing) {
   if (!pricing?.plans?.length) return "";
   return `
     <div class="panel pricing-summary-panel">
-      <p class="panel-title">How the plans step up</p>
+      <p class="panel-title">Choose by stage</p>
       <div class="pricing-summary-stack">
         ${pricing.plans
           .map(
-            (plan) => `
+            (plan, index) => `
           <div class="pricing-summary-row${plan.featured ? " pricing-summary-row-featured" : ""}">
-            <div>
+            <span class="pricing-summary-step">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+            <div class="pricing-summary-copy">
+              ${plan.moment ? `<p class="pricing-summary-kicker">${escapeHtml(plan.moment)}</p>` : ""}
               <strong>${escapeHtml(plan.name)}</strong>
               <p>${escapeHtml(plan.summary || plan.subLine || "")}</p>
             </div>
-            <span>${escapeHtml(plan.price)}</span>
+            <span class="pricing-summary-price">${escapeHtml(plan.price)}</span>
           </div>
         `
           )
@@ -1917,6 +2276,309 @@ function renderInfoSection(info) {
         ${info.pills?.length ? `<div class="pill-row">${renderPills(info.pills)}</div>` : ""}
       </div>
     </section>
+  `;
+}
+
+function renderInstructorHubPage(m, hub) {
+  const instructorItems = hub.sections?.[0]?.items || [];
+  const learnerItems = hub.sections?.[1]?.items || [];
+  const trustItems = hub.proofRail?.items || [];
+  const infoItems = hub.infoSections || [];
+  const relatedMarkup = renderLinkCardsSection(hub.related, "instructor-related-section");
+
+  const heroSignals = [
+    {
+      kicker: "Profile and reach",
+      title: "Show who you teach and where you cover",
+      text:
+        instructorItems[0]?.text ||
+        "Create a profile learners can browse before they send a request."
+    },
+    {
+      kicker: "Availability",
+      title: "Publish lesson slots with cleaner intent",
+      text:
+        instructorItems[1]?.text ||
+        "Set coverage area, slots, and lesson preferences where listing features are enabled."
+    },
+    {
+      kicker: "Hub follow-up",
+      title: "Keep bookings and learner context together",
+      text:
+        "Link learners, track booking changes, and review readiness in one operational view."
+    }
+  ];
+
+  const flowSteps = [
+    {
+      title: instructorItems[0]?.title || "Create a profile learners can browse",
+      text:
+        instructorItems[0]?.text ||
+        "Show who you are, what you teach, and where you cover before a learner sends a request."
+    },
+    {
+      title: instructorItems[1]?.title || "Set area, slots, and lesson preferences",
+      text:
+        instructorItems[1]?.text ||
+        "Publish your coverage area and availability where listing features are enabled."
+    },
+    {
+      title: instructorItems[2]?.title || "Receive lesson requests in app",
+      text:
+        instructorItems[2]?.text ||
+        "Turn visibility into lesson requests where that flow is enabled."
+    },
+    {
+      title: "Manage bookings and linked learners",
+      text:
+        "Keep booking history, payment visibility, linked learners, and progress context in the same workflow."
+    }
+  ];
+
+  const instructorSurfaceItems = [
+    instructorItems[0],
+    instructorItems[1],
+    instructorItems[3],
+    instructorItems[4]
+  ].filter(Boolean);
+
+  const learnerSurfaceItems = [
+    learnerItems[0],
+    learnerItems[1],
+    learnerItems[2],
+    learnerItems[4]
+  ].filter(Boolean);
+
+  const signalCards = [
+    {
+      kicker: "Supply",
+      title: trustItems[0]?.title || "Participating instructors only",
+      text:
+        trustItems[0]?.text ||
+        "Learners can browse participating instructors and view stated availability where enabled.",
+      pills: trustItems[0]?.pills || ["Where enabled", "Availability varies by area", "No nationwide depth claim"]
+    },
+    {
+      kicker: "Trust",
+      title: infoItems[1]?.title || "Review and trust signals",
+      text:
+        infoItems[1]?.text ||
+        "Where enabled, instructor trust signals are tied to real Drivest activity rather than anonymous public ratings.",
+      pills:
+        trustItems[1]?.pills || ["Completed lessons where shown", "Moderated visibility", "No DVSA affiliation"]
+    },
+    {
+      kicker: "Payments",
+      title: infoItems[2]?.title || "Booking terms where enabled",
+      text:
+        infoItems[2]?.text ||
+        "Charges, payment handling, and booking terms are shown before confirmation where booking features are enabled.",
+      pills:
+        trustItems[2]?.pills || ["Charges shown upfront", "Booking terms visible", "Independent instructors deliver lessons"]
+    },
+    {
+      kicker: "Referrals",
+      title: infoItems[0]?.title || "Referral journeys where enabled",
+      text:
+        infoItems[0]?.text ||
+        "Drivest supports role-based referral paths for learners and instructors.",
+      pills: (infoItems[0]?.bullets || []).slice(0, 4),
+      note:
+        (infoItems[0]?.bullets || [])[4] ||
+        "Referral benefits remain conditional and subject to eligibility, verification, anti-fraud review, and reversal rules."
+    },
+    {
+      kicker: "Positioning",
+      title: infoItems[3]?.title || "Availability and positioning",
+      text:
+        infoItems[3]?.text ||
+        "Instructor pages should stay neutral about local depth and availability unless the product can prove it.",
+      pills: [
+        "Depth varies by location",
+        "Rollout stage matters",
+        "Independent compliance remains theirs"
+      ]
+    }
+  ];
+
+  return `
+    <section class="section reveal feature-hero instructor-hero">
+      <div class="instructor-hero-shell">
+        <div class="instructor-hero-copy">
+          <p class="eyebrow">Instructor workflow</p>
+          <h1>A clearer surface for instructor workflow.</h1>
+          <p class="hero-lead">Profiles, slot visibility, lesson requests, bookings, and linked learners stay connected instead of being scattered across separate admin steps.</p>
+          <div class="instructor-hero-list">
+            ${heroSignals
+              .map(
+                (signal, index) => `
+              <article class="instructor-hero-list-item">
+                <span class="instructor-hero-list-index">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+                <div class="instructor-hero-list-copy">
+                  <h3>${escapeHtml(signal.title)}</h3>
+                  <p>${escapeHtml(signal.text)}</p>
+                </div>
+              </article>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+        <div class="instructor-hero-visual reveal-item">
+          <div class="instructor-hero-stage-card">
+            <span class="instructor-stage-chip">Instructor Hub</span>
+            <div class="instructor-hero-phone-stack">
+              <figure class="instructor-hero-mini instructor-hero-mini-top">
+                <figcaption>Availability</figcaption>
+                ${renderImg(PHOTO_URLS.appInstructorAvailability, "Drivest instructor availability screen", {
+                  loading: "eager",
+                  sizes: "(max-width: 980px) 42vw, 180px"
+                })}
+              </figure>
+              <figure class="instructor-hero-main">
+                ${renderImg(PHOTO_URLS.appInstructorHub, "Drivest Instructor Hub screen", {
+                  loading: "eager",
+                  fetchPriority: "high",
+                  sizes: "(max-width: 980px) 72vw, 260px"
+                })}
+              </figure>
+              <figure class="instructor-hero-mini instructor-hero-mini-bottom">
+                <figcaption>Bookings</figcaption>
+                ${renderImg(PHOTO_URLS.appInstructorBookings, "Drivest instructor bookings screen", {
+                  loading: "eager",
+                  sizes: "(max-width: 980px) 42vw, 180px"
+                })}
+              </figure>
+            </div>
+          </div>
+          <div class="instructor-hero-metric-row">
+            <article class="instructor-hero-metric">
+              <strong>Profile visibility</strong>
+              <span>Show coverage, lesson type, and teaching fit earlier.</span>
+            </article>
+            <article class="instructor-hero-metric">
+              <strong>Slot control</strong>
+              <span>Make availability easier to scan and act on.</span>
+            </article>
+            <article class="instructor-hero-metric">
+              <strong>Follow-up context</strong>
+              <span>Keep bookings and learner links in the same flow.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+      ${
+        hub.summary
+          ? `
+        <div class="instructor-hero-summary-bar">
+          <p><strong>${escapeHtml(hub.summary.title)}.</strong> ${escapeHtml(hub.summary.text)}</p>
+        </div>
+      `
+          : ""
+      }
+    </section>
+
+    <section class="section reveal">
+      <div class="panel reveal-item instructor-flow-panel">
+        <div class="instructor-flow-head">
+          <p class="eyebrow">One connected workflow</p>
+          <h2>From profile visibility to lesson follow-up</h2>
+          <p class="section-intro">This should read like one operating flow, not four separate policy panels.</p>
+        </div>
+        <div class="instructor-flow-grid">
+          ${flowSteps
+            .map(
+              (step, index) => `
+            <article class="instructor-flow-step">
+              <span class="instructor-flow-step-num">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+              <h3 class="tab-title">${renderFeatureIcon(step.title)}${escapeHtml(step.title)}</h3>
+              <p>${escapeHtml(step.text)}</p>
+            </article>
+          `
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>Built for both sides of the lesson journey</h2>
+      <p class="section-intro">Discovery, requests, bookings, and progress stay tied to the same learner journey instead of splitting across separate tools.</p>
+      <div class="instructor-balance-grid">
+        <article class="instructor-audience-panel instructor-audience-panel-instructor">
+          <div class="instructor-audience-header">
+            <div>
+              <span class="instructor-audience-badge">For instructors</span>
+              <h3>Visibility, operations, and learner context</h3>
+            </div>
+            <p>Publish availability, manage requests, and keep follow-up cleaner.</p>
+          </div>
+          <div class="instructor-audience-grid">
+            ${instructorSurfaceItems
+              .map(
+                (item) => `
+              <article class="instructor-capability-card">
+                <h4 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h4>
+                <p>${escapeHtml(item.text)}</p>
+              </article>
+            `
+              )
+              .join("")}
+          </div>
+        </article>
+        <article class="instructor-audience-panel instructor-audience-panel-learner">
+          <div class="instructor-audience-header">
+            <div>
+              <span class="instructor-audience-badge">For learners</span>
+              <h3>Search, request, and stay in context</h3>
+            </div>
+            <p>Move from instructor discovery into lesson activity without leaving the same app path.</p>
+          </div>
+          <div class="instructor-audience-grid">
+            ${learnerSurfaceItems
+              .map(
+                (item) => `
+              <article class="instructor-capability-card">
+                <h4 class="tab-title">${renderFeatureIcon(item.title)}${escapeHtml(item.title)}</h4>
+                <p>${escapeHtml(item.text)}</p>
+              </article>
+            `
+              )
+              .join("")}
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <h2>Marketplace clarity and trust signals</h2>
+      <p class="section-intro">${escapeHtml(hub.proofRail?.intro || "The public site should explain supply, trust, reviews, and payments without over-claiming depth.")}</p>
+      <div class="instructor-signal-grid">
+        ${signalCards
+          .map(
+            (card) => `
+          <article class="instructor-signal-card reveal-item">
+            <span class="instructor-signal-kicker">${escapeHtml(card.kicker)}</span>
+            <h3>${escapeHtml(card.title)}</h3>
+            <p>${escapeHtml(card.text)}</p>
+            ${
+              card.pills?.length
+                ? `
+              <div class="instructor-signal-tags">
+                ${card.pills.map((pill) => `<span>${escapeHtml(pill)}</span>`).join("")}
+              </div>
+            `
+                : ""
+            }
+            ${card.note ? `<p class="instructor-signal-note">${escapeHtml(card.note)}</p>` : ""}
+          </article>
+        `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    ${relatedMarkup}
   `;
 }
 
@@ -2128,6 +2790,7 @@ function activeNavKey(currentPage = page) {
 
 function renderPrimaryNavLinks(m) {
   const links = [
+    { key: "home", href: PATHS.home, label: m.ui.nav.home || "Home" },
     { key: "features", href: PATHS.features, label: m.ui.nav.features },
     { key: "centres", href: PATHS.centres, label: m.ui.nav.testCentres || "Test Centres" },
     { key: "instructors", href: PATHS.instructors, label: m.ui.nav.instructors || "Instructors" },
@@ -2142,6 +2805,123 @@ function renderPrimaryNavLinks(m) {
       return `<a class="nav-link${active ? " active" : ""}" data-nav="${escapeAttr(link.key)}" href="${escapeAttr(link.href)}"${active ? ' aria-current="page"' : ""}>${escapeHtml(link.label)}</a>`;
     })
     .join("");
+}
+
+function pageNavConfig(currentPage = page, m, centreId = document.body.dataset.centreId) {
+  const homeLabel = m?.ui?.nav?.home || "Home";
+  const featuresLabel = m?.ui?.nav?.features || "Features";
+  const centresLabel = m?.ui?.nav?.testCentres || "Test Centres";
+  const instructorsLabel = m?.ui?.nav?.instructors || "Instructors";
+  const pricingLabel = m?.ui?.nav?.pricing || "Pricing";
+  const faqLabel = m?.ui?.nav?.faq || "FAQ";
+  const startLabel = m?.ui?.nav?.gettingStarted || "Getting Started";
+  const contactLabel = footerLabel(m, "contact") || "Contact";
+  const downloadLabel = m?.ui?.actions?.prepare || "Get the app";
+  const accessRequestLabel = "Access Request";
+  const instructorApplyLabel = "Apply as instructor";
+  const theoryLabel = m?.pageSeo?.theory?.title || "Theory test preparation";
+  const termsLabel = footerLabel(m, "terms") || "Terms";
+  const privacyLabel = footerLabel(m, "privacy") || "Privacy policy";
+  const centre = currentPage === "centre-detail" ? coverageCentreById(m?.testCentreCoverage, centreId) : null;
+
+  switch (currentPage) {
+    case "home":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ label: homeLabel }]
+      };
+    case "features":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: featuresLabel }]
+      };
+    case "centres":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: centresLabel }]
+      };
+    case "centre-detail":
+      return {
+        fallbackHref: PATHS.centres,
+        trail: [
+          { href: PATHS.home, label: homeLabel },
+          { href: PATHS.centres, label: centresLabel },
+          { label: centre?.name || "Centre detail" }
+        ]
+      };
+    case "instructors":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: instructorsLabel }]
+      };
+    case "pricing":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: pricingLabel }]
+      };
+    case "faq":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: faqLabel }]
+      };
+    case "contact":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: contactLabel }]
+      };
+    case "download":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: downloadLabel }]
+      };
+    case "start":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: startLabel }]
+      };
+    case "theory":
+      return {
+        fallbackHref: PATHS.features,
+        trail: [
+          { href: PATHS.home, label: homeLabel },
+          { href: PATHS.features, label: featuresLabel },
+          { label: theoryLabel }
+        ]
+      };
+    case "accessRequest":
+      return {
+        fallbackHref: PATHS.pricing,
+        trail: [
+          { href: PATHS.home, label: homeLabel },
+          { href: PATHS.pricing, label: pricingLabel },
+          { label: accessRequestLabel }
+        ]
+      };
+    case "instructorApply":
+      return {
+        fallbackHref: PATHS.instructors,
+        trail: [
+          { href: PATHS.home, label: homeLabel },
+          { href: PATHS.instructors, label: instructorsLabel },
+          { label: instructorApplyLabel }
+        ]
+      };
+    case "terms":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: termsLabel }]
+      };
+    case "privacy":
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: privacyLabel }]
+      };
+    default:
+      return {
+        fallbackHref: PATHS.home,
+        trail: [{ href: PATHS.home, label: homeLabel }, { label: toDisplayLabel(currentPage) }]
+      };
+  }
 }
 
 function renderTabIcon(title) {
@@ -2232,6 +3012,96 @@ function setupAnimations() {
     }
     observer.observe(node);
   });
+}
+
+function setupFeatureShowcases() {
+  const scenes = Array.from(document.querySelectorAll("[data-feature-scene]"));
+  if (!scenes.length) return;
+
+  const desktopMedia = window.matchMedia("(min-width: 981px)");
+  const reduceMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let ticking = false;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const resetScene = (scene) => {
+    scene.style.removeProperty("--scene-progress");
+    scene.querySelectorAll("[data-scene-point]").forEach((point) => {
+      point.style.removeProperty("--point-progress");
+      point.classList.remove("is-active", "is-past");
+    });
+    scene.querySelectorAll("[data-scene-tag]").forEach((tag) => {
+      tag.classList.remove("is-active", "is-past");
+    });
+  };
+
+  const applySceneState = (scene, progress) => {
+    const points = Array.from(scene.querySelectorAll("[data-scene-point]"));
+    const tags = Array.from(scene.querySelectorAll("[data-scene-tag]"));
+    const pointCount = points.length;
+    if (!pointCount) return;
+
+    const activeIndex = clamp(Math.floor(progress * pointCount), 0, pointCount - 1);
+    scene.style.setProperty("--scene-progress", progress.toFixed(4));
+
+    points.forEach((point, index) => {
+      const segment = 1 / pointCount;
+      const start = index * segment;
+      const end = Math.min(1, start + segment * 0.92);
+      const local = clamp((progress - start) / Math.max(0.0001, end - start), 0, 1);
+      point.style.setProperty("--point-progress", local.toFixed(4));
+      point.classList.toggle("is-active", index === activeIndex);
+      point.classList.toggle("is-past", index < activeIndex);
+    });
+
+    tags.forEach((tag, index) => {
+      tag.classList.toggle("is-active", index === activeIndex);
+      tag.classList.toggle("is-past", index < activeIndex);
+    });
+  };
+
+  const updateScenes = () => {
+    ticking = false;
+    const interactive = desktopMedia.matches && !reduceMotionMedia.matches;
+    document.body.classList.toggle("feature-scenes-ready", interactive);
+
+    if (!interactive) {
+      scenes.forEach(resetScene);
+      return;
+    }
+
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const startOffset = 148;
+    const endOffset = Math.min(viewportHeight * 0.42, 360);
+    scenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      const distance = Math.max(rect.height - startOffset - endOffset, viewportHeight * 0.45);
+      const travelled = startOffset - rect.top;
+      const progress = clamp(travelled / distance, 0, 1);
+      applySceneState(scene, progress);
+    });
+  };
+
+  const queueUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateScenes);
+  };
+
+  const handleMediaChange = () => queueUpdate();
+
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+  window.addEventListener("resize", queueUpdate);
+
+  if (typeof desktopMedia.addEventListener === "function") {
+    desktopMedia.addEventListener("change", handleMediaChange);
+    reduceMotionMedia.addEventListener("change", handleMediaChange);
+  } else {
+    desktopMedia.addListener(handleMediaChange);
+    reduceMotionMedia.addListener(handleMediaChange);
+  }
+
+  updateScenes();
 }
 
 function setupProofCarousels() {
@@ -2349,10 +3219,50 @@ function setupProofCarousels() {
 
 function setActiveNav() {
   const current = activeNavKey();
-  if (!current || current === "home") return;
+  if (!current) return;
   document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => {
     link.classList.add("active");
     link.setAttribute("aria-current", "page");
+  });
+}
+
+function setupBackNav() {
+  const links = document.querySelectorAll("[data-nav-back]");
+  if (!links.length) return;
+
+  let canUseHistory = false;
+  try {
+    const referrer = document.referrer ? new URL(document.referrer) : null;
+    const sameOrigin = referrer && referrer.origin === window.location.origin;
+    const differentPage =
+      sameOrigin &&
+      (referrer.pathname !== window.location.pathname ||
+        referrer.search !== window.location.search ||
+        referrer.hash !== window.location.hash);
+    canUseHistory = Boolean(differentPage && window.history.length > 1);
+  } catch {
+    canUseHistory = false;
+  }
+
+  links.forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement)) return;
+    link.dataset.historyBack = canUseHistory ? "true" : "false";
+    if (canUseHistory) {
+      link.classList.remove("is-disabled");
+      link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
+    } else {
+      link.classList.add("is-disabled");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("tabindex", "-1");
+    }
+
+    if (!canUseHistory || link.dataset.backNavBound === "true") return;
+    link.dataset.backNavBound = "true";
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.history.back();
+    });
   });
 }
 

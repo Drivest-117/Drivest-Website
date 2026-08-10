@@ -2,3 +2,4 @@ test-results/
 translation_handoff_*.zip
 .vercel
 __pycache__/
+.local-preview.pid

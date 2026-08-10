@@ -6,8 +6,10 @@ function finalizePageChrome() {
   const yearNode = document.getElementById("year");
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
   setupAnimations();
+  setupFeatureShowcases();
   setupProofCarousels();
   setActiveNav();
+  setupBackNav();
   setupMobileNav();
   setupCoverageDirectory();
   setupAccessRequestForm();
@@ -29,7 +31,7 @@ function setActiveNav() {
   });
 
   const current = activeNavKey();
-  if (!current || current === "home") return;
+  if (!current) return;
 
   document.querySelectorAll(`.site-nav a[data-nav="${current}"]`).forEach((link) => {
     link.classList.add("active");
@@ -72,6 +74,96 @@ function setupAnimations() {
     }
     observer.observe(node);
   });
+}
+
+function setupFeatureShowcases() {
+  const scenes = Array.from(document.querySelectorAll("[data-feature-scene]"));
+  if (!scenes.length) return;
+
+  const desktopMedia = window.matchMedia("(min-width: 981px)");
+  const reduceMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let ticking = false;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const resetScene = (scene) => {
+    scene.style.removeProperty("--scene-progress");
+    scene.querySelectorAll("[data-scene-point]").forEach((point) => {
+      point.style.removeProperty("--point-progress");
+      point.classList.remove("is-active", "is-past");
+    });
+    scene.querySelectorAll("[data-scene-tag]").forEach((tag) => {
+      tag.classList.remove("is-active", "is-past");
+    });
+  };
+
+  const applySceneState = (scene, progress) => {
+    const points = Array.from(scene.querySelectorAll("[data-scene-point]"));
+    const tags = Array.from(scene.querySelectorAll("[data-scene-tag]"));
+    const pointCount = points.length;
+    if (!pointCount) return;
+
+    const activeIndex = clamp(Math.floor(progress * pointCount), 0, pointCount - 1);
+    scene.style.setProperty("--scene-progress", progress.toFixed(4));
+
+    points.forEach((point, index) => {
+      const segment = 1 / pointCount;
+      const start = index * segment;
+      const end = Math.min(1, start + segment * 0.92);
+      const local = clamp((progress - start) / Math.max(0.0001, end - start), 0, 1);
+      point.style.setProperty("--point-progress", local.toFixed(4));
+      point.classList.toggle("is-active", index === activeIndex);
+      point.classList.toggle("is-past", index < activeIndex);
+    });
+
+    tags.forEach((tag, index) => {
+      tag.classList.toggle("is-active", index === activeIndex);
+      tag.classList.toggle("is-past", index < activeIndex);
+    });
+  };
+
+  const updateScenes = () => {
+    ticking = false;
+    const interactive = desktopMedia.matches && !reduceMotionMedia.matches;
+    document.body.classList.toggle("feature-scenes-ready", interactive);
+
+    if (!interactive) {
+      scenes.forEach(resetScene);
+      return;
+    }
+
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const startOffset = 148;
+    const endOffset = Math.min(viewportHeight * 0.42, 360);
+    scenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      const distance = Math.max(rect.height - startOffset - endOffset, viewportHeight * 0.45);
+      const travelled = startOffset - rect.top;
+      const progress = clamp(travelled / distance, 0, 1);
+      applySceneState(scene, progress);
+    });
+  };
+
+  const queueUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateScenes);
+  };
+
+  const handleMediaChange = () => queueUpdate();
+
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+  window.addEventListener("resize", queueUpdate);
+
+  if (typeof desktopMedia.addEventListener === "function") {
+    desktopMedia.addEventListener("change", handleMediaChange);
+    reduceMotionMedia.addEventListener("change", handleMediaChange);
+  } else {
+    desktopMedia.addListener(handleMediaChange);
+    reduceMotionMedia.addListener(handleMediaChange);
+  }
+
+  updateScenes();
 }
 
 function setupProofCarousels() {
@@ -275,13 +367,55 @@ function setupMobileNav() {
   }
 }
 
+function setupBackNav() {
+  const links = document.querySelectorAll("[data-nav-back]");
+  if (!links.length) return;
+
+  let canUseHistory = false;
+  try {
+    const referrer = document.referrer ? new URL(document.referrer) : null;
+    const sameOrigin = referrer && referrer.origin === window.location.origin;
+    const differentPage =
+      sameOrigin &&
+      (referrer.pathname !== window.location.pathname ||
+        referrer.search !== window.location.search ||
+        referrer.hash !== window.location.hash);
+    canUseHistory = Boolean(differentPage && window.history.length > 1);
+  } catch {
+    canUseHistory = false;
+  }
+
+  links.forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement)) return;
+    link.dataset.historyBack = canUseHistory ? "true" : "false";
+    if (canUseHistory) {
+      link.classList.remove("is-disabled");
+      link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
+    } else {
+      link.classList.add("is-disabled");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("tabindex", "-1");
+    }
+
+    if (!canUseHistory || link.dataset.backNavBound === "true") return;
+    link.dataset.backNavBound = "true";
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.history.back();
+    });
+  });
+}
+
 function setupCoverageDirectory() {
   const root = document.querySelector("[data-coverage-directory]");
   if (!root) return;
 
   const search = root.querySelector("[data-coverage-search]");
   const minRoutes = root.querySelector("[data-coverage-min-routes]");
+  const reset = root.querySelector("[data-coverage-reset]");
   const status = root.querySelector("[data-coverage-status]");
+  const directoryGrid = document.querySelector(".coverage-letter-grid");
   const formatter = new Intl.NumberFormat("en-GB");
   const groups = Array.from(document.querySelectorAll("[data-coverage-group]")).map((group) => ({
     node: group,
@@ -289,31 +423,88 @@ function setupCoverageDirectory() {
     items: Array.from(group.querySelectorAll("[data-coverage-item]"))
   }));
 
-  if (!groups.length) return;
+  if (!groups.length || !directoryGrid) return;
 
   const totalCentres = groups.reduce((sum, group) => sum + group.items.length, 0);
   const totalGroups = groups.length;
+  const defaultMin = minRoutes?.options?.[0]?.value || "0";
+  let activeLetter = String(groups[0]?.node.dataset.coverageLetter || "");
+
+  let browser = directoryGrid.previousElementSibling;
+  if (!browser || !browser.matches("[data-coverage-browser]")) {
+    browser = document.createElement("div");
+    browser.className = "coverage-directory-browser reveal-item";
+    browser.setAttribute("data-coverage-browser", "");
+    browser.innerHTML = `
+      <div class="coverage-directory-browser-head">
+        <p class="panel-title">Browse by letter</p>
+        <p class="coverage-directory-browser-copy">Choose a letter to keep results compact. When filters are active, only matching letters stay in the rail.</p>
+      </div>
+      <div class="coverage-letter-pills" data-coverage-pills></div>
+    `;
+    directoryGrid.before(browser);
+  }
+
+  const pillRail = browser.querySelector("[data-coverage-pills]");
+  if (pillRail && !pillRail.children.length) {
+    groups.forEach((group) => {
+      const letter = String(group.node.dataset.coverageLetter || "").trim();
+      if (!letter) return;
+      group.letter = letter;
+      group.node.id = group.node.id || `coverage-group-${letter.toLowerCase()}`;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "coverage-letter-pill";
+      button.setAttribute("data-coverage-letter-pill", letter);
+      button.innerHTML = `
+        <span>${letter}</span>
+        <strong>${formatter.format(group.items.length)}</strong>
+      `;
+      group.pill = button;
+      group.pillCount = button.querySelector("strong");
+      button.addEventListener("click", () => {
+        activeLetter = letter;
+        applyFilters();
+        requestAnimationFrame(() => {
+          group.node.scrollIntoView({ block: "start", behavior: "smooth" });
+        });
+      });
+      pillRail.appendChild(button);
+    });
+  } else {
+    groups.forEach((group) => {
+      group.letter = String(group.node.dataset.coverageLetter || "").trim();
+      group.pill = pillRail?.querySelector(`[data-coverage-letter-pill="${group.letter}"]`) || null;
+      group.pillCount = group.pill?.querySelector("strong") || null;
+      group.node.id = group.node.id || `coverage-group-${group.letter.toLowerCase()}`;
+    });
+  }
 
   const pluralize = (value, single, plural) => (value === 1 ? single : plural);
+  const currentMin = () => Number(minRoutes?.value || defaultMin || 0);
+  const isFiltered = () => Boolean(String(search?.value || "").trim()) || currentMin() > Number(defaultMin || 0);
 
   const updateStatus = (visibleCentres, visibleGroups) => {
     if (!status) return;
 
     const rawTerm = String(search?.value || "").trim();
-    const min = Number(minRoutes?.value || 0);
+    const min = currentMin();
+    const atDefault = !rawTerm && min === Number(defaultMin || 0);
 
-    if (!rawTerm && min === 0) {
-      status.textContent = `Showing all ${formatter.format(totalCentres)} live centres across ${formatter.format(totalGroups)} letter groups.`;
+    if (reset) reset.disabled = atDefault;
+
+    if (atDefault) {
+      status.textContent = `Showing all ${formatter.format(totalCentres)} covered centres across ${formatter.format(totalGroups)} letter groups.`;
       return;
     }
 
     if (visibleCentres === 0) {
-      status.textContent = "No live centres match the current search and route filter.";
+      status.textContent = "No covered centres match the current search and route filter.";
       return;
     }
 
     const details = [
-      `Showing ${formatter.format(visibleCentres)} ${pluralize(visibleCentres, "live centre", "live centres")}`,
+      `Showing ${formatter.format(visibleCentres)} ${pluralize(visibleCentres, "covered centre", "covered centres")}`,
       `across ${formatter.format(visibleGroups)} ${pluralize(visibleGroups, "letter group", "letter groups")}`
     ];
 
@@ -325,9 +516,11 @@ function setupCoverageDirectory() {
 
   const applyFilters = () => {
     const term = String(search?.value || "").trim().toLowerCase();
-    const min = Number(minRoutes?.value || 0);
+    const min = currentMin();
+    const filteredMode = isFiltered();
     let visibleCentres = 0;
     let visibleGroups = 0;
+    let firstVisibleLetter = "";
 
     groups.forEach((group) => {
       let visibleInGroup = 0;
@@ -340,10 +533,34 @@ function setupCoverageDirectory() {
         if (matches) visibleInGroup += 1;
       });
 
-      group.node.hidden = visibleInGroup === 0;
+      if (!firstVisibleLetter && visibleInGroup > 0) {
+        firstVisibleLetter = group.letter;
+      }
+
       if (group.countNode) group.countNode.textContent = formatter.format(visibleInGroup);
+      if (group.pillCount) group.pillCount.textContent = formatter.format(visibleInGroup);
+      if (group.pill) {
+        group.pill.hidden = filteredMode ? visibleInGroup === 0 : false;
+      }
+
+      group.node.hidden = visibleInGroup === 0;
       if (visibleInGroup > 0) visibleGroups += 1;
       visibleCentres += visibleInGroup;
+    });
+
+    if (firstVisibleLetter && !groups.some((group) => group.letter === activeLetter && !group.node.hidden)) {
+      activeLetter = firstVisibleLetter;
+    }
+
+    groups.forEach((group) => {
+      const visible = !group.node.hidden;
+      const focusedMatch = group.letter === activeLetter;
+      group.node.hidden = !visible || !focusedMatch;
+      group.node.classList.toggle("is-focused", visible && focusedMatch);
+      if (group.pill) {
+        group.pill.classList.toggle("is-active", visible && focusedMatch);
+        group.pill.disabled = !visible;
+      }
     });
 
     updateStatus(visibleCentres, visibleGroups);
@@ -351,8 +568,17 @@ function setupCoverageDirectory() {
 
   if (search) search.addEventListener("input", applyFilters);
   if (minRoutes) minRoutes.addEventListener("change", applyFilters);
+  if (reset) {
+    reset.addEventListener("click", () => {
+      if (search) search.value = "";
+      if (minRoutes) minRoutes.value = defaultMin;
+      applyFilters();
+      if (search) search.focus();
+    });
+  }
 
   applyFilters();
+  root.setAttribute("data-coverage-ready", "");
 }
 
 function setupAccessRequestForm() {

@@ -2,45 +2,45 @@
 
 > Drivest is an independent UK learner-driver platform for multilingual theory prep, selected-centre practice routes, instructor workflows where enabled, and calmer first drives.
 
-Drivest is a public UK learner-driver platform site. Canonical public content is published at https://drivest.uk/. Practice routes are reconstructed or generated for learning only and are not official driving test routes. Public coverage in this export includes 317 test centres and 3538 practice routes. Coverage data shown on the site was generated on 19 June 2026.
+Drivest is a public UK learner-driver platform site. Canonical public content is published at http://127.0.0.1:4173/. Practice routes are reconstructed or generated for learning only and are not official driving test routes. Public coverage in this export includes 317 test centres and 3538 practice routes. Coverage data shown on the site was generated on 19 June 2026.
 
 ## Core pages
 
-- [Homepage](https://drivest.uk/): Product overview and public positioning.
-- [Features](https://drivest.uk/features): Learner, navigation, parking, and instructor workflows.
-- [Pricing](https://drivest.uk/pricing): Free and paid plan overview.
-- [Get Drivest for iPhone](https://drivest.uk/download): Current iPhone launch status and direct download route.
-- [Access request](https://drivest.uk/access-request): Structured learner-access request flow for free and paid routes.
-- [Instructor apply](https://drivest.uk/instructor-apply): Structured instructor application flow.
-- [Getting started](https://drivest.uk/start): Role-based onboarding paths for learners and instructors.
+- [Homepage](http://127.0.0.1:4173/): Product overview and public positioning.
+- [Features](http://127.0.0.1:4173/features): Learner, navigation, parking, and instructor workflows.
+- [Pricing](http://127.0.0.1:4173/pricing): Free and paid plan overview.
+- [Get Drivest for iPhone](http://127.0.0.1:4173/download): Current iPhone launch status and direct download route.
+- [Access request](http://127.0.0.1:4173/access-request): Structured learner-access request flow for free and paid routes.
+- [Instructor apply](http://127.0.0.1:4173/instructor-apply): Structured instructor application flow.
+- [Getting started](http://127.0.0.1:4173/start): Role-based onboarding paths for learners and instructors.
 
 ## Theory and learner preparation
 
-- [Theory test preparation](https://drivest.uk/theory-test-preparation): Main theory learning hub with 32-language support.
-- [Mock theory test](https://drivest.uk/mock-theory-test): Mock-test preparation page.
-- [Hazard perception test](https://drivest.uk/hazard-perception-test): Hazard-perception preparation page.
-- [Road signs test](https://drivest.uk/road-signs-test): Traffic-sign revision page.
-- [Highway Code test](https://drivest.uk/highway-code-test): Highway Code revision page.
-- [Driving theory test in Welsh](https://drivest.uk/driving-theory-test-in-welsh): Welsh-language learner page.
-- [Driving theory test in Urdu](https://drivest.uk/driving-theory-test-in-urdu): Urdu-language learner page.
-- [Driving theory test in Arabic](https://drivest.uk/driving-theory-test-in-arabic): Arabic-language learner page.
+- [Theory test preparation](http://127.0.0.1:4173/theory-test-preparation): Main theory learning hub with 32-language support.
+- [Mock theory test](http://127.0.0.1:4173/mock-theory-test): Mock-test preparation page.
+- [Hazard perception test](http://127.0.0.1:4173/hazard-perception-test): Hazard-perception preparation page.
+- [Road signs test](http://127.0.0.1:4173/road-signs-test): Traffic-sign revision page.
+- [Highway Code test](http://127.0.0.1:4173/highway-code-test): Highway Code revision page.
+- [Driving theory test in Welsh](http://127.0.0.1:4173/driving-theory-test-in-welsh): Welsh-language learner page.
+- [Driving theory test in Urdu](http://127.0.0.1:4173/driving-theory-test-in-urdu): Urdu-language learner page.
+- [Driving theory test in Arabic](http://127.0.0.1:4173/driving-theory-test-in-arabic): Arabic-language learner page.
 
 ## Practice, navigation, and instructors
 
-- [Driving test centres](https://drivest.uk/driving-test-centres): UK centre directory and practice-route overview.
-- [London driving test centres](https://drivest.uk/driving-test-centres/london): London regional hub.
-- [Manchester driving test centres](https://drivest.uk/driving-test-centres/manchester): Manchester regional hub.
-- [Birmingham driving test centres](https://drivest.uk/driving-test-centres/birmingham): Birmingham regional hub.
-- [Driving instructors](https://drivest.uk/driving-instructors): Instructor discovery and booking overview.
+- [Driving test centres](http://127.0.0.1:4173/driving-test-centres): UK centre directory and practice-route overview.
+- [London driving test centres](http://127.0.0.1:4173/driving-test-centres/london): London regional hub.
+- [Manchester driving test centres](http://127.0.0.1:4173/driving-test-centres/manchester): Manchester regional hub.
+- [Birmingham driving test centres](http://127.0.0.1:4173/driving-test-centres/birmingham): Birmingham regional hub.
+- [Driving instructors](http://127.0.0.1:4173/driving-instructors): Instructor discovery and booking overview.
 
 ## Trust and support
 
-- [FAQ](https://drivest.uk/faq): Product, pricing, and policy answers.
-- [Contact](https://drivest.uk/contact): Support and coverage methodology.
-- [Terms](https://drivest.uk/terms): Terms and conditions.
-- [Privacy](https://drivest.uk/privacy): Privacy policy.
-- [Sitemap](https://drivest.uk/sitemap.xml): Full public URL inventory.
+- [FAQ](http://127.0.0.1:4173/faq): Product, pricing, and policy answers.
+- [Contact](http://127.0.0.1:4173/contact): Support and coverage methodology.
+- [Terms](http://127.0.0.1:4173/terms): Terms and conditions.
+- [Privacy](http://127.0.0.1:4173/privacy): Privacy policy.
+- [Sitemap](http://127.0.0.1:4173/sitemap.xml): Full public URL inventory.
 
 ## Optional
 
-- [llms-full.txt](https://drivest.uk/llms-full.txt): Expanded LLM-readable summary of the public site.
+- [llms-full.txt](http://127.0.0.1:4173/llms-full.txt): Expanded LLM-readable summary of the public site.

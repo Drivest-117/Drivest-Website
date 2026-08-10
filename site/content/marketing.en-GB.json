@@ -34,8 +34,8 @@
       "description": "Browse instructor information, lesson-request flows, and Instructor Hub features where enabled, or apply to join Drivest as an instructor."
     },
     "contact": {
-      "title": "Contact, trust, and coverage methodology",
-      "description": "Find Drivest contact details, legal identity references, public coverage methodology notes, and current website support information."
+      "title": "Contact and support",
+      "description": "Contact Drivest for support, privacy requests, and route-coverage questions, and review the public trust notes behind the website."
     },
     "accessRequest": {
       "title": "Start learner access with Drivest",
@@ -53,6 +53,7 @@
   "ui": {
     "brand": "Drivest",
     "nav": {
+      "home": "Home",
       "features": "Features",
       "testCentres": "Test Centres",
       "instructors": "Instructors",
@@ -870,106 +871,36 @@
     "centres": {
       "title": "Driving test centres and local practice routes",
       "intro": "Choose a centre, repeat nearby routes, and rehearse the road types that usually catch learners out. Routes are reconstructed for learning support only.",
-      "summary": {
-        "title": "Find a centre and build local familiarity",
-        "text": "Search centres, repeat reconstructed local routes, and use route-aware prompts before test day."
-      },
-      "proofRail": {
-        "eyebrow": "Clear route positioning",
-        "title": "What this page is and is not claiming",
-        "intro": "This page is about structured local practice, not predicting a real test route.",
-        "items": [
-          {
-            "title": "Reconstructed mock-practice",
-            "text": "Use local route repetition to rehearse road features around a selected centre.",
-            "pills": [
-              "Not official DVSA routes",
-              "No real-route prediction",
-              "No pass guarantee"
-            ]
-          },
-          {
-            "title": "Route trust details where shown",
-            "text": "Practice pages can surface source type, review date, version, difficulty, and key challenges when available.",
-            "pills": [
-              "Review date",
-              "Version",
-              "Key challenges"
-            ]
-          },
-          {
-            "title": "Report gaps quickly",
-            "text": "Learners can flag closures, stale guidance, unsafe directions, missing centres, and missing routes for review.",
-            "pills": [
-              "Closures",
-              "Unsafe directions",
-              "Coverage gaps"
-            ]
-          }
-        ]
-      },
       "sections": [
         {
-          "title": "What you get around a test centre",
-          "intro": "Repeat the local roads and decisions around your centre.",
+          "title": "How learners use Drivest around a test centre",
+          "intro": "Keep the practical parts of centre preparation in one place.",
+          "layout": "two-up",
           "items": [
             {
-              "title": "Selected-centre routes",
-              "text": "Pick a selected centre and practise reconstructed routes around that area."
+              "title": "Choose the right centre",
+              "text": "Search by centre, town, or area and compare route depth before opening a centre page."
             },
             {
-              "title": "Off-route alerts",
-              "text": "Know when a learner leaves the planned route and clear the alert when they rejoin."
+              "title": "Repeat local practice routes",
+              "text": "Rehearse reconstructed routes around a selected centre to build familiarity with that area."
             },
             {
-              "title": "Offline packs",
-              "text": "Download route and hazard packs when signal quality drops."
+              "title": "Prepare for the hard road features",
+              "text": "Use route-aware prompts around roundabouts, lights, crossings, school areas, and other common hesitation points."
             },
             {
-              "title": "Road feature prompts",
-              "text": "Receive advisory prompts around roundabouts, lights, crossings, school areas, and similar features."
-            },
-            {
-              "title": "Route issue reporting",
-              "text": "Report closures, stale guidance, unsafe instructions, or impossible turns for review."
-            },
-            {
-              "title": "Parking before arrival",
-              "text": "Check nearby parking, destination flow, and arrival cues while still confirming live restrictions."
-            },
-            {
-              "title": "Coverage across the UK",
-              "text": "Public coverage focuses on centres with enough route depth to make local practice worthwhile."
-            }
-          ]
-        },
-        {
-          "title": "What learners can rehearse before test day",
-          "intro": "Repeat the road patterns that usually make learners hesitate.",
-          "items": [
-            {
-              "title": "Roundabouts and lane choice",
-              "text": "Repeat the lane decisions and observation patterns that often unsettle lower-confidence learners."
-            },
-            {
-              "title": "Traffic lights and crossings",
-              "text": "Use route-aware prompts to reinforce spacing, planning, and observation around busy junctions."
-            },
-            {
-              "title": "Residential roads and school areas",
-              "text": "Practise calmer speed control, scanning, and hazard anticipation where the environment changes quickly."
-            },
-            {
-              "title": "Route repetition with feedback context",
-              "text": "Combine repeated local practice with confidence history and progress tracking in the same app."
+              "title": "Tidy up issues fast",
+              "text": "Report closures, stale guidance, unsafe instructions, or missing route coverage when something needs review."
             }
           ]
         }
       ],
       "linkSections": [
         {
-          "title": "Browse current region hubs",
-          "intro": "Start with the regional hubs below if you are choosing between nearby centres.",
+          "title": "Regional hub shortcuts",
+          "intro": "If you are choosing between nearby centres, start with the city-level hubs below.",
+          "layout": "three-up",
           "items": [
             {
               "title": "London centres",
@@ -992,30 +923,9 @@
           ]
         }
       ],
-      "infoSections": [
-        {
-          "title": "Important route positioning",
-          "text": "Practice routes are reconstructed for learning support only.",
-          "bullets": [
-            "Routes are reconstructed or generated for learning and are not official driving test routes.",
-            "Learners must always follow live road signs, road markings, and traffic laws.",
-            "Navigation, route, and parking outputs are advisory only and may be incomplete or delayed."
-          ]
-        },
-        {
-          "title": "Route trust and reporting",
-          "text": "Practice pages expose route trust signals and let learners report gaps when data needs review.",
-          "bullets": [
-            "Route trust metadata can include review date, version, difficulty, source class, confidence, and key challenges.",
-            "Learners can report closures, stale details, unsafe guidance, impossible turns, and other route issues.",
-            "Missing-centre and request-another-route flows can flag coverage gaps.",
-            "Completed practice can feed usefulness and currentness feedback into route review."
-          ]
-        }
-      ],
       "faq": {
         "title": "Practice-route questions",
-        "intro": "These are the core questions learners ask before using centre pages and local route practice.",
+        "intro": "Short answers before you pick a centre or open a route page.",
         "items": [
           {
             "q": "Are Drivest practice routes official driving test routes?",
@@ -1032,36 +942,6 @@
           {
             "q": "Can I report a bad or missing route?",
             "a": "Yes. Practice users can report stale information, closures, unsafe guidance, or impossible turns, and can also flag a missing centre or request another route where coverage is incomplete."
-          }
-        ]
-      },
-      "related": {
-        "title": "Build the rest of the learner journey",
-        "intro": "Theory, instructors, pricing, and next steps stay one click away.",
-        "items": [
-          {
-            "title": "Theory test preparation",
-            "text": "Start with theory, Highway Code, traffic signs, and fines revision before or alongside route practice.",
-            "href": "/theory-test-preparation",
-            "cta": "View theory prep"
-          },
-          {
-            "title": "Instructor information and onboarding",
-            "text": "Review instructor information, lesson-request flows where enabled, and onboarding details if you want to connect practice with lessons.",
-            "href": "/driving-instructors",
-            "cta": "View instructor search"
-          },
-          {
-            "title": "How Drivest works",
-            "text": "See how learners choose a stage, language, and next steps inside the app journey.",
-            "href": "/start",
-            "cta": "See how it works"
-          },
-          {
-            "title": "Pricing and access",
-            "text": "Compare selected-centre practice access with annual driving-support and bundle options.",
-            "href": "/pricing",
-            "cta": "Compare pricing"
           }
         ]
       }
@@ -1238,21 +1118,48 @@
     }
   },
   "contactPage": {
-    "title": "Contact, trust, and coverage methodology",
-    "intro": "Use this page for support contact, public trust signals, and the website methodology behind current route-coverage claims.",
+    "title": "Contact and support",
+    "eyebrow": "Support and trust",
+    "intro": "Use this page when you need support, a privacy or data request, or a clear explanation of how Drivest describes public route coverage.",
+    "pills": [
+      "Support inbox",
+      "Data requests",
+      "Coverage questions"
+    ],
+    "primaryCta": "Email support",
+    "secondaryCta": "Privacy policy",
+    "secondaryHref": "/privacy",
+    "supportPanel": {
+      "title": "Use this inbox for",
+      "items": [
+        {
+          "title": "Product support",
+          "text": "Learner access questions, public-site issues, and general product queries."
+        },
+        {
+          "title": "Privacy requests",
+          "text": "Access or deletion requests, with identity verification where required."
+        },
+        {
+          "title": "Coverage questions",
+          "text": "Questions about published centre coverage and route-directory methodology."
+        }
+      ],
+      "note": "Support, privacy, and coverage questions are handled through the same inbox."
+    },
     "cards": [
       {
-        "title": "Support contact",
-        "text": "Support, privacy requests, platform questions, and route-coverage queries can be sent directly to Drivest.",
+        "title": "Support inbox",
+        "text": "One place for product questions, privacy requests, and public-site issues.",
         "bullets": [
-          "Email: admin@drivest.uk",
-          "Support, access, and public-site questions are handled through the same address",
-          "Data access or deletion requests may require identity verification"
+          "Direct email support for the live website and app",
+          "Access and privacy requests may require identity verification",
+          "Use clear centre names when asking about route coverage"
         ]
       },
       {
-        "title": "Company and legal identity",
-        "text": "The website already identifies the product as Drivest and refers to Drivest Limited in public-facing material.",
+        "title": "Legal references",
+        "text": "Public legal wording stays visible and tied to the same domain as the marketing pages.",
         "bullets": [
           "Terms and Privacy pages are published on the same domain",
           "FAQ and legal wording explain the independent-product position clearly",
@@ -1260,8 +1167,8 @@
         ]
       },
       {
-        "title": "Current website and app status",
-        "text": "The public website is live and crawlable. Product access, rollout timing, and partnership questions can be requested directly.",
+        "title": "Website and app status",
+        "text": "The public website is live, crawlable, and aligned to workflows already visible in the app.",
         "bullets": [
           "Website pages reflect theory, practice, navigation, parking, and instructor workflows already visible in the app",
           "Current app availability or launch questions can be directed to support",
@@ -1270,14 +1177,45 @@
       },
       {
         "title": "Coverage methodology",
-        "text": "Published route-coverage claims come from the Drivest route-corpus export used to generate the centre directory and centre pages.",
+        "text": "Published route-coverage claims come from the route-corpus export used to generate the centre directory and centre pages.",
         "bullets": [
           "Only centres with more than 2 routes are included in the public visibility layer",
           "Temporary, backup, broken, and duplicate centre variants are excluded",
           "Coverage claims should be refreshed whenever the route corpus changes so search engines and users see the latest published layer"
         ]
       }
-    ]
+    ],
+    "links": {
+      "title": "Useful next pages",
+      "intro": "If you are trying to resolve something specific, these pages usually answer it faster.",
+      "layout": "two-up compact-grid",
+      "items": [
+        {
+          "title": "FAQ",
+          "text": "See grouped answers on product scope, subscriptions, instructors, and privacy handling.",
+          "href": "/faq",
+          "cta": "View FAQ"
+        },
+        {
+          "title": "Privacy policy",
+          "text": "Use the formal privacy page for data handling details and request context.",
+          "href": "/privacy",
+          "cta": "View privacy"
+        },
+        {
+          "title": "Terms and conditions",
+          "text": "Review public legal wording, responsibilities, and platform boundaries.",
+          "href": "/terms",
+          "cta": "View terms"
+        },
+        {
+          "title": "Test-centre coverage",
+          "text": "Browse the published centre directory if your question is about visible route coverage.",
+          "href": "/driving-test-centres",
+          "cta": "View centres"
+        }
+      ]
+    }
   },
   "accessRequestPage": {
     "title": "Start learner access",
@@ -1680,32 +1618,37 @@
     ]
   },
   "liveCoverage": {
-    "title": "Centres included in Drivest's published coverage dataset",
-    "intro": "Search the centres where Drivest's published route dataset has enough depth to make local practice useful.",
-    "summaryTitle": "How this list stays useful",
-    "summaryText": "We only show centres once the published dataset has enough route depth to help with real local repetition.",
-    "topCentresTitle": "Popular high-coverage centres",
-    "directoryTitle": "Browse covered centres A to Z",
-    "note": "Coverage is refreshed when the published route dataset is rebuilt."
+    "title": "Search covered centres",
+    "intro": "Browse the public centres where Drivest has enough route depth to make local practice useful.",
+    "summaryTitle": "How to read this directory",
+    "summaryText": "Search by centre, town, or area, then compare route counts when you want broader local practice coverage.",
+    "directoryTitle": "All covered centres A to Z",
+    "note": "Practice routes are reconstructed for learning support and are not official driving test routes."
   },
   "pricing": {
-    "title": "Pricing aligned to the app",
-    "intro": "Start free for theory and onboarding, add monthly centre practice when lessons begin, or move into annual calmer-driving support once independent driving is active.",
+    "title": "Pricing that follows the driving journey",
+    "intro": "Start free for theory, add centre practice when lessons begin, then move into yearly driving support once independent driving starts.",
     "comparePills": [
-      "Start free",
-      "Practice monthly",
-      "Drive yearly",
-      "Bundle when you need both"
+      "Free to start",
+      "Monthly practice",
+      "Yearly support",
+      "Bundle only if needed"
     ],
     "plans": [
       {
         "name": "Free Learning",
+        "moment": "Before lessons",
         "price": "\u00a30",
         "tag": "Start here",
         "billing": "No payment required",
-        "summary": "Best for future learners and theory-first preparation.",
+        "summary": "Theory preparation and onboarding without payment.",
         "requestValue": "free-learning",
         "requestSubject": "Drivest free learning access",
+        "highlights": [
+          "Theory revision and onboarding",
+          "Study language choice with English Peek",
+          "Upgrade only when practice begins"
+        ],
         "bullets": [
           "Core theory learning and onboarding for future learners and current learners",
           "Language selection with English Peek support",
@@ -1717,13 +1660,19 @@
       },
       {
         "name": "Selected-Centre Practice",
+        "moment": "During lessons",
         "price": "\u00a312.99 / month",
         "tag": "Monthly",
         "billing": "Recurring while active",
-        "summary": "Best for learners repeating routes around one chosen centre.",
+        "summary": "Monthly route practice around one chosen test centre.",
         "requestValue": "selected-centre-practice",
         "requestSubject": "Drivest practice access",
         "requiresCentre": true,
+        "highlights": [
+          "1 selected test centre",
+          "Reconstructed routes and off-route alerts",
+          "Offline pack while active"
+        ],
         "bullets": [
           "1 selected test centre",
           "Reconstructed practice routes and off-route alerts",
@@ -1735,13 +1684,19 @@
       },
       {
         "name": "Navigation",
+        "moment": "After the test",
         "price": "\u00a319.99 / year",
         "tag": "Yearly",
         "billing": "12-month access",
-        "summary": "Best for newer drivers who need calmer ongoing guidance.",
+        "summary": "Yearly calmer-driving guidance for newer independent drivers.",
         "subLine": "12 months of calmer navigation support for newer drivers.",
         "requestValue": "navigation",
         "requestSubject": "Drivest navigation access",
+        "highlights": [
+          "Low-stress routing and voice modes",
+          "Road prompts and parking support",
+          "12-month access"
+        ],
         "bullets": [
           "Low-stress route choice and voice modes",
           "Road feature prompts and parking support",
@@ -1753,15 +1708,21 @@
       },
       {
         "name": "Annual Bundle",
+        "moment": "Need both now",
         "price": "\u00a329.99 / year",
         "tag": "Best value",
         "billing": "12 months navigation + 1 month practice",
-        "summary": "Best when you want navigation now and a short centre-practice boost.",
+        "summary": "Yearly navigation plus a short practice window in one plan.",
         "featured": true,
         "subLine": "12 months of navigation plus 1 month of selected-centre practice routes.",
         "requestValue": "annual-bundle",
         "requestSubject": "Drivest annual bundle",
         "requiresCentre": true,
+        "highlights": [
+          "12 months navigation",
+          "1 month of practice for 1 centre",
+          "Each entitlement keeps its own timeline"
+        ],
         "bullets": [
           "Navigation access for 12 months",
           "Practice routes for 1 selected centre for 1 month",
@@ -1772,6 +1733,24 @@
         "href": "/access-request?plan=annual-bundle"
       }
     ],
+    "essentials": {
+      "title": "What stays simple",
+      "intro": "You do not need to buy every module at once. Each plan matches a different stage of the learner-to-driver journey.",
+      "items": [
+        {
+          "title": "Upgrade when needed",
+          "text": "Free Learning can stay free until you want centre practice or yearly driving support."
+        },
+        {
+          "title": "Practice stays focused",
+          "text": "Selected-Centre Practice is the only monthly plan and stays tied to one chosen centre while active."
+        },
+        {
+          "title": "Bundle only for overlap",
+          "text": "Annual Bundle is for people who want yearly navigation plus a short route-practice window."
+        }
+      ]
+    },
     "appGallery": {
       "title": "What you get in the app",
       "intro": "Drivest brings early theory preparation, practice, driving support, parking help, and instructor workflows where enabled into one product surface.",
@@ -1806,7 +1785,7 @@
         }
       ]
     },
-    "disclaimer": "Subscriptions renew unless cancelled in the relevant app store or payment channel. Subscription refunds follow the rules of the relevant store or payment provider.",
+    "disclaimer": "Subscriptions renew unless cancelled in the relevant app store or payment channel. Refund handling follows the relevant store or payment provider.",
     "marketplace": {
       "title": "Instructor marketplace terms where enabled",
       "text": "Marketplace lessons are delivered by independent instructors. Where instructor booking features are enabled, booking terms, fees, and cancellation handling are shown clearly before a learner confirms a request.",
@@ -1844,19 +1823,19 @@
     ],
     "faq": {
       "title": "Pricing questions",
-      "intro": "These are the main commercial questions users ask before choosing a Drivest plan.",
+      "intro": "Short answers before you choose a plan.",
       "items": [
         {
           "q": "What is included in Free Learning?",
-          "a": "Free Learning covers theory-first preparation and onboarding so future learners and current learners can begin before paying for centre practice or annual driving support."
+          "a": "Free Learning covers theory-first preparation and onboarding, so learners can begin before paying for centre practice or yearly driving support."
         },
         {
           "q": "How does Selected-Centre Practice work?",
-          "a": "Selected-Centre Practice is a monthly plan tied to one chosen test centre, with reconstructed practice routes, off-route alerts, and offline packs while the subscription stays active."
+          "a": "It is a monthly plan tied to one chosen test centre, with reconstructed practice routes, off-route alerts, and offline packs while the subscription stays active."
         },
         {
-          "q": "Do annual driving-support plans include practice routes for the full year?",
-          "a": "Not always. The annual bundle includes one month of selected-centre practice, while the annual driving-support entitlement continues on its own yearly timeline."
+          "q": "What does the Annual Bundle include?",
+          "a": "The Annual Bundle combines 12 months of navigation support with one month of selected-centre practice. Each entitlement keeps its own timeline."
         },
         {
           "q": "Are practice routes official driving test routes?",
@@ -1879,6 +1858,86 @@
       "Parking outputs are advisory only and may not reflect live restrictions.",
       "Check local signage and restrictions before leaving the vehicle."
     ]
+  },
+  "faqPage": {
+    "eyebrow": "Answers before you download",
+    "intro": "Use the grouped answers below when you want the fast version on product scope, routes, subscriptions, instructors, and privacy handling.",
+    "jumpTitle": "Jump to a section",
+    "pills": [
+      "Product scope",
+      "Routes and safety",
+      "Pricing",
+      "Instructors",
+      "Privacy"
+    ],
+    "groups": [
+      {
+        "id": "product-learning",
+        "title": "Product and learning",
+        "intro": "What Drivest is, who it is for, and how theory support is positioned.",
+        "icon": "book",
+        "questions": [
+          "What does Drivest provide?",
+          "Is Drivest only for people already taking lessons?",
+          "Is Drivest affiliated with DVSA?",
+          "Are Drivest theory questions official DVSA exam questions?",
+          "Can I study in another language and still check the English question?"
+        ]
+      },
+      {
+        "id": "routes-driving-support",
+        "title": "Routes and driving support",
+        "intro": "What practice routes are for, and where live road authority still overrides the app.",
+        "icon": "route",
+        "questions": [
+          "Are Drivest routes official driving test routes?",
+          "Can I rely on Drivest as the final authority while driving?",
+          "Does Drivest guarantee parking legality or availability?"
+        ]
+      },
+      {
+        "id": "pricing-subscriptions",
+        "title": "Pricing and subscriptions",
+        "intro": "The main commercial answers about plans, bundled access, and route entitlements.",
+        "icon": "card",
+        "questions": [
+          "What subscription plans does Drivest offer?",
+          "Do practice routes last for the full bundled annual subscription period?"
+        ]
+      },
+      {
+        "id": "instructors-bookings",
+        "title": "Instructors and bookings",
+        "intro": "How instructor discovery, lesson requests, and trust boundaries work where those flows are enabled.",
+        "icon": "people",
+        "questions": [
+          "How do lesson bookings work?",
+          "What is the lesson cancellation policy?",
+          "Does Drivest verify instructors?"
+        ]
+      },
+      {
+        "id": "privacy-account-requests",
+        "title": "Privacy and account requests",
+        "intro": "What Drivest processes, how location is used, and how users can raise data or dispute requests.",
+        "icon": "shield",
+        "questions": [
+          "What data does Drivest collect?",
+          "Does Drivest track my location all the time?",
+          "Does Drivest sell my data?",
+          "How do disputes work?",
+          "How do I request access to or deletion of my data?"
+        ]
+      }
+    ],
+    "support": {
+      "title": "Still need something specific?",
+      "text": "If the answer is not here yet, use the contact page or the privacy policy for the formal data-handling route.",
+      "primaryCta": "Contact us",
+      "primaryHref": "/contact",
+      "secondaryCta": "Privacy policy",
+      "secondaryHref": "/privacy"
+    }
   },
   "faqHeader": {
     "title": "FAQ",

@@ -77,6 +77,15 @@ The website is a mostly static marketing site with shared rendering logic.
   - generated coverage dataset used for public driving-test-centre pages
 - `tools/generate-seo-pages.mjs`
   - static generator for page shells, centre pages, redirects, crawl files, sitemap, and manifest
+- `tools/site-environment.mjs`
+  - resolves whether the current build is `production`, `preview`, or `local`
+  - provides the correct site URL and robots policy for that environment
+- `tools/apply-site-environment.mjs`
+  - rewrites generated output for the active environment after page generation
+  - keeps preview and local builds on their own URLs and forces them to `noindex`
+- `tools/build-site.mjs`
+  - single build entry point used for local and Vercel builds
+  - runs generation, environment rewrite, and verification in sequence
 - `tools/build_browser_icons.py`
   - deterministic browser-icon builder that crops the standalone brand mark from the wordmark source, exports a simplified orange browser favicon with a larger steering-wheel glyph for dark browser chrome, and keeps matching white-tile app icons for touch/PWA contexts
 - `tools/verify-generated-site.mjs`
@@ -92,6 +101,28 @@ The marketing pages are generated statically from the shared renderer and conten
 
 `script.js` remains the source renderer used by the generator.
 `site-runtime.js` is the lighter browser bundle loaded by generated pages for interactive behaviour only.
+
+### Environment model
+
+The site now supports separate production and development-style builds.
+
+- `production`
+  - canonical base URL remains `https://drivest.uk`
+  - public pages stay indexable
+  - intended for the `main` branch / production deployment
+- `preview` or `local`
+  - canonical base URL is rewritten to the preview or local URL after generation
+  - pages are forced to `noindex`
+  - intended for non-production Vercel deployments and local testing
+
+The deployment build entry point is now `node tools/build-site.mjs`.
+
+Preview URL resolution order is:
+
+1. `DRIVEST_SITE_URL`
+2. `DRIVEST_DEV_SITE_URL`
+3. `VERCEL_URL`
+4. local fallback `http://127.0.0.1:4173`
 
 Examples:
 
@@ -542,6 +573,7 @@ At minimum, keep these pairs aligned:
 - added a shorter-desktop compact mode for homepage product-proof, language-proof, and safety-proof sections so tall app screenshots no longer create giant empty text columns below the fold
 - tightened the homepage desktop UI rhythm further by reducing section spacing, turning lower proof cards into compact horizontal media cards, and rebuilding the language section as a tighter screenshot collage for shorter desktop heights
 - prepared a permanent non-www to www redirect rule in `vercel.json`
+- added an environment-aware site build path so preview and local builds use their own canonical URLs and stay out of search indexing
 - improved mobile screenshot proof presentation and tightened homepage and pricing hierarchy
 
 ## Maintenance Notes
@@ -559,10 +591,9 @@ When future changes arrive, use this order:
 9. Verify JSON parsing and `node --check script.js`.
 10. Verify `node --check site-runtime.js`.
 11. Run `python tools\build_browser_icons.py` when the browser icon or wordmark source changes.
-12. Run `node tools\generate-seo-pages.mjs` when generated outputs or redirects changed.
-13. Run `node tools\verify-generated-site.mjs` after regeneration.
-14. Run `python -m unittest discover -s tests -p "test_*.py" -v` when touching route-corpus extraction or coverage generation logic.
-15. Confirm whether changes are only local or also deployed live.
+12. Run `node tools\build-site.mjs` when generated outputs, redirects, or environment-aware metadata changed.
+13. Run `python -m unittest discover -s tests -p "test_*.py" -v` when touching route-corpus extraction or coverage generation logic.
+14. Confirm whether changes are only local, preview-only, or also deployed live.
 
 ## Verification Commands
 
@@ -573,12 +604,13 @@ Get-Content -Raw 'site\content\marketing.en-GB.json' | ConvertFrom-Json | Out-Nu
 node --check script.js
 node --check site-runtime.js
 node --check tools\generate-seo-pages.mjs
+node --check tools\apply-site-environment.mjs
+node --check tools\build-site.mjs
 node --check tools\verify-generated-site.mjs
 python -m py_compile tools\build_browser_icons.py
 python -m py_compile tools\extract_route_corpus_coverage.py tests\test_extract_route_corpus_coverage.py
 python tools\build_browser_icons.py
-node tools\generate-seo-pages.mjs
-node tools\verify-generated-site.mjs
+node tools\build-site.mjs
 python -m unittest discover -s tests -p "test_*.py" -v
 python tools\extract_route_corpus_coverage.py --help
 git status --short --branch

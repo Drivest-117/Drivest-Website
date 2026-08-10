@@ -11,6 +11,7 @@ const today = new Date().toISOString().slice(0, 10);
 const SITE_URL = "https://drivest.uk";
 const ogImage = `${SITE_URL}/assets/drivest-wordmark-preview.png`;
 const ICON_VERSION = "2026-05-15-favicon-solid";
+const STYLE_VERSION = "2026-08-10-mobile-nav-fix";
 
 const basePageTargets = [
   { page: "home", output: "index.html", canonical: `${SITE_URL}/` },
@@ -184,7 +185,7 @@ function renderDocument({ appHtml, canonical, centreId, description, jsonLd, pag
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="${styleAsset("/styles.css")}" />
 ${ldScripts}
 </head>
 <body ${bodyAttrs.join(" ")}>
@@ -591,37 +592,88 @@ function buildCustomStructuredData(target, marketing, coverage) {
 function renderContactPage(config, renderer, marketing, coverage) {
   const supportEmail = String(marketing.footer.contact || "admin@drivest.uk").replace(/^Contact:\s*/i, "");
   const generatedAt = coverageGeneratedAtLabel(coverage);
+  const supportItems = config.supportPanel?.items?.length
+    ? config.supportPanel.items
+    : [
+        {
+          title: "Product support",
+          text: "Learner access questions, public-site issues, and general product queries."
+        },
+        {
+          title: "Privacy requests",
+          text: "Access or deletion requests, with identity verification where required."
+        },
+        {
+          title: "Coverage questions",
+          text: "Questions about published centre coverage and route-directory methodology."
+        }
+      ];
+  const heroPills = [
+    ...(config.pills || []),
+    generatedAt ? `Coverage file: ${generatedAt}` : ""
+  ].filter(Boolean);
   return `
-    <section class="section reveal feature-hero">
-      <div class="feature-hero-grid">
-        <div>
-          <p class="eyebrow">Support and trust</p>
+    <section class="section reveal feature-hero contact-hero">
+      <div class="contact-hero-grid">
+        <div class="contact-hero-copy">
+          <p class="eyebrow">${escapeHtml(config.eyebrow || "Support and trust")}</p>
           <h1>${escapeHtml(config.title)}</h1>
-          <p>${escapeHtml(config.intro)}</p>
-          <div class="pill-row">
-            <span class="pill">Support: ${escapeHtml(supportEmail)}</span>
-            ${generatedAt ? `<span class="pill">Coverage file: ${escapeHtml(generatedAt)}</span>` : ""}
+          <p class="hero-lead">${escapeHtml(config.intro)}</p>
+          ${heroPills.length ? `<div class="pill-row contact-pill-row">${renderer.renderPills(heroPills)}</div>` : ""}
+          <div class="btn-row contact-hero-actions">
+            ${renderer.button(config.primaryCta || "Email support", `mailto:${supportEmail}`, "primary", "contact-hero-link")}
+            ${renderer.button(config.secondaryCta || "Privacy policy", config.secondaryHref || "/privacy", "secondary", "contact-hero-link")}
           </div>
         </div>
-        <div class="feature-photo">
-          ${renderer.renderImg("/assets/app-instructor-hub.jpeg", "Drivest Instructor Hub screen", {
-            loading: "eager",
-            fetchPriority: "high",
-            sizes: "(max-width: 980px) 92vw, 420px"
-          })}
-        </div>
+        <aside class="panel contact-hero-panel reveal-item">
+          <p class="panel-title">${escapeHtml(config.supportPanel?.title || "Use this inbox for")}</p>
+          <div class="contact-support-list">
+            ${supportItems
+              .map(
+                (item, index) => `
+              <div class="contact-support-row">
+                <span class="contact-support-step">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+                <div class="contact-support-copy">
+                  <strong>${escapeHtml(item.title)}</strong>
+                  <p>${escapeHtml(item.text)}</p>
+                </div>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          <div class="contact-support-note">
+            <p class="contact-support-email">${escapeHtml(supportEmail)}</p>
+            <p>${escapeHtml(config.supportPanel?.note || "Support, privacy, and coverage questions are handled through the same inbox.")}</p>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="section reveal">
-      <div class="grid two-up">
+    <section class="section reveal contact-signal-section">
+      <div class="contact-signal-grid">
         ${(config.cards || [])
           .map(
-            (card) => `
-          <article class="card reveal-item">
-            <h2>${escapeHtml(card.title)}</h2>
-            ${card.text ? `<p>${escapeHtml(card.text)}</p>` : ""}
-            ${renderer.bulletList(card.bullets)}
+            (card, index) => `
+          <article class="card contact-signal-card reveal-item">
+            <div class="contact-signal-top">
+              <span class="contact-signal-index">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+              ${renderContactSignalMeta(card.title, supportEmail, generatedAt)}
+            </div>
+            <h2 class="contact-signal-title">${renderer.renderFeatureIcon(card.title)}${escapeHtml(card.title)}</h2>
+            ${card.text ? `<p class="contact-signal-summary">${escapeHtml(card.text)}</p>` : ""}
+            <div class="contact-signal-points">
+              ${(card.bullets || [])
+                .map(
+                  (bullet) => `
+                <div class="contact-signal-point">
+                  <span class="contact-signal-point-dot" aria-hidden="true"></span>
+                  <span>${escapeHtml(bullet)}</span>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
           </article>
         `
           )
@@ -629,49 +681,51 @@ function renderContactPage(config, renderer, marketing, coverage) {
       </div>
     </section>
 
-    ${renderer.renderInfoSection({
-      title: "Public route-coverage freshness",
-      text: generatedAt
-        ? `The published route-coverage file used by this website was generated on ${generatedAt}. Refresh the site pages when the route corpus changes so coverage claims stay aligned with the latest export.`
-        : "Refresh the site pages whenever the route corpus changes so coverage claims stay aligned with the latest export.",
-      bullets: [
-        "Only centres with more than 2 routes are visible in the public directory",
-        "Duplicate, temporary, backup, and broken variants are excluded from the public layer",
-        "Route, navigation, and parking outputs remain advisory only"
-      ]
-    })}
-
-    ${renderer.renderLinkCardsSection({
-      title: "Go back into the product journey",
-      intro: "Support and trust pages should still connect cleanly back into the core learner and instructor intents.",
-      items: [
-        {
-          title: "Theory test preparation",
-          text: "Start with theory, mock tests, road signs, Highway Code, and multilingual revision.",
-          href: "/theory-test-preparation",
-          cta: "View theory prep"
-        },
-        {
-          title: "Driving test centre practice",
-          text: "Browse the published centre coverage dataset and move into the exact selected-centre page you need.",
-          href: "/driving-test-centres",
-          cta: "View centres"
-        },
-        {
-          title: "Find driving instructors",
-          text: "See how instructor search, bookings, and Instructor Hub fit into the same product story.",
-          href: "/driving-instructors",
-          cta: "View instructor search"
-        },
-        {
-          title: "FAQ and legal pages",
-          text: "Read the public FAQ, Terms, and Privacy pages for current legal positioning and support wording.",
-          href: "/faq",
-          cta: "View FAQ"
-        }
-      ]
-    })}
+    ${renderer.renderLinkCardsSection(config.links || defaultContactLinks(), "contact-links-section")}
   `;
+}
+
+function renderContactSignalMeta(title, supportEmail, generatedAt) {
+  const value = String(title || "").toLowerCase();
+  if (value.includes("support")) return `<span class="contact-signal-meta">${escapeHtml(supportEmail)}</span>`;
+  if (value.includes("coverage") && generatedAt) return `<span class="contact-signal-meta">${escapeHtml(generatedAt)}</span>`;
+  if (value.includes("legal")) return '<span class="contact-signal-meta">Same domain</span>';
+  if (value.includes("status")) return '<span class="contact-signal-meta">Live now</span>';
+  return "";
+}
+
+function defaultContactLinks() {
+  return {
+    title: "Useful next pages",
+    intro: "If you are trying to resolve something specific, these pages usually answer it faster.",
+    layout: "two-up compact-grid",
+    items: [
+      {
+        title: "FAQ",
+        text: "See grouped answers on product scope, subscriptions, instructors, and privacy handling.",
+        href: "/faq",
+        cta: "View FAQ"
+      },
+      {
+        title: "Privacy policy",
+        text: "Use the formal privacy page for data handling details and request context.",
+        href: "/privacy",
+        cta: "View privacy"
+      },
+      {
+        title: "Terms and conditions",
+        text: "Review public legal wording, responsibilities, and platform boundaries.",
+        href: "/terms",
+        cta: "View terms"
+      },
+      {
+        title: "Test-centre coverage",
+        text: "Browse the published centre directory if your question is about visible route coverage.",
+        href: "/driving-test-centres",
+        cta: "View centres"
+      }
+    ]
+  };
 }
 
 function renderAccessRequestPage(config, renderer, marketing) {
@@ -1329,7 +1383,7 @@ function renderNoIndexDocument({ appHtml, canonical, description, page, title })
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="${styleAsset("/styles.css")}" />
 </head>
 <body data-page="${page}">
   <div id="app">
@@ -1363,6 +1417,10 @@ function renderRedirect(destination) {
 
 function iconAsset(assetPath) {
   return `${assetPath}?v=${ICON_VERSION}`;
+}
+
+function styleAsset(assetPath) {
+  return `${assetPath}?v=${STYLE_VERSION}`;
 }
 
 function renderRobots() {
@@ -1454,7 +1512,7 @@ function renderVercelConfig({ customTargets, redirectTargets }) {
       $schema: "https://openapi.vercel.sh/vercel.json",
       framework: null,
       installCommand: "",
-      buildCommand: "",
+      buildCommand: "node tools/build-site.mjs",
       outputDirectory: ".",
       redirects
     },

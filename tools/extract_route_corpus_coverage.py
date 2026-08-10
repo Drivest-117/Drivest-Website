@@ -371,7 +371,7 @@ def extract_coverage(output_root: Path, min_routes_exclusive: int) -> dict:
 
             duration_s = numeric(route.get("estimatedDurationSeconds"))
             if duration_s is None:
-                duration_s = numeric(route.get("durationS"))
+              duration_s = numeric(route.get("durationS"))
             if duration_s is not None:
                 all_durations.append(duration_s / 60)
 

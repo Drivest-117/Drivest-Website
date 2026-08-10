@@ -2,11 +2,14 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { resolveSiteEnvironment } from "./site-environment.mjs";
+
 const siteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const coveragePath = path.join(siteDir, "site", "data", "test-centre-coverage.en-GB.json");
 const ignoreDirs = new Set([".git", "site", "tools", "node_modules"]);
 const failures = [];
 const iconVersion = "2026-05-15-favicon-solid";
+const siteEnv = resolveSiteEnvironment(process.env);
 
 const coverage = JSON.parse(await fs.readFile(coveragePath, "utf8"));
 const allHtmlFiles = await collectHtmlFiles(siteDir);
@@ -78,6 +81,21 @@ for (const relativePath of ["terms/index.html", "privacy/index.html", "contact/i
   assertIncludes(content, relativePath, "/site-runtime.js");
 }
 
+const expectedRobotsMeta = `content="${siteEnv.robotsMeta}"`;
+for (const relativePath of [
+  "index.html",
+  "pricing/index.html",
+  "download/index.html",
+  "contact/index.html",
+  "access-request/index.html",
+  "instructor-apply/index.html",
+  "terms/index.html",
+  "privacy/index.html"
+]) {
+  const content = await readSiteFile(relativePath);
+  assertIncludes(content, relativePath, expectedRobotsMeta);
+}
+
 const manifest = await readSiteFile("manifest.webmanifest");
 [
   versionedIcon("/android-chrome-192x192.png"),
@@ -136,14 +154,27 @@ if (vercelConfig?.redirects) {
 }
 
 const llmsIndex = await readSiteFile("llms.txt");
-assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/download");
-assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/access-request");
-assertIncludes(llmsIndex, "llms.txt", "https://drivest.uk/instructor-apply");
+assertIncludes(llmsIndex, "llms.txt", `${siteEnv.siteUrl}/download`);
+assertIncludes(llmsIndex, "llms.txt", `${siteEnv.siteUrl}/access-request`);
+assertIncludes(llmsIndex, "llms.txt", `${siteEnv.siteUrl}/instructor-apply`);
 
 const llmsFull = await readSiteFile("llms-full.txt");
-assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/download");
-assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/access-request");
-assertIncludes(llmsFull, "llms-full.txt", "https://drivest.uk/instructor-apply");
+assertIncludes(llmsFull, "llms-full.txt", `${siteEnv.siteUrl}/download`);
+assertIncludes(llmsFull, "llms-full.txt", `${siteEnv.siteUrl}/access-request`);
+assertIncludes(llmsFull, "llms-full.txt", `${siteEnv.siteUrl}/instructor-apply`);
+
+const robotsTxt = await readSiteFile("robots.txt");
+if (siteEnv.isProduction) {
+  assertIncludes(robotsTxt, "robots.txt", "User-agent: *");
+  assertIncludes(robotsTxt, "robots.txt", "Allow: /");
+  assertIncludes(robotsTxt, "robots.txt", `Sitemap: ${siteEnv.siteUrl}/sitemap.xml`);
+} else {
+  assertIncludes(robotsTxt, "robots.txt", "User-agent: *");
+  assertIncludes(robotsTxt, "robots.txt", "Disallow: /");
+}
+
+const sitemapXml = await readSiteFile("sitemap.xml");
+assertIncludes(sitemapXml, "sitemap.xml", siteEnv.siteUrl);
 
 const contactRedirect = await readSiteFile("contact.html");
 assertIncludes(contactRedirect, "contact.html", 'content="0; url=/contact"');
